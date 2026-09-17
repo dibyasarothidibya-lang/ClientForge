@@ -1,0 +1,233 @@
+@import "tailwindcss";
+
+/* Enable class-based dark mode in Tailwind CSS v4 */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --font-sans: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: var(--font-serif), 'Cormorant Garamond', 'Instrument Serif', Georgia, serif;
+}
+
+:root {
+  --background: #FAFAFC;
+  --foreground: #0f172a;
+  color-scheme: light;
+}
+
+.dark {
+  --background: #080808;
+  --foreground: #f5f5f3;
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+/* ==========================================================
+   EDITORIAL LUXURY TYPOGRAPHY SYSTEM
+   ========================================================== */
+
+.font-display {
+  font-family: var(--font-serif);
+}
+
+.display-xl {
+  font-family: var(--font-serif);
+  font-size: clamp(3.5rem, 8vw, 8.25rem);
+  line-height: 0.96;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+}
+
+.display-lg {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 5vw, 5.25rem);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  font-weight: 400;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.15rem, 4.2vw, 3.85rem);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+}
+
+.editorial-italic {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Muted Luxury Gradient Accent: blue/violet -> light cyan -> teal/emerald */
+.gradient-text {
+  background: linear-gradient(90deg, #7c83ff 0%, #8ca7ff 35%, #57d5dc 70%, #16dba5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.body-lg {
+  font-family: var(--font-sans);
+  font-size: clamp(1.05rem, 1.25vw, 1.25rem);
+  line-height: 1.65;
+  letter-spacing: -0.01em;
+}
+
+.body-md {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.ui-label {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.metric {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 4.5vw, 4.25rem);
+  line-height: 1;
+  letter-spacing: -0.025em;
+  font-weight: 400;
+}
+
+/* Custom Glass Utilities */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.dark .glass-panel {
+  background: rgba(18, 18, 20, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(38, 38, 42, 0.7);
+}
+
+/* Custom Range Slider */
+input[type="range"] {
+  accent-color: #4f46e5;
+}
+
+/* Hide scrollbar for tabs navigation */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ==========================================================
+   WORKSPACE DUAL THEME ADAPTATION
+   Provides clean light-mode surfaces & contrasts across all
+   workspace pages when html does not have the .dark class.
+   ========================================================== */
+
+html:not(.dark) .workspace-shell {
+  color-scheme: light;
+}
+
+/* Light mode card surfaces in workspace */
+html:not(.dark) .workspace-shell .bg-neutral-900,
+html:not(.dark) .workspace-shell .bg-neutral-900\/60,
+html:not(.dark) .workspace-shell .bg-neutral-900\/80,
+html:not(.dark) .workspace-shell .bg-neutral-900\/90,
+html:not(.dark) .workspace-shell .bg-neutral-950,
+html:not(.dark) .workspace-shell .bg-\[\#0e0e12\],
+html:not(.dark) .workspace-shell .bg-\[\#0c0c0e\],
+html:not(.dark) .workspace-shell .bg-\[\#0a0a0d\],
+html:not(.dark) .workspace-shell .bg-\[\#101014\],
+html:not(.dark) .workspace-shell .bg-\[\#121216\],
+html:not(.dark) .workspace-shell .bg-\[\#121215\] {
+  background-color: #ffffff !important;
+  color: #0f172a;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.06), 0 1px 2px -1px rgb(0 0 0 / 0.06);
+}
+
+/* Inner subtle panels and table rows */
+html:not(.dark) .workspace-shell .bg-white\/\[0\.02\],
+html:not(.dark) .workspace-shell .bg-white\/\[0\.03\],
+html:not(.dark) .workspace-shell .bg-white\/\[0\.04\],
+html:not(.dark) .workspace-shell .bg-white\/\[0\.05\],
+html:not(.dark) .workspace-shell .bg-neutral-800\/50,
+html:not(.dark) .workspace-shell .bg-neutral-800\/60 {
+  background-color: #f8fafc !important;
+}
+
+/* Clean slate borders in light mode */
+html:not(.dark) .workspace-shell .border-neutral-800,
+html:not(.dark) .workspace-shell .border-neutral-800\/80,
+html:not(.dark) .workspace-shell .border-neutral-800\/40,
+html:not(.dark) .workspace-shell .border-neutral-700,
+html:not(.dark) .workspace-shell .border-white\/\[0\.04\],
+html:not(.dark) .workspace-shell .border-white\/\[0\.06\],
+html:not(.dark) .workspace-shell .border-white\/\[0\.08\],
+html:not(.dark) .workspace-shell .border-white\/\[0\.1\],
+html:not(.dark) .workspace-shell .border-white\/\[0\.12\],
+html:not(.dark) .workspace-shell .border-white\/\[0\.14\],
+html:not(.dark) .workspace-shell .border-white\/\[0\.16\] {
+  border-color: #e2e8f0 !important;
+}
+
+/* Typography contrast in light mode */
+html:not(.dark) .workspace-shell .text-neutral-100,
+html:not(.dark) .workspace-shell .text-neutral-200,
+html:not(.dark) .workspace-shell .text-\[\#f5f5f3\],
+html:not(.dark) .workspace-shell h1,
+html:not(.dark) .workspace-shell h2,
+html:not(.dark) .workspace-shell h3,
+html:not(.dark) .workspace-shell h4 {
+  color: #0f172a;
+}
+
+html:not(.dark) .workspace-shell .text-neutral-400,
+html:not(.dark) .workspace-shell .text-neutral-500 {
+  color: #64748b;
+}
+
+html:not(.dark) .workspace-shell .text-neutral-300 {
+  color: #334155;
+}
+
+/* Hover highlights in light mode */
+html:not(.dark) .workspace-shell .hover\:bg-white\/\[0\.04\]:hover,
+html:not(.dark) .workspace-shell .hover\:bg-white\/\[0\.05\]:hover,
+html:not(.dark) .workspace-shell .hover\:bg-white\/\[0\.06\]:hover,
+html:not(.dark) .workspace-shell .hover\:bg-white\/\[0\.08\]:hover,
+html:not(.dark) .workspace-shell .hover\:bg-neutral-800:hover {
+  background-color: #f1f5f9 !important;
+}
+
+html:not(.dark) .workspace-shell .hover\:text-white:hover {
+  color: #0f172a !important;
+}
+
+/* Inputs and textareas */
+html:not(.dark) .workspace-shell input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+html:not(.dark) .workspace-shell select,
+html:not(.dark) .workspace-shell textarea {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+html:not(.dark) .workspace-shell input::placeholder,
+html:not(.dark) .workspace-shell textarea::placeholder {
+  color: #94a3b8 !important;
+}
