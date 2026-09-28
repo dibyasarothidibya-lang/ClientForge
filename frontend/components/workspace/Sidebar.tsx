@@ -87,7 +87,7 @@ export default function Sidebar() {
             </div>
             {isSidebarOpen && (
               <div className="overflow-hidden">
-                <div className="font-serif text-base text-slate-900 dark:text-[#f5f5f3] truncate font-medium">
+                <div className="font-sans font-semibold text-sm text-slate-900 dark:text-zinc-100 truncate">
                   {activeOrg.name}
                 </div>
                 <div className="text-[10px] font-mono text-slate-500 dark:text-neutral-400 uppercase tracking-wider truncate">

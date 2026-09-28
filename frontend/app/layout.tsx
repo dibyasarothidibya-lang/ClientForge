@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Cormorant_Garamond } from "next/font/google";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import "./globals.css";
 
 const inter = Inter({
@@ -17,8 +18,8 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "The Client Forge — Turn Better Opportunities Into Better Clients",
-  description: "The intelligent operating system for client acquisition, prospect intelligence, opportunity pipelines, and relationship operations. Built for the work behind the win.",
+  title: "Client Forge — Opportunity Intelligence & Pipeline Engine",
+  description: "The intelligent operating system for client acquisition, prospect intelligence, opportunity pipelines, and relationship operations.",
   icons: {
     icon: "/logo.jpg",
     shortcut: "/logo.jpg",
@@ -39,26 +40,16 @@ export default function RootLayout({
     >
       <head>
         <link rel="icon" href="/logo.jpg" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  var saved = localStorage.getItem('theme');
-                  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                  if (saved === 'dark' || (!saved && prefersDark)) {
-                    document.documentElement.classList.add('dark');
-                  } else {
-                    document.documentElement.classList.remove('dark');
-                  }
-                } catch (e) {}
-              })();
-            `,
-          }}
-        />
       </head>
-      <body className="min-h-full flex flex-col font-sans bg-[var(--background)] text-[var(--foreground)] transition-colors duration-200">
-        {children}
+      <body className="min-h-full flex flex-col font-sans bg-white dark:bg-[#09090b] text-slate-900 dark:text-zinc-100 transition-colors duration-200">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange={false}
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

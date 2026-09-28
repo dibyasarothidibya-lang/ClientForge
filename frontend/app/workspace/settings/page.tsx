@@ -18,10 +18,15 @@ import {
   Lock,
   Download,
   CheckCircle2,
+  Sun,
+  Moon,
+  Laptop
 } from "lucide-react";
+import { useTheme } from "next-themes";
 
 export default function SettingsPage() {
   const { activeOrg, members, currentRole, setActiveOrg } = useWorkspace();
+  const { theme, setTheme } = useTheme();
 
   const [activeTab, setActiveTab] = useState<"general" | "members" | "billing" | "security" | "integrations">("general");
 
@@ -232,6 +237,52 @@ export default function SettingsPage() {
                 <option value="UTC+0 (London)">UTC+0 (London)</option>
                 <option value="UTC+1 (Central Europe)">UTC+1 (Central Europe)</option>
               </select>
+            </div>
+          </div>
+
+          {/* Theme & Interface Appearance */}
+          <div className="pt-4 border-t border-neutral-800">
+            <h3 className="text-sm font-medium text-neutral-200 mb-1">Global Theme & Interface Appearance</h3>
+            <p className="text-xs text-neutral-400 mb-3">
+              Configure your preferred visual experience across the platform. Persists across sessions.
+            </p>
+            <div className="grid grid-cols-3 gap-3">
+              <button
+                type="button"
+                onClick={() => setTheme("light")}
+                className={`flex items-center justify-center gap-2 p-3 rounded-xl border text-xs font-medium transition-all ${
+                  theme === "light"
+                    ? "bg-amber-500/15 border-amber-500/50 text-amber-300 ring-1 ring-amber-500/30"
+                    : "bg-neutral-950/60 border-neutral-800 text-neutral-400 hover:text-neutral-200 hover:border-neutral-700"
+                }`}
+              >
+                <Sun className="w-4 h-4 text-amber-400" />
+                <span>Light Mode</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setTheme("dark")}
+                className={`flex items-center justify-center gap-2 p-3 rounded-xl border text-xs font-medium transition-all ${
+                  theme === "dark"
+                    ? "bg-indigo-500/15 border-indigo-500/50 text-indigo-300 ring-1 ring-indigo-500/30"
+                    : "bg-neutral-950/60 border-neutral-800 text-neutral-400 hover:text-neutral-200 hover:border-neutral-700"
+                }`}
+              >
+                <Moon className="w-4 h-4 text-indigo-400" />
+                <span>Dark Mode</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setTheme("system")}
+                className={`flex items-center justify-center gap-2 p-3 rounded-xl border text-xs font-medium transition-all ${
+                  theme === "system"
+                    ? "bg-emerald-500/15 border-emerald-500/50 text-emerald-300 ring-1 ring-emerald-500/30"
+                    : "bg-neutral-950/60 border-neutral-800 text-neutral-400 hover:text-neutral-200 hover:border-neutral-700"
+                }`}
+              >
+                <Laptop className="w-4 h-4 text-emerald-400" />
+                <span>System Sync</span>
+              </button>
             </div>
           </div>
 

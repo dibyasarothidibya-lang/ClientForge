@@ -15,7 +15,7 @@ export default function Footer() {
   };
 
   return (
-    <footer id="_footer_newsletter_columns_v6_001" className="bg-slate-100/80 dark:bg-[#050505] text-slate-600 dark:text-neutral-400 border-t border-slate-200 dark:border-white/[0.08] transition-colors duration-200">
+    <footer id="_footer_newsletter_columns_v6_001" className="bg-slate-100/80 dark:bg-[#050505] text-slate-600 dark:text-neutral-400 border-t border-slate-200 dark:border-white/[0.08] transition-colors duration-200 relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Main Footer Content */}
@@ -32,8 +32,8 @@ export default function Footer() {
                 />
               </div>
               <div className="flex flex-col">
-                <span className="text-xl sm:text-2xl font-normal tracking-wide text-slate-900 dark:text-[#f5f5f3] select-none">
-                  ℭ𝔩𝔦𝔢𝔫𝔱 𝔉𝔬𝔯𝔤𝔢
+                <span className="font-serif text-2xl font-normal tracking-tight text-slate-900 dark:text-[#f5f5f3] select-none">
+                  Client Forge
                 </span>
                 <span className="text-[10px] uppercase tracking-widest font-mono text-slate-500 dark:text-neutral-400 -mt-0.5">
                   Opportunity Intelligence Engine
@@ -85,11 +85,11 @@ export default function Footer() {
             <div>
               <h4 className="text-xs font-mono uppercase tracking-widest text-slate-900 dark:text-neutral-300 mb-4">Platform</h4>
               <ul className="space-y-3 text-xs font-normal">
-                <li><a href="#demo" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Signal Ingestion</a></li>
-                <li><a href="#features" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Executive Triggers</a></li>
-                <li><a href="#solutions" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Dossier Synthesizer</a></li>
+                <li><a href="/talent-intelligence" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Talent Intelligence</a></li>
+                <li><a href="/people-operations" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">People Operations</a></li>
+                <li><a href="/global-mobility" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Global Mobility</a></li>
+                <li><a href="/pricing" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Pricing & Plans</a></li>
                 <li><a href="#calculator" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Velocity Modeling</a></li>
-                <li><a href="#pricing" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Pricing & Plans</a></li>
                 <li><a href="#solutions" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Client Ledger</a></li>
               </ul>
             </div>

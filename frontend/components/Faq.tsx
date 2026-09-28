@@ -38,7 +38,8 @@ export default function Faq() {
   };
 
   return (
-    <section id="faq" className="py-24 sm:py-32 bg-slate-50/70 dark:bg-[#080808] border-t border-slate-200/80 dark:border-white/[0.06] transition-colors duration-200 relative">
+    <section id="security" className="py-24 sm:py-32 bg-slate-50/20 dark:bg-[#080808]/20 backdrop-blur-[1px] border-t border-slate-200/80 dark:border-white/[0.06] transition-colors duration-200 relative z-10 scroll-mt-20">
+      <div id="faq" className="scroll-mt-24" />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -62,9 +63,9 @@ export default function Faq() {
             return (
               <div
                 key={idx}
-                className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
+                className={`rounded-2xl border transition-all duration-300 overflow-hidden hover:[transform:perspective(800px)_translateZ(8px)] hover:shadow-lg ${
                   isOpen 
-                    ? "border-indigo-200 dark:border-white/[0.16] bg-white dark:bg-white/[0.03] shadow-md dark:shadow-lg" 
+                    ? "border-indigo-200 dark:border-white/[0.16] bg-white dark:bg-white/[0.03] shadow-md dark:shadow-lg ring-1 ring-indigo-500/20" 
                     : "border-slate-200 dark:border-white/[0.06] bg-white/80 dark:bg-[#0c0c0e] hover:border-slate-300 dark:hover:border-white/[0.10] shadow-xs dark:shadow-none"
                 }`}
               >
@@ -73,8 +74,8 @@ export default function Faq() {
                   className="w-full flex items-center justify-between p-6 text-left focus:outline-none group cursor-pointer"
                   aria-expanded={isOpen}
                 >
-                  <span className={`text-base sm:text-lg font-medium pr-6 transition-colors ${
-                    isOpen ? "text-indigo-950 dark:text-[#f5f5f3]" : "text-slate-700 dark:text-neutral-300 group-hover:text-indigo-600 dark:group-hover:text-white"
+                  <span className={`font-serif text-lg sm:text-xl font-normal pr-6 transition-colors ${
+                    isOpen ? "text-indigo-950 dark:text-[#f5f5f3]" : "text-slate-800 dark:text-neutral-200 group-hover:text-indigo-600 dark:group-hover:text-white"
                   }`}>
                     {faq.question}
                   </span>

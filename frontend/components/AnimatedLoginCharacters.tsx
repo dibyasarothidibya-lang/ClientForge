@@ -183,11 +183,6 @@ export default function AnimatedLoginCharacters({
           onClick={() => handlePoke("yellow")}
         />
       </div>
-
-      {/* Playful hint at bottom */}
-      <div className={styles.sceneBadge}>
-        <span>Interactive Characters</span>
-      </div>
     </div>
   );
 }
