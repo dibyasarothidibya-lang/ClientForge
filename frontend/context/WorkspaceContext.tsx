@@ -128,7 +128,7 @@ const WorkspaceContext = createContext<WorkspaceContextType | undefined>(undefin
 
 export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
   const [activeOrg, setActiveOrg] = useState<Organization>(primaryOrg);
-  const allOrgs = [primaryOrg, alternateOrg];
+  const allOrgs = [primaryOrg];
   const [currentRole, setCurrentRole] = useState<UserRole>("Owner");
   
   const [members, setMembers] = useState<Member[]>(demoMembers);

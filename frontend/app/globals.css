@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap');
 @import "tailwindcss";
 
 /* Enable class-based dark mode in Tailwind CSS v4 */
@@ -54,9 +55,9 @@ h1, h2, h3 {
 
 /* Modern Enterprise Workspace & Campaign Clean Typography: Zero serif writing fonts, zero typewriter fonts on UI */
 .workspace-shell,
-.workspace-shell *:not(code):not(pre):not(kbd),
+.workspace-shell *:not(code):not(pre):not(kbd):not(.font-victorian),
 .campaign-shell,
-.campaign-shell *:not(code):not(pre):not(kbd) {
+.campaign-shell *:not(code):not(pre):not(kbd):not(.font-victorian) {
   font-family: var(--font-sans), 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
 }
 
@@ -358,8 +359,10 @@ html:not(.dark) .workspace-shell textarea::placeholder {
   box-shadow: 0 4px 14px rgba(2, 132, 199, 0.45), 0 0 0 6px rgba(56, 189, 248, 0.3);
 }
 /* Victorian English Brand Styling strictly for the brand name */
-.font-victorian {
-  font-family: 'Old English Text MT', 'UnifrakturMaguntia', 'Engravers Old English BT', 'Chaucer', 'Cloister Black', 'Blackletter', Georgia, serif;
+.font-victorian,
+.workspace-shell .font-victorian,
+.campaign-shell .font-victorian {
+  font-family: 'Old English Text MT', 'UnifrakturMaguntia', 'Engravers Old English BT', 'Chaucer', 'Cloister Black', 'Blackletter', Georgia, serif !important;
   font-feature-settings: "liga", "dlig", "swsh";
-  letter-spacing: 0.03em;
+  letter-spacing: 0.015em;
 }

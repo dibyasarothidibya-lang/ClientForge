@@ -63,9 +63,19 @@ export default function SquishSwitch({
           scaleY: [1, 0.85, 1],
         }}
         transition={{
-          type: "spring",
-          stiffness: 500,
-          damping: 30,
+          x: {
+            type: "spring",
+            stiffness: 500,
+            damping: 30,
+          },
+          scaleX: {
+            duration: 0.28,
+            ease: "easeInOut",
+          },
+          scaleY: {
+            duration: 0.28,
+            ease: "easeInOut",
+          },
         }}
         style={{
           width: `${thumbSize}px`,

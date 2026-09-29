@@ -76,14 +76,19 @@ export default function Header() {
         <Link
           href="/"
           title="Return to Client Forge Home"
-          className="lg:hidden flex items-center gap-2 group mr-1 shrink-0"
+          className="lg:hidden flex items-center gap-2 group mr-2 shrink-0"
         >
           <div className="w-8 h-8 rounded-lg overflow-hidden bg-black border border-slate-200 dark:border-white/15 shrink-0">
             <img src="/logo.jpg" alt="Client Forge Logo" className="w-full h-full object-cover" />
           </div>
-          <span className="font-victorian text-lg font-normal tracking-wide text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors hidden sm:inline-block">
-            Client Forge
-          </span>
+          <div className="flex flex-col justify-center">
+            <span className="font-victorian text-[21px] font-normal tracking-wide text-slate-900 dark:text-white select-none transition-colors whitespace-nowrap leading-none">
+              Client Forge
+            </span>
+            <span className="text-[9px] uppercase tracking-widest font-sans font-medium text-slate-500 dark:text-zinc-400 -mt-0.5 hidden sm:inline-block whitespace-nowrap">
+              Client Intelligence OS
+            </span>
+          </div>
         </Link>
 
         <motion.button
@@ -99,14 +104,13 @@ export default function Header() {
           </kbd>
         </motion.button>
 
-        {/* Public Campaign Link Preview */}
+        {/* Employee Directory Portal Link */}
         <Link
-          href="/campaigns/clean-water-50-villages"
-          target="_blank"
+          href="/workspace/people"
           className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-sans font-medium text-slate-600 dark:text-neutral-400 hover:text-slate-900 dark:hover:text-white transition-colors"
-          title="View public donation portal"
+          title="Open Employee Directory"
         >
-          <span>Public Portal</span>
+          <span>People Directory</span>
           <ExternalLink className="w-3 h-3 text-slate-400 dark:text-neutral-500" />
         </Link>
       </div>

@@ -156,25 +156,16 @@ export const primaryOrg: Organization = {
   id: "org_hope",
   name: "Hope Foundation",
   slug: "hope-foundation",
-  type: "Nonprofit & Humanitarian Aid",
+  type: "Global Human Operations & Humanitarian Aid",
   logo: "/logo.jpg",
-  plan: "Business",
-  memberCount: 142,
+  plan: "Enterprise",
+  memberCount: 248,
   currency: "USD ($)",
   timezone: "UTC-5 (Eastern Time)",
 };
 
-export const alternateOrg: Organization = {
-  id: "org_forgeworks",
-  name: "ForgeWorks Global",
-  slug: "forgeworks",
-  type: "Social Impact Consulting Agency",
-  logo: "/logo.jpg",
-  plan: "Enterprise",
-  memberCount: 88,
-  currency: "USD ($)",
-  timezone: "UTC+0 (London)",
-};
+export const alternateOrg: Organization = primaryOrg;
+
 
 // -------------------------------------------------------------
 // SEEDED MEMBERS
