@@ -5,8 +5,16 @@ backend/venv/
 **/__pycache__/
 *.pyc
 
-# Local database and system logs
+# Local database, environment secrets, and media
 backend/db.sqlite3
+backend/.env
+backend/media/
+frontend/.env.local
+*.env*
+*.json
+!package.json
+!tsconfig.json
+!components.json
 *.log
 .DS_Store
 
@@ -16,10 +24,7 @@ frontend/.next/
 frontend/out/
 frontend/build/
 
-# Backups & scratch
+# Backups & archives
 client-forge-login-updated/
 preview.html
-
-# Backend (managed separately by user)
-backend/
-/logo.jpg
+frontend.zip
