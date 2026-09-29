@@ -68,7 +68,7 @@ export default function EmployeeProfilePage() {
               alt={member.name}
               className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-cover border-2 border-indigo-500/30 shadow-md"
             />
-            <span className="absolute -bottom-1 -right-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500 text-white shadow-xs">
+            <span className="absolute -bottom-1 -right-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-900 dark:bg-white text-white dark:text-slate-950 border border-slate-700 dark:border-slate-300 shadow-xs">
               {member.status}
             </span>
           </div>

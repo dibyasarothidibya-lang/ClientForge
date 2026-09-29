@@ -8,27 +8,17 @@ import { Member } from "@/lib/demoData";
 import ThreeDCard from "@/components/motion/ThreeDCard";
 import {
   Search,
-  Filter,
-  ArrowUpDown,
   Download,
-  Upload,
   UserPlus,
-  Eye,
-  Check,
-  Building2,
   X,
-  Mail,
-  Calendar,
-  Briefcase,
   Users,
   HeartHandshake,
   FolderKanban,
   ShieldCheck,
-  Sparkles
 } from "lucide-react";
 
 export default function PeoplePage() {
-  const { members, currentRole } = useWorkspace();
+  const { members } = useWorkspace();
 
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedDept, setSelectedDept] = useState("All");
@@ -67,9 +57,9 @@ export default function PeoplePage() {
       value: totalVolunteers.toString(),
       subtext: "Field & outreach workers",
       icon: HeartHandshake,
-      color: "text-emerald-600 dark:text-emerald-400",
-      bg: "bg-emerald-500/10",
-      glare: "#10b981",
+      color: "text-sky-600 dark:text-sky-400",
+      bg: "bg-sky-500/10",
+      glare: "#0ea5e9",
       badge: "100% active",
     },
     {
@@ -240,12 +230,12 @@ export default function PeoplePage() {
           <table className="w-full text-left text-xs">
             <thead className="border-b border-slate-200 dark:border-white/[0.08] bg-slate-50/70 dark:bg-white/[0.02] text-slate-500 dark:text-neutral-400 font-sans font-semibold uppercase tracking-wider text-[11px]">
               <tr>
-                <th className="py-3.5 px-4">Member</th>
-                <th className="py-3.5 px-4">Role & Access</th>
-                <th className="py-3.5 px-4">Department / Team</th>
-                <th className="py-3.5 px-4">Classification</th>
-                <th className="py-3.5 px-4">Status</th>
-                <th className="py-3.5 px-4 text-right">Actions</th>
+                <th className="py-3.5 px-4 whitespace-nowrap">Member</th>
+                <th className="py-3.5 px-4 whitespace-nowrap">Role & Access</th>
+                <th className="py-3.5 px-4 whitespace-nowrap">Department / Team</th>
+                <th className="py-3.5 px-4 whitespace-nowrap">Classification</th>
+                <th className="py-3.5 px-4 whitespace-nowrap">Status</th>
+                <th className="py-3.5 px-4 text-right whitespace-nowrap min-w-[200px]">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-white/[0.04] text-slate-700 dark:text-neutral-300">
@@ -277,36 +267,36 @@ export default function PeoplePage() {
                     <div className="text-slate-900 dark:text-white font-sans font-medium">{member.department}</div>
                     <div className="text-[11px] text-slate-500 dark:text-neutral-500 font-sans">{member.team}</div>
                   </td>
-                  <td className="py-3.5 px-4 font-sans text-xs">
+                  <td className="py-3.5 px-4 font-sans text-xs whitespace-nowrap">
                     <span
-                      className={`px-2 py-0.5 rounded font-sans font-medium whitespace-nowrap ${
+                      className={`px-2.5 py-1 rounded-lg font-sans font-medium whitespace-nowrap inline-block ${
                         member.type === "Volunteer"
                           ? "bg-amber-500/10 text-amber-700 dark:text-amber-300 border border-amber-500/20"
-                          : "text-slate-600 dark:text-neutral-400"
+                          : "text-slate-600 dark:text-neutral-400 bg-slate-100 dark:bg-white/[0.04] border border-slate-200/60 dark:border-white/5"
                       }`}
                     >
                       {member.type}
                     </span>
                   </td>
-                  <td className="py-3.5 px-4">
-                    <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-sans font-medium whitespace-nowrap bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  <td className="py-3.5 px-4 whitespace-nowrap">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-sans font-medium whitespace-nowrap bg-slate-100 dark:bg-white/[0.05] text-slate-700 dark:text-neutral-300 border border-slate-200/80 dark:border-white/10">
+                      <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
                       {member.status}
                     </span>
                   </td>
-                  <td className="py-3.5 px-4 text-right">
-                    <div className="flex items-center justify-end gap-2">
+                  <td className="py-3.5 px-4 text-right whitespace-nowrap">
+                    <div className="flex items-center justify-end gap-2.5 shrink-0">
                       <Link
                         href={`/workspace/people/${member.id}`}
-                        className="px-2.5 py-1 rounded-lg bg-indigo-50 hover:bg-indigo-100 dark:bg-indigo-950/40 dark:hover:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 text-xs font-sans font-medium transition-colors border border-indigo-200 dark:border-indigo-800"
+                        className="inline-flex items-center justify-center px-3 py-1.5 rounded-lg bg-indigo-50 hover:bg-indigo-100 dark:bg-indigo-950/40 dark:hover:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 text-xs font-sans font-medium transition-colors border border-indigo-200 dark:border-indigo-800/80 whitespace-nowrap select-none shrink-0"
                       >
                         Full Profile
                       </Link>
                       <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
+                        whileHover={{ scale: 1.03 }}
+                        whileTap={{ scale: 0.97 }}
                         onClick={() => setSelectedMember(member)}
-                        className="px-2 py-1 rounded-lg bg-slate-100 dark:bg-white/[0.04] hover:bg-slate-200 dark:hover:bg-white/[0.08] text-slate-800 dark:text-white text-xs font-sans font-medium transition-colors cursor-pointer border border-slate-200 dark:border-transparent"
+                        className="inline-flex items-center justify-center px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/[0.05] hover:bg-slate-200/80 dark:hover:bg-white/[0.1] text-slate-800 dark:text-neutral-200 text-xs font-sans font-medium transition-colors cursor-pointer border border-slate-200/80 dark:border-white/10 whitespace-nowrap select-none shrink-0"
                       >
                         Preview
                       </motion.button>
@@ -388,7 +378,7 @@ export default function PeoplePage() {
                 <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200 dark:border-white/[0.04]">
                   <div className="text-[10px] font-sans font-medium text-slate-500 dark:text-neutral-500 uppercase">Tenure & Project Load</div>
                   <div className="text-xs text-slate-700 dark:text-neutral-300 mt-1">Joined: {selectedMember.joinDate}</div>
-                  <div className="text-xs text-emerald-600 dark:text-emerald-400 font-semibold mt-0.5">{selectedMember.assignedProjects} active project commitments</div>
+                  <div className="text-xs text-indigo-600 dark:text-indigo-400 font-semibold mt-0.5">{selectedMember.assignedProjects} active project commitments</div>
                 </div>
               </div>
 
