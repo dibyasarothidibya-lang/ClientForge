@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SpatialMeshBackground from "@/components/ui/SpatialMeshBackground";
@@ -135,35 +136,35 @@ export default function TalentIntelligencePage() {
                 transition={{ duration: 0.7, delay: 0.3 }}
                 className="flex flex-col sm:flex-row items-center gap-4"
               >
-                <a
+                <Link
                   href="/signup"
                   className="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 text-sm font-semibold text-white bg-slate-950 hover:bg-slate-800 dark:text-slate-950 dark:bg-white dark:hover:bg-zinc-100 rounded-xl transition-all shadow-md group cursor-pointer"
                 >
                   <span>Launch Talent Sourcing</span>
                   <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                </a>
+                </Link>
 
-                <a
+                <Link
                   href="/pricing"
                   className="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 text-sm font-semibold border border-slate-200/90 bg-white/90 hover:bg-slate-50 text-slate-800 dark:border-neutral-800 dark:bg-neutral-900/80 dark:hover:bg-neutral-800 dark:text-neutral-200 rounded-xl transition-all shadow-xs backdrop-blur-md cursor-pointer"
                 >
                   <span>Explore Platform Tiers</span>
-                </a>
+                </Link>
               </motion.div>
 
               {/* Mini Highlights */}
               <div className="grid grid-cols-3 gap-4 mt-12 pt-8 border-t border-slate-200/80 dark:border-neutral-800/80">
                 <div>
-                  <div className="font-serif text-2xl sm:text-3xl text-slate-950 dark:text-white font-normal">10x</div>
-                  <div className="text-[11px] text-slate-500 dark:text-neutral-400 font-mono mt-0.5">Sourcing Velocity</div>
+                  <div className="font-sans text-2xl sm:text-3xl font-normal sm:font-medium tracking-tight text-slate-950 dark:text-white tabular-nums">10x</div>
+                  <div className="text-[11px] text-slate-500 dark:text-neutral-400 font-sans font-medium mt-0.5">Sourcing Velocity</div>
                 </div>
                 <div>
-                  <div className="font-serif text-2xl sm:text-3xl text-slate-950 dark:text-white font-normal">82%</div>
-                  <div className="text-[11px] text-slate-500 dark:text-neutral-400 font-mono mt-0.5">Opening Angle Reply Rate</div>
+                  <div className="font-sans text-2xl sm:text-3xl font-normal sm:font-medium tracking-tight text-slate-950 dark:text-white tabular-nums">82%</div>
+                  <div className="text-[11px] text-slate-500 dark:text-neutral-400 font-sans font-medium mt-0.5">Opening Angle Reply Rate</div>
                 </div>
                 <div>
-                  <div className="font-serif text-2xl sm:text-3xl text-slate-950 dark:text-white font-normal">91.4%</div>
-                  <div className="text-[11px] text-slate-500 dark:text-neutral-400 font-mono mt-0.5">Skill Fit Precision</div>
+                  <div className="font-sans text-2xl sm:text-3xl font-normal sm:font-medium tracking-tight text-slate-950 dark:text-white tabular-nums">91.4%</div>
+                  <div className="text-[11px] text-slate-500 dark:text-neutral-400 font-sans font-medium mt-0.5">Skill Fit Precision</div>
                 </div>
               </div>
             </div>
@@ -224,10 +225,10 @@ export default function TalentIntelligencePage() {
                           <Icon className="w-6 h-6" />
                         </div>
                         <div className="text-right">
-                          <div className="font-serif text-2xl sm:text-3xl text-slate-950 dark:text-white font-normal">
+                          <div className="font-sans text-2xl sm:text-3xl font-normal sm:font-medium tracking-tight text-slate-950 dark:text-white tabular-nums">
                             {pillar.stat}
                           </div>
-                          <div className="text-[10px] font-mono uppercase tracking-wider text-slate-500 dark:text-neutral-400">
+                          <div className="text-[10px] font-sans font-medium uppercase tracking-wider text-slate-500 dark:text-neutral-400">
                             {pillar.statLabel}
                           </div>
                         </div>
@@ -273,7 +274,7 @@ export default function TalentIntelligencePage() {
                   <button
                     key={idx}
                     onClick={() => setSelectedCandidate(idx)}
-                    className={`px-4 py-2.5 rounded-xl text-xs font-mono transition-all cursor-pointer ${
+                    className={`px-4 py-2.5 rounded-xl text-xs font-sans font-medium transition-all cursor-pointer ${
                       selectedCandidate === idx
                         ? "bg-sky-600 text-white shadow-md shadow-sky-600/20"
                         : "bg-slate-100 dark:bg-neutral-800/70 text-slate-700 dark:text-neutral-300 hover:bg-slate-200 dark:hover:bg-neutral-800"
@@ -298,16 +299,16 @@ export default function TalentIntelligencePage() {
                   </h3>
 
                   <div className="p-4 rounded-2xl bg-slate-50/80 dark:bg-neutral-900/60 border border-slate-200/80 dark:border-neutral-800 space-y-2">
-                    <div className="text-[10px] font-mono uppercase tracking-wider text-slate-500 dark:text-neutral-400 font-bold">
+                    <div className="text-[10px] font-sans font-medium uppercase tracking-wider text-slate-500 dark:text-neutral-400 font-bold">
                       VERIFIED PUBLIC SIGNALS:
                     </div>
-                    <p className="text-xs text-slate-800 dark:text-neutral-200 font-mono">
+                    <p className="text-xs text-slate-800 dark:text-neutral-200 font-sans font-medium">
                       {candidateSignals[selectedCandidate].publicSignals}
                     </p>
                   </div>
 
                   <div className="p-4 rounded-2xl bg-indigo-50/60 dark:bg-indigo-950/40 border border-indigo-200/80 dark:border-indigo-900/60 space-y-2">
-                    <div className="text-[10px] font-mono uppercase tracking-wider text-indigo-700 dark:text-indigo-300 font-bold">
+                    <div className="text-[10px] font-sans font-medium uppercase tracking-wider text-indigo-700 dark:text-indigo-300 font-bold">
                       SYNTHESIZED OUTREACH ANGLE:
                     </div>
                     <p className="text-xs text-slate-700 dark:text-neutral-300 leading-relaxed font-sans">
@@ -328,12 +329,12 @@ export default function TalentIntelligencePage() {
                       Ready for 1-click executive review & export to Notion/Linear.
                     </p>
                   </div>
-                  <a
+                  <Link
                     href="/signup"
                     className="w-full inline-flex items-center justify-center px-4 py-2.5 rounded-xl text-xs font-semibold bg-slate-900 text-white hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-zinc-100 transition-colors shadow-sm"
                   >
                     <span>Deploy Candidate Dossier</span>
-                  </a>
+                  </Link>
                 </div>
               </div>
 
@@ -352,19 +353,19 @@ export default function TalentIntelligencePage() {
             Turn public data signals into unfair hiring advantages. Eliminate recruiter friction and source top-tier operators with mathematical precision.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
+            <Link
               href="/signup"
               className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 text-sm font-semibold text-white bg-slate-950 hover:bg-slate-800 dark:text-slate-950 dark:bg-white dark:hover:bg-zinc-100 rounded-xl transition-all shadow-md group cursor-pointer"
             >
               <span>Get Started Free</span>
               <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-            </a>
-            <a
+            </Link>
+            <Link
               href="/pricing"
               className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 text-sm font-semibold border border-slate-200 dark:border-neutral-800 bg-white hover:bg-slate-50 dark:bg-neutral-900 dark:hover:bg-neutral-800 text-slate-800 dark:text-neutral-200 rounded-xl transition-all cursor-pointer"
             >
               <span>View Pricing Plans</span>
-            </a>
+            </Link>
           </div>
         </div>
       </section>

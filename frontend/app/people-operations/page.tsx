@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SpatialMeshBackground from "@/components/ui/SpatialMeshBackground";
@@ -118,35 +119,35 @@ export default function PeopleOperationsPage() {
                 transition={{ duration: 0.7, delay: 0.2 }}
                 className="flex flex-col sm:flex-row items-center gap-4"
               >
-                <a
+                <Link
                   href="/signup"
                   className="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 text-sm font-semibold text-white bg-slate-950 hover:bg-slate-800 dark:text-slate-950 dark:bg-white dark:hover:bg-zinc-100 rounded-xl transition-all shadow-md group cursor-pointer"
                 >
                   <span>Deploy People Operations</span>
                   <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                </a>
+                </Link>
 
-                <a
+                <Link
                   href="/pricing"
                   className="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 text-sm font-semibold border border-slate-200/90 bg-white/90 hover:bg-slate-50 text-slate-800 dark:border-neutral-800 dark:bg-neutral-900/80 dark:hover:bg-neutral-800 dark:text-neutral-200 rounded-xl transition-all shadow-xs backdrop-blur-md cursor-pointer"
                 >
                   <span>Explore Investment Plans</span>
-                </a>
+                </Link>
               </motion.div>
 
               {/* Mini Highlights */}
               <div className="grid grid-cols-3 gap-4 mt-12 pt-8 border-t border-slate-200/80 dark:border-neutral-800/80">
                 <div>
-                  <div className="font-serif text-2xl sm:text-3xl text-slate-950 dark:text-white font-normal">+18.4%</div>
-                  <div className="text-[11px] text-slate-500 dark:text-neutral-400 font-mono mt-0.5">Top-Performer Retention</div>
+                  <div className="font-sans text-2xl sm:text-3xl font-normal sm:font-medium tracking-tight text-slate-950 dark:text-white tabular-nums">+18.4%</div>
+                  <div className="text-[11px] text-slate-500 dark:text-neutral-400 font-sans font-medium mt-0.5">Top-Performer Retention</div>
                 </div>
                 <div>
-                  <div className="font-serif text-2xl sm:text-3xl text-slate-950 dark:text-white font-normal">3 Days</div>
-                  <div className="text-[11px] text-slate-500 dark:text-neutral-400 font-mono mt-0.5">Time to Productivity</div>
+                  <div className="font-sans text-2xl sm:text-3xl font-normal sm:font-medium tracking-tight text-slate-950 dark:text-white tabular-nums">3 Days</div>
+                  <div className="text-[11px] text-slate-500 dark:text-neutral-400 font-sans font-medium mt-0.5">Time to Productivity</div>
                 </div>
                 <div>
-                  <div className="font-serif text-2xl sm:text-3xl text-slate-950 dark:text-white font-normal">94 / 100</div>
-                  <div className="text-[11px] text-slate-500 dark:text-neutral-400 font-mono mt-0.5">Real-Time Culture Index</div>
+                  <div className="font-sans text-2xl sm:text-3xl font-normal sm:font-medium tracking-tight text-slate-950 dark:text-white tabular-nums">94 / 100</div>
+                  <div className="text-[11px] text-slate-500 dark:text-neutral-400 font-sans font-medium mt-0.5">Real-Time Culture Index</div>
                 </div>
               </div>
             </div>
@@ -207,10 +208,10 @@ export default function PeopleOperationsPage() {
                           <Icon className="w-6 h-6" />
                         </div>
                         <div className="text-right">
-                          <div className="font-serif text-2xl sm:text-3xl text-slate-950 dark:text-white font-normal">
+                          <div className="font-sans text-2xl sm:text-3xl font-normal sm:font-medium tracking-tight text-slate-950 dark:text-white tabular-nums">
                             {pillar.stat}
                           </div>
-                          <div className="text-[10px] font-mono uppercase tracking-wider text-slate-500 dark:text-neutral-400">
+                          <div className="text-[10px] font-sans font-medium uppercase tracking-wider text-slate-500 dark:text-neutral-400">
                             {pillar.statLabel}
                           </div>
                         </div>
@@ -258,7 +259,7 @@ export default function PeopleOperationsPage() {
                   </h3>
                 </div>
 
-                <div className="flex items-center gap-3 font-mono text-xs text-slate-500 dark:text-neutral-400">
+                <div className="flex items-center gap-3 font-sans font-medium text-xs text-slate-500 dark:text-neutral-400">
                   <Clock className="w-4 h-4 text-indigo-500" />
                   <span>Telemetry refreshed 4m ago</span>
                 </div>
@@ -271,19 +272,11 @@ export default function PeopleOperationsPage() {
                     key={mIdx} 
                     className="p-4 rounded-2xl bg-slate-50/80 dark:bg-neutral-900/60 border border-slate-200/80 dark:border-neutral-800"
                   >
-                    <div className="text-[11px] font-mono text-slate-500 dark:text-neutral-400 mb-2">
+                    <div className="text-[11px] font-sans font-medium text-slate-500 dark:text-neutral-400 mb-2">
                       {met.label}
                     </div>
-                    <div className="flex items-baseline gap-2">
-                      <span className="font-sans text-3xl font-medium tracking-tight text-slate-950 dark:text-white">
-                        {met.value}
-                      </span>
-                      <span className="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-semibold">
-                        {met.status}
-                      </span>
-                    </div>
-                    <div className="text-[10px] font-mono text-slate-400 dark:text-neutral-500 mt-1">
-                      Target: {met.target}
+                    <div className="font-sans text-3xl font-normal sm:font-medium tracking-tight text-slate-950 dark:text-white tabular-nums my-1">
+                      {met.value}
                     </div>
                   </div>
                 ))}
@@ -294,7 +287,7 @@ export default function PeopleOperationsPage() {
                 <div className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-indigo-600 dark:text-indigo-400 shrink-0 mt-0.5" />
                   <div>
-                    <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-indigo-900 dark:text-indigo-300">
+                    <h4 className="text-xs font-sans font-medium font-bold uppercase tracking-wider text-indigo-900 dark:text-indigo-300">
                       AUTONOMOUS AGENT RECOMMENDATION
                     </h4>
                     <p className="text-xs sm:text-sm text-slate-700 dark:text-neutral-200 mt-1 leading-relaxed">
@@ -319,19 +312,19 @@ export default function PeopleOperationsPage() {
             Equip your people team with the autonomous intelligence platform trusted by senior operators and fast-scaling boutique consultancies.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
+            <Link
               href="/signup"
               className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 text-sm font-semibold text-white bg-slate-950 hover:bg-slate-800 dark:text-slate-950 dark:bg-white dark:hover:bg-zinc-100 rounded-xl transition-all shadow-md group cursor-pointer"
             >
               <span>Get Started Free</span>
               <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-            </a>
-            <a
+            </Link>
+            <Link
               href="/pricing"
               className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 text-sm font-semibold border border-slate-200 dark:border-neutral-800 bg-white hover:bg-slate-50 dark:bg-neutral-900 dark:hover:bg-neutral-800 text-slate-800 dark:text-neutral-200 rounded-xl transition-all cursor-pointer"
             >
               <span>View Pricing Plans</span>
-            </a>
+            </Link>
           </div>
         </div>
       </section>

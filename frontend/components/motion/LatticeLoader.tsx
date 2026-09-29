@@ -133,7 +133,7 @@ export default function LatticeLoader({
             style={{
               color: status === "done" ? doneColor : status === "error" ? errorColor : undefined,
             }}
-            className="font-mono text-xs tabular-nums px-1.5 py-0.5 rounded bg-slate-200/70 dark:bg-white/5 border border-slate-300/80 dark:border-white/10 text-slate-600 dark:text-zinc-400"
+            className="font-sans font-medium text-xs tabular-nums px-1.5 py-0.5 rounded bg-slate-200/70 dark:bg-white/5 border border-slate-300/80 dark:border-white/10 text-slate-600 dark:text-zinc-400"
           >
             {formattedTime}
           </span>

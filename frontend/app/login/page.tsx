@@ -48,10 +48,10 @@ export default function LoginPage() {
               />
             </div>
             <div className="flex flex-col">
-              <span className="font-semibold text-base sm:text-lg tracking-tight text-slate-900 dark:text-white select-none group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+              <span className="font-victorian text-xl sm:text-2xl font-normal tracking-wide text-slate-900 dark:text-white select-none group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                 Client Forge
               </span>
-              <span className="text-[9px] uppercase tracking-widest font-mono text-slate-500 dark:text-zinc-400 -mt-0.5">
+              <span className="text-[9px] uppercase tracking-widest font-sans font-medium text-slate-500 dark:text-zinc-400 -mt-0.5">
                 Client Intelligence OS
               </span>
             </div>

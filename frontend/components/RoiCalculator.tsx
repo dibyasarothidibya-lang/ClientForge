@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { 
   Calculator, 
@@ -67,7 +68,7 @@ function AnimatedNumber({ value }: { value: number }) {
     return () => unsubscribe();
   }, [springValue]);
 
-  return <span className="tabular-nums font-serif tracking-normal">{display}</span>;
+  return <span className="tabular-nums font-sans tracking-normal">{display}</span>;
 }
 
 // In-Depth Executive Audit Memo Modal (Bespoke Typographic Print Aesthetic)
@@ -122,7 +123,7 @@ function GraphDetailsModal({
   const modalLinePath = `M 20 ${my0} C 110 ${my0}, 170 ${my1 + 6}, 220 ${my1} C 300 ${my1 - 6}, 360 ${my2 + 6}, 400 ${my2} C 480 ${my2 - 8}, 540 ${my3 + 4}, 580 ${my3} C 630 ${my3 - 6}, 670 ${my4 + 3}, 700 ${my4}`;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto roi-calculator-scope font-serif">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto roi-calculator-scope font-sans">
       {/* Backdrop */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -149,15 +150,15 @@ function GraphDetailsModal({
         {/* Modal Header */}
         <div className="flex items-start justify-between pb-5 border-b border-stone-800 gap-4">
           <div>
-            <div className="inline-flex items-center gap-2 text-xs font-serif italic text-stone-400 mb-1.5">
+            <div className="inline-flex items-center gap-2 text-xs font-sans font-medium text-stone-400 mb-1.5">
               <span>Bespoke Advisory Projection</span>
               <span>—</span>
               <span className="text-sky-300">Executive Audit</span>
             </div>
-            <h3 className="text-2xl sm:text-3xl font-normal tracking-tight text-white font-serif">
+            <h3 className="text-2xl sm:text-3xl font-normal tracking-tight text-white font-sans">
               Pipeline Velocity & Compounding Value Model
             </h3>
-            <p className="text-sm text-stone-400 mt-1 font-serif font-light leading-relaxed">
+            <p className="text-sm text-stone-400 mt-1 font-sans font-normal leading-relaxed">
               Model calibrated for <span className="text-white font-normal">{opportunities} prospective engagements</span> evaluated monthly at an average <span className="text-white font-normal">${avgDealValue.toLocaleString()}</span> contract value.
             </p>
           </div>
@@ -175,38 +176,38 @@ function GraphDetailsModal({
         {/* Key Metric High-Water Marks Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6">
           <div className="p-4 rounded-2xl bg-[#121215] border border-stone-800/80">
-            <div className="text-xs text-stone-400 font-serif italic">12-Month Runway</div>
-            <div className="text-2xl sm:text-3xl font-light tabular-nums text-sky-400 mt-1 font-serif">
+            <div className="text-xs text-stone-400 font-sans font-medium">12-Month Runway</div>
+            <div className="text-2xl sm:text-3xl font-light tabular-nums text-sky-400 mt-1 font-sans">
               ${totalAnnualPipeline.toLocaleString()}
             </div>
-            <div className="text-xs text-stone-400 mt-1 font-serif">+22% pipeline acceleration</div>
+            <div className="text-xs text-stone-400 mt-1 font-sans">+22% pipeline acceleration</div>
           </div>
           <div className="p-4 rounded-2xl bg-[#121215] border border-stone-800/80">
-            <div className="text-xs text-stone-400 font-serif italic">Hours Reclaimed</div>
-            <div className="text-2xl sm:text-3xl font-light tabular-nums text-white mt-1 font-serif">
+            <div className="text-xs text-stone-400 font-sans font-medium">Hours Reclaimed</div>
+            <div className="text-2xl sm:text-3xl font-light tabular-nums text-white mt-1 font-sans">
               {annualHoursReclaimed} hrs
             </div>
-            <div className="text-xs text-stone-400 mt-1 font-serif">{hoursReclaimedPerMonth} hrs/mo analyst labor saved</div>
+            <div className="text-xs text-stone-400 mt-1 font-sans">{hoursReclaimedPerMonth} hrs/mo analyst labor saved</div>
           </div>
           <div className="p-4 rounded-2xl bg-[#121215] border border-stone-800/80">
-            <div className="text-xs text-stone-400 font-serif italic">Projected Closings</div>
-            <div className="text-2xl sm:text-3xl font-light tabular-nums text-indigo-300 mt-1 font-serif">
+            <div className="text-xs text-stone-400 font-sans font-medium">Projected Closings</div>
+            <div className="text-2xl sm:text-3xl font-light tabular-nums text-indigo-300 mt-1 font-sans">
               {projectedDeals} Deals
             </div>
-            <div className="text-xs text-stone-400 mt-1 font-serif">+18% win-rate lift from context</div>
+            <div className="text-xs text-stone-400 mt-1 font-sans">+18% win-rate lift from context</div>
           </div>
           <div className="p-4 rounded-2xl bg-[#121215] border border-stone-800/80">
-            <div className="text-xs text-stone-400 font-serif italic">Value Multiple</div>
-            <div className="text-2xl sm:text-3xl font-light tabular-nums text-emerald-400 mt-1 font-serif">
+            <div className="text-xs text-stone-400 font-sans font-medium">Value Multiple</div>
+            <div className="text-2xl sm:text-3xl font-light tabular-nums text-emerald-400 mt-1 font-sans">
               {leverageMultiplier}×
             </div>
-            <div className="text-xs text-stone-400 mt-1 font-serif">Contract value to tooling ratio</div>
+            <div className="text-xs text-stone-400 mt-1 font-sans">Contract value to tooling ratio</div>
           </div>
         </div>
 
         {/* Expanded Architectural Waveform & Quarterly Trajectory */}
         <div className="mt-6 p-5 sm:p-6 rounded-2xl bg-[#121215] border border-stone-800/80 relative overflow-hidden">
-          <div className="flex items-center justify-between text-xs mb-3 font-serif">
+          <div className="flex items-center justify-between text-xs mb-3 font-sans">
             <span className="text-stone-300 font-normal flex items-center gap-2">
               <TrendingUp className="w-3.5 h-3.5 text-sky-400" />
               12-Month Compounding Revenue Trajectory
@@ -267,24 +268,24 @@ function GraphDetailsModal({
           {/* 4 Detailed Quarterly Milestone Cards */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mt-4 pt-3 border-t border-stone-800/80">
             <div className="p-3 rounded-xl bg-neutral-900/60 border border-stone-800/80">
-              <div className="font-serif text-xs text-stone-300">Q1: Initiation</div>
-              <div className="text-sky-300 font-serif font-light text-base mt-0.5">${Math.round(totalAnnualPipeline * 0.14).toLocaleString()}</div>
-              <div className="text-[11px] text-stone-400 mt-0.5 font-serif italic">Signals calibrated, initial proposals active</div>
+              <div className="font-sans text-xs text-stone-300">Q1: Initiation</div>
+              <div className="text-sky-300 font-sans font-normal text-base mt-0.5">${Math.round(totalAnnualPipeline * 0.14).toLocaleString()}</div>
+              <div className="text-[11px] text-stone-400 mt-0.5 font-sans font-medium">Signals calibrated, initial proposals active</div>
             </div>
             <div className="p-3 rounded-xl bg-neutral-900/60 border border-stone-800/80">
-              <div className="font-serif text-xs text-stone-300">Q2: Acceleration</div>
-              <div className="text-sky-300 font-serif font-light text-base mt-0.5">${Math.round(totalAnnualPipeline * 0.24).toLocaleString()}</div>
-              <div className="text-[11px] text-stone-400 mt-0.5 font-serif italic">First cohorts close at 2.4-day velocity</div>
+              <div className="font-sans text-xs text-stone-300">Q2: Acceleration</div>
+              <div className="text-sky-300 font-sans font-normal text-base mt-0.5">${Math.round(totalAnnualPipeline * 0.24).toLocaleString()}</div>
+              <div className="text-[11px] text-stone-400 mt-0.5 font-sans font-medium">First cohorts close at 2.4-day velocity</div>
             </div>
             <div className="p-3 rounded-xl bg-neutral-900/60 border border-stone-800/80">
-              <div className="font-serif text-xs text-stone-300">Q3: Cadence</div>
-              <div className="text-sky-300 font-serif font-light text-base mt-0.5">${Math.round(totalAnnualPipeline * 0.29).toLocaleString()}</div>
-              <div className="text-[11px] text-stone-400 mt-0.5 font-serif italic">Predictable deal flow across tier-1 targets</div>
+              <div className="font-sans text-xs text-stone-300">Q3: Cadence</div>
+              <div className="text-sky-300 font-sans font-normal text-base mt-0.5">${Math.round(totalAnnualPipeline * 0.29).toLocaleString()}</div>
+              <div className="text-[11px] text-stone-400 mt-0.5 font-sans font-medium">Predictable deal flow across tier-1 targets</div>
             </div>
             <div className="p-3 rounded-xl bg-neutral-900/60 border border-stone-800/80">
-              <div className="font-serif text-xs text-sky-400 font-medium">Q4: Peak Run-Rate</div>
-              <div className="text-sky-300 font-serif font-medium text-base mt-0.5">${Math.round(totalAnnualPipeline * 0.33).toLocaleString()}</div>
-              <div className="text-[11px] text-stone-400 mt-0.5 font-serif italic">Compounding expansion & retainers</div>
+              <div className="font-sans text-xs text-sky-400 font-medium">Q4: Peak Run-Rate</div>
+              <div className="text-sky-300 font-sans font-medium text-base mt-0.5">${Math.round(totalAnnualPipeline * 0.33).toLocaleString()}</div>
+              <div className="text-[11px] text-stone-400 mt-0.5 font-sans font-medium">Compounding expansion & retainers</div>
             </div>
           </div>
         </div>
@@ -292,29 +293,29 @@ function GraphDetailsModal({
         {/* 3 Core Attribution Pillars Breakdown */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 mt-5">
           <div className="p-4 rounded-xl bg-[#121215] border border-stone-800/80">
-            <div className="flex items-center gap-2 font-serif text-sm text-white mb-1.5">
+            <div className="flex items-center gap-2 font-sans text-sm text-white mb-1.5">
               <Target className="w-3.5 h-3.5 text-sky-400" />
               Verified Context Hooks
             </div>
-            <p className="text-stone-400 leading-relaxed text-xs font-serif font-light">
+            <p className="text-stone-400 leading-relaxed text-xs font-sans font-normal">
               Replaces generic outbound with real-time operational triggers (executive moves, hiring surges, funding rounds) to earn trusted senior replies.
             </p>
           </div>
           <div className="p-4 rounded-xl bg-[#121215] border border-stone-800/80">
-            <div className="flex items-center gap-2 font-serif text-sm text-white mb-1.5">
+            <div className="flex items-center gap-2 font-sans text-sm text-white mb-1.5">
               <Clock className="w-3.5 h-3.5 text-indigo-300" />
               4.5h Reclaimed Per Account
             </div>
-            <p className="text-stone-400 leading-relaxed text-xs font-serif font-light">
+            <p className="text-stone-400 leading-relaxed text-xs font-sans font-normal">
               Eliminates manual scraping, news synthesis, and fragmented spreadsheets into one unified 1-page pre-call intelligence briefing.
             </p>
           </div>
           <div className="p-4 rounded-xl bg-[#121215] border border-stone-800/80">
-            <div className="flex items-center gap-2 font-serif text-sm text-white mb-1.5">
+            <div className="flex items-center gap-2 font-sans text-sm text-white mb-1.5">
               <Zap className="w-3.5 h-3.5 text-emerald-400" />
               2.4-Day Pitch Velocity
             </div>
-            <p className="text-stone-400 leading-relaxed text-xs font-serif font-light">
+            <p className="text-stone-400 leading-relaxed text-xs font-sans font-normal">
               Compresses outreach latency from 18 days down to 48 hours, engaging decision-makers while their intent is active and uncontested.
             </p>
           </div>
@@ -325,18 +326,18 @@ function GraphDetailsModal({
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 rounded-xl text-xs font-serif text-stone-400 hover:text-white transition-colors cursor-pointer"
+            className="px-4 py-2 rounded-xl text-xs font-sans text-stone-400 hover:text-white transition-colors cursor-pointer"
           >
             Close Memo
           </button>
-          <a
-            href="#pricing"
+          <Link
+            href="/pricing"
             onClick={onClose}
-            className="inline-flex items-center px-5 py-2.5 rounded-xl text-xs font-serif font-medium bg-white text-neutral-950 hover:bg-stone-100 transition-all shadow-md group cursor-pointer"
+            className="inline-flex items-center px-5 py-2.5 rounded-xl text-xs font-sans font-medium bg-white text-neutral-950 hover:bg-stone-100 transition-all shadow-md group cursor-pointer"
           >
             <span>Start Forging With This Model</span>
             <ArrowRight className="w-3.5 h-3.5 ml-1.5 group-hover:translate-x-1 transition-transform" />
-          </a>
+          </Link>
         </div>
 
       </motion.div>
@@ -420,7 +421,7 @@ function Interactive3DRoiCard({
   return (
     <>
       <div 
-        className="perspective-1000 w-full roi-calculator-scope font-serif"
+        className="perspective-1000 w-full font-sans"
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
       >
@@ -454,11 +455,11 @@ function Interactive3DRoiCard({
             </div>
 
             {/* Segmented Glass Timeframe Switch in Cormorant Garamond */}
-            <div className="relative flex items-center p-1 rounded-xl bg-[#141418] border border-stone-800 shrink-0 font-serif">
+            <div className="relative flex items-center p-1 rounded-xl bg-[#141418] border border-stone-800 shrink-0 font-sans">
               <button
                 type="button"
                 onClick={() => setTimeframe("monthly")}
-                className={`relative z-10 px-3 py-1 rounded-lg text-xs font-serif transition-colors cursor-pointer ${
+                className={`relative z-10 px-3 py-1 rounded-lg text-xs font-sans transition-colors cursor-pointer ${
                   timeframe === "monthly" 
                     ? "text-white font-medium" 
                     : "text-stone-400 hover:text-white"
@@ -476,7 +477,7 @@ function Interactive3DRoiCard({
               <button
                 type="button"
                 onClick={() => setTimeframe("annual")}
-                className={`relative z-10 px-3 py-1 rounded-lg text-xs font-serif transition-colors cursor-pointer ${
+                className={`relative z-10 px-3 py-1 rounded-lg text-xs font-sans transition-colors cursor-pointer ${
                   timeframe === "annual" 
                     ? "text-white font-medium" 
                     : "text-stone-400 hover:text-white"
@@ -497,28 +498,28 @@ function Interactive3DRoiCard({
           {/* Primary Metric: Revenue Unlocked in Cormorant Garamond */}
           <div 
             style={{ transform: "translateZ(35px)" }}
-            className="mt-6 font-serif"
+            className="mt-6 font-sans"
           >
             <div className="flex items-center justify-between">
-              <div className="text-xs text-stone-400 font-serif italic">
+              <div className="text-xs text-stone-400 font-sans font-medium">
                 {timeframe === "annual" ? "Annualized Additional Contract Revenue" : "Estimated Monthly Additional Pipeline"}
               </div>
-              <span className="text-xs text-stone-400 font-serif italic">
+              <span className="text-xs text-stone-400 font-sans font-medium">
                 {leverageMultiplier}× Value Multiple
               </span>
             </div>
             
-            <div className={`font-serif ${revenueFontSize} font-light tracking-tight tabular-nums text-sky-400 mt-1 flex flex-wrap items-baseline gap-x-2 leading-none`}>
-              <div className="flex items-baseline font-serif">
+            <div className={`font-sans ${revenueFontSize} font-light tracking-tight tabular-nums text-sky-400 mt-1 flex flex-wrap items-baseline gap-x-2 leading-none`}>
+              <div className="flex items-baseline font-sans">
                 <span className="text-sky-400/90 font-light mr-0.5">$</span>
                 <AnimatedNumber value={displayRevenue} />
               </div>
-              <span className="text-base font-serif italic text-stone-400 font-normal shrink-0">
+              <span className="text-base font-sans font-medium text-stone-400 font-normal shrink-0">
                 {timeframe === "annual" ? "/ year" : "/ month"}
               </span>
             </div>
 
-            <div className="text-xs text-stone-400 mt-2.5 font-serif font-light leading-relaxed">
+            <div className="text-xs text-stone-400 mt-2.5 font-sans font-normal leading-relaxed">
               {timeframe === "annual" 
                 ? "12-month compounded contract pipeline unlocked through systematic signal harvesting." 
                 : "Generated through higher reply rates and accelerated deal cycles."}
@@ -532,14 +533,14 @@ function Interactive3DRoiCard({
             tabIndex={0}
             onClick={() => setIsModalOpen(true)}
             onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setIsModalOpen(true); }}
-            className="mt-6 p-4 rounded-2xl bg-[#121215] border border-stone-800/80 relative overflow-hidden shadow-inner cursor-pointer group hover:border-stone-700 transition-all font-serif"
+            className="mt-6 p-4 rounded-2xl bg-[#121215] border border-stone-800/80 relative overflow-hidden shadow-inner cursor-pointer group hover:border-stone-700 transition-all font-sans"
           >
-            <div className="flex items-center justify-between text-xs mb-2.5 font-serif">
+            <div className="flex items-center justify-between text-xs mb-2.5 font-sans">
               <span className="text-stone-300 font-normal flex items-center gap-1.5">
                 <TrendingUp className="w-3.5 h-3.5 text-sky-400" />
                 12-Month Compounding Trajectory
               </span>
-              <span className="text-sky-300 group-hover:text-white font-serif italic flex items-center gap-1 transition-colors text-xs">
+              <span className="text-sky-300 group-hover:text-white font-sans font-medium flex items-center gap-1 transition-colors text-xs">
                 <span>View Breakdown</span>
                 <Maximize2 className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
               </span>
@@ -594,7 +595,7 @@ function Interactive3DRoiCard({
             </div>
 
             {/* Milestone Axis Markers */}
-            <div className="flex justify-between items-center text-xs text-stone-400 font-serif italic mt-1.5 pt-1.5 border-t border-stone-800/60">
+            <div className="flex justify-between items-center text-xs text-stone-400 font-sans font-medium mt-1.5 pt-1.5 border-t border-stone-800/60">
               <span>M1: Initiation</span>
               <span>M4: Conversions</span>
               <span>M8: Scale</span>
@@ -605,28 +606,28 @@ function Interactive3DRoiCard({
           {/* Secondary Metrics Strip in Cormorant Garamond */}
           <div 
             style={{ transform: "translateZ(25px)" }}
-            className="grid grid-cols-2 gap-4 mt-6 pt-5 border-t border-stone-800/80 font-serif"
+            className="grid grid-cols-2 gap-4 mt-6 pt-5 border-t border-stone-800/80 font-sans"
           >
             <div>
-              <div className="text-xs text-stone-400 font-serif italic">
+              <div className="text-xs text-stone-400 font-sans font-medium">
                 Research Hours Reclaimed
               </div>
-              <div className="font-serif text-2xl sm:text-3xl font-light tracking-tight tabular-nums text-white mt-1">
+              <div className="font-sans text-2xl sm:text-3xl font-light tracking-tight tabular-nums text-white mt-1">
                 <AnimatedNumber value={displayHours} /> {hoursUnit}
               </div>
-              <div className="text-xs text-stone-400 mt-0.5 font-serif italic">
+              <div className="text-xs text-stone-400 mt-0.5 font-sans font-medium">
                 {hoursSubtitle}
               </div>
             </div>
 
             <div>
-              <div className="text-xs text-stone-400 font-serif italic">
+              <div className="text-xs text-stone-400 font-sans font-medium">
                 Time to High-Context Pitch
               </div>
-              <div className="font-serif text-2xl sm:text-3xl font-light tracking-tight tabular-nums text-indigo-300 mt-1">
+              <div className="font-sans text-2xl sm:text-3xl font-light tracking-tight tabular-nums text-indigo-300 mt-1">
                 2.4 Days
               </div>
-              <div className="text-xs text-stone-400 mt-0.5 font-serif italic">
+              <div className="text-xs text-stone-400 mt-0.5 font-sans font-medium">
                 Down from 18 days manual
               </div>
             </div>
@@ -635,17 +636,15 @@ function Interactive3DRoiCard({
           {/* Action CTA */}
           <div 
             style={{ transform: "translateZ(20px)" }}
-            className="mt-7 font-serif"
+            className="mt-7 font-sans"
           >
-            <motion.a
-              href="#pricing"
-              whileHover={{ scale: 1.01 }}
-              whileTap={{ scale: 0.99 }}
-              className="w-full inline-flex items-center justify-center px-4 py-3.5 text-sm font-medium text-neutral-950 bg-white hover:bg-stone-100 rounded-xl transition-all shadow-md group cursor-pointer font-serif"
+            <Link
+              href="/pricing"
+              className="w-full inline-flex items-center justify-center px-4 py-3.5 text-sm font-medium text-neutral-950 bg-white hover:bg-stone-100 rounded-xl transition-all shadow-md group cursor-pointer font-sans hover:scale-[1.01] active:scale-[0.99]"
             >
               <span>Start Forging Today</span>
               <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-            </motion.a>
+            </Link>
           </div>
 
         </motion.div>
@@ -691,7 +690,7 @@ export default function RoiCalculator() {
   )?.id;
 
   return (
-    <section id="calculator" className="py-20 md:py-28 bg-white dark:bg-[#080808] border-t border-slate-200/60 dark:border-neutral-900 transition-colors relative overflow-hidden roi-calculator-scope font-serif">
+    <section id="calculator" className="py-20 md:py-28 bg-white dark:bg-[#080808] border-t border-slate-200/60 dark:border-neutral-900 transition-colors relative overflow-hidden font-sans">
       
       {/* Background Soft Atmospheric Warmth */}
       <div 
@@ -728,10 +727,10 @@ export default function RoiCalculator() {
               {/* Practice Archetype Switcher with Compact Editorial Glass Switch */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-serif uppercase tracking-widest text-stone-600 dark:text-stone-300">
+                  <span className="text-xs font-sans uppercase tracking-widest text-stone-600 dark:text-stone-300">
                     Practice Archetypes
                   </span>
-                  <span className="text-xs text-sky-600 dark:text-sky-400 font-serif italic">
+                  <span className="text-xs text-sky-600 dark:text-sky-400 font-sans font-medium">
                     {activePersona ? "Active Profile Preset" : "Bespoke Configuration"}
                   </span>
                 </div>
@@ -769,10 +768,10 @@ export default function RoiCalculator() {
                           <IconComponent className="w-3.5 h-3.5" />
                         </div>
                         <div className="text-left min-w-0">
-                          <div className="text-xs font-serif font-medium tracking-tight truncate leading-tight">
+                          <div className="text-xs font-sans font-medium tracking-tight truncate leading-tight">
                             {persona.label}
                           </div>
-                          <div className={`text-[10px] font-serif italic leading-none mt-0.5 ${
+                          <div className={`text-[10px] font-sans font-medium leading-none mt-0.5 ${
                             isSelected 
                               ? "text-sky-600 dark:text-sky-300" 
                               : "text-stone-400 dark:text-stone-500"
@@ -787,14 +786,14 @@ export default function RoiCalculator() {
               </div>
 
               {/* Slider 1: Opportunities Handled per Month */}
-              <div className="p-5 sm:p-6 rounded-2xl bg-white dark:bg-[#121215] border border-stone-200/90 dark:border-stone-800/90 shadow-xs hover:border-stone-300 dark:hover:border-stone-700 transition-all font-serif">
+              <div className="p-5 sm:p-6 rounded-2xl bg-white dark:bg-[#121215] border border-stone-200/90 dark:border-stone-800/90 shadow-xs hover:border-stone-300 dark:hover:border-stone-700 transition-all font-sans">
                 <div className="flex justify-between items-center mb-3.5">
-                  <label htmlFor="opportunities" className="text-sm font-serif font-normal text-stone-900 dark:text-white">
+                  <label htmlFor="opportunities" className="text-sm font-sans font-normal text-stone-900 dark:text-white">
                     Monthly Potential Opportunities Evaluated
                   </label>
                   
                   {/* Refined Pill Badge in Cormorant Garamond */}
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-stone-100 dark:bg-stone-800/80 border border-stone-200 dark:border-stone-700 text-stone-900 dark:text-stone-100 font-serif text-xs sm:text-sm tabular-nums shadow-xs">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-stone-100 dark:bg-stone-800/80 border border-stone-200 dark:border-stone-700 text-stone-900 dark:text-stone-100 font-sans text-xs sm:text-sm tabular-nums shadow-xs">
                     <span className="w-1.5 h-1.5 rounded-full bg-sky-500" />
                     {opportunities} Opportunities
                   </span>
@@ -825,7 +824,7 @@ export default function RoiCalculator() {
                 </div>
 
                 {/* Interactive Preset Steppers */}
-                <div className="flex justify-between items-center text-xs text-stone-500 dark:text-stone-400 mt-3 font-serif tabular-nums font-normal gap-1">
+                <div className="flex justify-between items-center text-xs text-stone-500 dark:text-stone-400 mt-3 font-sans tabular-nums font-normal gap-1">
                   <button
                     type="button"
                     onClick={() => setOpportunities(3)}
@@ -851,14 +850,14 @@ export default function RoiCalculator() {
               </div>
 
               {/* Slider 2: Average Client Value */}
-              <div className="p-5 sm:p-6 rounded-2xl bg-white dark:bg-[#121215] border border-stone-200/90 dark:border-stone-800/90 shadow-xs hover:border-stone-300 dark:hover:border-stone-700 transition-all font-serif">
+              <div className="p-5 sm:p-6 rounded-2xl bg-white dark:bg-[#121215] border border-stone-200/90 dark:border-stone-800/90 shadow-xs hover:border-stone-300 dark:hover:border-stone-700 transition-all font-sans">
                 <div className="flex justify-between items-center mb-3.5">
-                  <label htmlFor="dealValue" className="text-sm font-serif font-normal text-stone-900 dark:text-white">
+                  <label htmlFor="dealValue" className="text-sm font-sans font-normal text-stone-900 dark:text-white">
                     Average Client Engagement Value
                   </label>
                   
                   {/* Refined Pill Badge in Cormorant Garamond */}
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-stone-100 dark:bg-stone-800/80 border border-stone-200 dark:border-stone-700 text-stone-900 dark:text-stone-100 font-serif text-xs sm:text-sm tabular-nums shadow-xs">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-stone-100 dark:bg-stone-800/80 border border-stone-200 dark:border-stone-700 text-stone-900 dark:text-stone-100 font-sans text-xs sm:text-sm tabular-nums shadow-xs">
                     <span className="w-1.5 h-1.5 rounded-full bg-sky-500" />
                     ${avgDealValue.toLocaleString()}
                   </span>
@@ -889,7 +888,7 @@ export default function RoiCalculator() {
                 </div>
 
                 {/* Interactive Preset Steppers */}
-                <div className="flex justify-between items-center text-xs text-stone-500 dark:text-stone-400 mt-3 font-serif tabular-nums font-normal gap-1">
+                <div className="flex justify-between items-center text-xs text-stone-500 dark:text-stone-400 mt-3 font-sans tabular-nums font-normal gap-1">
                   <button
                     type="button"
                     onClick={() => setAvgDealValue(5000)}
@@ -915,7 +914,7 @@ export default function RoiCalculator() {
               </div>
 
               {/* Verified Impact Points */}
-              <div className="space-y-3 pt-5 border-t border-slate-200/80 dark:border-stone-800 font-serif">
+              <div className="space-y-3 pt-5 border-t border-slate-200/80 dark:border-stone-800 font-sans">
                 <div className="flex items-center gap-2.5 text-sm text-stone-600 dark:text-stone-400 font-light">
                   <div className="w-5 h-5 rounded-full bg-stone-100 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 flex items-center justify-center shrink-0">
                     <CheckCircle2 className="w-3.5 h-3.5 text-stone-700 dark:text-stone-300" />

@@ -27,6 +27,32 @@ import {
   ActivityEvent,
   demoActivities,
 } from "@/lib/demoData";
+import {
+  Candidate,
+  JobPosting,
+  AttendanceRecord,
+  LeaveRequest,
+  PayrollRecord,
+  ExpenseRecord,
+  PerformanceGoal,
+  PerformanceReviewCycle,
+  HRDocument,
+  AutomationWorkflow,
+  SupportTicket,
+  NotificationItem,
+  demoCandidates,
+  demoJobs,
+  demoAttendanceRecords,
+  demoLeaveRequests,
+  demoPayrolls,
+  demoExpenses,
+  demoGoals,
+  demoReviewCycles,
+  demoHRDocuments,
+  demoWorkflows,
+  demoSupportTickets,
+  demoNotifications,
+} from "@/lib/peopleCoreData";
 
 interface WorkspaceContextType {
   activeOrg: Organization;
@@ -47,6 +73,20 @@ interface WorkspaceContextType {
   documents: DocumentItem[];
   approvals: ApprovalRequest[];
   activities: ActivityEvent[];
+
+  // PeopleCore Enterprise HR State
+  candidates: Candidate[];
+  jobs: JobPosting[];
+  attendanceRecords: AttendanceRecord[];
+  leaveRequests: LeaveRequest[];
+  payrolls: PayrollRecord[];
+  expenses: ExpenseRecord[];
+  goals: PerformanceGoal[];
+  reviewCycles: PerformanceReviewCycle[];
+  hrDocuments: HRDocument[];
+  workflows: AutomationWorkflow[];
+  supportTickets: SupportTicket[];
+  notifications: NotificationItem[];
   
   // State Mutators (Mock pure frontend actions)
   addTask: (task: Omit<Task, "id" | "commentsCount">) => void;
@@ -57,6 +97,23 @@ interface WorkspaceContextType {
   rejectRequest: (id: string, reason: string) => void;
   addTransaction: (tx: Omit<Transaction, "id" | "date">) => void;
   addDocument: (doc: Omit<DocumentItem, "id" | "updatedAt">) => void;
+
+  // PeopleCore Mutators
+  addCandidate: (cand: Omit<Candidate, "id" | "appliedDate">) => void;
+  updateCandidateStage: (candidateId: string, stage: Candidate["stage"]) => void;
+  addJob: (job: Omit<JobPosting, "id" | "postedDate" | "applicantsCount">) => void;
+  addLeaveRequest: (req: Omit<LeaveRequest, "id" | "appliedDate" | "status" | "workflowStage">) => void;
+  approveLeaveRequest: (id: string) => void;
+  rejectLeaveRequest: (id: string) => void;
+  addExpense: (exp: Omit<ExpenseRecord, "id" | "date" | "status">) => void;
+  approveExpense: (id: string) => void;
+  rejectExpense: (id: string) => void;
+  addGoal: (goal: Omit<PerformanceGoal, "id">) => void;
+  updateGoalProgress: (id: string, progress: number) => void;
+  addHRDocument: (doc: Omit<HRDocument, "id" | "uploadDate" | "downloadCount">) => void;
+  toggleWorkflowStatus: (id: string) => void;
+  addSupportTicket: (ticket: Omit<SupportTicket, "id" | "ticketNumber" | "createdDate" | "lastUpdated" | "status">) => void;
+  markNotificationAsRead: (id: string) => void;
   
   // Shell States
   isSidebarOpen: boolean;
@@ -84,6 +141,20 @@ export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
   const [documents, setDocuments] = useState<DocumentItem[]>(demoDocuments);
   const [approvals, setApprovals] = useState<ApprovalRequest[]>(demoApprovals);
   const [activities, setActivities] = useState<ActivityEvent[]>(demoActivities);
+
+  // PeopleCore State
+  const [candidates, setCandidates] = useState<Candidate[]>(demoCandidates);
+  const [jobs, setJobs] = useState<JobPosting[]>(demoJobs);
+  const [attendanceRecords, setAttendanceRecords] = useState<AttendanceRecord[]>(demoAttendanceRecords);
+  const [leaveRequests, setLeaveRequests] = useState<LeaveRequest[]>(demoLeaveRequests);
+  const [payrolls, setPayrolls] = useState<PayrollRecord[]>(demoPayrolls);
+  const [expenses, setExpenses] = useState<ExpenseRecord[]>(demoExpenses);
+  const [goals, setGoals] = useState<PerformanceGoal[]>(demoGoals);
+  const [reviewCycles, setReviewCycles] = useState<PerformanceReviewCycle[]>(demoReviewCycles);
+  const [hrDocuments, setHrDocuments] = useState<HRDocument[]>(demoHRDocuments);
+  const [workflows, setWorkflows] = useState<AutomationWorkflow[]>(demoWorkflows);
+  const [supportTickets, setSupportTickets] = useState<SupportTicket[]>(demoSupportTickets);
+  const [notifications, setNotifications] = useState<NotificationItem[]>(demoNotifications);
 
   // Shell controls
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -209,6 +280,151 @@ export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
     setUnreadNotificationCount(0);
   };
 
+  // PeopleCore Mutators
+  const addCandidate = (candData: Omit<Candidate, "id" | "appliedDate">) => {
+    const newCand: Candidate = {
+      ...candData,
+      id: `cand_${Date.now()}`,
+      appliedDate: new Date().toISOString().split("T")[0],
+    };
+    setCandidates((prev) => [newCand, ...prev]);
+    setActivities((prev) => [
+      {
+        id: `act_${Date.now()}`,
+        actor: currentUser.name,
+        actorAvatar: currentUser.avatar,
+        action: "added candidate",
+        target: `${candData.name} (${candData.role})`,
+        resourceType: "Recruitment" as any,
+        timestamp: "Just now",
+        metadata: `Stage: ${candData.stage}`,
+      },
+      ...prev,
+    ]);
+  };
+
+  const updateCandidateStage = (candidateId: string, stage: Candidate["stage"]) => {
+    setCandidates((prev) =>
+      prev.map((c) => (c.id === candidateId ? { ...c, stage } : c))
+    );
+  };
+
+  const addJob = (jobData: Omit<JobPosting, "id" | "postedDate" | "applicantsCount">) => {
+    const newJob: JobPosting = {
+      ...jobData,
+      id: `job_${Date.now()}`,
+      postedDate: new Date().toISOString().split("T")[0],
+      applicantsCount: 0,
+    };
+    setJobs((prev) => [newJob, ...prev]);
+  };
+
+  const addLeaveRequest = (reqData: Omit<LeaveRequest, "id" | "appliedDate" | "status" | "workflowStage">) => {
+    const newLeave: LeaveRequest = {
+      ...reqData,
+      id: `lve_${Date.now()}`,
+      appliedDate: new Date().toISOString().split("T")[0],
+      status: "Pending",
+      workflowStage: "Manager",
+    };
+    setLeaveRequests((prev) => [newLeave, ...prev]);
+  };
+
+  const approveLeaveRequest = (id: string) => {
+    setLeaveRequests((prev) =>
+      prev.map((l) => (l.id === id ? { ...l, status: "Approved", workflowStage: "Completed" } : l))
+    );
+    setActivities((prev) => [
+      {
+        id: `act_${Date.now()}`,
+        actor: currentUser.name,
+        actorAvatar: currentUser.avatar,
+        action: "approved leave request",
+        target: `Leave Request #${id}`,
+        resourceType: "Approval",
+        timestamp: "Just now",
+        metadata: "Status: Approved",
+      },
+      ...prev,
+    ]);
+  };
+
+  const rejectLeaveRequest = (id: string) => {
+    setLeaveRequests((prev) =>
+      prev.map((l) => (l.id === id ? { ...l, status: "Rejected", workflowStage: "Completed" } : l))
+    );
+  };
+
+  const addExpense = (expData: Omit<ExpenseRecord, "id" | "date" | "status">) => {
+    const newExp: ExpenseRecord = {
+      ...expData,
+      id: `exp_${Date.now()}`,
+      date: new Date().toISOString().split("T")[0],
+      status: "Pending",
+    };
+    setExpenses((prev) => [newExp, ...prev]);
+  };
+
+  const approveExpense = (id: string) => {
+    setExpenses((prev) =>
+      prev.map((e) => (e.id === id ? { ...e, status: "Approved" } : e))
+    );
+  };
+
+  const rejectExpense = (id: string) => {
+    setExpenses((prev) =>
+      prev.map((e) => (e.id === id ? { ...e, status: "Rejected" } : e))
+    );
+  };
+
+  const addGoal = (goalData: Omit<PerformanceGoal, "id">) => {
+    const newGoal: PerformanceGoal = {
+      ...goalData,
+      id: `goal_${Date.now()}`,
+    };
+    setGoals((prev) => [newGoal, ...prev]);
+  };
+
+  const updateGoalProgress = (id: string, progress: number) => {
+    setGoals((prev) =>
+      prev.map((g) => (g.id === id ? { ...g, progress, status: progress >= 100 ? "Completed" : g.status } : g))
+    );
+  };
+
+  const addHRDocument = (docData: Omit<HRDocument, "id" | "uploadDate" | "downloadCount">) => {
+    const newDoc: HRDocument = {
+      ...docData,
+      id: `doc_${Date.now()}`,
+      uploadDate: new Date().toISOString().split("T")[0],
+      downloadCount: 0,
+    };
+    setHrDocuments((prev) => [newDoc, ...prev]);
+  };
+
+  const toggleWorkflowStatus = (id: string) => {
+    setWorkflows((prev) =>
+      prev.map((w) => (w.id === id ? { ...w, status: w.status === "Active" ? "Paused" : "Active" } : w))
+    );
+  };
+
+  const addSupportTicket = (ticketData: Omit<SupportTicket, "id" | "ticketNumber" | "createdDate" | "lastUpdated" | "status">) => {
+    const newTicket: SupportTicket = {
+      ...ticketData,
+      id: `tkt_${Date.now()}`,
+      ticketNumber: `PC-${Math.floor(1000 + Math.random() * 9000)}`,
+      createdDate: new Date().toISOString().split("T")[0],
+      lastUpdated: "Just now",
+      status: "Open",
+    };
+    setSupportTickets((prev) => [newTicket, ...prev]);
+  };
+
+  const markNotificationAsRead = (id: string) => {
+    setNotifications((prev) =>
+      prev.map((n) => (n.id === id ? { ...n, read: true } : n))
+    );
+  };
+
   return (
     <WorkspaceContext.Provider
       value={{
@@ -228,6 +444,18 @@ export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
         documents,
         approvals,
         activities,
+        candidates,
+        jobs,
+        attendanceRecords,
+        leaveRequests,
+        payrolls,
+        expenses,
+        goals,
+        reviewCycles,
+        hrDocuments,
+        workflows,
+        supportTickets,
+        notifications,
         addTask,
         updateTaskStatus,
         addFinding,
@@ -236,6 +464,21 @@ export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
         rejectRequest,
         addTransaction,
         addDocument,
+        addCandidate,
+        updateCandidateStage,
+        addJob,
+        addLeaveRequest,
+        approveLeaveRequest,
+        rejectLeaveRequest,
+        addExpense,
+        approveExpense,
+        rejectExpense,
+        addGoal,
+        updateGoalProgress,
+        addHRDocument,
+        toggleWorkflowStatus,
+        addSupportTicket,
+        markNotificationAsRead,
         isSidebarOpen,
         setIsSidebarOpen,
         isCommandPaletteOpen,

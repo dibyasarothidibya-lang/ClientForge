@@ -1,10 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ArrowRight, CheckCircle2, Sparkles, Shield, Lock } from "lucide-react";
 import ThreeDCard from "./motion/ThreeDCard";
 
 export default function CtaBanner() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -29,8 +32,8 @@ export default function CtaBanner() {
             
             <div className="relative z-10 max-w-3xl mx-auto text-center">
               
-              {/* Monospace Micro-Label */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-neutral-300 text-xs font-mono tracking-wider uppercase mb-8">
+              {/* Modern Micro-Label */}
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-neutral-300 text-xs font-sans font-medium tracking-wide uppercase mb-8">
                 <span className="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
                 <span>Opportunity Intelligence Engine</span>
               </div>
@@ -47,9 +50,17 @@ export default function CtaBanner() {
 
               {/* Form Experience */}
               {isSubmitted ? (
-                <div className="p-5 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-sm font-medium max-w-md mx-auto flex items-center justify-center gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
-                  <span>Workspace initialized. Check your inbox for your access key.</span>
+                <div className="p-5 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-sm font-medium max-w-lg mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+                  <div className="flex items-center gap-2.5">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
+                    <span>Workspace initialized for {email}.</span>
+                  </div>
+                  <Link
+                    href="/workspace"
+                    className="px-4 py-2 rounded-xl bg-white text-neutral-950 font-semibold text-xs hover:bg-neutral-100 transition shrink-0"
+                  >
+                    Enter Workspace &rarr;
+                  </Link>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto">
@@ -72,7 +83,7 @@ export default function CtaBanner() {
               )}
 
               {/* Quiet Reassurance Badges */}
-              <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-xs text-neutral-400 font-mono">
+              <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-xs text-neutral-400 font-sans font-medium">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
                   <span>14-day full signal trial</span>

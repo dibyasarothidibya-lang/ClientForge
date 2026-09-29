@@ -44,7 +44,7 @@ export default function Faq() {
         
         {/* Section Header */}
         <div className="text-center mb-16 sm:mb-20">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-slate-200 dark:border-white/10 bg-white dark:bg-white/[0.02] text-slate-600 dark:text-neutral-400 text-xs tracking-wider uppercase mb-5 font-mono shadow-xs">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-slate-200 dark:border-white/10 bg-white dark:bg-white/[0.02] text-slate-600 dark:text-neutral-400 text-xs tracking-wider uppercase mb-5 font-sans font-medium shadow-xs">
             <Sparkles className="w-3.5 h-3.5 text-indigo-500 dark:text-indigo-400" />
             <span>Clarifications & Mechanics</span>
           </div>

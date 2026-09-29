@@ -141,7 +141,7 @@ export default function ScrollExpand({
         {scrollHint && hintOpacity > 0.05 && (
           <div
             style={{ opacity: hintOpacity }}
-            className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-white text-xs font-mono tracking-wider transition-opacity pointer-events-none"
+            className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-white text-xs font-sans font-medium tracking-wider transition-opacity pointer-events-none"
           >
             <span>{scrollHint}</span>
             <ChevronDown className="w-3.5 h-3.5 animate-bounce" />

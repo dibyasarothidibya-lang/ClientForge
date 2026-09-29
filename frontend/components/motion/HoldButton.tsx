@@ -118,7 +118,7 @@ export default function HoldButton({
             <Trash2 className="w-3.5 h-3.5 opacity-80" />
             <span>{children || "Hold to Confirm"}</span>
             {isHolding && (
-              <span className="text-[10px] font-mono opacity-80 ml-1">
+              <span className="text-[10px] font-sans font-medium opacity-80 ml-1">
                 {Math.ceil(((100 - progress) / 100) * (holdTime / 1000))}s
               </span>
             )}

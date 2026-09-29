@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { 
   Bot, 
   ShieldCheck, 
@@ -42,19 +43,19 @@ export default function BentoGrid() {
               Great work does not begin with a signed agreement. It begins with identifying the opportunities worth pursuing, knowing who sits on the other side, and moving with precision.
             </p>
             <div className="flex flex-wrap items-center gap-4">
-              <a 
-                href="#pricing" 
+              <Link 
+                href="/pricing" 
                 className="px-7 py-3.5 bg-slate-950 dark:bg-white text-white dark:text-neutral-950 hover:bg-slate-800 dark:hover:bg-neutral-200 font-semibold text-sm rounded-full transition-all shadow-md"
               >
                 Start Forging
-              </a>
-              <a 
-                href="#demo" 
+              </Link>
+              <Link 
+                href="/workspace" 
                 className="inline-flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-semibold text-sm hover:gap-3 transition-all duration-300"
               >
                 Explore Live Pipeline
                 <ArrowRight className="w-4 h-4" />
-              </a>
+              </Link>
             </div>
           </div>
 

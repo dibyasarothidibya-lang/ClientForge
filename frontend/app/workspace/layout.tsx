@@ -1,10 +1,25 @@
 "use client";
 
 import React from "react";
-import { WorkspaceProvider } from "@/context/WorkspaceContext";
+import { WorkspaceProvider, useWorkspace } from "@/context/WorkspaceContext";
 import Sidebar from "@/components/workspace/Sidebar";
 import Header from "@/components/workspace/Header";
 import CommandPalette from "@/components/workspace/CommandPalette";
+
+function WorkspaceMain({ children }: { children: React.ReactNode }) {
+  const { isSidebarOpen } = useWorkspace();
+  return (
+    <main
+      className={`transition-all duration-300 ${
+        isSidebarOpen ? "lg:ml-64" : "lg:ml-20"
+      } p-4 sm:p-6 lg:p-8 min-h-[calc(100vh-4rem)]`}
+    >
+      <div className="max-w-7xl mx-auto space-y-8">
+        {children}
+      </div>
+    </main>
+  );
+}
 
 export default function WorkspaceLayout({
   children,
@@ -21,11 +36,9 @@ export default function WorkspaceLayout({
         <Header />
 
         {/* Main Content Area */}
-        <main className="transition-all duration-300 lg:ml-64 p-4 sm:p-8">
-          <div className="max-w-7xl mx-auto">
-            {children}
-          </div>
-        </main>
+        <WorkspaceMain>
+          {children}
+        </WorkspaceMain>
 
         {/* Cmd/Ctrl + K Global Command Palette */}
         <CommandPalette />

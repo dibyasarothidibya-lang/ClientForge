@@ -129,7 +129,7 @@ export default function CodeSlots({
                 borderRadius: `${radius}px`,
                 color: digitColor,
               }}
-              className={`relative flex items-center justify-center font-mono font-bold text-lg border transition-all duration-200 ${
+              className={`relative flex items-center justify-center font-sans font-medium font-bold text-lg border transition-all duration-200 ${
                 isFocused ? "shadow-md ring-2 ring-indigo-500/30 scale-105" : ""
               } ${isError ? "animate-shake ring-2 ring-red-500/30" : ""}`}
               onClick={() => {

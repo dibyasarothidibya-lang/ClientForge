@@ -41,7 +41,7 @@ export default function Testimonials() {
         
         {/* Centered Editorial Header */}
         <div className="text-center mb-16 sm:mb-20">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/[0.02] text-slate-600 dark:text-neutral-400 text-xs tracking-wider uppercase mb-5 font-mono shadow-xs">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/[0.02] text-slate-600 dark:text-neutral-400 text-xs tracking-wider uppercase mb-5 font-sans font-medium shadow-xs">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400"></span>
             Operator Perspectives
           </div>
@@ -73,7 +73,7 @@ export default function Testimonials() {
                       <Star key={i} className="w-4 h-4 fill-current" />
                     ))}
                   </div>
-                  <span className="text-xs font-mono uppercase tracking-widest text-slate-500 dark:text-neutral-500 ml-2">Verified Engagement</span>
+                  <span className="text-xs font-sans font-medium uppercase tracking-wider text-slate-500 dark:text-neutral-400 ml-2">Verified Engagement</span>
                 </div>
 
                 {/* Big Quote */}
@@ -93,13 +93,13 @@ export default function Testimonials() {
                   <div>
                     <h4 className="font-medium text-slate-950 dark:text-[#f5f5f3] text-lg">Julian Vance</h4>
                     <p className="text-sm text-slate-600 dark:text-neutral-400 font-normal">Founding Partner, Vanguard Systems Advisory</p>
-                    <span className="text-xs text-slate-500 dark:text-neutral-500 font-mono">Specialized Enterprise Architecture • London & Zurich</span>
+                    <span className="text-xs text-slate-500 dark:text-neutral-400 font-sans">Specialized Enterprise Architecture • London & Zurich</span>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08]">
-                  <span className="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-medium">+240%</span>
-                  <span className="text-xs text-slate-600 dark:text-neutral-400">Annual contract value</span>
+                  <span className="text-xs font-sans text-slate-900 dark:text-white font-semibold">+240%</span>
+                  <span className="text-xs text-slate-600 dark:text-neutral-400 font-sans">Annual contract value</span>
                 </div>
               </div>
             </div>
@@ -114,7 +114,7 @@ export default function Testimonials() {
                 className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700 ease-out"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent flex flex-col justify-end p-6">
-                <span className="text-[10px] font-mono font-semibold uppercase tracking-widest text-indigo-300 mb-1">
+                <span className="text-[10px] font-sans font-semibold uppercase tracking-wider text-indigo-300 mb-1">
                   Studio Philosophy
                 </span>
                 <div className="font-serif text-lg text-white font-normal leading-snug">
@@ -127,14 +127,14 @@ export default function Testimonials() {
           {/* Key Metric Card */}
           <ThreeDCard glareColor="#10b981" maxTilt={8} elevationZ={18} className="h-full">
             <div className="rounded-3xl p-8 flex flex-col justify-center bg-gradient-to-b from-slate-50 to-white dark:from-[#141417] dark:to-[#0d0d0f] border border-slate-200 dark:border-white/[0.08] shadow-md dark:shadow-lg relative overflow-hidden h-full">
-              <div className="text-xs font-mono uppercase tracking-widest text-slate-500 dark:text-neutral-500 mb-2">Portfolio Impact</div>
+              <div className="text-xs font-sans font-semibold uppercase tracking-wider text-slate-500 dark:text-neutral-400 mb-2">Portfolio Impact</div>
               <div className="font-sans text-4xl md:text-5xl font-normal md:font-medium tracking-tight tabular-nums text-slate-950 dark:text-white">68%</div>
               <p className="text-slate-600 dark:text-neutral-300 text-sm font-normal mt-2 leading-relaxed">
                 Average increase in closed deal size within 90 days of adopting dossier-backed opportunity intelligence.
               </p>
-              <div className="mt-4 pt-4 border-t border-slate-200 dark:border-white/[0.06] flex items-center justify-between text-xs text-slate-500 dark:text-neutral-500 font-mono">
+              <div className="mt-4 pt-4 border-t border-slate-200 dark:border-white/[0.06] flex items-center justify-between text-xs text-slate-500 dark:text-neutral-400 font-sans">
                 <span>Sample: 420+ Studios</span>
-                <span className="text-emerald-600 dark:text-emerald-400 font-medium">Verified Q2 2026</span>
+                <span>Verified Q2 2026</span>
               </div>
             </div>
           </ThreeDCard>
@@ -161,7 +161,7 @@ export default function Testimonials() {
                       <p className="text-xs text-slate-500 dark:text-neutral-500">{item.title}</p>
                     </div>
                   </div>
-                  <span className="text-[11px] font-mono px-2 py-1 rounded bg-white dark:bg-white/[0.03] border border-slate-200 dark:border-white/[0.06] text-slate-600 dark:text-neutral-400 shadow-xs dark:shadow-none">
+                  <span className="text-[11px] font-sans font-medium px-2 py-1 rounded bg-white dark:bg-white/[0.03] border border-slate-200 dark:border-white/[0.06] text-slate-600 dark:text-neutral-300 shadow-xs dark:shadow-none">
                     {item.dealMetric}
                   </span>
                 </div>

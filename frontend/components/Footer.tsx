@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { ArrowRight, CheckCircle2, ShieldCheck, Terminal } from "lucide-react";
 
 export default function Footer() {
@@ -23,7 +24,7 @@ export default function Footer() {
           
           {/* Brand + Manifesto + Newsletter */}
           <div className="lg:col-span-4">
-            <a href="#" className="flex items-center gap-3.5 mb-5 group">
+            <Link href="/" className="flex items-center gap-3.5 mb-5 group" title="Return to Client Forge Home">
               <div className="relative w-10 h-10 rounded-xl overflow-hidden shadow-lg border border-slate-200 dark:border-white/15 bg-black flex-shrink-0 group-hover:border-slate-400 dark:group-hover:border-white/30 transition-colors">
                 <img 
                   src="/logo.jpg" 
@@ -32,29 +33,29 @@ export default function Footer() {
                 />
               </div>
               <div className="flex flex-col">
-                <span className="font-serif text-2xl font-normal tracking-tight text-slate-900 dark:text-[#f5f5f3] select-none">
+                <span className="font-victorian text-2xl sm:text-3xl font-normal tracking-wide text-slate-900 dark:text-[#f5f5f3] select-none">
                   Client Forge
                 </span>
-                <span className="text-[10px] uppercase tracking-widest font-mono text-slate-500 dark:text-neutral-400 -mt-0.5">
+                <span className="text-[10px] uppercase tracking-wider font-sans font-semibold text-slate-500 dark:text-neutral-400 -mt-0.5">
                   Opportunity Intelligence Engine
                 </span>
               </div>
-            </a>
+            </Link>
             
-            <p className="text-slate-600 dark:text-neutral-400 text-sm mb-8 max-w-sm leading-relaxed font-normal">
+            <p className="text-slate-600 dark:text-neutral-400 text-sm mb-8 max-w-sm leading-relaxed font-sans font-normal">
               Precision market intelligence, structural signal tracking, and calibrated opportunity dossiers for independent principals and boutique studios.
             </p>
 
             {/* Newsletter */}
             <div>
-              <div className="text-xs font-mono uppercase tracking-wider text-slate-800 dark:text-neutral-300 mb-2.5">
+              <div className="text-xs font-sans font-semibold uppercase tracking-wider text-slate-800 dark:text-neutral-300 mb-2.5">
                 The Operator Dispatch
               </div>
-              <p className="text-xs text-slate-500 dark:text-neutral-500 mb-3 font-normal">
+              <p className="text-xs text-slate-500 dark:text-neutral-500 mb-3 font-sans font-normal">
                 Monthly field notes on high-leverage client acquisition, pricing power, and studio economics.
               </p>
               {subscribed ? (
-                <div className="flex items-center gap-2 text-xs font-medium text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-800/40 p-3 rounded-xl font-mono">
+                <div className="flex items-center gap-2 text-xs font-medium text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-800/40 p-3 rounded-xl font-sans">
                   <CheckCircle2 className="w-4 h-4 shrink-0" />
                   <span>Subscribed. Welcome to the dispatch.</span>
                 </div>
@@ -83,48 +84,48 @@ export default function Footer() {
           {/* Links Columns */}
           <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-8">
             <div>
-              <h4 className="text-xs font-mono uppercase tracking-widest text-slate-900 dark:text-neutral-300 mb-4">Platform</h4>
-              <ul className="space-y-3 text-xs font-normal">
-                <li><a href="/talent-intelligence" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Talent Intelligence</a></li>
-                <li><a href="/people-operations" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">People Operations</a></li>
-                <li><a href="/global-mobility" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Global Mobility</a></li>
-                <li><a href="/pricing" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Pricing & Plans</a></li>
-                <li><a href="#calculator" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Velocity Modeling</a></li>
-                <li><a href="#solutions" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Client Ledger</a></li>
+              <h4 className="text-xs font-sans font-semibold uppercase tracking-wider text-slate-900 dark:text-neutral-200 mb-4">Platform</h4>
+              <ul className="space-y-3 text-xs font-normal font-sans">
+                <li><Link href="/talent-intelligence" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Talent Intelligence</Link></li>
+                <li><Link href="/people-operations" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">People Operations</Link></li>
+                <li><Link href="/global-mobility" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Global Mobility</Link></li>
+                <li><Link href="/pricing" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Pricing & Plans</Link></li>
+                <li><Link href="/product" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Velocity Modeling</Link></li>
+                <li><Link href="/workspace" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Client Ledger</Link></li>
               </ul>
             </div>
 
             <div>
-              <h4 className="text-xs font-mono uppercase tracking-widest text-slate-900 dark:text-neutral-300 mb-4">Practices</h4>
-              <ul className="space-y-3 text-xs font-normal">
-                <li><a href="#solutions" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Boutique Studios</a></li>
-                <li><a href="#solutions" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Specialized Advisory</a></li>
-                <li><a href="#solutions" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Fractional Partners</a></li>
-                <li><a href="#solutions" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Engineering Consultancies</a></li>
-                <li><a href="#solutions" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Strategy Collectives</a></li>
-                <li><a href="#solutions" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Independent Principals</a></li>
+              <h4 className="text-xs font-sans font-semibold uppercase tracking-wider text-slate-900 dark:text-neutral-200 mb-4">Practices</h4>
+              <ul className="space-y-3 text-xs font-normal font-sans">
+                <li><Link href="/about" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Boutique Studios</Link></li>
+                <li><Link href="/features" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Specialized Advisory</Link></li>
+                <li><Link href="/talent-intelligence" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Fractional Partners</Link></li>
+                <li><Link href="/product" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Engineering Consultancies</Link></li>
+                <li><Link href="/people-operations" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Strategy Collectives</Link></li>
+                <li><Link href="/pricing" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Independent Principals</Link></li>
               </ul>
             </div>
 
             <div>
-              <h4 className="text-xs font-mono uppercase tracking-widest text-slate-900 dark:text-neutral-300 mb-4">Intelligence</h4>
-              <ul className="space-y-3 text-xs font-normal">
-                <li><a href="#faq" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Signal Methodology</a></li>
-                <li><a href="#calculator" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Opportunity Metrics</a></li>
-                <li><a href="#testimonials" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Operator Case Studies</a></li>
-                <li><a href="#features" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Dossier Architecture</a></li>
-                <li><a href="#demo" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Pipeline Simulator</a></li>
+              <h4 className="text-xs font-sans font-semibold uppercase tracking-wider text-slate-900 dark:text-neutral-200 mb-4">Intelligence</h4>
+              <ul className="space-y-3 text-xs font-normal font-sans">
+                <li><Link href="/features" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Signal Methodology</Link></li>
+                <li><Link href="/product" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Opportunity Metrics</Link></li>
+                <li><Link href="/about" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Operator Case Studies</Link></li>
+                <li><Link href="/features" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Dossier Architecture</Link></li>
+                <li><Link href="/workspace" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Pipeline Simulator</Link></li>
               </ul>
             </div>
 
             <div>
-              <h4 className="text-xs font-mono uppercase tracking-widest text-slate-900 dark:text-neutral-300 mb-4">Integrity</h4>
-              <ul className="space-y-3 text-xs font-normal">
-                <li><a href="#faq" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Zero-Spam Policy</a></li>
-                <li><a href="#faq" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Data Privacy & Encryption</a></li>
-                <li><a href="#faq" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Single-Tenant Isolation</a></li>
-                <li><a href="#faq" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Terms of Service</a></li>
-                <li><a href="#faq" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Security Architecture</a></li>
+              <h4 className="text-xs font-sans font-semibold uppercase tracking-wider text-slate-900 dark:text-neutral-200 mb-4">Integrity</h4>
+              <ul className="space-y-3 text-xs font-normal font-sans">
+                <li><Link href="/security" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Zero-Spam Policy</Link></li>
+                <li><Link href="/security" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Data Privacy & Encryption</Link></li>
+                <li><Link href="/security" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Single-Tenant Isolation</Link></li>
+                <li><Link href="/security" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Terms of Service</Link></li>
+                <li><Link href="/security" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Security Architecture</Link></li>
               </ul>
             </div>
           </div>
@@ -132,13 +133,13 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="py-8 border-t border-slate-200 dark:border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono">
-          <p className="text-slate-500 dark:text-neutral-500">
+        <div className="py-8 border-t border-slate-200 dark:border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-sans">
+          <p className="text-slate-500 dark:text-neutral-400 font-sans font-normal">
             © {new Date().getFullYear()} Client Forge Systems, Inc. Precision client acquisition for senior operators.
           </p>
 
-          <div className="flex items-center gap-6 text-slate-500 dark:text-neutral-500">
-            <div className="flex items-center gap-2 text-slate-600 dark:text-neutral-400">
+          <div className="flex items-center gap-6 text-slate-500 dark:text-neutral-400 font-sans">
+            <div className="flex items-center gap-2 text-slate-600 dark:text-neutral-300 font-sans">
               <span className="w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse"></span>
               <span>Signal nodes active</span>
             </div>

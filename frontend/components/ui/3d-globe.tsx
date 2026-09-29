@@ -727,7 +727,7 @@ export function Globe3D({
               {/* Tooltip Badge on Hover displaying City and Live Hires Count */}
               {(isHovered || isSelected) && (
                 <div
-                  className="absolute -top-7 px-2.5 py-0.5 rounded-full text-[10px] font-mono tracking-tight whitespace-nowrap bg-slate-900/95 text-sky-300 border border-sky-500/50 shadow-xl pointer-events-none z-50 animate-in fade-in zoom-in-95 duration-150 font-sans"
+                  className="absolute -top-7 px-2.5 py-0.5 rounded-full text-[10px] font-sans font-medium tracking-tight whitespace-nowrap bg-slate-900/95 text-sky-300 border border-sky-500/50 shadow-xl pointer-events-none z-50 animate-in fade-in zoom-in-95 duration-150 font-sans"
                 >
                   {marker.label}
                 </div>

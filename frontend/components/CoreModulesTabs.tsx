@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform, useMotionTemplate } from "framer-motion";
 import { 
   Radar, 
@@ -364,7 +365,7 @@ function Interactive3DPreviewCard({
           className="flex items-center justify-between border-b border-slate-100 dark:border-neutral-800 pb-3 mb-3.5 relative z-10"
         >
           <div>
-            <span className="text-[10px] font-mono font-bold text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-950/70 border border-sky-200/60 dark:border-sky-800/60 px-2.5 py-0.5 rounded-full uppercase tracking-wider font-sans">
+            <span className="text-[10px] font-sans font-bold text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-950/70 border border-sky-200/60 dark:border-sky-800/60 px-2.5 py-0.5 rounded-full uppercase tracking-wider">
               {current.previewContent.badge}
             </span>
             <h4 className="font-serif font-medium text-lg sm:text-xl text-slate-900 dark:text-white mt-1 tracking-tight">
@@ -374,7 +375,7 @@ function Interactive3DPreviewCard({
 
           {/* Modern Cyan/Sky Live Index (No Green) */}
           <div className="flex items-center gap-1.5">
-            <span className="text-[11px] font-mono text-sky-500 dark:text-sky-400 font-sans font-medium">
+            <span className="text-[11px] font-sans font-medium text-sky-500 dark:text-sky-400">
               Live Index
             </span>
             <div className="relative flex items-center justify-center w-2.5 h-2.5">
@@ -403,13 +404,13 @@ function Interactive3DPreviewCard({
                     : "bg-slate-50/80 dark:bg-zinc-800/50 border-slate-100/90 dark:border-zinc-800 hover:border-slate-300 dark:hover:border-zinc-700 hover:bg-slate-100/70 dark:hover:bg-zinc-800/80"
                 }`}
               >
-                <div className="flex items-center justify-between gap-2 text-xs">
-                  <div className="flex items-center gap-1.5 min-w-0">
+                <div className="flex items-center justify-between gap-2.5 text-xs">
+                  <div className="flex items-center gap-2 min-w-0 flex-1">
                     <span className="font-sans font-semibold text-xs sm:text-sm text-slate-900 dark:text-white truncate">
                       {item.country}
                     </span>
                     {isSelected && (
-                      <span className="shrink-0 px-1.5 py-0.5 rounded text-[9px] font-mono font-bold bg-sky-600 text-white font-sans shadow-xs">
+                      <span className="shrink-0 px-1.5 py-0.5 rounded text-[9px] font-sans font-bold bg-sky-600 text-white shadow-xs">
                         ACTIVE
                       </span>
                     )}
@@ -419,11 +420,11 @@ function Interactive3DPreviewCard({
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between text-[11px] text-slate-500 dark:text-neutral-400 mt-1">
-                  <span className="font-medium text-slate-600 dark:text-neutral-300 truncate pr-2 font-sans">{item.code}</span>
+                <div className="flex items-center justify-between gap-2 text-[11px] text-slate-500 dark:text-neutral-400 mt-1.5">
+                  <span className="font-medium text-slate-600 dark:text-neutral-300 truncate min-w-0 flex-1 font-sans">{item.code}</span>
                   {/* Modern Cyan/Blue Status (Replaced Green Text & Check) */}
-                  <span className="shrink-0 inline-flex items-center gap-1 text-sky-600 dark:text-sky-400 font-medium font-sans">
-                    <CheckCircle2 className="w-3 h-3 text-sky-500 dark:text-sky-400" />
+                  <span className="shrink-0 inline-flex items-center gap-1.5 text-sky-600 dark:text-sky-400 font-medium font-sans">
+                    <CheckCircle2 className="w-3 h-3 text-sky-500 dark:text-sky-400 shrink-0" />
                     <span>{item.status}</span>
                   </span>
                 </div>
@@ -444,10 +445,10 @@ function Interactive3DPreviewCard({
               style={{ transform: "translateZ(36px)" }}
               className="mt-3 p-3.5 rounded-xl bg-slate-100/90 dark:bg-zinc-800/70 border border-slate-200/80 dark:border-zinc-700/80 text-xs shadow-md relative z-10"
             >
-              <div className="flex items-center justify-between text-[10px] font-mono text-slate-500 dark:text-zinc-400 mb-1 font-sans">
-                <span className="truncate pr-2">SOURCE: {selectedItem.source}</span>
+              <div className="flex items-center justify-between gap-2 text-[10px] font-sans text-slate-500 dark:text-zinc-400 mb-1.5">
+                <span className="truncate min-w-0 flex-1">SOURCE:{" "}{selectedItem.source}</span>
                 {/* Modern Indigo/Sky Confidence Match (Replaced Green) */}
-                <span className="shrink-0 text-indigo-600 dark:text-indigo-400 font-bold font-mono">{selectedItem.confidence}</span>
+                <span className="shrink-0 text-indigo-600 dark:text-indigo-400 font-bold font-sans">{selectedItem.confidence}</span>
               </div>
               <p className="text-xs text-slate-700 dark:text-zinc-200 leading-relaxed font-sans">
                 {selectedItem.dilemma}
@@ -465,7 +466,7 @@ function Interactive3DPreviewCard({
             <Sparkles className="w-3.5 h-3.5 text-sky-500" />
             <span>Autonomous signal indexing</span>
           </span>
-          <span className="font-semibold text-slate-700 dark:text-neutral-300 font-mono text-[10.5px] font-sans">
+          <span className="font-semibold text-slate-700 dark:text-neutral-300 font-sans text-[10.5px]">
             100% Contextual Verification
           </span>
         </div>
@@ -618,7 +619,7 @@ export default function CoreModulesTabs() {
                 <div className="lg:col-span-7 space-y-5">
                   
                   {/* Eyebrow Pill */}
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200/60 dark:border-indigo-800/60 text-xs font-mono font-semibold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest font-sans">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200/60 dark:border-indigo-800/60 text-xs font-sans font-semibold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest">
                     <ShieldCheck className="w-3.5 h-3.5 text-indigo-500" />
                     <span>{current.tag}</span>
                   </div>
@@ -637,10 +638,10 @@ export default function CoreModulesTabs() {
                   <div className="grid grid-cols-3 gap-2 sm:gap-4 py-4 my-1 border-y border-slate-200/80 dark:border-neutral-800">
                     {current.stats.map((s, i) => (
                       <div key={i} className="min-w-0 pr-1">
-                        <div className="font-sans text-xl sm:text-2xl lg:text-3xl font-normal sm:font-medium tracking-tight text-slate-950 dark:text-white tabular-nums truncate">
+                        <div className="font-sans text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-slate-950 dark:text-white tabular-nums truncate">
                           {s.value}
                         </div>
-                        <div className="text-[11px] sm:text-xs font-mono uppercase tracking-wider text-slate-500 dark:text-zinc-400 mt-1 font-medium truncate font-sans">
+                        <div className="text-[11px] sm:text-xs font-sans uppercase tracking-wider text-slate-500 dark:text-zinc-400 mt-1 font-medium truncate">
                           {s.label}
                         </div>
                       </div>
@@ -648,26 +649,34 @@ export default function CoreModulesTabs() {
                   </div>
 
                   {/* Feature Value Proof Bullets (Clean Blue/Cyan Checkmarks, No Green) */}
-                  <div className="space-y-2.5 pt-1">
+                  <div className="space-y-3 pt-1">
                     {current.features.map((feat, i) => (
-                      <div key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 dark:text-zinc-300 font-sans">
+                      <div key={i} className="flex items-start gap-3 text-xs sm:text-sm text-slate-700 dark:text-zinc-300 font-sans">
                         <div className="w-4 h-4 rounded-full bg-sky-50 dark:bg-sky-950/60 border border-sky-200/80 dark:border-sky-800/80 flex items-center justify-center shrink-0 mt-0.5">
                           <CheckCircle2 className="w-3 h-3 text-sky-600 dark:text-sky-400" />
                         </div>
-                        <span className="leading-snug">{feat}</span>
+                        <span className="leading-relaxed">{feat}</span>
                       </div>
                     ))}
                   </div>
 
                   {/* Action Link */}
                   <div className="pt-2">
-                    <a 
-                      href="#pricing" 
+                    <Link 
+                      href={
+                        current.id === "intelligence"
+                          ? "/talent-intelligence"
+                          : current.id === "pipeline"
+                          ? "/workspace/projects"
+                          : current.id === "outreach"
+                          ? "/features"
+                          : "/people-operations"
+                      } 
                       className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-950 dark:bg-white text-white dark:text-slate-950 font-semibold text-xs sm:text-sm hover:opacity-90 transition-all shadow-sm active:scale-[0.98] group font-sans"
                     >
                       <span>Explore {current.title} in detail</span>
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </a>
+                    </Link>
                   </div>
                 </div>
 

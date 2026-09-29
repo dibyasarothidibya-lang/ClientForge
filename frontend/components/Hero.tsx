@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import HeroHeadline from "./hero/HeroHeadline";
 import ScrollExpand from "./motion/ScrollExpand";
 import GlareHover from "./motion/GlareHover";
@@ -108,19 +109,19 @@ export default function Hero() {
                 useWindowScroll={true}
               >
                 <div className="max-w-2xl px-6 text-center text-white flex flex-col items-center">
-                  <h2 className="font-serif text-3xl md:text-5xl font-normal tracking-tight">
+                  <h2 className="font-sans text-3xl md:text-5xl font-semibold tracking-tight">
                     {item.title}
                   </h2>
-                  <p className="mt-3 text-sm md:text-base text-zinc-300">
+                  <p className="mt-3 text-sm md:text-base text-zinc-300 font-sans">
                     {item.subtitle}
                   </p>
-                  <a
+                  <Link
                     href={item.href}
-                    className="mt-6 inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-xs font-semibold text-slate-950 bg-white hover:bg-slate-100 transition-all shadow-xl hover:scale-105 active:scale-95 cursor-pointer font-mono"
+                    className="mt-6 inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-xs font-semibold text-slate-950 bg-white hover:bg-slate-100 transition-all shadow-xl hover:scale-105 active:scale-95 cursor-pointer font-sans"
                   >
                     <span>{item.buttonText}</span>
                     <ArrowRight className="w-3.5 h-3.5" />
-                  </a>
+                  </Link>
                 </div>
               </ScrollExpand>
             </div>
@@ -140,7 +141,7 @@ export default function Hero() {
                 transitionDuration={400}
                 className="rounded-2xl border border-slate-200/90 dark:border-zinc-800 bg-white/90 dark:bg-zinc-900/60 backdrop-blur-md p-5 sm:p-6 shadow-xs hover:shadow-xl hover:border-slate-300 dark:hover:border-zinc-700 transition-all duration-300"
               >
-                <div className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 text-xs font-mono mb-2">
+                <div className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 text-xs font-sans font-medium mb-2">
                   <Icon className={`w-3.5 h-3.5 ${metric.accent}`} />
                   <span>{metric.label}</span>
                 </div>

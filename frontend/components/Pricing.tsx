@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { Check, Sparkles, ArrowRight, ShieldCheck } from "lucide-react";
 import RubberSegment from "./motion/RubberSegment";
 import GlareHover from "./motion/GlareHover";
@@ -26,8 +27,8 @@ export default function Pricing() {
         "Direct LinkedIn & Web Intelligence Importer",
         "Standard Email & Chat Support (24h SLA)"
       ],
-      ctaText: "Start Forging",
-      ctaLink: "#pricing"
+      ctaText: "Start Free Trial",
+      ctaLink: "/signup?plan=operator"
     },
     {
       name: "Boutique Studio",
@@ -45,8 +46,8 @@ export default function Pricing() {
         "Custom Export to Notion, Linear & Google Workspace",
         "Priority 4h Strategy Support"
       ],
-      ctaText: "Start Forging",
-      ctaLink: "#pricing"
+      ctaText: "Deploy Studio",
+      ctaLink: "/signup?plan=studio"
     },
     {
       name: "Growth Practice",
@@ -65,7 +66,7 @@ export default function Pricing() {
         "Private Shared Slack Connect Channel"
       ],
       ctaText: "Contact Advisory Team",
-      ctaLink: "#demo"
+      ctaLink: "/contact?plan=enterprise"
     }
   ];
 
@@ -169,7 +170,7 @@ export default function Pricing() {
 
                 {/* Card Action Button */}
                 <div>
-                  <a
+                  <Link
                     href={tier.ctaLink}
                     className={`w-full inline-flex items-center justify-center px-4 py-3.5 rounded-xl text-sm font-semibold transition-all shadow-sm ${
                       tier.popular
@@ -179,7 +180,7 @@ export default function Pricing() {
                   >
                     {tier.ctaText}
                     <ArrowRight className="w-4 h-4 ml-1.5" />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </ThreeDCard>
@@ -197,7 +198,7 @@ export default function Pricing() {
           >
             <div className="flex flex-col h-full justify-between">
               <div>
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider font-semibold text-indigo-400 bg-indigo-950/60 border border-indigo-500/30 mb-2">
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-sans uppercase tracking-wider font-semibold text-indigo-400 bg-indigo-950/60 border border-indigo-500/30 mb-2">
                   <Sparkles className="w-3 h-3" /> Enterprise AI
                 </div>
                 <h3 className="font-serif text-2xl sm:text-3xl font-normal text-white mt-1">Scale Unlimited</h3>
@@ -234,12 +235,12 @@ export default function Pricing() {
                 </div>
               </div>
 
-              <button 
-                type="button"
-                className="mt-6 w-full py-3.5 rounded-xl bg-white text-zinc-950 font-semibold text-sm hover:bg-zinc-200 transition-colors cursor-pointer shadow-md"
+              <Link 
+                href="/contact?plan=enterprise"
+                className="mt-6 w-full py-3.5 rounded-xl bg-white text-zinc-950 font-semibold text-sm hover:bg-zinc-200 transition-colors cursor-pointer shadow-md inline-flex items-center justify-center text-center"
               >
                 Deploy Enterprise
-              </button>
+              </Link>
             </div>
           </GlareHover>
         </div>

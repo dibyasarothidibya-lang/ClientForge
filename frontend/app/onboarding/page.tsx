@@ -51,13 +51,13 @@ export default function OnboardingPage() {
     <div className="min-h-screen bg-[#080808] text-white flex flex-col justify-between p-4 sm:p-8 font-sans">
       {/* Top Header */}
       <header className="max-w-4xl mx-auto w-full flex items-center justify-between py-4 border-b border-white/[0.08]">
-        <Link href="/" className="flex items-center gap-2.5">
+        <Link href="/" className="flex items-center gap-2.5" title="Return to Client Forge Home">
           <div className="w-8 h-8 rounded-lg overflow-hidden border border-white/20 bg-black">
             <img src="/logo.jpg" alt="Logo" className="w-full h-full object-cover" />
           </div>
-          <span className="font-serif text-xl tracking-tight text-[#f5f5f3]">ℭ𝔩𝔦𝔢𝔫𝔱 𝔉𝔬𝔯𝔤𝔢</span>
+          <span className="font-victorian font-normal text-2xl tracking-wide text-[#f5f5f3]">Client Forge</span>
         </Link>
-        <div className="flex items-center gap-4 text-xs font-mono text-neutral-400">
+        <div className="flex items-center gap-4 text-xs font-sans font-medium text-neutral-400">
           <span>Step {step} of 7</span>
           <button
             onClick={completeOnboarding}
@@ -89,14 +89,14 @@ export default function OnboardingPage() {
         {/* STEP 1: Workspace Name & Slug */}
         {step === 1 && (
           <div>
-            <span className="text-xs font-mono uppercase tracking-widest text-indigo-400 mb-2 block">Step 1: Workspace</span>
-            <h2 className="text-2xl sm:text-3xl font-serif font-normal text-[#f5f5f3] mb-3">Name Your Workspace</h2>
+            <span className="text-xs font-sans font-medium uppercase tracking-widest text-indigo-400 mb-2 block">Step 1: Workspace</span>
+            <h2 className="text-2xl sm:text-3xl font-sans font-bold font-normal text-[#f5f5f3] mb-3">Name Your Workspace</h2>
             <p className="text-sm text-neutral-400 mb-6 font-normal">
               This will be the central operational hub for all departments, projects, audits, and funds.
             </p>
             <div className="space-y-4">
               <div>
-                <label className="block text-xs font-mono text-neutral-300 mb-1.5">Organization / Workspace Name</label>
+                <label className="block text-xs font-sans font-medium text-neutral-300 mb-1.5">Organization / Workspace Name</label>
                 <input
                   type="text"
                   value={formData.workspaceName}
@@ -105,7 +105,7 @@ export default function OnboardingPage() {
                 />
               </div>
               <div>
-                <label className="block text-xs font-mono text-neutral-300 mb-1.5">Workspace URL Slug</label>
+                <label className="block text-xs font-sans font-medium text-neutral-300 mb-1.5">Workspace URL Slug</label>
                 <div className="flex items-center bg-white/[0.04] border border-white/[0.1] rounded-xl px-4 py-3 text-sm text-neutral-400">
                   <span>clientforge.io/</span>
                   <input
@@ -123,14 +123,14 @@ export default function OnboardingPage() {
         {/* STEP 2: Organization Details */}
         {step === 2 && (
           <div>
-            <span className="text-xs font-mono uppercase tracking-widest text-indigo-400 mb-2 block">Step 2: Scale</span>
-            <h2 className="text-2xl sm:text-3xl font-serif font-normal text-[#f5f5f3] mb-3">Organization Profile</h2>
+            <span className="text-xs font-sans font-medium uppercase tracking-widest text-indigo-400 mb-2 block">Step 2: Scale</span>
+            <h2 className="text-2xl sm:text-3xl font-sans font-bold font-normal text-[#f5f5f3] mb-3">Organization Profile</h2>
             <p className="text-sm text-neutral-400 mb-6 font-normal">
               Configure team capacity and core operational mission.
             </p>
             <div className="space-y-4">
               <div>
-                <label className="block text-xs font-mono text-neutral-300 mb-1.5">Organization Size</label>
+                <label className="block text-xs font-sans font-medium text-neutral-300 mb-1.5">Organization Size</label>
                 <select
                   value={formData.orgSize}
                   onChange={(e) => setFormData({ ...formData, orgSize: e.target.value })}
@@ -143,7 +143,7 @@ export default function OnboardingPage() {
                 </select>
               </div>
               <div>
-                <label className="block text-xs font-mono text-neutral-300 mb-1.5">Mission / Operations Summary</label>
+                <label className="block text-xs font-sans font-medium text-neutral-300 mb-1.5">Mission / Operations Summary</label>
                 <textarea
                   rows={3}
                   value={formData.mission}
@@ -158,8 +158,8 @@ export default function OnboardingPage() {
         {/* STEP 3: Organization Type */}
         {step === 3 && (
           <div>
-            <span className="text-xs font-mono uppercase tracking-widest text-indigo-400 mb-2 block">Step 3: Industry</span>
-            <h2 className="text-2xl sm:text-3xl font-serif font-normal text-[#f5f5f3] mb-3">Select Entity Type</h2>
+            <span className="text-xs font-sans font-medium uppercase tracking-widest text-indigo-400 mb-2 block">Step 3: Industry</span>
+            <h2 className="text-2xl sm:text-3xl font-sans font-bold font-normal text-[#f5f5f3] mb-3">Select Entity Type</h2>
             <p className="text-sm text-neutral-400 mb-6 font-normal">
               Tailors default workflow templates, audit checklists, and fund reporting.
             </p>
@@ -190,13 +190,13 @@ export default function OnboardingPage() {
         {/* STEP 4: Invite Team */}
         {step === 4 && (
           <div>
-            <span className="text-xs font-mono uppercase tracking-widest text-indigo-400 mb-2 block">Step 4: Members</span>
-            <h2 className="text-2xl sm:text-3xl font-serif font-normal text-[#f5f5f3] mb-3">Invite Initial Collaborators</h2>
+            <span className="text-xs font-sans font-medium uppercase tracking-widest text-indigo-400 mb-2 block">Step 4: Members</span>
+            <h2 className="text-2xl sm:text-3xl font-sans font-bold font-normal text-[#f5f5f3] mb-3">Invite Initial Collaborators</h2>
             <p className="text-sm text-neutral-400 mb-6 font-normal">
               Colleagues will receive invitations with preset role-based permissions.
             </p>
             <div>
-              <label className="block text-xs font-mono text-neutral-300 mb-1.5">Email addresses (comma separated)</label>
+              <label className="block text-xs font-sans font-medium text-neutral-300 mb-1.5">Email addresses (comma separated)</label>
               <textarea
                 rows={3}
                 value={formData.teamEmails}
@@ -204,7 +204,7 @@ export default function OnboardingPage() {
                 placeholder="colleague@organization.org, lead@organization.org"
                 className="w-full px-4 py-3 bg-white/[0.04] border border-white/[0.1] rounded-xl text-white text-sm focus:outline-none focus:border-indigo-400"
               />
-              <span className="text-[11px] text-neutral-500 mt-2 block font-mono">
+              <span className="text-[11px] text-neutral-500 mt-2 block font-sans font-medium">
                 Pre-configured demo seeds will also be available for testing.
               </span>
             </div>
@@ -214,8 +214,8 @@ export default function OnboardingPage() {
         {/* STEP 5: Choose Modules */}
         {step === 5 && (
           <div>
-            <span className="text-xs font-mono uppercase tracking-widest text-indigo-400 mb-2 block">Step 5: Capabilities</span>
-            <h2 className="text-2xl sm:text-3xl font-serif font-normal text-[#f5f5f3] mb-3">Enable Workspace Modules</h2>
+            <span className="text-xs font-sans font-medium uppercase tracking-widest text-indigo-400 mb-2 block">Step 5: Capabilities</span>
+            <h2 className="text-2xl sm:text-3xl font-sans font-bold font-normal text-[#f5f5f3] mb-3">Enable Workspace Modules</h2>
             <p className="text-sm text-neutral-400 mb-6 font-normal">
               Select which operational business areas you want enabled on the sidebar.
             </p>
@@ -262,14 +262,14 @@ export default function OnboardingPage() {
         {/* STEP 6: Create First Project */}
         {step === 6 && (
           <div>
-            <span className="text-xs font-mono uppercase tracking-widest text-indigo-400 mb-2 block">Step 6: First Initiative</span>
-            <h2 className="text-2xl sm:text-3xl font-serif font-normal text-[#f5f5f3] mb-3">Create Your First Project</h2>
+            <span className="text-xs font-sans font-medium uppercase tracking-widest text-indigo-400 mb-2 block">Step 6: First Initiative</span>
+            <h2 className="text-2xl sm:text-3xl font-sans font-bold font-normal text-[#f5f5f3] mb-3">Create Your First Project</h2>
             <p className="text-sm text-neutral-400 mb-6 font-normal">
               Seed your primary initiative and first actionable task.
             </p>
             <div className="space-y-4">
               <div>
-                <label className="block text-xs font-mono text-neutral-300 mb-1.5">Project Title</label>
+                <label className="block text-xs font-sans font-medium text-neutral-300 mb-1.5">Project Title</label>
                 <input
                   type="text"
                   value={formData.firstProjectTitle}
@@ -278,7 +278,7 @@ export default function OnboardingPage() {
                 />
               </div>
               <div>
-                <label className="block text-xs font-mono text-neutral-300 mb-1.5">First Priority Task</label>
+                <label className="block text-xs font-sans font-medium text-neutral-300 mb-1.5">First Priority Task</label>
                 <input
                   type="text"
                   value={formData.firstTaskTitle}
@@ -296,8 +296,8 @@ export default function OnboardingPage() {
             <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center mx-auto mb-6">
               <CheckCircle2 className="w-8 h-8" />
             </div>
-            <span className="text-xs font-mono uppercase tracking-widest text-emerald-400 mb-2 block">Setup Complete</span>
-            <h2 className="text-3xl font-serif font-normal text-[#f5f5f3] mb-3">Your Workspace Is Ready</h2>
+            <span className="text-xs font-sans font-medium uppercase tracking-widest text-emerald-400 mb-2 block">Setup Complete</span>
+            <h2 className="text-3xl font-sans font-bold font-normal text-[#f5f5f3] mb-3">Your Workspace Is Ready</h2>
             <p className="text-sm text-neutral-400 mb-8 max-w-md mx-auto font-normal">
               {formData.workspaceName} has been configured with multi-tenancy, granular roles, seeded demo records, and connected workflows.
             </p>
@@ -318,7 +318,7 @@ export default function OnboardingPage() {
               <button
                 type="button"
                 onClick={prevStep}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-neutral-400 hover:text-white transition-colors text-xs font-mono"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-neutral-400 hover:text-white transition-colors text-xs font-sans font-medium"
               >
                 <ArrowLeft className="w-4 h-4" />
                 Back
@@ -338,7 +338,7 @@ export default function OnboardingPage() {
       </main>
 
       {/* Footer */}
-      <footer className="text-center text-xs font-mono text-neutral-500 py-4">
+      <footer className="text-center text-xs font-sans font-medium text-neutral-500 py-4">
         © Client Forge Systems, Inc. • High-Impact Operations Platform
       </footer>
     </div>

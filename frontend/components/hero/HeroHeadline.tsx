@@ -88,7 +88,7 @@ export default function HeroHeadline() {
 
         {/* Secondary / Ghost Button */}
         <motion.a
-          href="#recruitment-pipeline"
+          href="/#recruitment-pipeline"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           className="inline-flex items-center justify-center px-7 py-3 text-sm font-semibold border border-slate-200/90 bg-white hover:bg-slate-50 text-slate-800 dark:border-zinc-800 dark:bg-zinc-900/80 dark:hover:bg-zinc-800 dark:text-zinc-200 rounded-xl transition-all shadow-xs backdrop-blur-md cursor-pointer"

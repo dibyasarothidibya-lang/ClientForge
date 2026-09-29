@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { Globe3D, GlobeMarker } from "@/components/ui/3d-globe";
 import { ArrowRight, CheckCircle2, ShieldCheck, Zap, Globe2, X, Sparkles } from "lucide-react";
 
@@ -429,13 +430,13 @@ export function GlobalWorkforceBanner() {
             </p>
 
             <div className="flex flex-wrap items-center gap-3">
-              <a
-                href="#pricing"
+              <Link
+                href="/global-mobility"
                 className="inline-flex items-center justify-center rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 px-6 py-3 text-sm font-semibold hover:opacity-90 transition-opacity active:scale-[0.98] shadow-sm cursor-pointer"
               >
                 <span>Scale Globally</span>
                 <ArrowRight className="w-4 h-4 ml-1.5" />
-              </a>
+              </Link>
               <button
                 onClick={() => handleRegionSelect(REGIONS[0])}
                 className="inline-flex items-center justify-center rounded-xl bg-white text-slate-800 border border-slate-300 dark:bg-neutral-900 dark:text-neutral-200 dark:border-neutral-800 px-6 py-3 text-sm font-semibold hover:bg-slate-100 dark:hover:bg-neutral-800 transition-colors active:scale-[0.98] cursor-pointer"
@@ -449,53 +450,53 @@ export function GlobalWorkforceBanner() {
         {/* Key Operational Telemetry Metric Strip */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 pt-6 border-t border-slate-200/80 dark:border-neutral-800">
           <div className="p-4 rounded-2xl bg-slate-50 dark:bg-neutral-900/60 border border-slate-200/60 dark:border-neutral-800">
-            <div className="flex items-center gap-1.5 text-indigo-600 dark:text-indigo-400 text-xs font-mono mb-1">
+            <div className="flex items-center gap-1.5 text-indigo-600 dark:text-indigo-400 text-[11px] font-sans font-semibold uppercase tracking-wider mb-1">
               <Globe2 className="w-3.5 h-3.5" />
               <span>MARKET REACH</span>
             </div>
-            <div className="text-2xl sm:text-3xl font-normal sm:font-medium text-slate-950 dark:text-white tabular-nums">
+            <div className="font-sans text-2xl sm:text-3xl font-normal sm:font-medium text-slate-950 dark:text-white tabular-nums">
               140+
             </div>
-            <div className="text-xs text-slate-500 dark:text-neutral-400 mt-0.5">
+            <div className="text-xs text-slate-500 dark:text-neutral-400 mt-0.5 font-sans">
               Direct EOR & statutory jurisdictions
             </div>
           </div>
 
           <div className="p-4 rounded-2xl bg-slate-50 dark:bg-neutral-900/60 border border-slate-200/60 dark:border-neutral-800">
-            <div className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 text-xs font-mono mb-1">
+            <div className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 text-[11px] font-sans font-semibold uppercase tracking-wider mb-1">
               <Zap className="w-3.5 h-3.5" />
               <span>PAYOUT VELOCITY</span>
             </div>
-            <div className="text-2xl sm:text-3xl font-normal sm:font-medium text-slate-950 dark:text-white tabular-nums">
+            <div className="font-sans text-2xl sm:text-3xl font-normal sm:font-medium text-slate-950 dark:text-white tabular-nums">
               Same-Day
             </div>
-            <div className="text-xs text-slate-500 dark:text-neutral-400 mt-0.5">
+            <div className="text-xs text-slate-500 dark:text-neutral-400 mt-0.5 font-sans">
               Local currency banking clearing
             </div>
           </div>
 
           <div className="p-4 rounded-2xl bg-slate-50 dark:bg-neutral-900/60 border border-slate-200/60 dark:border-neutral-800">
-            <div className="flex items-center gap-1.5 text-sky-600 dark:text-sky-400 text-xs font-mono mb-1">
+            <div className="flex items-center gap-1.5 text-sky-600 dark:text-sky-400 text-[11px] font-sans font-semibold uppercase tracking-wider mb-1">
               <ShieldCheck className="w-3.5 h-3.5" />
               <span>LEGAL GUARANTEE</span>
             </div>
-            <div className="text-2xl sm:text-3xl font-normal sm:font-medium text-slate-950 dark:text-white tabular-nums">
+            <div className="font-sans text-2xl sm:text-3xl font-normal sm:font-medium text-slate-950 dark:text-white tabular-nums">
               100%
             </div>
-            <div className="text-xs text-slate-500 dark:text-neutral-400 mt-0.5">
+            <div className="text-xs text-slate-500 dark:text-neutral-400 mt-0.5 font-sans">
               Total statutory labor indemnity
             </div>
           </div>
 
           <div className="p-4 rounded-2xl bg-slate-50 dark:bg-neutral-900/60 border border-slate-200/60 dark:border-neutral-800">
-            <div className="flex items-center gap-1.5 text-purple-600 dark:text-purple-400 text-xs font-mono mb-1">
+            <div className="flex items-center gap-1.5 text-purple-600 dark:text-purple-400 text-[11px] font-sans font-semibold uppercase tracking-wider mb-1">
               <Sparkles className="w-3.5 h-3.5" />
               <span>TIME TO HIRE</span>
             </div>
-            <div className="text-2xl sm:text-3xl font-normal sm:font-medium text-slate-950 dark:text-white tabular-nums">
+            <div className="font-sans text-2xl sm:text-3xl font-normal sm:font-medium text-slate-950 dark:text-white tabular-nums">
               48 Hours
             </div>
-            <div className="text-xs text-slate-500 dark:text-neutral-400 mt-0.5">
+            <div className="text-xs text-slate-500 dark:text-neutral-400 mt-0.5 font-sans">
               Contract to live compliant onboarding
             </div>
           </div>
@@ -570,7 +571,7 @@ export function GlobalWorkforceBanner() {
                   <h4 className="font-semibold text-sm text-white">
                     {activeMarket.country} ({activeMarket.label.split("•")[0].trim()})
                   </h4>
-                  <span className="text-[11px] font-mono text-emerald-400 flex items-center gap-1">
+                  <span className="text-[11px] font-sans font-medium text-emerald-400 flex items-center gap-1">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                     Autonomous Node Live
                   </span>
@@ -589,15 +590,15 @@ export function GlobalWorkforceBanner() {
             {/* Market Metadata Specs */}
             <div className="grid grid-cols-2 gap-2 text-xs py-2.5 border-y border-slate-800">
               <div>
-                <span className="text-slate-400 block text-[10px] uppercase font-mono">Headcount</span>
+                <span className="text-slate-400 block text-[10px] uppercase font-sans font-medium">Headcount</span>
                 <span className="font-bold text-white text-sm">{activeMarket.hires || 12} Deployed</span>
               </div>
               <div>
-                <span className="text-slate-400 block text-[10px] uppercase font-mono">Local Currency</span>
+                <span className="text-slate-400 block text-[10px] uppercase font-sans font-medium">Local Currency</span>
                 <span className="font-bold text-white text-sm">{activeMarket.currency || "USD"}</span>
               </div>
               <div className="col-span-2 mt-1">
-                <span className="text-slate-400 block text-[10px] uppercase font-mono">Statutory Framework</span>
+                <span className="text-slate-400 block text-[10px] uppercase font-sans font-medium">Statutory Framework</span>
                 <span className="text-slate-200 text-xs flex items-center gap-1 mt-0.5">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                   <span className="truncate">{activeMarket.compliance || "Fully Compliant"}</span>
@@ -609,13 +610,13 @@ export function GlobalWorkforceBanner() {
               <span className="text-[11px] text-slate-400">
                 Avg Settlement: <strong className="text-slate-200">{activeMarket.avgPayout || "Same-Day"}</strong>
               </span>
-              <a
-                href="#pricing"
+              <Link
+                href="/workspace/recruitment"
                 className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-white text-xs font-semibold transition-colors"
               >
                 <span>Deploy Hires</span>
                 <ArrowRight className="w-3 h-3" />
-              </a>
+              </Link>
             </div>
           </div>
         )}

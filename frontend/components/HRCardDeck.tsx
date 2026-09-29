@@ -2,6 +2,7 @@
 
 import React, { useRef, useState, useEffect, useCallback } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export interface HRCardData {
   category: string;
@@ -17,7 +18,7 @@ const hrSolutionsData: HRCardData[] = [
     category: "Talent Acquisition",
     title: "Autonomous pipeline matching & skill scoring",
     src: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1200&q=80",
-    targetSection: "#recruitment-pipeline",
+    targetSection: "/talent-intelligence",
     ctaText: "Explore Sourcing Engine",
     description: "Screen candidates against 40+ engineering and product competencies in seconds without recruiter bias."
   },
@@ -25,7 +26,7 @@ const hrSolutionsData: HRCardData[] = [
     category: "Global Payroll & EOR",
     title: "Multi-currency payroll across 140+ countries",
     src: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80",
-    targetSection: "#global-payroll",
+    targetSection: "/global-mobility",
     ctaText: "Check Country Coverage",
     description: "Automate statutory filings, localized health benefits, and tax compliance with one monthly invoice."
   },
@@ -33,7 +34,7 @@ const hrSolutionsData: HRCardData[] = [
     category: "Employee Engagement",
     title: "Real-time sentiment telemetry & pulse alerts",
     src: "https://images.unsplash.com/photo-1531497865144-0464ef8fb9a9?auto=format&fit=crop&w=1200&q=80",
-    targetSection: "#telemetry",
+    targetSection: "/people-operations",
     ctaText: "View Sentiment Model",
     description: "Detect burnout signals and team misalignment across active Slack and collaboration workspaces."
   },
@@ -41,7 +42,7 @@ const hrSolutionsData: HRCardData[] = [
     category: "Automated Onboarding",
     title: "Day-one equipment, IAM access, and compliance",
     src: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80",
-    targetSection: "#workflows",
+    targetSection: "/onboarding/peoplecore",
     ctaText: "Preview Workflow Engine",
     description: "Zero-touch provisioning: contracts signed, laptop shipped, and role-based permissions granted automatically."
   },
@@ -49,7 +50,7 @@ const hrSolutionsData: HRCardData[] = [
     category: "Performance Calibration",
     title: "Continuous feedback cycles & 360 reviews",
     src: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1200&q=80",
-    targetSection: "#reviews",
+    targetSection: "/workspace/performance",
     ctaText: "Audit Calibration Tool",
     description: "Objective manager reviews backed by sprint deliverables, key peer inputs, and impact milestones."
   },
@@ -57,7 +58,7 @@ const hrSolutionsData: HRCardData[] = [
     category: "Security & Compliance",
     title: "Global audit trails, GDPR & SOC-2 compliance",
     src: "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1200&q=80",
-    targetSection: "#security",
+    targetSection: "/security",
     ctaText: "Inspect SOC-2 Protocols",
     description: "End-to-end encryption, localized data residency across EU/APAC, and real-time audit logging."
   }
@@ -218,7 +219,7 @@ export function HRCardDeck() {
               </p>
 
               {/* Embedded Section Deep-Link Button */}
-              <a
+              <Link
                 href={card.targetSection}
                 onClick={(e) => {
                   e.stopPropagation();
@@ -231,7 +232,7 @@ export function HRCardDeck() {
               >
                 <span>{card.ctaText}</span>
                 <span className="text-neutral-500 group-hover/btn:translate-x-1 transition-transform">→</span>
-              </a>
+              </Link>
             </div>
           </div>
         ))}

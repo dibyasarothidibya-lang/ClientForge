@@ -2,7 +2,9 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 import { useWorkspace } from "@/context/WorkspaceContext";
+import ThreeDCard from "@/components/motion/ThreeDCard";
 import {
   DollarSign,
   TrendingUp,
@@ -116,7 +118,7 @@ export default function FinancePage() {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 font-sans">
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-800/80 pb-6">
         <div>
@@ -126,7 +128,7 @@ export default function FinancePage() {
             </span>
             <span className="text-xs text-neutral-400">Multi-Currency Ledger</span>
           </div>
-          <h1 className="text-3xl font-serif font-light tracking-tight text-neutral-100">
+          <h1 className="text-2xl sm:text-3xl font-sans font-semibold tracking-tight text-neutral-100">
             Financials, Campaigns & Grants
           </h1>
           <p className="text-sm text-neutral-400 mt-1 max-w-2xl">
@@ -135,120 +137,131 @@ export default function FinancePage() {
         </div>
 
         <div className="flex items-center gap-3">
-          <button
+          <motion.button
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
             onClick={() => setActiveTab("stripe")}
-            className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-neutral-900 border border-neutral-800 text-xs font-medium text-amber-400 hover:bg-neutral-800 transition"
+            className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-neutral-900 border border-neutral-800 text-xs font-medium text-amber-400 hover:bg-neutral-800 transition cursor-pointer"
           >
             <CreditCard className="w-4 h-4" />
             Stripe Test Console
-          </button>
-          <button
+          </motion.button>
+          <motion.button
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
             onClick={() => setIsAddTxOpen(true)}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-black text-xs font-semibold shadow-md shadow-emerald-500/20 transition"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black text-xs font-semibold shadow-md shadow-emerald-500/20 transition cursor-pointer"
           >
             <Plus className="w-4 h-4" />
             Add Transaction
-          </button>
+          </motion.button>
         </div>
       </div>
 
-      {/* KPI Cards */}
+      {/* 4 PRIMARY KPI CARDS WITH 3D TILT & LANDING PAGE NUMERIC TYPOGRAPHY */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="p-5 rounded-xl bg-neutral-900/60 border border-neutral-800/80 backdrop-blur">
-          <div className="flex items-center justify-between">
-            <span className="text-xs text-neutral-400 font-medium uppercase tracking-wider">Gross Capital Raised</span>
-            <span className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400">
-              <TrendingUp className="w-4 h-4" />
-            </span>
+        {/* Gross Capital Raised */}
+        <ThreeDCard glareColor="#10b981" maxTilt={8} elevationZ={15} className="h-full">
+          <div className="p-5 rounded-2xl bg-neutral-900/60 border border-neutral-800/80 backdrop-blur hover:border-emerald-500/40 transition-colors flex flex-col justify-between h-full group">
+            <div>
+              <div className="flex items-center justify-between">
+                <span className="text-xs text-neutral-400 font-medium uppercase tracking-wider font-sans">Gross Capital Raised</span>
+                <span className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 group-hover:scale-110 transition-transform">
+                  <TrendingUp className="w-4 h-4" />
+                </span>
+              </div>
+              <div className="font-sans text-3xl sm:text-4xl lg:text-5xl font-normal sm:font-medium tracking-tight text-white tabular-nums my-2">
+                ${totalRaised.toLocaleString()}
+              </div>
+            </div>
           </div>
-          <div className="text-2xl font-serif font-light text-neutral-100 mt-2">
-            ${totalRaised.toLocaleString()}
-          </div>
-          <div className="text-xs text-emerald-400 mt-1">+18.4% vs previous quarter</div>
-        </div>
+        </ThreeDCard>
 
-        <div className="p-5 rounded-xl bg-neutral-900/60 border border-neutral-800/80 backdrop-blur">
-          <div className="flex items-center justify-between">
-            <span className="text-xs text-neutral-400 font-medium uppercase tracking-wider">Operational Disbursements</span>
-            <span className="p-2 rounded-lg bg-rose-500/10 text-rose-400">
-              <DollarSign className="w-4 h-4" />
-            </span>
+        {/* Operational Disbursements */}
+        <ThreeDCard glareColor="#ef4444" maxTilt={8} elevationZ={15} className="h-full">
+          <div className="p-5 rounded-2xl bg-neutral-900/60 border border-neutral-800/80 backdrop-blur hover:border-rose-500/40 transition-colors flex flex-col justify-between h-full group">
+            <div>
+              <div className="flex items-center justify-between">
+                <span className="text-xs text-neutral-400 font-medium uppercase tracking-wider font-sans">Operational Disbursements</span>
+                <span className="p-2 rounded-lg bg-rose-500/10 text-rose-400 group-hover:scale-110 transition-transform">
+                  <DollarSign className="w-4 h-4" />
+                </span>
+              </div>
+              <div className="font-sans text-3xl sm:text-4xl lg:text-5xl font-normal sm:font-medium tracking-tight text-white tabular-nums my-2">
+                ${totalExpenses.toLocaleString()}
+              </div>
+            </div>
           </div>
-          <div className="text-2xl font-serif font-light text-neutral-100 mt-2">
-            ${totalExpenses.toLocaleString()}
-          </div>
-          <div className="text-xs text-neutral-400 mt-1">Direct program expenses & grants</div>
-        </div>
+        </ThreeDCard>
 
-        <div className="p-5 rounded-xl bg-neutral-900/60 border border-neutral-800/80 backdrop-blur">
-          <div className="flex items-center justify-between">
-            <span className="text-xs text-neutral-400 font-medium uppercase tracking-wider">Net Operating Reserve</span>
-            <span className="p-2 rounded-lg bg-blue-500/10 text-blue-400">
-              <CreditCard className="w-4 h-4" />
-            </span>
+        {/* Net Operating Reserve */}
+        <ThreeDCard glareColor="#3b82f6" maxTilt={8} elevationZ={15} className="h-full">
+          <div className="p-5 rounded-2xl bg-neutral-900/60 border border-neutral-800/80 backdrop-blur hover:border-blue-500/40 transition-colors flex flex-col justify-between h-full group">
+            <div>
+              <div className="flex items-center justify-between">
+                <span className="text-xs text-neutral-400 font-medium uppercase tracking-wider font-sans">Net Operating Reserve</span>
+                <span className="p-2 rounded-lg bg-blue-500/10 text-blue-400 group-hover:scale-110 transition-transform">
+                  <CreditCard className="w-4 h-4" />
+                </span>
+              </div>
+              <div className="font-sans text-3xl sm:text-4xl lg:text-5xl font-normal sm:font-medium tracking-tight text-white tabular-nums my-2">
+                ${netOperatingFunds.toLocaleString()}
+              </div>
+            </div>
           </div>
-          <div className="text-2xl font-serif font-light text-neutral-100 mt-2">
-            ${netOperatingFunds.toLocaleString()}
-          </div>
-          <div className="text-xs text-neutral-400 mt-1">Available across unrestricted funds</div>
-        </div>
+        </ThreeDCard>
 
-        <div className="p-5 rounded-xl bg-neutral-900/60 border border-neutral-800/80 backdrop-blur">
-          <div className="flex items-center justify-between">
-            <span className="text-xs text-neutral-400 font-medium uppercase tracking-wider">Active Campaigns</span>
-            <span className="p-2 rounded-lg bg-amber-500/10 text-amber-400">
-              <Sparkles className="w-4 h-4" />
-            </span>
+        {/* Active Campaigns */}
+        <ThreeDCard glareColor="#f59e0b" maxTilt={8} elevationZ={15} className="h-full">
+          <div className="p-5 rounded-2xl bg-neutral-900/60 border border-neutral-800/80 backdrop-blur hover:border-amber-500/40 transition-colors flex flex-col justify-between h-full group">
+            <div>
+              <div className="flex items-center justify-between">
+                <span className="text-xs text-neutral-400 font-medium uppercase tracking-wider font-sans">Active Campaigns</span>
+                <span className="p-2 rounded-lg bg-amber-500/10 text-amber-400 group-hover:scale-110 transition-transform">
+                  <Sparkles className="w-4 h-4" />
+                </span>
+              </div>
+              <div className="font-sans text-3xl sm:text-4xl lg:text-5xl font-normal sm:font-medium tracking-tight text-white tabular-nums my-2">
+                {campaigns.length}
+              </div>
+            </div>
           </div>
-          <div className="text-2xl font-serif font-light text-neutral-100 mt-2">
-            {campaigns.length}
-          </div>
-          <div className="text-xs text-amber-400 mt-1">Public donation portals live</div>
-        </div>
+        </ThreeDCard>
       </div>
 
-      {/* Tabs Navigation */}
-      <div className="flex items-center gap-2 border-b border-neutral-800 pb-2">
-        <button
-          onClick={() => setActiveTab("campaigns")}
-          className={`px-4 py-2 rounded-lg text-xs font-medium transition ${
-            activeTab === "campaigns"
-              ? "bg-neutral-800 text-white shadow"
-              : "text-neutral-400 hover:text-white"
-          }`}
-        >
-          Public Campaigns ({campaigns.length})
-        </button>
-        <button
-          onClick={() => setActiveTab("transactions")}
-          className={`px-4 py-2 rounded-lg text-xs font-medium transition ${
-            activeTab === "transactions"
-              ? "bg-neutral-800 text-white shadow"
-              : "text-neutral-400 hover:text-white"
-          }`}
-        >
-          Transactions Ledger ({transactions.length})
-        </button>
-        <button
-          onClick={() => setActiveTab("budgets")}
-          className={`px-4 py-2 rounded-lg text-xs font-medium transition ${
-            activeTab === "budgets"
-              ? "bg-neutral-800 text-white shadow"
-              : "text-neutral-400 hover:text-white"
-          }`}
-        >
-          Departmental Budgets
-        </button>
-        <button
-          onClick={() => setActiveTab("stripe")}
-          className={`px-4 py-2 rounded-lg text-xs font-medium transition flex items-center gap-1.5 ${
-            activeTab === "stripe"
-              ? "bg-neutral-800 text-amber-400 shadow"
-              : "text-neutral-400 hover:text-white"
-          }`}
-        >
-          <CreditCard className="w-3.5 h-3.5" /> Stripe Sandbox
-        </button>
+      {/* Tabs Navigation with Spring Sliding Pill */}
+      <div className="flex items-center gap-2 border-b border-neutral-800 pb-2 relative font-sans text-xs font-medium">
+        {[
+          { id: "campaigns", label: `Public Campaigns (${campaigns.length})` },
+          { id: "transactions", label: `Transactions Ledger (${transactions.length})` },
+          { id: "budgets", label: "Departmental Budgets" },
+          { id: "stripe", label: "Stripe Sandbox", icon: CreditCard },
+        ].map((tab) => {
+          const isActive = activeTab === tab.id;
+          const TabIcon = tab.icon;
+          return (
+            <motion.button
+              key={tab.id}
+              whileTap={{ scale: 0.96 }}
+              onClick={() => setActiveTab(tab.id as any)}
+              className={`relative px-4 py-2 rounded-lg text-xs font-medium transition cursor-pointer flex items-center gap-1.5 ${
+                isActive
+                  ? tab.id === "stripe" ? "text-amber-400 font-semibold" : "text-white font-semibold"
+                  : "text-neutral-400 hover:text-white"
+              }`}
+            >
+              {isActive && (
+                <motion.div
+                  layoutId="financeTabIndicator"
+                  className="absolute inset-0 bg-neutral-800 rounded-lg shadow-sm"
+                  transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                />
+              )}
+              {TabIcon && <TabIcon className="w-3.5 h-3.5 relative z-10" />}
+              <span className="relative z-10">{tab.label}</span>
+            </motion.button>
+          );
+        })}
       </div>
 
       {/* TAB 1: PUBLIC CAMPAIGNS */}
@@ -257,43 +270,47 @@ export default function FinancePage() {
           {campaigns.map((camp) => {
             const percent = Math.min(100, Math.round((camp.raised / camp.goal) * 100));
             return (
-              <div
+              <motion.div
                 key={camp.id}
-                className="rounded-2xl bg-neutral-900/60 border border-neutral-800 overflow-hidden flex flex-col justify-between hover:border-neutral-700 transition"
+                whileHover={{ y: -4, scale: 1.015 }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                className="rounded-2xl bg-neutral-900/60 border border-neutral-800 overflow-hidden flex flex-col justify-between hover:border-emerald-500/40 transition shadow-lg"
               >
                 <div className="p-6 space-y-4">
                   <div className="flex items-start justify-between">
-                    <span className="px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                    <span className="px-2.5 py-0.5 rounded-full text-[11px] font-sans font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                       {camp.status}
                     </span>
-                    <span className="text-xs text-neutral-400">Ends {camp.endDate}</span>
+                    <span className="text-xs text-neutral-400 font-sans">Ends {camp.endDate}</span>
                   </div>
 
                   <div>
-                    <h3 className="text-lg font-serif font-light text-neutral-100">{camp.title}</h3>
-                    <p className="text-xs text-neutral-400 mt-1 line-clamp-2">{camp.description}</p>
+                    <h3 className="text-lg font-sans font-semibold text-neutral-100">{camp.title}</h3>
+                    <p className="text-xs text-neutral-400 mt-1 line-clamp-2 leading-relaxed">{camp.description}</p>
                   </div>
 
                   <div className="space-y-1.5">
-                    <div className="flex items-center justify-between text-xs">
-                      <span className="font-medium text-white">${camp.raised.toLocaleString()} raised</span>
-                      <span className="text-neutral-400">${camp.goal.toLocaleString()} goal ({percent}%)</span>
+                    <div className="flex items-center justify-between text-xs font-sans">
+                      <span className="font-sans font-medium text-white tabular-nums">${camp.raised.toLocaleString()} raised</span>
+                      <span className="text-neutral-400 tabular-nums">${camp.goal.toLocaleString()} goal ({percent}%)</span>
                     </div>
                     <div className="w-full h-2 rounded-full bg-neutral-800 overflow-hidden">
-                      <div
+                      <motion.div
                         className="h-full bg-gradient-to-r from-emerald-500 to-emerald-300 rounded-full"
-                        style={{ width: `${percent}%` }}
+                        initial={{ width: 0 }}
+                        animate={{ width: `${percent}%` }}
+                        transition={{ duration: 0.9, ease: "easeOut" }}
                       />
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between text-xs text-neutral-400 pt-2 border-t border-neutral-800/80">
+                  <div className="flex items-center justify-between text-xs text-neutral-400 pt-2 border-t border-neutral-800/80 font-sans">
                     <span>{camp.donorCount} Community Backers</span>
                     <span>Avg Gift: ${Math.round(camp.raised / (camp.donorCount || 1))}</span>
                   </div>
                 </div>
 
-                <div className="px-6 py-3 bg-neutral-950/60 border-t border-neutral-800/80 flex items-center justify-between">
+                <div className="px-6 py-3 bg-neutral-950/60 border-t border-neutral-800/80 flex items-center justify-between font-sans">
                   <Link
                     href={`/campaigns/${camp.slug}`}
                     target="_blank"
@@ -306,12 +323,12 @@ export default function FinancePage() {
                       setStripeCampaignId(camp.id);
                       setActiveTab("stripe");
                     }}
-                    className="text-xs font-medium text-neutral-400 hover:text-white"
+                    className="text-xs font-medium text-neutral-400 hover:text-white cursor-pointer"
                   >
                     Simulate Donation
                   </button>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>
@@ -362,7 +379,7 @@ export default function FinancePage() {
               <tbody className="divide-y divide-neutral-800/60 text-xs">
                 {filteredTransactions.map((tx) => (
                   <tr key={tx.id} className="hover:bg-neutral-800/30 transition">
-                    <td className="py-3 px-3 font-mono text-[11px] text-neutral-400">{tx.reference}</td>
+                    <td className="py-3 px-3 font-sans text-xs text-neutral-400 whitespace-nowrap">{tx.reference}</td>
                     <td className="py-3 px-3 font-medium text-neutral-200">{tx.donorOrVendor}</td>
                     <td className="py-3 px-3">
                       <span
@@ -509,11 +526,11 @@ export default function FinancePage() {
             <div className="p-4 rounded-xl bg-neutral-950 border border-neutral-800 space-y-3">
               <div className="flex items-center justify-between text-xs text-neutral-400">
                 <span>Payment Method</span>
-                <span className="flex items-center gap-1 text-emerald-400 font-mono">
+                <span className="flex items-center gap-1 text-emerald-400 font-sans font-medium">
                   <Lock className="w-3 h-3" /> Stripe PCI-DSS Compliant Test Mode
                 </span>
               </div>
-              <div className="flex items-center justify-between p-3 rounded-lg bg-neutral-900 border border-neutral-800 font-mono text-xs text-neutral-200">
+              <div className="flex items-center justify-between p-3 rounded-lg bg-neutral-900 border border-neutral-800 font-sans font-medium text-xs text-neutral-200">
                 <span>4242 •••• •••• 4242</span>
                 <span>08/28 • CVC 123</span>
               </div>
@@ -554,161 +571,189 @@ export default function FinancePage() {
       )}
 
       {/* MODAL: OFFICIAL RECEIPT */}
-      {viewReceipt && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-neutral-900 border border-neutral-800 rounded-3xl w-full max-w-md p-6 space-y-6 shadow-2xl relative">
-            <div className="flex items-center justify-between border-b border-neutral-800 pb-3">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 font-serif font-bold">
-                  CF
+      <AnimatePresence>
+        {viewReceipt && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 10 }}
+              transition={{ type: "spring", stiffness: 450, damping: 30 }}
+              className="bg-neutral-900 border border-neutral-800 rounded-3xl w-full max-w-md p-6 space-y-6 shadow-2xl relative"
+            >
+              <div className="flex items-center justify-between border-b border-neutral-800 pb-3">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 font-sans font-bold text-xs">
+                    CF
+                  </div>
+                  <span className="text-xs text-neutral-400 uppercase tracking-wider font-semibold font-sans">Official Receipt</span>
                 </div>
-                <span className="text-xs text-neutral-400 uppercase tracking-wider font-semibold">Official Receipt</span>
+                <button
+                  onClick={() => setViewReceipt(null)}
+                  className="p-1 rounded text-neutral-400 hover:text-white cursor-pointer"
+                >
+                  <X className="w-5 h-5" />
+                </button>
               </div>
-              <button
-                onClick={() => setViewReceipt(null)}
-                className="p-1 rounded text-neutral-400 hover:text-white"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
 
-            <div className="text-center py-2 space-y-1">
-              <div className="text-3xl font-serif font-light text-neutral-100">
-                ${viewReceipt.amount.toLocaleString()}
+              <div className="text-center py-2 space-y-1">
+                <div className="font-sans text-3xl sm:text-4xl font-normal sm:font-medium tracking-tight text-white tabular-nums">
+                  ${viewReceipt.amount.toLocaleString()}
+                </div>
+                <div className="text-xs text-emerald-400 font-medium font-sans">Payment Completed & Verified</div>
               </div>
-              <div className="text-xs text-emerald-400 font-medium">Payment Completed & Verified</div>
-            </div>
 
-            <div className="space-y-2 text-xs bg-neutral-950 p-4 rounded-xl border border-neutral-800 font-mono">
-              <div className="flex justify-between text-neutral-400">
-                <span>Receipt Ref:</span>
-                <span className="text-neutral-200">{viewReceipt.reference}</span>
+              <div className="space-y-2 text-xs bg-neutral-950 p-4 rounded-xl border border-neutral-800 font-sans">
+                <div className="flex justify-between text-neutral-400">
+                  <span>Receipt Ref:</span>
+                  <span className="text-neutral-200 font-medium">{viewReceipt.reference}</span>
+                </div>
+                <div className="flex justify-between text-neutral-400">
+                  <span>Entity:</span>
+                  <span className="text-neutral-200 font-medium">{activeOrg.name}</span>
+                </div>
+                <div className="flex justify-between text-neutral-400">
+                  <span>Payer / Donor:</span>
+                  <span className="text-neutral-200 font-medium">{viewReceipt.donorOrVendor}</span>
+                </div>
+                <div className="flex justify-between text-neutral-400">
+                  <span>Payment Method:</span>
+                  <span className="text-neutral-200 font-medium">{viewReceipt.method}</span>
+                </div>
+                <div className="flex justify-between text-neutral-400">
+                  <span>Tax Exemption:</span>
+                  <span className="text-neutral-200 font-medium">501(c)(3) Eligible</span>
+                </div>
               </div>
-              <div className="flex justify-between text-neutral-400">
-                <span>Entity:</span>
-                <span className="text-neutral-200">{activeOrg.name}</span>
-              </div>
-              <div className="flex justify-between text-neutral-400">
-                <span>Payer / Donor:</span>
-                <span className="text-neutral-200">{viewReceipt.donorOrVendor}</span>
-              </div>
-              <div className="flex justify-between text-neutral-400">
-                <span>Payment Method:</span>
-                <span className="text-neutral-200">{viewReceipt.method}</span>
-              </div>
-              <div className="flex justify-between text-neutral-400">
-                <span>Tax Exemption:</span>
-                <span className="text-neutral-200">501(c)(3) Eligible</span>
-              </div>
-            </div>
 
-            <div className="flex items-center justify-end gap-3 pt-2">
-              <button
-                onClick={() => window.print()}
-                className="px-4 py-2 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-white text-xs font-medium flex items-center gap-1.5"
-              >
-                <Printer className="w-4 h-4" /> Print Receipt
-              </button>
-              <button
-                onClick={() => setViewReceipt(null)}
-                className="px-4 py-2 rounded-lg bg-amber-500 hover:bg-amber-400 text-black text-xs font-semibold"
-              >
-                Done
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+              <div className="flex items-center justify-end gap-3 pt-2 font-sans font-medium">
+                <button
+                  onClick={() => window.print()}
+                  className="px-4 py-2 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-white text-xs font-medium flex items-center gap-1.5 cursor-pointer"
+                >
+                  <Printer className="w-4 h-4" /> Print Receipt
+                </button>
+                <motion.button
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  onClick={() => setViewReceipt(null)}
+                  className="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-black text-xs font-semibold cursor-pointer shadow-sm"
+                >
+                  Done
+                </motion.button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* MODAL: ADD TRANSACTION */}
-      {isAddTxOpen && (
-        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
-          <form
-            onSubmit={handleAddTransactionSubmit}
-            className="bg-neutral-900 border border-neutral-800 rounded-2xl w-full max-w-md p-6 space-y-4 shadow-2xl"
+      <AnimatePresence>
+        {isAddTxOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4"
           >
-            <div className="flex items-center justify-between border-b border-neutral-800 pb-3">
-              <h3 className="text-base font-medium text-neutral-100">Add Manual Ledger Entry</h3>
-              <button
-                type="button"
-                onClick={() => setIsAddTxOpen(false)}
-                className="p-1 rounded text-neutral-400 hover:text-white"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
+            <motion.form
+              initial={{ opacity: 0, scale: 0.95, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 10 }}
+              transition={{ type: "spring", stiffness: 450, damping: 30 }}
+              onSubmit={handleAddTransactionSubmit}
+              className="bg-neutral-900 border border-neutral-800 rounded-2xl w-full max-w-md p-6 space-y-4 shadow-2xl"
+            >
+              <div className="flex items-center justify-between border-b border-neutral-800 pb-3">
+                <h3 className="text-base font-medium text-neutral-100">Add Manual Ledger Entry</h3>
+                <button
+                  type="button"
+                  onClick={() => setIsAddTxOpen(false)}
+                  className="p-1 rounded text-neutral-400 hover:text-white cursor-pointer"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
 
-            <div>
-              <label className="block text-xs font-medium text-neutral-300 mb-1">Entry Type</label>
-              <select
-                value={txType}
-                onChange={(e) => setTxType(e.target.value as any)}
-                className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-3 py-2 text-xs text-neutral-200 focus:outline-none"
-              >
-                <option value="Donation">Donation</option>
-                <option value="Grant">Grant</option>
-                <option value="Expense">Disbursement / Expense</option>
-              </select>
-            </div>
+              <div>
+                <label className="block text-xs font-medium text-neutral-300 mb-1">Entry Type</label>
+                <select
+                  value={txType}
+                  onChange={(e) => setTxType(e.target.value as any)}
+                  className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-3 py-2 text-xs text-neutral-200 focus:outline-none cursor-pointer"
+                >
+                  <option value="Donation">Donation</option>
+                  <option value="Grant">Grant</option>
+                  <option value="Expense">Disbursement / Expense</option>
+                </select>
+              </div>
 
-            <div>
-              <label className="block text-xs font-medium text-neutral-300 mb-1">
-                Donor, Grantor or Vendor Name *
-              </label>
-              <input
-                type="text"
-                required
-                value={txDonor}
-                onChange={(e) => setTxDonor(e.target.value)}
-                placeholder="e.g. Global Water Alliance Foundation"
-                className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-3 py-2 text-xs text-neutral-200 focus:outline-none"
-              />
-            </div>
+              <div>
+                <label className="block text-xs font-medium text-neutral-300 mb-1">
+                  Donor, Grantor or Vendor Name *
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={txDonor}
+                  onChange={(e) => setTxDonor(e.target.value)}
+                  placeholder="e.g. Global Water Alliance Foundation"
+                  className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-3 py-2 text-xs text-neutral-200 focus:outline-none"
+                />
+              </div>
 
-            <div>
-              <label className="block text-xs font-medium text-neutral-300 mb-1">Amount ($ USD) *</label>
-              <input
-                type="number"
-                required
-                min="1"
-                value={txAmount}
-                onChange={(e) => setTxAmount(Number(e.target.value))}
-                className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-3 py-2 text-xs text-neutral-200 focus:outline-none"
-              />
-            </div>
+              <div>
+                <label className="block text-xs font-medium text-neutral-300 mb-1">Amount ($ USD) *</label>
+                <input
+                  type="number"
+                  required
+                  min="1"
+                  value={txAmount}
+                  onChange={(e) => setTxAmount(Number(e.target.value))}
+                  className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-3 py-2 text-xs text-neutral-200 focus:outline-none"
+                />
+              </div>
 
-            <div>
-              <label className="block text-xs font-medium text-neutral-300 mb-1">Payment Method</label>
-              <select
-                value={txMethod}
-                onChange={(e) => setTxMethod(e.target.value)}
-                className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-3 py-2 text-xs text-neutral-200 focus:outline-none"
-              >
-                <option value="Credit Card (Stripe)">Credit Card (Stripe)</option>
-                <option value="Wire Transfer / ACH">Wire Transfer / ACH</option>
-                <option value="Institutional Grant Check">Institutional Grant Check</option>
-                <option value="Direct Debit">Direct Debit</option>
-              </select>
-            </div>
+              <div>
+                <label className="block text-xs font-medium text-neutral-300 mb-1">Payment Method</label>
+                <select
+                  value={txMethod}
+                  onChange={(e) => setTxMethod(e.target.value)}
+                  className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-3 py-2 text-xs text-neutral-200 focus:outline-none cursor-pointer"
+                >
+                  <option value="Credit Card (Stripe)">Credit Card (Stripe)</option>
+                  <option value="Wire Transfer / ACH">Wire Transfer / ACH</option>
+                  <option value="Institutional Grant Check">Institutional Grant Check</option>
+                  <option value="Direct Debit">Direct Debit</option>
+                </select>
+              </div>
 
-            <div className="flex items-center justify-end gap-3 pt-3 border-t border-neutral-800">
-              <button
-                type="button"
-                onClick={() => setIsAddTxOpen(false)}
-                className="px-4 py-2 rounded-lg bg-neutral-800 text-neutral-300 text-xs font-medium hover:bg-neutral-700"
-              >
-                Cancel
-              </button>
-              <button
-                type="submit"
-                className="px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-black text-xs font-semibold shadow"
-              >
-                Record Entry
-              </button>
-            </div>
-          </form>
-        </div>
-      )}
+              <div className="flex items-center justify-end gap-3 pt-3 border-t border-neutral-800">
+                <button
+                  type="button"
+                  onClick={() => setIsAddTxOpen(false)}
+                  className="px-4 py-2 rounded-xl bg-neutral-800 text-neutral-300 text-xs font-medium hover:bg-neutral-700 cursor-pointer"
+                >
+                  Cancel
+                </button>
+                <motion.button
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  type="submit"
+                  className="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black text-xs font-semibold shadow transition cursor-pointer"
+                >
+                  Record Entry
+                </motion.button>
+              </div>
+            </motion.form>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

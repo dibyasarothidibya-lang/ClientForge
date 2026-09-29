@@ -112,7 +112,7 @@ export default function FuseButton({
           <>
             <Flame className="w-3.5 h-3.5 text-amber-400 animate-bounce" />
             <span className="text-amber-300 font-semibold">{undoLabel}</span>
-            <span className="text-[10px] font-mono opacity-70">
+            <span className="text-[10px] font-sans font-medium opacity-70">
               ({Math.ceil((progress / 100) * (undoWindow / 1000))}s)
             </span>
             <Undo2 className="w-3.5 h-3.5 ml-1 opacity-80" />

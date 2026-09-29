@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SpatialMeshBackground from "@/components/ui/SpatialMeshBackground";
@@ -149,35 +150,35 @@ export default function GlobalMobilityPage() {
                 transition={{ duration: 0.7, delay: 0.2 }}
                 className="flex flex-col sm:flex-row items-center gap-4"
               >
-                <a
+                <Link
                   href="/signup"
                   className="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 text-sm font-semibold text-white bg-slate-950 hover:bg-slate-800 dark:text-slate-950 dark:bg-white dark:hover:bg-zinc-100 rounded-xl transition-all shadow-md group cursor-pointer"
                 >
                   <span>Deploy Global Payroll</span>
                   <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                </a>
+                </Link>
 
-                <a
+                <Link
                   href="/pricing"
                   className="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 text-sm font-semibold border border-slate-200/90 bg-white/90 hover:bg-slate-50 text-slate-800 dark:border-neutral-800 dark:bg-neutral-900/80 dark:hover:bg-neutral-800 dark:text-neutral-200 rounded-xl transition-all shadow-xs backdrop-blur-md cursor-pointer"
                 >
                   <span>Explore Pricing Tiers</span>
-                </a>
+                </Link>
               </motion.div>
 
               {/* Mini Highlights */}
               <div className="grid grid-cols-3 gap-4 mt-12 pt-8 border-t border-slate-200/80 dark:border-neutral-800/80">
                 <div>
-                  <div className="font-serif text-2xl sm:text-3xl text-slate-950 dark:text-white font-normal">140+</div>
-                  <div className="text-[11px] text-slate-500 dark:text-neutral-400 font-mono mt-0.5">Countries Supported</div>
+                  <div className="font-sans text-2xl sm:text-3xl font-normal sm:font-medium tracking-tight text-slate-950 dark:text-white tabular-nums">140+</div>
+                  <div className="text-[11px] text-slate-500 dark:text-neutral-400 font-sans font-medium mt-0.5">Countries Supported</div>
                 </div>
                 <div>
-                  <div className="font-serif text-2xl sm:text-3xl text-slate-950 dark:text-white font-normal">0% FX</div>
-                  <div className="text-[11px] text-slate-500 dark:text-neutral-400 font-mono mt-0.5">Mid-Market Multi-Currency</div>
+                  <div className="font-sans text-2xl sm:text-3xl font-normal sm:font-medium tracking-tight text-slate-950 dark:text-white tabular-nums">0% FX</div>
+                  <div className="text-[11px] text-slate-500 dark:text-neutral-400 font-sans font-medium mt-0.5">Mid-Market Multi-Currency</div>
                 </div>
                 <div>
-                  <div className="font-serif text-2xl sm:text-3xl text-slate-950 dark:text-white font-normal">100%</div>
-                  <div className="text-[11px] text-slate-500 dark:text-neutral-400 font-mono mt-0.5">Statutory Audit Protection</div>
+                  <div className="font-sans text-2xl sm:text-3xl font-normal sm:font-medium tracking-tight text-slate-950 dark:text-white tabular-nums">100%</div>
+                  <div className="text-[11px] text-slate-500 dark:text-neutral-400 font-sans font-medium mt-0.5">Statutory Audit Protection</div>
                 </div>
               </div>
             </div>
@@ -238,10 +239,10 @@ export default function GlobalMobilityPage() {
                           <Icon className="w-6 h-6" />
                         </div>
                         <div className="text-right">
-                          <div className="font-serif text-2xl sm:text-3xl text-slate-950 dark:text-white font-normal">
+                          <div className="font-sans text-2xl sm:text-3xl font-normal sm:font-medium tracking-tight text-slate-950 dark:text-white tabular-nums">
                             {pillar.stat}
                           </div>
-                          <div className="text-[10px] font-mono uppercase tracking-wider text-slate-500 dark:text-neutral-400">
+                          <div className="text-[10px] font-sans font-medium uppercase tracking-wider text-slate-500 dark:text-neutral-400">
                             {pillar.statLabel}
                           </div>
                         </div>
@@ -287,7 +288,7 @@ export default function GlobalMobilityPage() {
                   <button
                     key={idx}
                     onClick={() => setSelectedCountry(idx)}
-                    className={`px-4 py-2.5 rounded-xl text-xs font-mono transition-all cursor-pointer flex items-center gap-2 ${
+                    className={`px-4 py-2.5 rounded-xl text-xs font-sans font-medium transition-all cursor-pointer flex items-center gap-2 ${
                       selectedCountry === idx
                         ? "bg-teal-600 text-white shadow-md shadow-teal-600/20"
                         : "bg-slate-100 dark:bg-neutral-800/70 text-slate-700 dark:text-neutral-300 hover:bg-slate-200 dark:hover:bg-neutral-800"
@@ -314,26 +315,26 @@ export default function GlobalMobilityPage() {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="p-4 rounded-2xl bg-slate-50/80 dark:bg-neutral-900/60 border border-slate-200/80 dark:border-neutral-800 space-y-1">
-                      <div className="text-[10px] font-mono uppercase tracking-wider text-slate-500 dark:text-neutral-400 font-bold">
+                      <div className="text-[10px] font-sans font-medium uppercase tracking-wider text-slate-500 dark:text-neutral-400 font-bold">
                         STATUTORY TAX WITHHOLDING:
                       </div>
-                      <p className="text-xs text-slate-800 dark:text-neutral-200 font-mono">
+                      <p className="text-xs text-slate-800 dark:text-neutral-200 font-sans font-medium">
                         {countryCalculations[selectedCountry].statutoryTax}
                       </p>
                     </div>
 
                     <div className="p-4 rounded-2xl bg-slate-50/80 dark:bg-neutral-900/60 border border-slate-200/80 dark:border-neutral-800 space-y-1">
-                      <div className="text-[10px] font-mono uppercase tracking-wider text-slate-500 dark:text-neutral-400 font-bold">
+                      <div className="text-[10px] font-sans font-medium uppercase tracking-wider text-slate-500 dark:text-neutral-400 font-bold">
                         MANDATED LEAVE & HEALTH:
                       </div>
-                      <p className="text-xs text-slate-800 dark:text-neutral-200 font-mono">
+                      <p className="text-xs text-slate-800 dark:text-neutral-200 font-sans font-medium">
                         {countryCalculations[selectedCountry].standardBenefit}
                       </p>
                     </div>
                   </div>
 
                   <div className="p-4 rounded-2xl bg-teal-50/60 dark:bg-teal-950/40 border border-teal-200/80 dark:border-teal-900/60 space-y-1">
-                    <div className="text-[10px] font-mono uppercase tracking-wider text-teal-700 dark:text-teal-300 font-bold flex items-center gap-1.5">
+                    <div className="text-[10px] font-sans font-medium uppercase tracking-wider text-teal-700 dark:text-teal-300 font-bold flex items-center gap-1.5">
                       <Clock className="w-3 h-3" />
                       <span>ONBOARDING VELOCITY:</span>
                     </div>
@@ -355,12 +356,12 @@ export default function GlobalMobilityPage() {
                       Settles in {countryCalculations[selectedCountry].currency} with zero cross-border bank friction.
                     </p>
                   </div>
-                  <a
+                  <Link
                     href="/signup"
                     className="w-full inline-flex items-center justify-center px-4 py-2.5 rounded-xl text-xs font-semibold bg-slate-950 text-white hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-zinc-100 transition-colors shadow-sm"
                   >
                     <span>Execute Global Contract</span>
-                  </a>
+                  </Link>
                 </div>
               </div>
 
@@ -379,19 +380,19 @@ export default function GlobalMobilityPage() {
             Hire, onboard, and pay talent anywhere in the world in minutes. 100% compliant, 0% foreign entity headache.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
+            <Link
               href="/signup"
               className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 text-sm font-semibold text-white bg-slate-950 hover:bg-slate-800 dark:text-slate-950 dark:bg-white dark:hover:bg-zinc-100 rounded-xl transition-all shadow-md group cursor-pointer"
             >
               <span>Get Started Free</span>
               <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-            </a>
-            <a
+            </Link>
+            <Link
               href="/pricing"
               className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 text-sm font-semibold border border-slate-200 dark:border-neutral-800 bg-white hover:bg-slate-50 dark:bg-neutral-900 dark:hover:bg-neutral-800 text-slate-800 dark:text-neutral-200 rounded-xl transition-all cursor-pointer"
             >
               <span>View Pricing Plans</span>
-            </a>
+            </Link>
           </div>
         </div>
       </section>
