@@ -80,136 +80,135 @@ export default function BentoGrid() {
           </div>
         </div>
 
-        {/* 4 Core Pillars Grid */}
+        {/* 4 Core Pillars Grid (Restrained, Quiet Architectural Cards) */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           
           {/* Pillar 1: Prospect Intelligence */}
-          <ThreeDCard glareColor="#6366f1" maxTilt={8} elevationZ={18} className="h-full">
-            <div className="p-7 bg-slate-50 dark:bg-neutral-900/60 rounded-3xl group hover:border-indigo-500/50 transition-all duration-300 border border-slate-200/70 dark:border-neutral-800/80 h-full flex flex-col">
-              <div className="w-12 h-12 bg-indigo-100 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 rounded-2xl flex items-center justify-center mb-5 transition-transform group-hover:scale-110">
-                <Radar className="w-6 h-6" />
+          <div className="p-6 sm:p-7 bg-white/80 dark:bg-white/[0.02] rounded-3xl border border-slate-200/80 dark:border-white/[0.06] hover:border-slate-300 dark:hover:border-white/15 transition-all duration-300 flex flex-col justify-between shadow-xs">
+            <div>
+              <div className="w-10 h-10 bg-slate-100 dark:bg-white/[0.04] text-slate-700 dark:text-neutral-300 border border-slate-200/60 dark:border-white/10 rounded-xl flex items-center justify-center mb-4">
+                <Radar className="w-5 h-5 text-indigo-500" />
               </div>
-              <span className="ui-label text-indigo-600 dark:text-indigo-400 block mb-2">
+              <span className="text-xs font-sans font-medium uppercase tracking-wider text-slate-500 dark:text-neutral-400 block mb-2">
                 Prospect Intelligence
               </span>
-              <h3 className="font-serif text-xl sm:text-2xl text-slate-900 dark:text-white mb-2.5">
+              <h3 className="font-serif text-xl sm:text-2xl text-slate-900 dark:text-white mb-2 leading-snug">
                 Know Before You Pitch.
               </h3>
-              <p className="text-slate-600 dark:text-neutral-400 text-xs sm:text-sm leading-relaxed">
+              <p className="text-slate-600 dark:text-neutral-400 text-xs sm:text-sm leading-relaxed font-sans">
                 Turn scattered public signals into a clear picture of the company, their tech stack, leadership hires, and strategic priorities.
               </p>
             </div>
-          </ThreeDCard>
+          </div>
 
           {/* Pillar 2: Opportunity Pipeline */}
-          <ThreeDCard glareColor="#10b981" maxTilt={8} elevationZ={18} className="h-full">
-            <div className="p-7 bg-slate-50 dark:bg-neutral-900/60 rounded-3xl group hover:border-emerald-500/50 transition-all duration-300 border border-slate-200/70 dark:border-neutral-800/80 h-full flex flex-col">
-              <div className="w-12 h-12 bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 rounded-2xl flex items-center justify-center mb-5 transition-transform group-hover:scale-110">
-                <LineChart className="w-6 h-6" />
+          <div className="p-6 sm:p-7 bg-white/80 dark:bg-white/[0.02] rounded-3xl border border-slate-200/80 dark:border-white/[0.06] hover:border-slate-300 dark:hover:border-white/15 transition-all duration-300 flex flex-col justify-between shadow-xs">
+            <div>
+              <div className="w-10 h-10 bg-slate-100 dark:bg-white/[0.04] text-slate-700 dark:text-neutral-300 border border-slate-200/60 dark:border-white/10 rounded-xl flex items-center justify-center mb-4">
+                <LineChart className="w-5 h-5 text-indigo-500" />
               </div>
-              <span className="ui-label text-emerald-600 dark:text-emerald-400 block mb-2">
+              <span className="text-xs font-sans font-medium uppercase tracking-wider text-slate-500 dark:text-neutral-400 block mb-2">
                 Opportunity Pipeline
               </span>
-              <h3 className="font-serif text-xl sm:text-2xl text-slate-900 dark:text-white mb-2.5">
+              <h3 className="font-serif text-xl sm:text-2xl text-slate-900 dark:text-white mb-2 leading-snug">
                 Never Lose an Opportunity.
               </h3>
-              <p className="text-slate-600 dark:text-neutral-400 text-xs sm:text-sm leading-relaxed">
+              <p className="text-slate-600 dark:text-neutral-400 text-xs sm:text-sm leading-relaxed font-sans">
                 Track potential work across transparent stages of conviction. Monitor deal velocity, weighted value, and next moves without spreadsheet chaos.
               </p>
             </div>
-          </ThreeDCard>
+          </div>
 
           {/* Pillar 3: Outreach Calibration */}
-          <ThreeDCard glareColor="#f59e0b" maxTilt={8} elevationZ={18} className="h-full">
-            <div className="p-7 bg-slate-50 dark:bg-neutral-900/60 rounded-3xl group hover:border-amber-500/50 transition-all duration-300 border border-slate-200/70 dark:border-neutral-800/80 h-full flex flex-col">
-              <div className="w-12 h-12 bg-amber-100 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 rounded-2xl flex items-center justify-center mb-5 transition-transform group-hover:scale-110">
-                <Zap className="w-6 h-6" />
+          <div className="p-6 sm:p-7 bg-white/80 dark:bg-white/[0.02] rounded-3xl border border-slate-200/80 dark:border-white/[0.06] hover:border-slate-300 dark:hover:border-white/15 transition-all duration-300 flex flex-col justify-between shadow-xs">
+            <div>
+              <div className="w-10 h-10 bg-slate-100 dark:bg-white/[0.04] text-slate-700 dark:text-neutral-300 border border-slate-200/60 dark:border-white/10 rounded-xl flex items-center justify-center mb-4">
+                <Zap className="w-5 h-5 text-indigo-500" />
               </div>
-              <span className="ui-label text-amber-600 dark:text-amber-400 block mb-2">
+              <span className="text-xs font-sans font-medium uppercase tracking-wider text-slate-500 dark:text-neutral-400 block mb-2">
                 Outreach Calibration
               </span>
-              <h3 className="font-serif text-xl sm:text-2xl text-slate-900 dark:text-white mb-2.5">
+              <h3 className="font-serif text-xl sm:text-2xl text-slate-900 dark:text-white mb-2 leading-snug">
                 Context That Starts Dialogues.
               </h3>
-              <p className="text-slate-600 dark:text-neutral-400 text-xs sm:text-sm leading-relaxed">
+              <p className="text-slate-600 dark:text-neutral-400 text-xs sm:text-sm leading-relaxed font-sans">
                 Never pitch cold. Ground every outreach in verified business triggers, organizational changes, and high-leverage pain points.
               </p>
             </div>
-          </ThreeDCard>
+          </div>
 
           {/* Pillar 4: Client Operations */}
-          <ThreeDCard glareColor="#8b5cf6" maxTilt={8} elevationZ={18} className="h-full">
-            <div className="p-7 bg-slate-50 dark:bg-neutral-900/60 rounded-3xl group hover:border-violet-500/50 transition-all duration-300 border border-slate-200/70 dark:border-neutral-800/80 h-full flex flex-col">
-              <div className="w-12 h-12 bg-violet-100 dark:bg-violet-950/60 text-violet-600 dark:text-violet-400 rounded-2xl flex items-center justify-center mb-5 transition-transform group-hover:scale-110">
-                <Layers className="w-6 h-6" />
+          <div className="p-6 sm:p-7 bg-white/80 dark:bg-white/[0.02] rounded-3xl border border-slate-200/80 dark:border-white/[0.06] hover:border-slate-300 dark:hover:border-white/15 transition-all duration-300 flex flex-col justify-between shadow-xs">
+            <div>
+              <div className="w-10 h-10 bg-slate-100 dark:bg-white/[0.04] text-slate-700 dark:text-neutral-300 border border-slate-200/60 dark:border-white/10 rounded-xl flex items-center justify-center mb-4">
+                <Layers className="w-5 h-5 text-indigo-500" />
               </div>
-              <span className="ui-label text-violet-600 dark:text-violet-400 block mb-2">
+              <span className="text-xs font-sans font-medium uppercase tracking-wider text-slate-500 dark:text-neutral-400 block mb-2">
                 Client Operations
               </span>
-              <h3 className="font-serif text-xl sm:text-2xl text-slate-900 dark:text-white mb-2.5">
+              <h3 className="font-serif text-xl sm:text-2xl text-slate-900 dark:text-white mb-2 leading-snug">
                 Every Relationship. Every Detail.
               </h3>
-              <p className="text-slate-600 dark:text-neutral-400 text-xs sm:text-sm leading-relaxed">
+              <p className="text-slate-600 dark:text-neutral-400 text-xs sm:text-sm leading-relaxed font-sans">
                 Transition closed opportunities into active client delivery. Maintain full conversational context, milestones, and relationship health.
               </p>
             </div>
-          </ThreeDCard>
+          </div>
 
         </div>
 
         {/* Intelligence Query Showcase Box */}
-        <ThreeDCard glareColor="#6366f1" maxTilt={4} elevationZ={16}>
-          <div className="rounded-3xl bg-neutral-950 dark:bg-[#0c0c0e] text-white p-7 sm:p-10 border border-neutral-800 shadow-2xl relative overflow-hidden">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              
-              <div className="lg:col-span-6 space-y-4">
-                <div className="inline-flex items-center gap-2 text-xs font-semibold text-indigo-400 uppercase tracking-widest">
-                  <Bot className="w-4 h-4" />
-                  <span>Opportunity Intelligence Assistant</span>
-                </div>
-                <h3 className="font-serif text-2xl sm:text-3xl text-white tracking-tight">
-                  Ask any prospect or opportunity question. Get verified context.
-                </h3>
-                <p className="text-neutral-400 text-sm leading-relaxed">
-                  Query company milestones, executive priorities, and competitive gaps in plain English—grounded in verified signals without hallucinated noise.
-                </p>
+        <div className="rounded-3xl bg-[#0c0c0e] text-white p-7 sm:p-10 border border-white/[0.08] shadow-2xl relative overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            <div className="lg:col-span-6 space-y-4">
+              <div className="inline-flex items-center gap-2 text-xs font-semibold text-indigo-400 uppercase tracking-widest font-sans">
+                <Bot className="w-4 h-4" />
+                <span>Opportunity Intelligence Assistant</span>
               </div>
-
-              <div className="lg:col-span-6">
-                <div className="p-4 rounded-2xl bg-black/60 border border-neutral-800 shadow-inner space-y-3">
-                  <div className="flex items-center gap-2 text-[11px] text-neutral-400 border-b border-neutral-800 pb-2">
-                    <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
-                    <span>Client Forge Research Engine</span>
-                  </div>
-                  
-                  <div className="flex items-start gap-2 text-xs">
-                    <div className="w-6 h-6 rounded-full bg-indigo-600 text-white font-sans font-bold text-[10px] flex items-center justify-center shrink-0">
-                      VS
-                    </div>
-                    <div className="bg-neutral-800 px-3 py-2 rounded-xl text-neutral-200">
-                      "{aiQuestion}"
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-2 text-xs">
-                    <div className="w-6 h-6 rounded-full bg-emerald-600 text-white font-sans font-bold text-[10px] flex items-center justify-center shrink-0">
-                      CF
-                    </div>
-                    <div className="bg-neutral-900 border border-neutral-700 px-3.5 py-2.5 rounded-xl text-neutral-200 space-y-1.5 w-full">
-                      <div className="text-emerald-400 font-semibold flex items-center gap-1">
-                        <Check className="w-3.5 h-3.5" /> High-Intent Opportunity Angle Identified
-                      </div>
-                      <p className="text-neutral-300 text-[11px] leading-relaxed">
-                        Series B expansion into US enterprise triggered 3 product acquisitions with fragmented design tokens. Marcus Vance (VP Design) is actively seeking external architectural systems guidance before Q4 launch.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
+              <h3 className="font-serif text-2xl sm:text-3xl text-white tracking-tight leading-snug">
+                Ask any prospect or opportunity question. Get verified context.
+              </h3>
+              <p className="text-neutral-400 text-sm leading-relaxed font-sans">
+                Query company milestones, executive priorities, and competitive gaps in plain English—grounded in verified signals without hallucinated noise.
+              </p>
             </div>
+
+            <div className="lg:col-span-6">
+              <div className="p-4 rounded-2xl bg-black/60 border border-white/[0.08] shadow-inner space-y-3 font-sans">
+                <div className="flex items-center gap-2 text-[11px] text-neutral-400 border-b border-white/[0.06] pb-2">
+                  <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
+                  <span>Client Forge Research Engine</span>
+                </div>
+                
+                <div className="flex items-start gap-2 text-xs">
+                  <div className="w-6 h-6 rounded-full bg-slate-800 text-white font-sans font-bold text-[10px] flex items-center justify-center shrink-0">
+                    VS
+                  </div>
+                  <div className="bg-white/[0.06] border border-white/[0.06] px-3 py-2 rounded-xl text-neutral-200">
+                    "{aiQuestion}"
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-2 text-xs">
+                  <div className="w-6 h-6 rounded-full bg-indigo-600 text-white font-sans font-bold text-[10px] flex items-center justify-center shrink-0">
+                    CF
+                  </div>
+                  <div className="bg-neutral-900/90 border border-white/[0.1] px-3.5 py-2.5 rounded-xl text-neutral-200 space-y-1.5 w-full">
+                    <div className="text-indigo-400 font-semibold flex items-center gap-1.5">
+                      <ShieldCheck className="w-3.5 h-3.5" />
+                      <span>High-Intent Opportunity Angle Identified</span>
+                    </div>
+                    <p className="text-neutral-300 text-[11px] leading-relaxed">
+                      Series B expansion into US enterprise triggered 3 product acquisitions with fragmented design tokens. Marcus Vance (VP Design) is actively seeking external architectural systems guidance before Q4 launch.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
-        </ThreeDCard>
+        </div>
 
       </div>
     </section>

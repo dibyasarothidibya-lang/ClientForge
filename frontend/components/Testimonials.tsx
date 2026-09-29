@@ -42,7 +42,7 @@ export default function Testimonials() {
         {/* Centered Editorial Header */}
         <div className="text-center mb-16 sm:mb-20">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/[0.02] text-slate-600 dark:text-neutral-400 text-xs tracking-wider uppercase mb-5 font-sans font-medium shadow-xs">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400"></span>
+            <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse"></span>
             Operator Perspectives
           </div>
           
@@ -106,7 +106,7 @@ export default function Testimonials() {
           </ThreeDCard>
 
           {/* Photo & Mission Card */}
-          <ThreeDCard glareColor="#38bdf8" maxTilt={8} elevationZ={18} className="h-64 lg:h-auto">
+          <ThreeDCard glareColor="#6366f1" maxTilt={8} elevationZ={18} className="h-64 lg:h-auto">
             <div className="rounded-3xl overflow-hidden border border-slate-200 dark:border-white/[0.08] shadow-md dark:shadow-lg relative group h-full bg-slate-950 dark:bg-[#101012]">
               <img 
                 src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&auto=format&fit=crop&q=80" 
@@ -125,7 +125,7 @@ export default function Testimonials() {
           </ThreeDCard>
 
           {/* Key Metric Card */}
-          <ThreeDCard glareColor="#10b981" maxTilt={8} elevationZ={18} className="h-full">
+          <ThreeDCard glareColor="#6366f1" maxTilt={8} elevationZ={18} className="h-full">
             <div className="rounded-3xl p-8 flex flex-col justify-center bg-gradient-to-b from-slate-50 to-white dark:from-[#141417] dark:to-[#0d0d0f] border border-slate-200 dark:border-white/[0.08] shadow-md dark:shadow-lg relative overflow-hidden h-full">
               <div className="text-xs font-sans font-semibold uppercase tracking-wider text-slate-500 dark:text-neutral-400 mb-2">Portfolio Impact</div>
               <div className="font-sans text-4xl md:text-5xl font-normal md:font-medium tracking-tight tabular-nums text-slate-950 dark:text-white">68%</div>

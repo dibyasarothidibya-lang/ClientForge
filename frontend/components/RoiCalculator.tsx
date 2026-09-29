@@ -198,7 +198,7 @@ function GraphDetailsModal({
           </div>
           <div className="p-4 rounded-2xl bg-[#121215] border border-stone-800/80">
             <div className="text-xs text-stone-400 font-sans font-medium">Value Multiple</div>
-            <div className="text-2xl sm:text-3xl font-light tabular-nums text-emerald-400 mt-1 font-sans">
+            <div className="text-2xl sm:text-3xl font-light tabular-nums text-indigo-400 mt-1 font-sans">
               {leverageMultiplier}×
             </div>
             <div className="text-xs text-stone-400 mt-1 font-sans">Contract value to tooling ratio</div>
@@ -312,7 +312,7 @@ function GraphDetailsModal({
           </div>
           <div className="p-4 rounded-xl bg-[#121215] border border-stone-800/80">
             <div className="flex items-center gap-2 font-sans text-sm text-white mb-1.5">
-              <Zap className="w-3.5 h-3.5 text-emerald-400" />
+              <Zap className="w-3.5 h-3.5 text-indigo-400" />
               2.4-Day Pitch Velocity
             </div>
             <p className="text-stone-400 leading-relaxed text-xs font-sans font-normal">

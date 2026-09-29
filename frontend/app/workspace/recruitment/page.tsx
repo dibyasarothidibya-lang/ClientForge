@@ -5,25 +5,20 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useWorkspace } from "@/context/WorkspaceContext";
 import { Candidate, JobPosting, JobStage } from "@/lib/peopleCoreData";
-import ThreeDCard from "@/components/motion/ThreeDCard";
 import {
   Briefcase,
   Users,
   Search,
-  Filter,
   Plus,
   MapPin,
   Calendar,
-  Clock,
-  CheckCircle2,
-  AlertCircle,
+  Check,
   ChevronRight,
   UserCheck,
   Star,
   FileText,
   Mail,
   Phone,
-  MessageSquare,
   ArrowRight,
   X
 } from "lucide-react";
@@ -39,9 +34,9 @@ export default function RecruitmentPage() {
   // Job creation modal state
   const [jobModalOpen, setJobModalOpen] = useState(false);
   const [newJobTitle, setNewJobTitle] = useState("");
-  const [newJobDept, setNewJobDept] = useState("Engineering");
-  const [newJobLocation, setNewJobLocation] = useState("San Francisco, CA / Remote");
-  const [newJobSalary, setNewJobSalary] = useState("$160,000 – $185,000");
+  const [newJobDept, setNewJobDept] = useState("Global Operations & Field");
+  const [newJobLocation, setNewJobLocation] = useState("Geneva / Remote");
+  const [newJobSalary, setNewJobSalary] = useState("$140,000 – $165,000");
   const [newJobOpenings, setNewJobOpenings] = useState(1);
   const [newJobDesc, setNewJobDesc] = useState("");
 
@@ -52,7 +47,6 @@ export default function RecruitmentPage() {
     "Technical Interview",
     "Offer",
     "Hired",
-    "Rejected",
   ];
 
   const filteredCandidates = candidates.filter((c) => {
@@ -75,326 +69,339 @@ export default function RecruitmentPage() {
       status: "Open",
       openings: newJobOpenings,
       salaryRange: newJobSalary,
-      hiringManager: "Dr. Sarah Lin",
+      hiringManager: "Amina Al-Mansoor",
       deadline: "2026-11-30",
-      description: newJobDesc || "High-leverage engineering contribution to PeopleCore architecture.",
-      requirements: ["5+ years relevant experience", "Proven enterprise track record"],
-      benefits: ["Comprehensive health coverage", "Flexible remote work", "Learning stipend"],
+      description: newJobDesc || "Mission-critical contribution to Hope Foundation global operations.",
+      requirements: ["5+ years relevant experience", "Field deployment familiarity"],
+      benefits: ["Comprehensive global medical coverage", "Hazardous duty allowance"],
     });
     setJobModalOpen(false);
     setNewJobTitle("");
   };
 
+  const openRolesCount = jobs.filter((j) => j.status === "Open").length;
+  const activePipelineCount = candidates.length;
+  const offersCount = candidates.filter((c) => c.stage === "Offer").length;
+
   return (
-    <div className="space-y-6 font-sans">
-      {/* Page Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <div className="space-y-5 font-sans antialiased text-slate-900 dark:text-neutral-100">
+      
+      {/* 1. Header & Actions */}
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-2 border-b border-slate-200/80 dark:border-white/[0.07]">
         <div>
-          <span className="text-xs font-semibold uppercase tracking-wider text-purple-600 dark:text-purple-400 block mb-1">
-            Talent Acquisition & ATS
-          </span>
-          <h1 className="text-2xl sm:text-3xl font-semibold text-slate-950 dark:text-white tracking-tight">
-            Recruitment & Applicant Pipeline
+          <div className="flex items-center gap-2 mb-1">
+            <span className="text-[10px] font-mono uppercase tracking-wider font-semibold px-2 py-0.5 rounded bg-slate-100 dark:bg-white/[0.06] text-slate-600 dark:text-neutral-400 border border-slate-200/80 dark:border-white/[0.06]">
+              Talent Acquisition
+            </span>
+            <span className="text-xs text-slate-400 dark:text-neutral-500 font-mono">
+              ATS Pipeline & Stage-Gate Ledger
+            </span>
+          </div>
+          <h1 className="text-xl sm:text-2xl font-semibold tracking-tight text-slate-950 dark:text-white">
+            Recruitment & Candidate Pipeline
           </h1>
-          <p className="text-xs text-slate-500 dark:text-neutral-400 mt-1">
-            Track candidates through multi-stage vetting, scheduling, candidate scorecards, and offer releases.
+          <p className="text-xs text-slate-500 dark:text-neutral-400 mt-0.5">
+            Applicant tracking, panel scorecards, background compliance, and international requisitions.
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
-          <div className="flex bg-slate-100 dark:bg-white/[0.04] p-1 rounded-xl border border-slate-200 dark:border-white/[0.08] text-xs">
+        <div className="flex items-center gap-2.5">
+          <div className="flex p-0.5 rounded-lg bg-slate-100 dark:bg-white/[0.05] border border-slate-200/80 dark:border-white/[0.07] text-xs">
             <button
               onClick={() => setActiveTab("pipeline")}
-              className={`px-3 py-1.5 rounded-lg font-medium transition-colors cursor-pointer ${
+              className={`px-2.5 py-1 rounded-md transition-colors cursor-pointer ${
                 activeTab === "pipeline"
-                  ? "bg-white dark:bg-white text-slate-950 dark:text-neutral-950 shadow-xs font-semibold"
-                  : "text-slate-600 dark:text-neutral-400"
+                  ? "bg-white dark:bg-white/[0.12] text-slate-950 dark:text-white font-medium shadow-2xs"
+                  : "text-slate-500 dark:text-neutral-400"
               }`}
             >
               Candidate Pipeline
             </button>
             <button
               onClick={() => setActiveTab("jobs")}
-              className={`px-3 py-1.5 rounded-lg font-medium transition-colors cursor-pointer ${
+              className={`px-2.5 py-1 rounded-md transition-colors cursor-pointer ${
                 activeTab === "jobs"
-                  ? "bg-white dark:bg-white text-slate-950 dark:text-neutral-950 shadow-xs font-semibold"
-                  : "text-slate-600 dark:text-neutral-400"
+                  ? "bg-white dark:bg-white/[0.12] text-slate-950 dark:text-white font-medium shadow-2xs"
+                  : "text-slate-500 dark:text-neutral-400"
               }`}
             >
-              Job Postings ({jobs.length})
+              Job Requisitions ({jobs.length})
             </button>
           </div>
 
           <button
             onClick={() => setJobModalOpen(true)}
-            className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-neutral-100 text-white dark:text-neutral-950 text-xs font-semibold flex items-center gap-1.5 shadow-md cursor-pointer transition-all"
+            className="h-8 px-3 rounded-lg bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-neutral-100 text-white dark:text-neutral-950 text-xs font-medium inline-flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
           >
             <Plus className="w-3.5 h-3.5" />
-            <span>Create Job</span>
+            <span>Create Requisition</span>
           </button>
         </div>
       </div>
 
-      {/* KPI Stats Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <ThreeDCard glareColor="#8b5cf6" maxTilt={6} elevationZ={10} className="h-full">
-          <div className="p-4 rounded-2xl bg-white dark:bg-[#0e0e12] border border-slate-200 dark:border-white/[0.08] shadow-xs">
-            <div className="flex items-center justify-between text-xs text-slate-500 mb-1">
-              <span>Open Roles</span>
-              <span className="text-[10px] text-purple-600 font-semibold">Active</span>
+      {/* 2. Recruitment KPI Ribbon */}
+      <div className="bg-white dark:bg-[#111215] border border-slate-200/90 dark:border-white/[0.07] rounded-xl overflow-hidden shadow-2xs">
+        <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 divide-slate-100 dark:divide-white/[0.05] md:divide-x md:divide-slate-200/80 md:dark:divide-white/[0.07]">
+          
+          <div className="p-4">
+            <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400 dark:text-neutral-500">
+              Open Requisitions
             </div>
-            <div className="text-2xl font-bold text-slate-950 dark:text-white tabular-nums">
-              {jobs.filter((j) => j.status === "Open").length}
+            <div className="text-2xl font-medium text-slate-950 dark:text-white tabular-nums mt-1">
+              {openRolesCount}
             </div>
-            <div className="text-[10px] text-slate-400 mt-1">Across 4 departments</div>
+            <div className="text-[11px] text-slate-400 dark:text-neutral-500 mt-0.5">
+              Across 4 mission stations
+            </div>
           </div>
-        </ThreeDCard>
 
-        <ThreeDCard glareColor="#3b82f6" maxTilt={6} elevationZ={10} className="h-full">
-          <div className="p-4 rounded-2xl bg-white dark:bg-[#0e0e12] border border-slate-200 dark:border-white/[0.08] shadow-xs">
-            <div className="flex items-center justify-between text-xs text-slate-500 mb-1">
-              <span>Active Pipeline</span>
-              <span className="text-[10px] text-blue-600 font-semibold">+8 this week</span>
+          <div className="p-4">
+            <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400 dark:text-neutral-500">
+              Active Candidate Pool
             </div>
-            <div className="text-2xl font-bold text-slate-950 dark:text-white tabular-nums">
-              {candidates.length}
+            <div className="text-2xl font-medium text-slate-950 dark:text-white tabular-nums mt-1">
+              {activePipelineCount}
             </div>
-            <div className="text-[10px] text-slate-400 mt-1">Screened & qualified</div>
+            <div className="text-[11px] text-slate-400 dark:text-neutral-500 mt-0.5">
+              Screened & score-carded
+            </div>
           </div>
-        </ThreeDCard>
 
-        <ThreeDCard glareColor="#10b981" maxTilt={6} elevationZ={10} className="h-full">
-          <div className="p-4 rounded-2xl bg-white dark:bg-[#0e0e12] border border-slate-200 dark:border-white/[0.08] shadow-xs">
-            <div className="flex items-center justify-between text-xs text-slate-500 mb-1">
-              <span>Offers Extended</span>
-              <span className="text-[10px] text-emerald-600 font-semibold">Pending response</span>
+          <div className="p-4">
+            <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400 dark:text-neutral-500">
+              Offers Extended
             </div>
-            <div className="text-2xl font-bold text-slate-950 dark:text-white tabular-nums">
-              {candidates.filter((c) => c.stage === "Offer").length}
+            <div className="text-2xl font-medium text-slate-950 dark:text-white tabular-nums mt-1">
+              {offersCount}
             </div>
-            <div className="text-[10px] text-slate-400 mt-1">100% acceptance benchmark</div>
+            <div className="text-[11px] text-slate-400 dark:text-neutral-500 mt-0.5">
+              Pending final signature
+            </div>
           </div>
-        </ThreeDCard>
 
-        <ThreeDCard glareColor="#f59e0b" maxTilt={6} elevationZ={10} className="h-full">
-          <div className="p-4 rounded-2xl bg-white dark:bg-[#0e0e12] border border-slate-200 dark:border-white/[0.08] shadow-xs">
-            <div className="flex items-center justify-between text-xs text-slate-500 mb-1">
-              <span>Time-to-Hire</span>
-              <span className="text-[10px] text-amber-600 font-semibold">Velocity</span>
+          <div className="p-4">
+            <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400 dark:text-neutral-500">
+              Avg Fill Latency
             </div>
-            <div className="text-2xl font-bold text-slate-950 dark:text-white tabular-nums">
-              21 Days
+            <div className="text-2xl font-medium text-slate-950 dark:text-white tabular-nums mt-1">
+              18 Days
             </div>
-            <div className="text-[10px] text-slate-400 mt-1">5 days faster than benchmark</div>
+            <div className="text-[11px] text-slate-400 dark:text-neutral-500 mt-0.5">
+              5 days faster than target
+            </div>
           </div>
-        </ThreeDCard>
+
+        </div>
       </div>
 
-      {/* MAIN CONTENT AREA */}
-      {activeTab === "pipeline" ? (
-        <div className="space-y-4">
-          {/* Filter Bar */}
-          <div className="flex flex-col sm:flex-row gap-3">
-            <div className="relative flex-1">
-              <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-3" />
-              <input
-                type="text"
-                placeholder="Search candidates by name, role, or technical skills..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 bg-white dark:bg-[#0e0e12] border border-slate-200 dark:border-white/[0.08] rounded-xl text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500 font-sans"
-              />
-            </div>
-            <select
-              value={selectedJobFilter}
-              onChange={(e) => setSelectedJobFilter(e.target.value)}
-              className="px-3 py-2 bg-white dark:bg-[#0e0e12] border border-slate-200 dark:border-white/[0.08] rounded-xl text-xs text-slate-800 dark:text-white outline-none font-sans font-medium cursor-pointer"
-            >
-              <option value="All">All Job Positions</option>
-              {jobs.map((j) => (
-                <option key={j.id} value={j.title}>
-                  {j.title}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {/* KANBAN BOARD */}
-          <div className="overflow-x-auto pb-4 custom-scrollbar">
-            <div className="flex gap-4 min-w-[1300px]">
-              {stages.map((stage) => {
-                const stageCandidates = filteredCandidates.filter((c) => c.stage === stage);
-                return (
-                  <div
-                    key={stage}
-                    className="flex-1 bg-slate-100/70 dark:bg-white/[0.02] border border-slate-200/80 dark:border-white/[0.06] rounded-2xl p-3 min-w-[220px]"
-                  >
-                    {/* Column Header */}
-                    <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-white/[0.06] mb-3">
-                      <div className="flex items-center gap-1.5">
-                        <span className="text-xs font-semibold text-slate-900 dark:text-white">{stage}</span>
-                        <span className="w-5 h-5 rounded-full bg-slate-200 dark:bg-white/10 text-[10px] font-bold flex items-center justify-center text-slate-700 dark:text-neutral-300">
-                          {stageCandidates.length}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Column Cards */}
-                    <div className="space-y-3">
-                      {stageCandidates.map((cand) => (
-                        <motion.div
-                          key={cand.id}
-                          whileHover={{ scale: 1.02, y: -2 }}
-                          onClick={() => setSelectedCandidate(cand)}
-                          className="p-3.5 rounded-xl bg-white dark:bg-[#0e0e12] border border-slate-200 dark:border-white/[0.08] shadow-xs cursor-pointer space-y-2.5 transition-all hover:border-purple-500/40"
-                        >
-                          <div className="flex items-center gap-2.5">
-                            <img
-                              src={cand.avatar}
-                              alt={cand.name}
-                              className="w-8 h-8 rounded-full object-cover border border-slate-200 dark:border-white/10"
-                            />
-                            <div className="min-w-0 flex-1">
-                              <div className="font-semibold text-xs text-slate-900 dark:text-white truncate">
-                                {cand.name}
-                              </div>
-                              <div className="text-[10px] text-slate-500 dark:text-neutral-400 truncate">
-                                {cand.role}
-                              </div>
-                            </div>
-                          </div>
-
-                          <div className="flex items-center justify-between text-[10px] text-slate-500 dark:text-neutral-400">
-                            <span>{cand.experienceYears}y exp</span>
-                            <span className="font-semibold text-slate-900 dark:text-neutral-200">{cand.expectedSalary}</span>
-                          </div>
-
-                          {cand.interviewStatus && (
-                            <div className="p-1.5 rounded-lg bg-indigo-50/60 dark:bg-indigo-950/30 border border-indigo-200/50 dark:border-indigo-800/40 text-[10px] text-indigo-700 dark:text-indigo-300 line-clamp-1">
-                              {cand.interviewStatus}
-                            </div>
-                          )}
-
-                          <div className="flex flex-wrap gap-1">
-                            {cand.skills.slice(0, 2).map((s) => (
-                              <span
-                                key={s}
-                                className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-white/[0.04] text-[9px] text-slate-600 dark:text-neutral-400"
-                              >
-                                {s}
-                              </span>
-                            ))}
-                          </div>
-                        </motion.div>
-                      ))}
-
-                      {stageCandidates.length === 0 && (
-                        <div className="py-8 text-center text-[11px] text-slate-400 dark:text-neutral-600 border border-dashed border-slate-200 dark:border-white/[0.06] rounded-xl">
-                          No candidates in {stage}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+      {/* 3. Search & Position Filter */}
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+        <div className="relative flex-1 max-w-md">
+          <Search className="w-3.5 h-3.5 text-slate-400 dark:text-neutral-500 absolute left-3 top-2.5" />
+          <input
+            type="text"
+            placeholder="Search candidates by name, role, or technical skills..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full h-8 pl-9 pr-3 rounded-lg bg-white dark:bg-[#111215] border border-slate-200/80 dark:border-white/[0.08] text-xs text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-neutral-500 focus:outline-none focus:border-indigo-500 transition-colors"
+          />
         </div>
-      ) : (
-        /* JOB POSTINGS VIEW */
-        <div className="space-y-4">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {jobs.map((job) => (
+
+        <select
+          value={selectedJobFilter}
+          onChange={(e) => setSelectedJobFilter(e.target.value)}
+          className="h-8 px-2.5 rounded-lg bg-white dark:bg-[#111215] border border-slate-200/80 dark:border-white/[0.08] text-xs text-slate-700 dark:text-neutral-300 focus:outline-none cursor-pointer"
+        >
+          <option value="All">All Job Requisitions</option>
+          {jobs.map((j) => (
+            <option key={j.id} value={j.title}>
+              {j.title}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {/* 4. Tab Views: Pipeline Board vs Job Requisitions */}
+      {activeTab === "pipeline" ? (
+        <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-6 gap-3 select-none">
+          {stages.map((stage) => {
+            const stageCandidates = filteredCandidates.filter((c) => c.stage === stage);
+            return (
               <div
-                key={job.id}
-                className="rounded-3xl p-6 bg-white dark:bg-[#0e0e12] border border-slate-200 dark:border-white/[0.08] shadow-sm flex flex-col justify-between space-y-4"
+                key={stage}
+                className="bg-white dark:bg-[#111215] border border-slate-200/80 dark:border-white/[0.06] rounded-xl p-3 flex flex-col justify-between min-h-[360px]"
               >
                 <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
-                      {job.status}
+                  {/* Stage Header */}
+                  <div className="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-white/[0.05] mb-2.5">
+                    <span className="text-xs font-semibold text-slate-900 dark:text-white">
+                      {stage}
                     </span>
-                    <span className="text-[11px] text-slate-400">Deadline: {job.deadline}</span>
+                    <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-slate-100 dark:bg-white/[0.06] text-slate-500 dark:text-neutral-400">
+                      {stageCandidates.length}
+                    </span>
                   </div>
-                  <h3 className="text-base font-semibold text-slate-950 dark:text-white">{job.title}</h3>
-                  <div className="flex items-center gap-2 text-xs text-slate-500 mt-1">
-                    <span>{job.department}</span>
-                    <span>•</span>
-                    <span>{job.location}</span>
-                  </div>
-                  <p className="text-xs text-slate-600 dark:text-neutral-400 mt-2.5 leading-relaxed line-clamp-2">
-                    {job.description}
-                  </p>
-                </div>
 
-                <div className="pt-3 border-t border-slate-100 dark:border-white/[0.06] flex items-center justify-between text-xs">
-                  <div>
-                    <span className="text-slate-400 block text-[10px]">Salary Range</span>
-                    <span className="font-semibold text-slate-900 dark:text-white">{job.salaryRange}</span>
-                  </div>
-                  <div className="text-right">
-                    <span className="text-slate-400 block text-[10px]">Candidates</span>
-                    <span className="font-semibold text-indigo-600 dark:text-indigo-400">{job.applicantsCount} active</span>
+                  {/* Stage Candidate Cards */}
+                  <div className="space-y-2">
+                    {stageCandidates.map((cand) => (
+                      <div
+                        key={cand.id}
+                        onClick={() => setSelectedCandidate(cand)}
+                        className="p-2.5 rounded-lg border border-slate-200/70 dark:border-white/[0.05] bg-slate-50/50 dark:bg-white/[0.015] hover:border-slate-300 dark:hover:border-white/10 transition-colors cursor-pointer group"
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className="font-medium text-slate-900 dark:text-white text-xs truncate group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                            {cand.name}
+                          </span>
+                          <span className="text-[10px] font-mono text-slate-400">
+                            ★ {cand.rating}
+                          </span>
+                        </div>
+
+                        <div className="text-[11px] text-slate-500 dark:text-neutral-400 mt-0.5 truncate">
+                          {cand.role}
+                        </div>
+
+                        <div className="flex flex-wrap gap-1 mt-2">
+                          {cand.skills.slice(0, 2).map((s) => (
+                            <span
+                              key={s}
+                              className="text-[9px] px-1.5 py-0.2 rounded bg-white dark:bg-white/[0.06] border border-slate-200/60 dark:border-white/[0.06] text-slate-500 dark:text-neutral-400"
+                            >
+                              {s}
+                            </span>
+                          ))}
+                        </div>
+
+                        <div className="flex items-center justify-between pt-2 mt-2 border-t border-slate-100 dark:border-white/[0.04] text-[10px] text-slate-400">
+                          <span>{cand.experienceYears} yrs exp</span>
+                          <span className="font-mono">{cand.location.split("/")[0]}</span>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
-            ))}
+            );
+          })}
+        </div>
+      ) : (
+        /* Job Requisitions Table */
+        <div className="bg-white dark:bg-[#111215] border border-slate-200/90 dark:border-white/[0.07] rounded-xl overflow-hidden shadow-2xs">
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-xs">
+              <thead className="bg-slate-50/70 dark:bg-white/[0.02] border-b border-slate-200/80 dark:border-white/[0.06] text-slate-400 dark:text-neutral-500 font-mono text-[10px] uppercase">
+                <tr>
+                  <th className="py-2.5 px-4">Position Title</th>
+                  <th className="py-2.5 px-3">Department</th>
+                  <th className="py-2.5 px-3">Duty Station</th>
+                  <th className="py-2.5 px-3">Compensation Range</th>
+                  <th className="py-2.5 px-3">Openings</th>
+                  <th className="py-2.5 px-3">Pipeline</th>
+                  <th className="py-2.5 px-4 text-right">Status</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100 dark:divide-white/[0.04]">
+                {jobs.map((job) => (
+                  <tr key={job.id} className="hover:bg-slate-50/70 dark:hover:bg-white/[0.02] transition-colors">
+                    <td className="py-3 px-4 font-medium text-slate-900 dark:text-white">
+                      {job.title}
+                    </td>
+                    <td className="py-3 px-3 text-slate-500 dark:text-neutral-400">
+                      {job.department}
+                    </td>
+                    <td className="py-3 px-3 text-slate-600 dark:text-neutral-300">
+                      {job.location}
+                    </td>
+                    <td className="py-3 px-3 font-mono text-slate-700 dark:text-neutral-300">
+                      {job.salaryRange}
+                    </td>
+                    <td className="py-3 px-3 font-mono text-slate-900 dark:text-white">
+                      {job.openings}
+                    </td>
+                    <td className="py-3 px-3 font-mono text-indigo-600 dark:text-indigo-400">
+                      {candidates.filter((c) => c.role === job.title).length} candidates
+                    </td>
+                    <td className="py-3 px-4 text-right">
+                      <span className="inline-flex items-center gap-1.5 text-[11px] font-mono text-slate-800 dark:text-neutral-200">
+                        <span className="w-1.5 h-1.5 rounded-full bg-slate-400 dark:bg-neutral-500" />
+                        {job.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       )}
 
-      {/* CANDIDATE PROFILE MODAL / DRAWER */}
+      {/* 5. Candidate Scorecard Inspection Drawer */}
       <AnimatePresence>
         {selectedCandidate && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div className="fixed inset-0 z-50 flex justify-end font-sans">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              transition={{ duration: 0.12 }}
               onClick={() => setSelectedCandidate(null)}
-              className="fixed inset-0 bg-black/60 backdrop-blur-xs cursor-pointer"
+              className="fixed inset-0 bg-black/50 dark:bg-black/75 backdrop-blur-xs cursor-pointer"
             />
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              className="relative bg-white dark:bg-[#121215] border border-slate-200 dark:border-white/[0.12] rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl z-10 space-y-5 max-h-[90vh] overflow-y-auto custom-scrollbar"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="relative w-full max-w-md bg-white dark:bg-[#111215] border-l border-slate-200 dark:border-white/[0.1] h-full p-6 overflow-y-auto space-y-5 text-xs shadow-2xl z-10"
             >
-              <div className="flex items-start justify-between">
-                <div className="flex items-center gap-4">
-                  <img
-                    src={selectedCandidate.avatar}
-                    alt={selectedCandidate.name}
-                    className="w-16 h-16 rounded-2xl object-cover border-2 border-purple-500/40 shadow-md"
-                  />
-                  <div>
-                    <h3 className="text-xl font-semibold text-slate-950 dark:text-white">{selectedCandidate.name}</h3>
-                    <div className="text-xs text-purple-600 dark:text-purple-400 font-medium">{selectedCandidate.role}</div>
-                    <div className="text-[11px] text-slate-500">{selectedCandidate.location} • {selectedCandidate.experienceYears}y exp</div>
-                  </div>
-                </div>
+              <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-white/[0.06]">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 dark:text-neutral-500">
+                  Candidate Scorecard
+                </span>
                 <button
                   onClick={() => setSelectedCandidate(null)}
-                  className="p-1.5 rounded-lg text-slate-400 hover:text-slate-900 dark:hover:text-white cursor-pointer"
+                  className="p-1 text-slate-400 hover:text-slate-700 dark:hover:text-white rounded cursor-pointer"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="w-4 h-4" />
                 </button>
               </div>
 
-              {/* Summary */}
-              <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200 dark:border-white/[0.06] text-xs">
-                <span className="text-[10px] font-semibold uppercase text-slate-400 block mb-1">Executive Summary</span>
-                <p className="text-slate-700 dark:text-neutral-300 leading-relaxed">{selectedCandidate.summary}</p>
+              <div>
+                <div className="text-sm font-semibold text-slate-900 dark:text-white">
+                  {selectedCandidate.name}
+                </div>
+                <div className="text-xs text-slate-500 dark:text-neutral-400">
+                  {selectedCandidate.role}
+                </div>
+                <div className="text-[11px] text-slate-400 mt-1 font-mono">
+                  {selectedCandidate.location} · {selectedCandidate.experienceYears} yrs experience
+                </div>
               </div>
 
-              {/* Skills */}
-              <div>
-                <span className="text-xs font-semibold text-slate-900 dark:text-white block mb-2">Technical Skills</span>
-                <div className="flex flex-wrap gap-1.5">
+              <div className="p-3.5 rounded-lg bg-slate-50 dark:bg-white/[0.02] border border-slate-200/80 dark:border-white/[0.06] space-y-2">
+                <div className="flex justify-between">
+                  <span className="text-slate-400">Current Stage</span>
+                  <span className="font-mono font-medium text-slate-900 dark:text-white">{selectedCandidate.stage}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-slate-400">Panel Score</span>
+                  <span className="font-mono text-slate-900 dark:text-white">★ {selectedCandidate.rating} / 5.0</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-slate-400">Expected Compensation</span>
+                  <span className="font-mono text-slate-900 dark:text-white">{selectedCandidate.expectedSalary}</span>
+                </div>
+              </div>
+
+              <div className="space-y-1.5">
+                <div className="text-slate-500 font-medium">Vetted Skills:</div>
+                <div className="flex flex-wrap gap-1">
                   {selectedCandidate.skills.map((s) => (
                     <span
                       key={s}
-                      className="px-2.5 py-1 rounded-lg bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 text-indigo-700 dark:text-indigo-300 text-xs font-medium"
+                      className="px-2 py-0.5 rounded bg-slate-100 dark:bg-white/[0.06] border border-slate-200/70 dark:border-white/[0.08] text-slate-700 dark:text-neutral-300"
                     >
                       {s}
                     </span>
@@ -402,41 +409,29 @@ export default function RecruitmentPage() {
                 </div>
               </div>
 
-              {/* Stage Transition Control */}
-              <div className="pt-3 border-t border-slate-100 dark:border-white/[0.06] space-y-2">
-                <span className="text-xs font-semibold text-slate-900 dark:text-white block">Promote Stage</span>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+              <div className="pt-3 border-t border-slate-100 dark:border-white/[0.06] flex items-center gap-2">
+                <select
+                  value={selectedCandidate.stage}
+                  onChange={(e) => {
+                    updateCandidateStage(selectedCandidate.id, e.target.value as any);
+                    setSelectedCandidate({ ...selectedCandidate, stage: e.target.value as any });
+                  }}
+                  className="flex-1 h-8 px-2 rounded-lg bg-white dark:bg-[#111215] border border-slate-200 dark:border-white/[0.1] text-xs font-medium cursor-pointer"
+                >
                   {stages.map((st) => (
-                    <button
-                      key={st}
-                      onClick={() => {
-                        updateCandidateStage(selectedCandidate.id, st);
-                        setSelectedCandidate({ ...selectedCandidate, stage: st });
-                      }}
-                      className={`px-2 py-1.5 rounded-lg text-[11px] font-medium transition-colors cursor-pointer text-center ${
-                        selectedCandidate.stage === st
-                          ? "bg-purple-600 text-white font-semibold"
-                          : "bg-slate-100 dark:bg-white/[0.04] text-slate-700 dark:text-neutral-300 hover:bg-slate-200"
-                      }`}
-                    >
-                      {st}
-                    </button>
+                    <option key={st} value={st}>
+                      Move to {st}
+                    </option>
                   ))}
-                </div>
-              </div>
-
-              <div className="flex gap-3 pt-3">
+                </select>
                 <button
-                  onClick={() => alert(`Interview scheduled with ${selectedCandidate.name}. Calendar invite sent.`)}
-                  className="flex-1 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-neutral-100 text-white dark:text-neutral-950 font-semibold text-xs cursor-pointer shadow-md"
+                  onClick={() => {
+                    alert(`Debrief notes submitted for ${selectedCandidate.name}.`);
+                    setSelectedCandidate(null);
+                  }}
+                  className="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-neutral-100 text-white dark:text-neutral-950 font-medium cursor-pointer"
                 >
-                  Schedule Interview
-                </button>
-                <button
-                  onClick={() => setSelectedCandidate(null)}
-                  className="px-4 py-2.5 rounded-xl border border-slate-200 dark:border-white/10 text-xs font-medium cursor-pointer"
-                >
-                  Close
+                  Save Notes
                 </button>
               </div>
             </motion.div>
@@ -444,100 +439,120 @@ export default function RecruitmentPage() {
         )}
       </AnimatePresence>
 
-      {/* CREATE JOB POSTING MODAL */}
+      {/* 6. Create Job Modal */}
       <AnimatePresence>
         {jobModalOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 font-sans">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              transition={{ duration: 0.12 }}
               onClick={() => setJobModalOpen(false)}
-              className="fixed inset-0 bg-black/60 backdrop-blur-xs cursor-pointer"
+              className="fixed inset-0 bg-black/60 dark:bg-black/75 backdrop-blur-xs cursor-pointer"
             />
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              className="relative bg-white dark:bg-[#121215] border border-slate-200 dark:border-white/[0.12] rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl z-10 space-y-4"
+            <motion.form
+              onSubmit={handleCreateJob}
+              initial={{ opacity: 0, scale: 0.98, y: -6 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.98, y: -6 }}
+              transition={{ duration: 0.12 }}
+              className="relative bg-white dark:bg-[#111215] border border-slate-200 dark:border-white/[0.1] rounded-xl max-w-lg w-full p-6 shadow-2xl z-10 space-y-4"
             >
-              <h3 className="text-lg font-semibold text-slate-950 dark:text-white">Create New Job Posting</h3>
-              <form onSubmit={handleCreateJob} className="space-y-4 text-xs font-sans">
+              <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-white/[0.06]">
+                <h3 className="text-sm font-semibold text-slate-900 dark:text-white">
+                  Create Requisition
+                </h3>
+                <button
+                  type="button"
+                  onClick={() => setJobModalOpen(false)}
+                  className="p-1 text-slate-400 hover:text-slate-700 dark:hover:text-white rounded cursor-pointer"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+
+              <div className="space-y-3 text-xs">
                 <div>
-                  <label className="text-slate-500 block mb-1 font-medium">Job Title *</label>
+                  <label className="block text-slate-500 mb-1 font-medium">Position Title</label>
                   <input
                     type="text"
                     required
-                    placeholder="e.g. Lead Security Architect"
+                    placeholder="e.g. Senior Humanitarian Water Logistician"
                     value={newJobTitle}
                     onChange={(e) => setNewJobTitle(e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] outline-none"
+                    className="w-full h-8 px-2.5 rounded-lg bg-white dark:bg-[#111215] border border-slate-200 dark:border-white/[0.08] text-slate-900 dark:text-white"
                   />
                 </div>
+
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="text-slate-500 block mb-1 font-medium">Department</label>
+                    <label className="block text-slate-500 mb-1 font-medium">Department</label>
                     <select
                       value={newJobDept}
                       onChange={(e) => setNewJobDept(e.target.value)}
-                      className="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-[#121216] border border-slate-200 dark:border-white/[0.08] outline-none"
+                      className="w-full h-8 px-2 rounded-lg bg-white dark:bg-[#111215] border border-slate-200 dark:border-white/[0.08] text-slate-900 dark:text-white"
                     >
-                      <option value="Engineering">Engineering</option>
-                      <option value="Product">Product</option>
-                      <option value="Human Resources">Human Resources</option>
-                      <option value="Finance">Finance</option>
-                      <option value="Security">Security</option>
+                      <option value="Global Operations & Field">Global Operations</option>
+                      <option value="Medical & Humanitarian Aid">Medical & Humanitarian Aid</option>
+                      <option value="Technology & Systems">Technology & Systems</option>
+                      <option value="Finance & Grants">Finance & Grants</option>
                     </select>
                   </div>
                   <div>
-                    <label className="text-slate-500 block mb-1 font-medium">Location</label>
+                    <label className="block text-slate-500 mb-1 font-medium">Duty Station</label>
                     <input
                       type="text"
                       value={newJobLocation}
                       onChange={(e) => setNewJobLocation(e.target.value)}
-                      className="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] outline-none"
+                      className="w-full h-8 px-2.5 rounded-lg bg-white dark:bg-[#111215] border border-slate-200 dark:border-white/[0.08] text-slate-900 dark:text-white"
                     />
                   </div>
                 </div>
-                <div>
-                  <label className="text-slate-500 block mb-1 font-medium">Salary Range</label>
-                  <input
-                    type="text"
-                    value={newJobSalary}
-                    onChange={(e) => setNewJobSalary(e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] outline-none"
-                  />
+
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-slate-500 mb-1 font-medium">Compensation Range</label>
+                    <input
+                      type="text"
+                      value={newJobSalary}
+                      onChange={(e) => setNewJobSalary(e.target.value)}
+                      className="w-full h-8 px-2.5 rounded-lg bg-white dark:bg-[#111215] border border-slate-200 dark:border-white/[0.08] text-slate-900 dark:text-white font-mono"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-slate-500 mb-1 font-medium">Openings Count</label>
+                    <input
+                      type="number"
+                      min={1}
+                      value={newJobOpenings}
+                      onChange={(e) => setNewJobOpenings(parseInt(e.target.value) || 1)}
+                      className="w-full h-8 px-2.5 rounded-lg bg-white dark:bg-[#111215] border border-slate-200 dark:border-white/[0.08] text-slate-900 dark:text-white font-mono"
+                    />
+                  </div>
                 </div>
-                <div>
-                  <label className="text-slate-500 block mb-1 font-medium">Job Summary</label>
-                  <textarea
-                    rows={3}
-                    placeholder="Brief description of responsibilities and scope..."
-                    value={newJobDesc}
-                    onChange={(e) => setNewJobDesc(e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] outline-none"
-                  />
-                </div>
-                <div className="flex gap-3 pt-2">
-                  <button
-                    type="submit"
-                    className="flex-1 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-neutral-100 text-white dark:text-neutral-950 font-semibold text-xs cursor-pointer shadow-md"
-                  >
-                    Publish Job Posting
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setJobModalOpen(false)}
-                    className="px-4 py-2.5 rounded-xl border border-slate-200 dark:border-white/10 text-xs font-medium cursor-pointer"
-                  >
-                    Cancel
-                  </button>
-                </div>
-              </form>
-            </motion.div>
+              </div>
+
+              <div className="pt-3 border-t border-slate-100 dark:border-white/[0.06] flex justify-end gap-2">
+                <button
+                  type="button"
+                  onClick={() => setJobModalOpen(false)}
+                  className="px-3 py-1.5 text-slate-600 dark:text-neutral-400 hover:text-slate-900 dark:hover:text-white"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-neutral-100 text-white dark:text-neutral-950 font-medium cursor-pointer"
+                >
+                  Publish Requisition
+                </button>
+              </div>
+            </motion.form>
           </div>
         )}
       </AnimatePresence>
+
     </div>
   );
 }

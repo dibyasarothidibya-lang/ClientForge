@@ -67,108 +67,174 @@ export default function SupportCenterPage() {
 
   return (
     <div className="space-y-8 font-sans">
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      {/* 1. Header & Quick Action */}
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-2 border-b border-slate-200/80 dark:border-white/[0.07]">
         <div>
-          <span className="text-xs font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 block mb-1">
-            Documentation & Assistance
-          </span>
-          <h1 className="text-2xl sm:text-3xl font-semibold text-slate-950 dark:text-white tracking-tight">
-            Help Center & Support Desk
+          <div className="flex items-center gap-2 mb-1">
+            <span className="text-[10px] font-mono uppercase tracking-wider font-semibold px-2 py-0.5 rounded bg-slate-100 dark:bg-white/[0.06] text-slate-600 dark:text-neutral-400 border border-slate-200/80 dark:border-white/[0.06]">
+              Support & SLA Desk
+            </span>
+            <span className="text-xs text-slate-400 dark:text-neutral-500 font-mono">
+              Tier-3 Enterprise Support
+            </span>
+          </div>
+          <h1 className="text-xl sm:text-2xl font-semibold tracking-tight text-slate-950 dark:text-white">
+            Help Center & Technical Support
           </h1>
-          <p className="text-xs text-slate-500 dark:text-neutral-400 mt-1">
-            Access enterprise documentation, submit compliance support tickets, check system status, and resolve HR questions.
+          <p className="text-xs text-slate-500 dark:text-neutral-400 mt-0.5">
+            Operational documentation, statutory compliance advisories, system telemetry status, and ticket resolution.
           </p>
         </div>
 
-        <button
-          onClick={() => setTicketModalOpen(true)}
-          className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-neutral-100 text-white dark:text-neutral-950 text-xs font-semibold flex items-center gap-1.5 shadow-md cursor-pointer transition-all"
-        >
-          <Plus className="w-3.5 h-3.5" />
-          <span>Open Support Ticket</span>
-        </button>
-      </div>
-
-      {/* SYSTEM STATUS BANNER */}
-      <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
         <div className="flex items-center gap-2.5">
-          <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-          <span className="font-semibold text-emerald-950 dark:text-emerald-200">
-            All Systems Operational: Core API, Biometrics, Payroll ACH Engine (99.99% Uptime)
-          </span>
+          <button
+            onClick={() => setTicketModalOpen(true)}
+            className="h-8 px-3 rounded-lg bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-neutral-100 text-white dark:text-neutral-950 text-xs font-medium inline-flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
+          >
+            <Plus className="w-3.5 h-3.5" />
+            <span>Open Support Ticket</span>
+          </button>
         </div>
-        <span className="text-[11px] text-emerald-800 dark:text-emerald-300">
-          Last health verification: 3 minutes ago
-        </span>
       </div>
 
-      {/* QUICK DOCUMENTATION TILES */}
-      <div className="grid sm:grid-cols-3 gap-4">
-        <div className="p-5 rounded-3xl bg-white dark:bg-[#0e0e12] border border-slate-200 dark:border-white/[0.08] shadow-xs space-y-2">
-          <BookOpen className="w-5 h-5 text-indigo-500" />
-          <h4 className="font-semibold text-sm text-slate-900 dark:text-white">Admin Guides & Setup</h4>
-          <p className="text-xs text-slate-500 leading-relaxed">
+      {/* 2. Compact Numerical Metric Ribbon */}
+      <div className="bg-white dark:bg-[#111215] border border-slate-200/90 dark:border-white/[0.07] rounded-xl overflow-hidden shadow-2xs">
+        <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 divide-slate-100 dark:divide-white/[0.05] md:divide-x md:divide-slate-200/80 md:dark:divide-white/[0.07]">
+          
+          <div className="p-4">
+            <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400 dark:text-neutral-500">
+              System Telemetry Status
+            </div>
+            <div className="flex items-center gap-2 mt-1">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+              <span className="text-xl sm:text-2xl font-medium text-slate-950 dark:text-white tabular-nums">
+                99.99% Uptime
+              </span>
+            </div>
+            <div className="text-[11px] text-slate-400 dark:text-neutral-500 mt-0.5">
+              All 4 clusters operational
+            </div>
+          </div>
+
+          <div className="p-4">
+            <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400 dark:text-neutral-500">
+              Active Support Inquiries
+            </div>
+            <div className="text-xl sm:text-2xl font-medium text-slate-950 dark:text-white tabular-nums mt-1">
+              {supportTickets.filter((t) => t.status !== "Resolved").length} Open
+            </div>
+            <div className="text-[11px] text-slate-400 dark:text-neutral-500 mt-0.5">
+              {supportTickets.length} total logged tickets
+            </div>
+          </div>
+
+          <div className="p-4">
+            <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400 dark:text-neutral-500">
+              Mean First Response SLA
+            </div>
+            <div className="text-xl sm:text-2xl font-medium text-slate-950 dark:text-white tabular-nums mt-1">
+              &lt; 15 Minutes
+            </div>
+            <div className="text-[11px] text-slate-400 dark:text-neutral-500 mt-0.5">
+              Enterprise dedicated queue
+            </div>
+          </div>
+
+          <div className="p-4">
+            <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400 dark:text-neutral-500">
+              Compliance Clearances
+            </div>
+            <div className="text-xl sm:text-2xl font-medium text-slate-950 dark:text-white tabular-nums mt-1">
+              SOC 2 Type II
+            </div>
+            <div className="text-[11px] text-slate-400 dark:text-neutral-500 mt-0.5">
+              ISO 27001 & HIPAA verified
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      {/* 3. Quick Reference Documentation Tiles */}
+      <div className="grid sm:grid-cols-3 gap-3">
+        <div className="p-4 rounded-xl bg-white dark:bg-[#111215] border border-slate-200/80 dark:border-white/[0.07] shadow-2xs space-y-1.5">
+          <div className="flex items-center gap-2">
+            <BookOpen className="w-4 h-4 text-indigo-500 shrink-0" />
+            <h4 className="font-semibold text-xs text-slate-900 dark:text-white">Admin Guides & Setup</h4>
+          </div>
+          <p className="text-[11px] text-slate-500 dark:text-neutral-400 leading-relaxed">
             Step-by-step walkthroughs on configuring department hierarchies, custom comp bands, and SSO policies.
           </p>
         </div>
-        <div className="p-5 rounded-3xl bg-white dark:bg-[#0e0e12] border border-slate-200 dark:border-white/[0.08] shadow-xs space-y-2">
-          <LifeBuoy className="w-5 h-5 text-emerald-500" />
-          <h4 className="font-semibold text-sm text-slate-900 dark:text-white">Statutory Tax & Compliance</h4>
-          <p className="text-xs text-slate-500 leading-relaxed">
+        <div className="p-4 rounded-xl bg-white dark:bg-[#111215] border border-slate-200/80 dark:border-white/[0.07] shadow-2xs space-y-1.5">
+          <div className="flex items-center gap-2">
+            <LifeBuoy className="w-4 h-4 text-emerald-500 shrink-0" />
+            <h4 className="font-semibold text-xs text-slate-900 dark:text-white">Statutory Tax & Compliance</h4>
+          </div>
+          <p className="text-[11px] text-slate-500 dark:text-neutral-400 leading-relaxed">
             Federal W-2, 1099 contractor classifications, state disability funds, and health care reporting references.
           </p>
         </div>
-        <div className="p-5 rounded-3xl bg-white dark:bg-[#0e0e12] border border-slate-200 dark:border-white/[0.08] shadow-xs space-y-2">
-          <FileQuestion className="w-5 h-5 text-purple-500" />
-          <h4 className="font-semibold text-sm text-slate-900 dark:text-white">API & Webhooks Reference</h4>
-          <p className="text-xs text-slate-500 leading-relaxed">
+        <div className="p-4 rounded-xl bg-white dark:bg-[#111215] border border-slate-200/80 dark:border-white/[0.07] shadow-2xs space-y-1.5">
+          <div className="flex items-center gap-2">
+            <FileQuestion className="w-4 h-4 text-purple-500 shrink-0" />
+            <h4 className="font-semibold text-xs text-slate-900 dark:text-white">API & Webhooks Reference</h4>
+          </div>
+          <p className="text-[11px] text-slate-500 dark:text-neutral-400 leading-relaxed">
             REST API endpoints for syncing employee directories with custom internal tools or applicant tracking pipelines.
           </p>
         </div>
       </div>
 
-      {/* TICKETS & FAQ SPLIT */}
-      <div className="grid lg:grid-cols-12 gap-6">
+      {/* 4. Support Tickets Queue & FAQ Split */}
+      <div className="grid lg:grid-cols-12 gap-5">
         {/* Support Tickets Queue */}
-        <div className="lg:col-span-7 rounded-3xl p-6 bg-white dark:bg-[#0e0e12] border border-slate-200 dark:border-white/[0.08] shadow-sm space-y-4">
-          <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-white/[0.06]">
+        <div className="lg:col-span-7 bg-white dark:bg-[#111215] border border-slate-200/90 dark:border-white/[0.07] rounded-xl overflow-hidden shadow-2xs flex flex-col">
+          <div className="p-4 border-b border-slate-200/80 dark:border-white/[0.06] flex items-center justify-between">
             <div>
-              <h3 className="font-semibold text-base text-slate-950 dark:text-white">Your Support Tickets</h3>
-              <p className="text-xs text-slate-500">Track inquiries with our dedicated tier-3 support engineers</p>
+              <h3 className="font-semibold text-sm text-slate-950 dark:text-white">Support Inquiries</h3>
+              <p className="text-[11px] text-slate-500 dark:text-neutral-400 mt-0.5">
+                Track inquiries with our tier-3 response team
+              </p>
             </div>
-            <span className="text-xs font-semibold text-indigo-600">{supportTickets.length} tickets</span>
+            <span className="text-[11px] font-mono text-slate-500 dark:text-neutral-400">
+              {supportTickets.length} total
+            </span>
           </div>
 
-          <div className="space-y-3">
+          <div className="divide-y divide-slate-100 dark:divide-white/[0.04]">
             {supportTickets.map((tkt) => (
               <div
                 key={tkt.id}
-                className="p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200 dark:border-white/[0.06] space-y-2 text-xs"
+                className="p-4 hover:bg-slate-50/70 dark:hover:bg-white/[0.02] transition-colors space-y-2"
               >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <span className="font-semibold text-slate-900 dark:text-white">{tkt.subject}</span>
-                    <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-200 dark:bg-white/10 text-slate-600 dark:text-neutral-300">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex items-center gap-2 min-w-0 flex-1">
+                    <span className="px-2 py-0.5 rounded text-[11px] font-mono font-medium whitespace-nowrap shrink-0 bg-slate-100 dark:bg-white/[0.07] text-slate-700 dark:text-neutral-300 border border-slate-200/70 dark:border-white/[0.08]">
                       {tkt.ticketNumber}
+                    </span>
+                    <span className="font-medium text-xs text-slate-900 dark:text-white truncate">
+                      {tkt.subject}
                     </span>
                   </div>
                   <span
-                    className={`px-2 py-0.5 rounded text-[10px] font-semibold ${
+                    className={`px-2 py-0.5 rounded text-[10px] font-mono uppercase tracking-wider font-semibold whitespace-nowrap shrink-0 ${
                       tkt.status === "Resolved"
-                        ? "bg-emerald-500/10 text-emerald-600"
+                        ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400 border border-emerald-200/60 dark:border-emerald-800/40"
                         : tkt.status === "In Progress"
-                        ? "bg-blue-500/10 text-blue-600"
-                        : "bg-amber-500/10 text-amber-600"
+                        ? "bg-blue-50 text-blue-700 dark:bg-blue-950/40 dark:text-blue-400 border border-blue-200/60 dark:border-blue-800/40"
+                        : "bg-amber-50 text-amber-700 dark:bg-amber-950/40 dark:text-amber-400 border border-amber-200/60 dark:border-amber-800/40"
                     }`}
                   >
                     {tkt.status}
                   </span>
                 </div>
-                <p className="text-slate-600 dark:text-neutral-400 line-clamp-2 leading-relaxed">
+
+                <p className="text-xs text-slate-600 dark:text-neutral-400 leading-relaxed">
                   {tkt.description}
                 </p>
-                <div className="flex items-center justify-between text-[10px] text-slate-400 pt-1">
+
+                <div className="flex items-center justify-between text-[11px] text-slate-400 dark:text-neutral-500 pt-0.5 font-mono">
                   <span>Priority: {tkt.priority} • {tkt.category}</span>
                   <span>Updated: {tkt.lastUpdated}</span>
                 </div>
@@ -178,25 +244,31 @@ export default function SupportCenterPage() {
         </div>
 
         {/* Interactive FAQ Accordion */}
-        <div className="lg:col-span-5 rounded-3xl p-6 bg-white dark:bg-[#0e0e12] border border-slate-200 dark:border-white/[0.08] shadow-sm space-y-4">
-          <h3 className="font-semibold text-base text-slate-950 dark:text-white">Frequently Asked Questions</h3>
-          <div className="space-y-2.5 text-xs">
+        <div className="lg:col-span-5 bg-white dark:bg-[#111215] border border-slate-200/90 dark:border-white/[0.07] rounded-xl overflow-hidden shadow-2xs p-4 space-y-3.5">
+          <div>
+            <h3 className="font-semibold text-sm text-slate-950 dark:text-white">Frequently Asked Questions</h3>
+            <p className="text-[11px] text-slate-500 dark:text-neutral-400 mt-0.5">
+              Common solutions for platform configuration
+            </p>
+          </div>
+
+          <div className="space-y-2">
             {faqs.map((faq, idx) => {
               const isOpen = activeFaq === idx;
               return (
                 <div
                   key={idx}
-                  className="rounded-2xl border border-slate-200 dark:border-white/[0.06] bg-slate-50/50 dark:bg-white/[0.01] overflow-hidden"
+                  className="rounded-lg border border-slate-200/80 dark:border-white/[0.06] bg-slate-50/50 dark:bg-white/[0.015] overflow-hidden"
                 >
                   <button
                     onClick={() => setActiveFaq(isOpen ? null : idx)}
-                    className="w-full p-4 text-left font-medium text-slate-900 dark:text-white flex items-center justify-between gap-3 cursor-pointer"
+                    className="w-full p-3 text-left font-medium text-xs text-slate-900 dark:text-white flex items-center justify-between gap-3 cursor-pointer"
                   >
-                    <span>{faq.q}</span>
-                    <ChevronDown className={`w-4 h-4 shrink-0 transition-transform ${isOpen ? "rotate-180" : ""}`} />
+                    <span className="leading-snug">{faq.q}</span>
+                    <ChevronDown className={`w-3.5 h-3.5 shrink-0 transition-transform ${isOpen ? "rotate-180" : ""}`} />
                   </button>
                   {isOpen && (
-                    <div className="px-4 pb-4 text-slate-600 dark:text-neutral-400 text-xs leading-relaxed border-t border-slate-100 dark:border-white/[0.04] pt-2">
+                    <div className="px-3 pb-3 text-slate-600 dark:text-neutral-400 text-xs leading-relaxed border-t border-slate-100 dark:border-white/[0.04] pt-2">
                       {faq.a}
                     </div>
                   )}

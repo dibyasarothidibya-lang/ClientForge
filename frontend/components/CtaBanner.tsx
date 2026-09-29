@@ -50,9 +50,9 @@ export default function CtaBanner() {
 
               {/* Form Experience */}
               {isSubmitted ? (
-                <div className="p-5 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-sm font-medium max-w-lg mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div className="p-5 rounded-2xl bg-indigo-500/10 border border-indigo-500/30 text-indigo-200 text-sm font-medium max-w-lg mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 font-sans">
                   <div className="flex items-center gap-2.5">
-                    <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
+                    <CheckCircle2 className="w-5 h-5 text-indigo-400 shrink-0" />
                     <span>Workspace initialized for {email}.</span>
                   </div>
                   <Link
@@ -85,15 +85,15 @@ export default function CtaBanner() {
               {/* Quiet Reassurance Badges */}
               <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-xs text-neutral-400 font-sans font-medium">
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                  <Shield className="w-3.5 h-3.5 text-slate-400" />
                   <span>14-day full signal trial</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Shield className="w-3.5 h-3.5 text-indigo-400" />
+                  <Shield className="w-3.5 h-3.5 text-slate-400" />
                   <span>Zero credit card required</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Lock className="w-3.5 h-3.5 text-neutral-400" />
+                  <Lock className="w-3.5 h-3.5 text-slate-400" />
                   <span>Private workspace encryption</span>
                 </div>
               </div>

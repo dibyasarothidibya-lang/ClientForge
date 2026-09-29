@@ -55,8 +55,8 @@ export default function Footer() {
                 Monthly field notes on high-leverage client acquisition, pricing power, and studio economics.
               </p>
               {subscribed ? (
-                <div className="flex items-center gap-2 text-xs font-medium text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-800/40 p-3 rounded-xl font-sans">
-                  <CheckCircle2 className="w-4 h-4 shrink-0" />
+                <div className="flex items-center gap-2 text-xs font-medium text-slate-800 dark:text-neutral-200 bg-slate-100 dark:bg-white/[0.05] border border-slate-200 dark:border-white/10 p-3 rounded-xl font-sans">
+                  <CheckCircle2 className="w-4 h-4 text-indigo-400 shrink-0" />
                   <span>Subscribed. Welcome to the dispatch.</span>
                 </div>
               ) : (
@@ -140,7 +140,7 @@ export default function Footer() {
 
           <div className="flex items-center gap-6 text-slate-500 dark:text-neutral-400 font-sans">
             <div className="flex items-center gap-2 text-slate-600 dark:text-neutral-300 font-sans">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse"></span>
+              <span className="w-2 h-2 rounded-full bg-indigo-500 dark:bg-indigo-400 animate-pulse"></span>
               <span>Signal nodes active</span>
             </div>
             

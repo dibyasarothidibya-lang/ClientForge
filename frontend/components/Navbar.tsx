@@ -168,7 +168,7 @@ export default function Navbar() {
                         href="/features" 
                         className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-black/[0.03] dark:hover:bg-white/[0.06] transition"
                       >
-                        <div className="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0 mt-0.5">
+                        <div className="w-8 h-8 rounded-lg bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0 mt-0.5">
                           <CheckCircle2 className="w-4 h-4" />
                         </div>
                         <div>
@@ -339,7 +339,7 @@ export default function Navbar() {
                         href="/contact" 
                         className="flex items-start gap-2.5 p-2 rounded-xl hover:bg-black/[0.03] dark:hover:bg-white/[0.06] transition"
                       >
-                        <div className="w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0 mt-0.5">
+                        <div className="w-7 h-7 rounded-lg bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0 mt-0.5">
                           <PhoneCall className="w-3.5 h-3.5" />
                         </div>
                         <div>
@@ -355,9 +355,9 @@ export default function Navbar() {
               {/* 5. Live App / HR Workspace Link */}
               <Link
                 href="/workspace"
-                className="ml-1 inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[12px] font-semibold tracking-tight text-emerald-700 dark:text-emerald-400 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/20 transition cursor-pointer"
+                className="ml-1 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[12px] font-semibold tracking-tight text-slate-800 dark:text-neutral-200 bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.06] dark:hover:bg-white/[0.12] border border-slate-200 dark:border-white/10 transition cursor-pointer"
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
                 <span>HR Workspace</span>
               </Link>
             </nav>
@@ -556,7 +556,7 @@ export default function Navbar() {
               <Link 
                 href="/workspace" 
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-3 py-2 text-xs font-semibold text-emerald-600 dark:text-emerald-400 rounded-xl hover:bg-emerald-50/50 dark:hover:bg-emerald-950/20"
+                className="block px-3 py-2 text-xs font-semibold text-slate-900 dark:text-white rounded-xl hover:bg-black/[0.04] dark:hover:bg-white/[0.06]"
               >
                 Open HR Workspace →
               </Link>

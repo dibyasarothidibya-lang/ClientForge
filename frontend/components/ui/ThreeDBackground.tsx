@@ -70,45 +70,44 @@ export function ThreeDBackground() {
     renderer.setClearColor(0x000000, 0); // Transparent canvas
     container.appendChild(renderer.domElement);
 
-    // 2. High-Visibility Palette Definitions
-    // IMPORTANT: NormalBlending is strictly used so WebGL canvas alpha is written properly!
+    // 2. Restrained Architectural Palette Definitions (Calm, Quiet, Editorial)
     const PALETTE = {
       dark: {
-        cyan: 0x38bdf8,   // Vivid Electric Sky
-        indigo: 0x818cf8, // Luminous Indigo
-        violet: 0xc084fc, // Neon Purple
-        teal: 0x2dd4bf,   // Vibrant Aqua
-        rose: 0xf472b6,   // Holographic Pink
-        amber: 0xfbbf24,  // Glowing Gold
-        wireOpacity: 1.0,
-        faceOpacity: 0.15,
-        pointOpacity: 1.0,
-        particleOpacity: 0.95,
-        lineOpacity: 0.65,
+        cyan: 0x475569,   // Muted slate
+        indigo: 0x6366f1, // Muted refined brand indigo
+        violet: 0x334155, // Deep slate
+        teal: 0x475569,   // Architectural slate
+        rose: 0x334155,   // Dark slate
+        amber: 0x64748b,  // Neutral slate
+        wireOpacity: 0.16, // Ultra-quiet wireframe
+        faceOpacity: 0.012, // Whispered depth
+        pointOpacity: 0.22, // Subtle nodes
+        particleOpacity: 0.22, // Faint ambient dust
+        lineOpacity: 0.08, // Hairline connection
       },
       light: {
-        cyan: 0x0284c7,   // Deep Cobalt
-        indigo: 0x4338ca, // Deep Royal Indigo
-        violet: 0x6d28d9, // Deep Purple
-        teal: 0x0f766e,   // Forest Teal
-        rose: 0xbe185d,   // Ruby
-        amber: 0xd97706,  // Warm Amber
-        wireOpacity: 0.60,
-        faceOpacity: 0.05,
-        pointOpacity: 0.70,
-        particleOpacity: 0.55,
-        lineOpacity: 0.35,
+        cyan: 0x94a3b8,
+        indigo: 0x6366f1,
+        violet: 0x94a3b8,
+        teal: 0x94a3b8,
+        rose: 0x94a3b8,
+        amber: 0x94a3b8,
+        wireOpacity: 0.14,
+        faceOpacity: 0.01,
+        pointOpacity: 0.18,
+        particleOpacity: 0.18,
+        lineOpacity: 0.06,
       },
     };
 
-    // 3. 3D Particle Cloud / Starfield
-    const PARTICLE_COUNT = 320;
+    // 3. 3D Particle Cloud / Starfield (Restrained, subtle ambient stardust)
+    const PARTICLE_COUNT = 65;
     const particlePositions = new Float32Array(PARTICLE_COUNT * 3);
     const particleVelocities: { x: number; y: number; z: number }[] = [];
 
     for (let i = 0; i < PARTICLE_COUNT; i++) {
       // Keep central text column clear of dense particles
-      const radius = 290 + Math.random() * 440;
+      const radius = 320 + Math.random() * 460;
       const angle = Math.random() * Math.PI * 2;
       const y = (Math.random() - 0.5) * 3400;
       const z = (Math.random() - 0.5) * 550;
@@ -118,9 +117,9 @@ export function ThreeDBackground() {
       particlePositions[i * 3 + 2] = z;
 
       particleVelocities.push({
-        x: (Math.random() - 0.5) * 0.18,
-        y: (Math.random() - 0.5) * 0.18,
-        z: (Math.random() - 0.5) * 0.14,
+        x: (Math.random() - 0.5) * 0.12,
+        y: (Math.random() - 0.5) * 0.12,
+        z: (Math.random() - 0.5) * 0.10,
       });
     }
 
@@ -133,9 +132,9 @@ export function ThreeDBackground() {
     const pCtx = pCanvas.getContext("2d");
     if (pCtx) {
       const grad = pCtx.createRadialGradient(16, 16, 0, 16, 16, 16);
-      grad.addColorStop(0, "rgba(255,255,255,1)");
-      grad.addColorStop(0.35, "rgba(255,255,255,0.9)");
-      grad.addColorStop(0.7, "rgba(255,255,255,0.25)");
+      grad.addColorStop(0, "rgba(255,255,255,0.9)");
+      grad.addColorStop(0.35, "rgba(255,255,255,0.6)");
+      grad.addColorStop(0.7, "rgba(255,255,255,0.15)");
       grad.addColorStop(1, "rgba(255,255,255,0)");
       pCtx.fillStyle = grad;
       pCtx.fillRect(0, 0, 32, 32);
@@ -143,20 +142,20 @@ export function ThreeDBackground() {
     const particleTexture = new THREE.CanvasTexture(pCanvas);
 
     const particleMaterial = new THREE.PointsMaterial({
-      size: isDark ? 6.5 : 5.0,
+      size: isDark ? 2.6 : 2.0,
       map: particleTexture,
       transparent: true,
       opacity: isDark ? PALETTE.dark.particleOpacity : PALETTE.light.particleOpacity,
-      color: isDark ? PALETTE.dark.cyan : PALETTE.light.cyan,
-      blending: THREE.NormalBlending, // Crucial for dark mode visibility on transparent canvas
+      color: isDark ? 0xcbd5e1 : 0x64748b,
+      blending: THREE.NormalBlending,
       depthWrite: false,
     });
 
     const particles = new THREE.Points(particleGeometry, particleMaterial);
     scene.add(particles);
 
-    // 4. Dynamic Proximity Lines between Nodes
-    const MAX_CONNECTIONS = 280;
+    // 4. Dynamic Proximity Lines between Nodes (Subtle Hairlines)
+    const MAX_CONNECTIONS = 90;
     const linePositions = new Float32Array(MAX_CONNECTIONS * 6);
     const lineColors = new Float32Array(MAX_CONNECTIONS * 6);
 
@@ -215,10 +214,10 @@ export function ThreeDBackground() {
       const faceMesh = new THREE.Mesh(geometry, faceMat);
       group.add(faceMesh);
 
-      // Layer 3: Sparkling vertex points at corners
+      // Layer 3: Subtle vertex points at corners
       const pointMat = new THREE.PointsMaterial({
-        size: isDark ? 4.5 : 3.5,
-        color: isDark ? 0xffffff : lightColor,
+        size: isDark ? 2.2 : 1.8,
+        color: isDark ? 0xe2e8f0 : lightColor,
         transparent: true,
         opacity: isDark ? PALETTE.dark.pointOpacity : PALETTE.light.pointOpacity,
         blending: THREE.NormalBlending,

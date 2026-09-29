@@ -448,9 +448,9 @@ export function GlobalWorkforceBanner() {
         </div>
 
         {/* Key Operational Telemetry Metric Strip */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 pt-6 border-t border-slate-200/80 dark:border-neutral-800">
-          <div className="p-4 rounded-2xl bg-slate-50 dark:bg-neutral-900/60 border border-slate-200/60 dark:border-neutral-800">
-            <div className="flex items-center gap-1.5 text-indigo-600 dark:text-indigo-400 text-[11px] font-sans font-semibold uppercase tracking-wider mb-1">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 pt-6 border-t border-slate-200/80 dark:border-white/[0.08]">
+          <div className="p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200/80 dark:border-white/[0.06]">
+            <div className="flex items-center gap-1.5 text-slate-500 dark:text-neutral-400 text-[11px] font-sans font-semibold uppercase tracking-wider mb-1">
               <Globe2 className="w-3.5 h-3.5" />
               <span>MARKET REACH</span>
             </div>
@@ -462,8 +462,8 @@ export function GlobalWorkforceBanner() {
             </div>
           </div>
 
-          <div className="p-4 rounded-2xl bg-slate-50 dark:bg-neutral-900/60 border border-slate-200/60 dark:border-neutral-800">
-            <div className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 text-[11px] font-sans font-semibold uppercase tracking-wider mb-1">
+          <div className="p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200/80 dark:border-white/[0.06]">
+            <div className="flex items-center gap-1.5 text-slate-500 dark:text-neutral-400 text-[11px] font-sans font-semibold uppercase tracking-wider mb-1">
               <Zap className="w-3.5 h-3.5" />
               <span>PAYOUT VELOCITY</span>
             </div>
@@ -475,8 +475,8 @@ export function GlobalWorkforceBanner() {
             </div>
           </div>
 
-          <div className="p-4 rounded-2xl bg-slate-50 dark:bg-neutral-900/60 border border-slate-200/60 dark:border-neutral-800">
-            <div className="flex items-center gap-1.5 text-sky-600 dark:text-sky-400 text-[11px] font-sans font-semibold uppercase tracking-wider mb-1">
+          <div className="p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200/80 dark:border-white/[0.06]">
+            <div className="flex items-center gap-1.5 text-slate-500 dark:text-neutral-400 text-[11px] font-sans font-semibold uppercase tracking-wider mb-1">
               <ShieldCheck className="w-3.5 h-3.5" />
               <span>LEGAL GUARANTEE</span>
             </div>
@@ -488,8 +488,8 @@ export function GlobalWorkforceBanner() {
             </div>
           </div>
 
-          <div className="p-4 rounded-2xl bg-slate-50 dark:bg-neutral-900/60 border border-slate-200/60 dark:border-neutral-800">
-            <div className="flex items-center gap-1.5 text-purple-600 dark:text-purple-400 text-[11px] font-sans font-semibold uppercase tracking-wider mb-1">
+          <div className="p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200/80 dark:border-white/[0.06]">
+            <div className="flex items-center gap-1.5 text-slate-500 dark:text-neutral-400 text-[11px] font-sans font-semibold uppercase tracking-wider mb-1">
               <Sparkles className="w-3.5 h-3.5" />
               <span>TIME TO HIRE</span>
             </div>
@@ -522,7 +522,7 @@ export function GlobalWorkforceBanner() {
                   onClick={() => handleRegionSelect(region)}
                   className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-all duration-150 cursor-pointer ${
                     isActive
-                      ? "bg-sky-500 text-white shadow-xs"
+                      ? "bg-white text-slate-950 font-semibold shadow-xs"
                       : "text-slate-300 hover:text-white hover:bg-white/10"
                   }`}
                 >
@@ -571,8 +571,8 @@ export function GlobalWorkforceBanner() {
                   <h4 className="font-semibold text-sm text-white">
                     {activeMarket.country} ({activeMarket.label.split("•")[0].trim()})
                   </h4>
-                  <span className="text-[11px] font-sans font-medium text-emerald-400 flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="text-[11px] font-sans font-medium text-slate-300 flex items-center gap-1.5 mt-0.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse" />
                     Autonomous Node Live
                   </span>
                 </div>
@@ -583,7 +583,7 @@ export function GlobalWorkforceBanner() {
                 className="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-white/10 transition-colors cursor-pointer"
                 title="Toggle Market Details"
               >
-                {dossierOpen ? <X className="w-4 h-4" /> : <Sparkles className="w-4 h-4 text-sky-400" />}
+                {dossierOpen ? <X className="w-4 h-4" /> : <Sparkles className="w-4 h-4 text-indigo-400" />}
               </button>
             </div>
 
@@ -599,8 +599,8 @@ export function GlobalWorkforceBanner() {
               </div>
               <div className="col-span-2 mt-1">
                 <span className="text-slate-400 block text-[10px] uppercase font-sans font-medium">Statutory Framework</span>
-                <span className="text-slate-200 text-xs flex items-center gap-1 mt-0.5">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                <span className="text-slate-200 text-xs flex items-center gap-1.5 mt-0.5">
+                  <ShieldCheck className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
                   <span className="truncate">{activeMarket.compliance || "Fully Compliant"}</span>
                 </span>
               </div>
@@ -612,7 +612,7 @@ export function GlobalWorkforceBanner() {
               </span>
               <Link
                 href="/workspace/recruitment"
-                className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-white text-xs font-semibold transition-colors"
+                className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl bg-white hover:bg-neutral-100 text-slate-950 text-xs font-semibold transition-colors shadow-xs"
               >
                 <span>Deploy Hires</span>
                 <ArrowRight className="w-3 h-3" />

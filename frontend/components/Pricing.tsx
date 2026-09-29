@@ -129,7 +129,7 @@ export default function Pricing() {
               >
                 {/* Most Popular Badge */}
                 {tier.popular && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-indigo-600 to-emerald-600 text-white text-[11px] font-bold uppercase tracking-wider shadow-md">
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-indigo-600 text-white text-[11px] font-bold uppercase tracking-wider shadow-md">
                     Most Popular
                   </div>
                 )}
@@ -161,7 +161,7 @@ export default function Pricing() {
                     </div>
                     {tier.features.map((feat, fIdx) => (
                       <div key={fIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 dark:text-neutral-300">
-                        <Check className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                        <Check className="w-4 h-4 text-indigo-500 dark:text-indigo-400 shrink-0 mt-0.5" />
                         <span>{feat}</span>
                       </div>
                     ))}
@@ -217,19 +217,19 @@ export default function Pricing() {
                     Enterprise Capabilities:
                   </div>
                   <div className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-300">
-                    <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <Check className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" />
                     <span>Dedicated Custom Signal Radar & Competitive Alerts</span>
                   </div>
                   <div className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-300">
-                    <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <Check className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" />
                     <span>Multi-Workspace Entity Management & Partner Accounts</span>
                   </div>
                   <div className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-300">
-                    <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <Check className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" />
                     <span>Custom CRM & ERP Two-Way Sync (Workday, BambooHR)</span>
                   </div>
                   <div className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-300">
-                    <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <Check className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" />
                     <span>Dedicated Account Director & SOC-2 Audit Support</span>
                   </div>
                 </div>
@@ -248,7 +248,7 @@ export default function Pricing() {
         {/* Security Reassurance Footer */}
         <div className="mt-14 pt-8 border-t border-slate-200/80 dark:border-neutral-800 text-center flex flex-wrap items-center justify-center gap-6 text-xs text-slate-500 dark:text-neutral-400 font-medium">
           <div className="flex items-center gap-1.5">
-            <ShieldCheck className="w-4 h-4 text-emerald-500" />
+            <ShieldCheck className="w-4 h-4 text-indigo-500 dark:text-indigo-400" />
             <span>14-day free trial on all plans</span>
           </div>
           <div>•</div>

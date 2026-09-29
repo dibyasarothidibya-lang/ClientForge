@@ -3,266 +3,235 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useWorkspace } from "@/context/WorkspaceContext";
-import ThreeDCard from "@/components/motion/ThreeDCard";
 import {
   BarChart3,
   Download,
   Printer,
   Calendar,
   Filter,
-  CheckCircle2,
+  Check,
   TrendingUp,
   FileText,
-  Sliders,
-  Sparkles,
-  ArrowUpRight,
+  Building2,
+  ChevronRight
 } from "lucide-react";
 
 export default function ReportsPage() {
-  const { activeOrg, transactions, tasks, findings, projects } = useWorkspace();
+  const { activeOrg } = useWorkspace();
 
-  const [reportType, setReportType] = useState<"executive" | "financial" | "compliance" | "delivery">("executive");
+  const [reportType, setReportType] = useState<"workforce" | "payroll" | "recruitment" | "attendance">("workforce");
   const [timeRange, setTimeRange] = useState<"30d" | "q1" | "ytd">("ytd");
 
-  // Chart data calculation
   const monthlyData = [
-    { month: "Jan 2026", raised: 142000, spend: 89000, tasksCompleted: 45 },
-    { month: "Feb 2026", raised: 188000, spend: 112000, tasksCompleted: 58 },
-    { month: "Mar 2026", raised: 224000, spend: 138000, tasksCompleted: 72 },
-    { month: "Apr 2026 (Proj)", raised: 260000, spend: 145000, tasksCompleted: 68 },
+    { month: "Jan 2026", headcount: 228, spend: 1910000, hires: 6, exits: 1 },
+    { month: "Feb 2026", headcount: 231, spend: 1935000, hires: 4, exits: 1 },
+    { month: "Mar 2026", headcount: 234, spend: 1960000, hires: 5, exits: 2 },
+    { month: "Apr 2026", headcount: 236, spend: 1980000, hires: 3, exits: 1 },
+    { month: "May 2026", headcount: 239, spend: 2005000, hires: 4, exits: 1 },
+    { month: "Jun 2026", headcount: 242, spend: 2035000, hires: 5, exits: 2 },
+    { month: "Jul 2026", headcount: 244, spend: 2055000, hires: 4, exits: 2 },
+    { month: "Aug 2026", headcount: 246, spend: 2070000, hires: 3, exits: 1 },
+    { month: "Sep 2026", headcount: 248, spend: 2095000, hires: 4, exits: 2 },
   ];
 
-  const maxVal = Math.max(...monthlyData.map((d) => d.raised));
+  const maxSpend = Math.max(...monthlyData.map((d) => d.spend));
 
   const exportCSV = () => {
-    const headers = "Month,Capital Raised ($),Program Spend ($),Tasks Completed\n";
+    const headers = "Month,Headcount,Monthly Spend ($),Hires,Exits\n";
     const rows = monthlyData
-      .map((d) => `"${d.month}",${d.raised},${d.spend},${d.tasksCompleted}`)
+      .map((d) => `"${d.month}",${d.headcount},${d.spend},${d.hires},${d.exits}`)
       .join("\n");
     const blob = new Blob([headers + rows], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `${activeOrg.slug}-report-${reportType}-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.download = `hope-foundation-report-${reportType}-${new Date().toISOString().slice(0, 10)}.csv`;
     a.click();
     URL.revokeObjectURL(url);
   };
 
+  const reportPresets = [
+    { id: "workforce", label: "Workforce & Headcount", desc: "Growth, FTE/contractor ratios & retention" },
+    { id: "payroll", label: "Payroll & Compensation", desc: "Monthly run rate & tax withholds" },
+    { id: "recruitment", label: "Talent Acquisition ATS", desc: "Time-to-hire velocity & conversion" },
+    { id: "attendance", label: "Duty Station Presence", desc: "Biometric check-ins & remote logs" },
+  ];
+
   return (
-    <div className="space-y-8 font-sans">
-      {/* Top Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-800/80 pb-6">
+    <div className="space-y-5 font-sans antialiased text-slate-900 dark:text-neutral-100">
+      
+      {/* 1. Header & Controls */}
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-2 border-b border-slate-200/80 dark:border-white/[0.07]">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-500/10 text-amber-400 border border-amber-500/20">
-              <BarChart3 className="w-3.5 h-3.5" /> Analytics Engine
+            <span className="text-[10px] font-mono uppercase tracking-wider font-semibold px-2 py-0.5 rounded bg-slate-100 dark:bg-white/[0.06] text-slate-600 dark:text-neutral-400 border border-slate-200/80 dark:border-white/[0.06]">
+              Workforce Intelligence
             </span>
-            <span className="text-xs text-neutral-400">Report Builder Lite</span>
+            <span className="text-xs text-slate-400 dark:text-neutral-500 font-mono">
+              Audited Telemetry Reports
+            </span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-sans font-semibold tracking-tight text-neutral-100">
-            Executive Reports & Analytics
+          <h1 className="text-xl sm:text-2xl font-semibold tracking-tight text-slate-950 dark:text-white">
+            Executive Analytics & Workforce Telemetry
           </h1>
-          <p className="text-sm text-neutral-400 mt-1 max-w-2xl">
-            Configure dynamic reports across capital allocation, delivery velocity, and audit compliance metrics.
+          <p className="text-xs text-slate-500 dark:text-neutral-400 mt-0.5">
+            Cross-department operational reporting across staffing, financial clearing, and field stations.
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
-          <motion.button
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
+        <div className="flex items-center gap-2.5">
+          <button
             onClick={() => window.print()}
-            className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-neutral-900 border border-neutral-800 text-xs font-medium text-neutral-300 hover:text-white hover:bg-neutral-800 transition cursor-pointer"
+            className="h-8 px-3 rounded-lg bg-slate-100 hover:bg-slate-200/70 dark:bg-white/[0.05] dark:hover:bg-white/[0.08] border border-slate-200/80 dark:border-white/[0.07] text-xs font-medium text-slate-700 dark:text-neutral-300 inline-flex items-center gap-1.5 transition-colors cursor-pointer"
           >
-            <Printer className="w-4 h-4 text-neutral-400" />
-            Print View
-          </motion.button>
-          <motion.button
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
+            <Printer className="w-3.5 h-3.5" />
+            <span>Print View</span>
+          </button>
+          <button
             onClick={exportCSV}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-black text-xs font-semibold shadow-md shadow-amber-500/20 transition cursor-pointer"
+            className="h-8 px-3 rounded-lg bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-neutral-100 text-white dark:text-neutral-950 text-xs font-medium inline-flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
           >
-            <Download className="w-4 h-4" />
-            Export CSV
-          </motion.button>
+            <Download className="w-3.5 h-3.5" />
+            <span>Export CSV</span>
+          </button>
         </div>
       </div>
 
-      {/* Preset Selector with 3D Tilt */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
-        {[
-          { id: "workforce", title: "Workforce", desc: "Headcount & tenure", icon: Sparkles, glare: "#6366f1" },
-          { id: "recruitment", title: "Recruitment", desc: "Time-to-hire & ATS", icon: TrendingUp, glare: "#8b5cf6" },
-          { id: "attendance", title: "Attendance", desc: "Hours & presence", icon: CheckCircle2, glare: "#10b981" },
-          { id: "leave", title: "Leave & PTO", desc: "Usage & balances", icon: BarChart3, glare: "#f59e0b" },
-          { id: "payroll", title: "Payroll Ledger", desc: "Taxes & disbursements", icon: TrendingUp, glare: "#38bdf8" },
-          { id: "expenses", title: "Expenses", desc: "Spend by category", icon: CheckCircle2, glare: "#ec4899" },
-          { id: "performance", title: "Performance", desc: "OKR completion", icon: Sparkles, glare: "#14b8a6" },
-        ].map((item) => {
-          const Icon = item.icon;
-          const isSelected = reportType === item.id;
+      {/* 2. Analytical Preset Selector Strip (No glowing cards) */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5">
+        {reportPresets.map((preset) => {
+          const isSelected = reportType === preset.id;
           return (
-            <ThreeDCard key={item.id} glareColor={item.glare} maxTilt={6} elevationZ={10} className="h-full">
-              <div
-                onClick={() => setReportType(item.id as any)}
-                className={`p-3.5 rounded-2xl border cursor-pointer transition flex flex-col justify-between h-full group ${
-                  isSelected
-                    ? "bg-indigo-500/10 border-indigo-500/40 shadow-sm"
-                    : "bg-white dark:bg-[#0e0e12] border-slate-200 dark:border-white/[0.08] hover:border-slate-300"
-                }`}
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <span
-                      className={`p-1.5 rounded-lg transition-transform group-hover:scale-110 ${
-                        isSelected ? "bg-indigo-500/20 text-indigo-400" : "bg-slate-100 dark:bg-white/[0.04] text-slate-500"
-                      }`}
-                    >
-                      <Icon className="w-3.5 h-3.5" />
-                    </span>
-                    {isSelected && (
-                      <span className="text-[9px] font-semibold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider font-sans">Active</span>
-                    )}
-                  </div>
-                  <h3 className="text-xs font-semibold text-slate-900 dark:text-neutral-100">{item.title}</h3>
-                  <p className="text-[10px] text-slate-400 mt-0.5 leading-snug">{item.desc}</p>
+            <button
+              key={preset.id}
+              onClick={() => setReportType(preset.id as any)}
+              className={`p-3.5 rounded-xl border text-left transition-colors cursor-pointer flex flex-col justify-between ${
+                isSelected
+                  ? "bg-slate-100 dark:bg-white/[0.08] border-slate-300 dark:border-white/15"
+                  : "bg-white dark:bg-[#111215] border border-slate-200/80 dark:border-white/[0.06] hover:border-slate-300 dark:hover:border-white/10"
+              }`}
+            >
+              <div>
+                <div className="text-xs font-semibold text-slate-900 dark:text-white">
+                  {preset.label}
+                </div>
+                <div className="text-[11px] text-slate-400 dark:text-neutral-500 mt-0.5 leading-snug">
+                  {preset.desc}
                 </div>
               </div>
-            </ThreeDCard>
+              <div className="mt-2 text-[10px] font-mono text-slate-400">
+                {isSelected ? "Active Preset" : "Click to View"}
+              </div>
+            </button>
           );
         })}
       </div>
 
-      {/* Dynamic Visual Chart */}
-      <div className="p-6 rounded-2xl bg-neutral-900/60 border border-neutral-800 backdrop-blur space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      {/* 3. Dominant Analytical Chart Container */}
+      <div className="bg-white dark:bg-[#111215] border border-slate-200/90 dark:border-white/[0.07] rounded-xl p-5 space-y-4 shadow-2xs">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100 dark:border-white/[0.06]">
           <div>
-            <h2 className="text-base font-medium text-neutral-100">
-              Comparative Velocity: Capital Raised vs. Program Spend
+            <h2 className="text-sm font-semibold text-slate-900 dark:text-white">
+              Monthly Operational Spend & Staffing Progression
             </h2>
-            <p className="text-xs text-neutral-400 mt-0.5 font-sans font-medium">
-              Live normalized values for {activeOrg.name} (USD)
+            <p className="text-[11px] text-slate-400 dark:text-neutral-500 mt-0.5">
+              Reconciled monthly compensation spend (USD) alongside net headcount growth.
             </p>
           </div>
 
-          {/* Time Range Toggle with Spring Sliding Pill */}
-          <div className="flex items-center bg-neutral-950 border border-neutral-800 rounded-xl p-1 font-sans text-xs relative">
-            {[
-              { id: "30d", label: "30 Days" },
-              { id: "q1", label: "Q1 2026" },
-              { id: "ytd", label: "YTD Full" },
-            ].map((t) => {
-              const isActive = timeRange === t.id;
-              return (
-                <motion.button
+          <div className="flex items-center gap-2">
+            <div className="flex p-0.5 rounded-lg bg-slate-100 dark:bg-white/[0.05] border border-slate-200/80 dark:border-white/[0.07] text-xs">
+              {[
+                { id: "30d", label: "30 Days" },
+                { id: "q1", label: "Q1 2026" },
+                { id: "ytd", label: "YTD Reconciled" },
+              ].map((t) => (
+                <button
                   key={t.id}
-                  whileTap={{ scale: 0.95 }}
                   onClick={() => setTimeRange(t.id as any)}
-                  className={`relative px-3 py-1.5 rounded-lg transition-colors cursor-pointer ${
-                    isActive ? "text-white font-semibold" : "text-neutral-400 hover:text-white"
+                  className={`px-2.5 py-1 rounded-md text-xs transition-colors cursor-pointer ${
+                    timeRange === t.id
+                      ? "bg-white dark:bg-white/[0.12] text-slate-950 dark:text-white font-medium shadow-2xs"
+                      : "text-slate-500 dark:text-neutral-400 hover:text-slate-900 dark:hover:text-white"
                   }`}
                 >
-                  {isActive && (
-                    <motion.div
-                      layoutId="reportsTimeRangeIndicator"
-                      className="absolute inset-0 bg-neutral-800 rounded-lg shadow-sm"
-                      transition={{ type: "spring", stiffness: 420, damping: 34 }}
-                    />
-                  )}
-                  <span className="relative z-10">{t.label}</span>
-                </motion.button>
-              );
-            })}
+                  {t.label}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Bar Chart Visualization */}
-        <div className="pt-6 pb-2">
-          <div className="grid grid-cols-4 gap-6 items-end h-64 border-b border-neutral-800 pb-4">
+        {/* Restrained Bar Chart */}
+        <div className="pt-4 pb-2">
+          <div className="grid grid-cols-9 gap-3 items-end h-52 border-b border-slate-200/80 dark:border-white/[0.06] pb-3">
             {monthlyData.map((d) => {
-              const raisedHeight = Math.round((d.raised / maxVal) * 100);
-              const spendHeight = Math.round((d.spend / maxVal) * 100);
+              const heightPct = Math.round((d.spend / maxSpend) * 100);
               return (
-                <div key={d.month} className="flex flex-col items-center gap-2 h-full justify-end group">
-                  <div className="flex items-end gap-2 w-full max-w-[120px] justify-center h-full">
-                    {/* Raised Bar */}
-                    <div className="w-1/2 h-full flex items-end">
-                      <motion.div
-                        className="w-full bg-gradient-to-t from-emerald-600 to-emerald-400 rounded-t-lg transition-all duration-500 relative group-hover:brightness-110"
-                        initial={{ height: 0 }}
-                        animate={{ height: `${raisedHeight}%` }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                      >
-                        <div className="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-neutral-950 border border-neutral-700 px-2 py-0.5 rounded text-[10px] text-white whitespace-nowrap pointer-events-none transition font-sans font-semibold tabular-nums">
-                          +${(d.raised / 1000).toFixed(0)}k
-                        </div>
-                      </motion.div>
-                    </div>
-                    {/* Spend Bar */}
-                    <div className="w-1/2 h-full flex items-end">
-                      <motion.div
-                        className="w-full bg-gradient-to-t from-amber-600 to-amber-400 rounded-t-lg transition-all duration-500 relative group-hover:brightness-110"
-                        initial={{ height: 0 }}
-                        animate={{ height: `${spendHeight}%` }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                      >
-                        <div className="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-neutral-950 border border-neutral-700 px-2 py-0.5 rounded text-[10px] text-white whitespace-nowrap pointer-events-none transition font-sans font-semibold tabular-nums">
-                          -${(d.spend / 1000).toFixed(0)}k
-                        </div>
-                      </motion.div>
+                <div key={d.month} className="flex flex-col items-center gap-1.5 h-full justify-end group">
+                  <div className="w-full flex items-end justify-center h-full">
+                    <div
+                      style={{ height: `${heightPct}%` }}
+                      className="w-full max-w-[36px] bg-slate-200 dark:bg-white/[0.1] hover:bg-indigo-600 dark:hover:bg-indigo-500 rounded-t-sm transition-colors relative"
+                    >
+                      <div className="opacity-0 group-hover:opacity-100 absolute -top-7 left-1/2 -translate-x-1/2 bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-1.5 py-0.5 rounded text-[10px] font-mono whitespace-nowrap pointer-events-none transition shadow-xs">
+                        ${(d.spend / 1000).toFixed(0)}k · {d.headcount} FTE
+                      </div>
                     </div>
                   </div>
-                  <span className="text-xs font-sans font-medium text-neutral-400 text-center">{d.month}</span>
+                  <span className="text-[10px] font-mono text-slate-400 dark:text-neutral-500 truncate w-full text-center">
+                    {d.month.split(" ")[0]}
+                  </span>
                 </div>
               );
             })}
           </div>
-
-          <div className="flex items-center justify-center gap-6 pt-4 text-xs font-sans font-medium">
-            <div className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-emerald-500" />
-              <span className="text-neutral-300">Capital Raised / Inflow</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-amber-500" />
-              <span className="text-neutral-300">Programmatic Disbursement / Spend</span>
-            </div>
-          </div>
         </div>
       </div>
 
-      {/* Granular Breakdown Table */}
-      <div className="p-6 rounded-2xl bg-neutral-900/60 border border-neutral-800 backdrop-blur space-y-4">
-        <h3 className="text-sm font-medium text-neutral-200">Granular Metric Ledger</h3>
+      {/* 4. Telemetry Data Table */}
+      <div className="bg-white dark:bg-[#111215] border border-slate-200/90 dark:border-white/[0.07] rounded-xl overflow-hidden shadow-2xs">
+        <div className="p-3.5 border-b border-slate-100 dark:border-white/[0.06] flex items-center justify-between">
+          <span className="text-xs font-semibold uppercase tracking-wider font-mono text-slate-900 dark:text-white">
+            Audited Monthly Telemetry Ledger
+          </span>
+          <span className="text-[11px] text-slate-400 font-mono">
+            Hope Foundation Official Registry
+          </span>
+        </div>
+
         <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse">
-            <thead>
-              <tr className="border-b border-neutral-800 text-[11px] font-sans font-semibold text-neutral-400 uppercase tracking-wider">
-                <th className="py-3 px-3">Reporting Period</th>
-                <th className="py-3 px-3 text-right">Inflow Volume</th>
-                <th className="py-3 px-3 text-right">Outflow Volume</th>
-                <th className="py-3 px-3 text-right">Net Reserve Addition</th>
-                <th className="py-3 px-3 text-right">Initiatives Completed</th>
-                <th className="py-3 px-3 text-right">Margin Efficiency</th>
+          <table className="w-full text-left text-xs">
+            <thead className="bg-slate-50/70 dark:bg-white/[0.02] border-b border-slate-200/80 dark:border-white/[0.06] text-slate-400 dark:text-neutral-500 font-mono text-[10px] uppercase">
+              <tr>
+                <th className="py-2.5 px-4">Period</th>
+                <th className="py-2.5 px-3 text-right">Headcount</th>
+                <th className="py-2.5 px-3 text-right">Monthly Spend</th>
+                <th className="py-2.5 px-3 text-right">Hires</th>
+                <th className="py-2.5 px-3 text-right">Departures</th>
+                <th className="py-2.5 px-4 text-right">Audit Status</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-neutral-800/60 font-sans text-xs">
+            <tbody className="divide-y divide-slate-100 dark:divide-white/[0.04]">
               {monthlyData.map((d) => (
-                <tr key={d.month} className="hover:bg-neutral-800/30 transition">
-                  <td className="py-3 px-3 font-medium text-neutral-200 whitespace-nowrap">{d.month}</td>
-                  <td className="py-3 px-3 text-right text-emerald-400 font-medium whitespace-nowrap">
-                    ${d.raised.toLocaleString()}
+                <tr key={d.month} className="hover:bg-slate-50/70 dark:hover:bg-white/[0.02] transition-colors">
+                  <td className="py-3 px-4 font-medium text-slate-900 dark:text-white">
+                    {d.month}
                   </td>
-                  <td className="py-3 px-3 text-right text-rose-400 font-medium whitespace-nowrap">
+                  <td className="py-3 px-3 text-right font-mono text-slate-900 dark:text-white tabular-nums">
+                    {d.headcount}
+                  </td>
+                  <td className="py-3 px-3 text-right font-mono text-slate-700 dark:text-neutral-300 tabular-nums">
                     ${d.spend.toLocaleString()}
                   </td>
-                  <td className="py-3 px-3 text-right text-neutral-200 font-medium whitespace-nowrap">
-                    ${(d.raised - d.spend).toLocaleString()}
+                  <td className="py-3 px-3 text-right font-mono text-slate-900 dark:text-white tabular-nums">
+                    +{d.hires}
                   </td>
-                  <td className="py-3 px-3 text-right text-neutral-300 whitespace-nowrap">{d.tasksCompleted} items</td>
-                  <td className="py-3 px-3 text-right text-amber-400 font-medium whitespace-nowrap">
-                    {Math.round(((d.raised - d.spend) / d.raised) * 100)}%
+                  <td className="py-3 px-3 text-right font-mono text-slate-500 tabular-nums">
+                    -{d.exits}
+                  </td>
+                  <td className="py-3 px-4 text-right font-mono text-[11px] text-slate-600 dark:text-neutral-400">
+                    Reconciled
                   </td>
                 </tr>
               ))}
@@ -270,6 +239,7 @@ export default function ReportsPage() {
           </table>
         </div>
       </div>
+
     </div>
   );
 }

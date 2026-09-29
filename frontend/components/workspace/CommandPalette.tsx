@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useWorkspace } from "@/context/WorkspaceContext";
@@ -9,153 +9,185 @@ import {
   LayoutDashboard,
   Users,
   FolderKanban,
+  FileCheck2,
   ShieldAlert,
   CreditCard,
   FileText,
   Settings,
+  Activity,
+  Bot,
+  HeartPulse,
+  UserPlus,
   ArrowRight,
+  Sparkles,
+  Building2,
   X
 } from "lucide-react";
 
 export default function CommandPalette() {
-  const { isCommandPaletteOpen, setIsCommandPaletteOpen, projects, members, audits } = useWorkspace();
+  const { isCommandPaletteOpen, setIsCommandPaletteOpen, members, projects } = useWorkspace();
   const [query, setQuery] = useState("");
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
-  const quickNav = [
-    { title: "Client Forge — Universal Home & Landing Page", path: "/", icon: ArrowRight },
-    { title: "Dashboard — Workforce & Operational State", path: "/workspace", icon: LayoutDashboard },
-    { title: "People — Employee Directory & Profiles", path: "/workspace/people", icon: Users },
-    { title: "Recruitment — Jobs & Applicant Tracking Pipeline", path: "/workspace/recruitment", icon: FolderKanban },
-    { title: "Attendance — Real-time & Calendar Overview", path: "/workspace/attendance", icon: ShieldAlert },
-    { title: "Leave — Requests & Multi-tier Approvals", path: "/workspace/leave", icon: FileText },
-    { title: "Payroll — Compensation & Direct Deposit Runs", path: "/workspace/payroll", icon: CreditCard },
-    { title: "Expenses — Submissions & Receipt Reconciliation", path: "/workspace/expenses", icon: CreditCard },
-    { title: "Performance — Review Cycles & Employee Goals", path: "/workspace/performance", icon: LayoutDashboard },
-    { title: "Documents — Policies, Contracts & Compliance", path: "/workspace/documents", icon: FileText },
-    { title: "Reports & Analytics — Cross-Department Metrics", path: "/workspace/reports", icon: LayoutDashboard },
-    { title: "Automation — Visual HR Event Workflows", path: "/workspace/automation", icon: Settings },
-    { title: "Help & Support — Tickets & Documentation", path: "/workspace/support", icon: Settings },
-    { title: "Settings — Organization, Roles & Permissions", path: "/workspace/settings", icon: Settings },
-    { title: "Projects & Tasks (Kanban)", path: "/workspace/projects", icon: FolderKanban },
-    { title: "Internal Audits & Risk Matrix", path: "/workspace/audits", icon: ShieldAlert },
+  const navigationCommands = [
+    { title: "Executive Dashboard", section: "Navigation", path: "/workspace", icon: LayoutDashboard },
+    { title: "People Directory", section: "Navigation", path: "/workspace/people", icon: Users },
+    { title: "Attendance & Shifts", section: "Navigation", path: "/workspace/attendance", icon: Activity },
+    { title: "Leave & Time Off", section: "Navigation", path: "/workspace/leave", icon: FileCheck2 },
+    { title: "Recruitment ATS", section: "Navigation", path: "/workspace/recruitment", icon: FolderKanban },
+    { title: "New Hire Onboarding", section: "Navigation", path: "/onboarding/peoplecore", icon: Sparkles },
+    { title: "Payroll Operations", section: "Navigation", path: "/workspace/payroll", icon: CreditCard },
+    { title: "Expenses & Claims", section: "Navigation", path: "/workspace/expenses", icon: CreditCard },
+    { title: "HR Documents", section: "Navigation", path: "/workspace/documents", icon: FileText },
+    { title: "Reviews & OKRs", section: "Navigation", path: "/workspace/performance", icon: Sparkles },
+    { title: "Projects & Tasks", section: "Navigation", path: "/workspace/projects", icon: FolderKanban },
+    { title: "Workforce Analytics", section: "Navigation", path: "/workspace/reports", icon: LayoutDashboard },
+    { title: "Compliance & Audits", section: "Navigation", path: "/workspace/audits", icon: ShieldAlert },
+    { title: "Workflow Automation", section: "Navigation", path: "/workspace/automation", icon: Bot },
+    { title: "Settings & Access", section: "Navigation", path: "/workspace/settings", icon: Settings },
   ];
 
-  const filteredNav = quickNav.filter((item) =>
-    item.title.toLowerCase().includes(query.toLowerCase())
+  const quickActionCommands = [
+    { title: "Add New Employee", section: "Quick Action", path: "/workspace/people/new", icon: UserPlus },
+    { title: "Create Job Requisition", section: "Quick Action", path: "/workspace/recruitment?action=create-job", icon: FolderKanban },
+    { title: "Request Leave / Absence", section: "Quick Action", path: "/workspace/leave?action=request", icon: FileCheck2 },
+    { title: "Review Payroll Exceptions", section: "Quick Action", path: "/workspace/payroll", icon: CreditCard },
+  ];
+
+  const memberCommands = members.slice(0, 8).map((m) => ({
+    title: `${m.name} — ${m.role} (${m.department})`,
+    section: "Personnel",
+    path: `/workspace/people?search=${encodeURIComponent(m.name)}`,
+    icon: Users,
+  }));
+
+  const allItems = [...navigationCommands, ...quickActionCommands, ...memberCommands];
+
+  const filteredItems = allItems.filter((item) =>
+    item.title.toLowerCase().includes(query.toLowerCase()) ||
+    item.section.toLowerCase().includes(query.toLowerCase())
   );
 
-  const filteredProjects = projects.filter((p) =>
-    p.name.toLowerCase().includes(query.toLowerCase())
-  );
+  useEffect(() => {
+    setSelectedIndex(0);
+  }, [query]);
+
+  useEffect(() => {
+    if (isCommandPaletteOpen) {
+      setTimeout(() => inputRef.current?.focus(), 50);
+    }
+  }, [isCommandPaletteOpen]);
 
   const handleSelect = (path: string) => {
     setIsCommandPaletteOpen(false);
+    setQuery("");
     router.push(path);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setSelectedIndex((prev) => (prev + 1) % Math.max(1, filteredItems.length));
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setSelectedIndex((prev) => (prev - 1 + filteredItems.length) % Math.max(1, filteredItems.length));
+    } else if (e.key === "Enter" && filteredItems[selectedIndex]) {
+      e.preventDefault();
+      handleSelect(filteredItems[selectedIndex].path);
+    } else if (e.key === "Escape") {
+      e.preventDefault();
+      setIsCommandPaletteOpen(false);
+    }
   };
 
   return (
     <AnimatePresence>
       {isCommandPaletteOpen && (
-        <div className="fixed inset-0 z-50 flex items-start justify-center pt-24 p-4">
+        <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 p-4 font-sans">
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.12 }}
             onClick={() => setIsCommandPaletteOpen(false)}
             className="fixed inset-0 bg-black/60 dark:bg-black/75 backdrop-blur-xs cursor-pointer"
           />
 
-          {/* Modal Card */}
+          {/* Dialog Container */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: -10 }}
+            initial={{ opacity: 0, scale: 0.98, y: -6 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: -10 }}
-            transition={{ type: "spring", stiffness: 450, damping: 32 }}
-            className="relative bg-white dark:bg-[#121216] border border-slate-200 dark:border-white/[0.14] rounded-3xl max-w-xl w-full shadow-2xl overflow-hidden z-10"
+            exit={{ opacity: 0, scale: 0.98, y: -6 }}
+            transition={{ duration: 0.12 }}
+            className="relative bg-white dark:bg-[#111215] border border-slate-200 dark:border-white/[0.1] rounded-xl max-w-xl w-full shadow-2xl overflow-hidden z-10"
           >
-            {/* Input Bar */}
-            <div className="p-4 border-b border-slate-100 dark:border-white/[0.08] flex items-center gap-3">
-              <Search className="w-5 h-5 text-slate-400 dark:text-neutral-400" />
+            {/* Search Input Bar */}
+            <div className="px-3.5 py-3 border-b border-slate-200/80 dark:border-white/[0.07] flex items-center gap-2.5">
+              <Search className="w-4 h-4 text-slate-400 dark:text-neutral-500 shrink-0" />
               <input
-                autoFocus
+                ref={inputRef}
                 type="text"
-                placeholder="Type a command or search people, projects, audits..."
+                placeholder="Type a command or jump to screen, person, or action..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                className="w-full bg-transparent text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-neutral-500 focus:outline-none font-sans"
+                onKeyDown={handleKeyDown}
+                className="w-full bg-transparent text-xs sm:text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-neutral-500 focus:outline-none"
               />
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
+              <button
                 onClick={() => setIsCommandPaletteOpen(false)}
-                className="p-1 text-slate-400 dark:text-neutral-500 hover:text-slate-900 dark:hover:text-white cursor-pointer"
+                className="p-1 text-slate-400 hover:text-slate-700 dark:hover:text-neutral-300 rounded cursor-pointer"
               >
-                <X className="w-4 h-4" />
-              </motion.button>
+                <X className="w-3.5 h-3.5" />
+              </button>
             </div>
 
             {/* Results List */}
-            <div className="p-3 max-h-80 overflow-y-auto space-y-4 text-xs font-sans">
-              {/* Navigation */}
-              <div>
-                <div className="px-3 py-1 text-[10px] font-sans font-semibold text-slate-400 dark:text-neutral-500 uppercase tracking-wider">
-                  Navigation
+            <div className="p-1.5 max-h-84 overflow-y-auto custom-scrollbar">
+              {filteredItems.length === 0 ? (
+                <div className="py-8 text-center text-xs text-slate-400 dark:text-neutral-500">
+                  No matching workspace commands or records found.
                 </div>
-                <div className="space-y-1 mt-1">
-                  {filteredNav.map((item) => {
+              ) : (
+                <div className="space-y-0.5">
+                  {filteredItems.map((item, idx) => {
                     const Icon = item.icon;
+                    const isSelected = idx === selectedIndex;
                     return (
-                      <motion.div
-                        key={item.path}
-                        whileHover={{ x: 2, backgroundColor: "rgba(99, 102, 241, 0.05)" }}
-                        whileTap={{ scale: 0.99 }}
+                      <button
+                        key={`${item.section}-${item.title}`}
                         onClick={() => handleSelect(item.path)}
-                        className="flex items-center justify-between px-3 py-2.5 rounded-xl text-slate-700 dark:text-neutral-300 hover:text-slate-950 dark:hover:text-white cursor-pointer transition-colors"
+                        onMouseEnter={() => setSelectedIndex(idx)}
+                        className={`w-full text-left px-2.5 py-2 rounded-lg text-xs flex items-center justify-between transition-colors cursor-pointer ${
+                          isSelected
+                            ? "bg-slate-100 dark:bg-white/[0.08] text-slate-950 dark:text-white font-medium"
+                            : "text-slate-600 dark:text-neutral-400 hover:bg-slate-50 dark:hover:bg-white/[0.03]"
+                        }`}
                       >
-                        <div className="flex items-center gap-3">
-                          <Icon className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
-                          <span className="font-medium">{item.title}</span>
+                        <div className="flex items-center gap-2.5 min-w-0">
+                          <Icon className={`w-3.5 h-3.5 shrink-0 ${isSelected ? "text-indigo-600 dark:text-indigo-400" : "text-slate-400 dark:text-neutral-500"}`} />
+                          <span className="truncate">{item.title}</span>
                         </div>
-                        <ArrowRight className="w-3.5 h-3.5 text-slate-400 dark:text-neutral-500" />
-                      </motion.div>
+                        <span className="text-[10px] uppercase font-mono text-slate-400 dark:text-neutral-500 shrink-0 ml-2">
+                          {item.section}
+                        </span>
+                      </button>
                     );
                   })}
-                </div>
-              </div>
-
-              {/* Projects */}
-              {filteredProjects.length > 0 && (
-                <div>
-                  <div className="px-3 py-1 text-[10px] font-sans font-semibold text-slate-400 dark:text-neutral-500 uppercase tracking-wider">
-                    Projects
-                  </div>
-                  <div className="space-y-1 mt-1">
-                    {filteredProjects.map((p) => (
-                      <motion.div
-                        key={p.id}
-                        whileHover={{ x: 2, backgroundColor: "rgba(99, 102, 241, 0.05)" }}
-                        whileTap={{ scale: 0.99 }}
-                        onClick={() => handleSelect("/workspace/projects")}
-                        className="flex items-center justify-between px-3 py-2.5 rounded-xl text-slate-700 dark:text-neutral-300 hover:text-slate-950 dark:hover:text-white cursor-pointer transition-colors"
-                      >
-                        <div>
-                          <div className="font-medium text-slate-900 dark:text-white">{p.name}</div>
-                          <div className="text-[11px] text-slate-500 dark:text-neutral-500">{p.code} • {p.department}</div>
-                        </div>
-                        <span className="text-[11px] font-sans text-emerald-600 dark:text-emerald-400 font-medium">{p.progress}%</span>
-                      </motion.div>
-                    ))}
-                  </div>
                 </div>
               )}
             </div>
 
-            {/* Keyboard Footer */}
-            <div className="p-3 border-t border-slate-100 dark:border-white/[0.06] bg-slate-50/70 dark:bg-white/[0.01] flex items-center justify-between text-[11px] font-sans text-slate-500 dark:text-neutral-500 px-4">
-              <span>Use arrows to navigate</span>
-              <span>Esc to close</span>
+            {/* Keyboard Footer Hint */}
+            <div className="px-3 py-2 border-t border-slate-200/80 dark:border-white/[0.07] bg-slate-50/60 dark:bg-white/[0.015] flex items-center justify-between text-[11px] text-slate-400 dark:text-neutral-500 font-mono">
+              <div className="flex items-center gap-3">
+                <span>↑↓ navigate</span>
+                <span>↵ select</span>
+                <span>esc close</span>
+              </div>
+              <span>Hope Foundation OS</span>
             </div>
           </motion.div>
         </div>
