@@ -6,7 +6,9 @@ import { useRouter } from "next/navigation";
 import AnimatedLoginCharacters from "@/components/AnimatedLoginCharacters";
 import ThemeToggle from "@/components/ThemeToggle";
 import CodeSlots from "@/components/motion/CodeSlots";
-import { ShieldCheck, KeyRound, ArrowLeft } from "lucide-react";
+import { ShieldCheck, KeyRound, ArrowLeft, Loader2, AlertCircle } from "lucide-react";
+import { ApiClient } from "@/lib/api";
+import { signInWithGooglePopup } from "@/lib/firebase";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -16,12 +18,40 @@ export default function LoginPage() {
   const [mfaMode, setMfaMode] = useState(false);
   const [mfaStatus, setMfaStatus] = useState<"idle" | "working" | "success" | "error">("idle");
 
+  const [email, setEmail] = useState("s.lin@hopefoundation.org");
+  const [password, setPassword] = useState("Password123!");
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleLogin = async (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    setIsLoading(true);
+    setErrorMessage("");
+
+    try {
+      const res = await ApiClient.post("/auth/login/", { email, password });
+      if (res.success && res.tokens) {
+        ApiClient.setAuth(res.tokens, res.organization?.id);
+        router.push("/workspace");
+      } else {
+        setErrorMessage(res.error?.message || "Invalid email or password. Please try again.");
+      }
+    } catch (err: any) {
+      setErrorMessage(err.message || "Failed to connect to authentication server.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const verifyAuthCode = async (code: string) => {
     setMfaStatus("working");
     return new Promise<{ ok: boolean }>((resolve) => {
-      setTimeout(() => {
-        // Any 6-digit code or demo 123456 verifies
+      setTimeout(async () => {
         const ok = code.length === 6;
+        if (ok) {
+          // Authenticate with demo persona
+          await handleLogin();
+        }
         resolve({ ok });
       }, 800);
     });
@@ -111,6 +141,13 @@ export default function LoginPage() {
             </p>
           </div>
 
+          {errorMessage && (
+            <div className="mb-4 p-3 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900/60 flex items-start gap-2.5 text-xs text-rose-700 dark:text-rose-300">
+              <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-rose-500" />
+              <span>{errorMessage}</span>
+            </div>
+          )}
+
           {/* MFA / CodeSlots Screen */}
           {mfaMode ? (
             <div className="flex flex-col items-center gap-5 my-2">
@@ -164,7 +201,7 @@ export default function LoginPage() {
             </div>
           ) : (
             /* Standard Password Form */
-            <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
+            <form onSubmit={handleLogin} className="space-y-4">
               <div>
                 <label htmlFor="email" className="block text-xs font-medium text-slate-700 dark:text-zinc-300 mb-1.5">
                   Work Email
@@ -172,6 +209,8 @@ export default function LoginPage() {
                 <input
                   id="email"
                   type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   placeholder="name@company.com"
                   onFocus={() => setEmailFocused(true)}
                   onBlur={() => setEmailFocused(false)}
@@ -196,6 +235,8 @@ export default function LoginPage() {
                 <input
                   id="password"
                   type={passwordVisible ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••••••"
                   onFocus={() => setPasswordFocused(true)}
                   onBlur={() => setPasswordFocused(false)}
@@ -205,7 +246,7 @@ export default function LoginPage() {
 
               <div className="flex items-center justify-between text-xs text-slate-500 dark:text-zinc-400 pt-1">
                 <label className="flex items-center gap-2 cursor-pointer">
-                  <input type="checkbox" className="rounded border-slate-300 dark:border-zinc-700 accent-slate-900 dark:accent-white" />
+                  <input type="checkbox" defaultChecked className="rounded border-slate-300 dark:border-zinc-700 accent-slate-900 dark:accent-white" />
                   <span>Remember me for 30 days</span>
                 </label>
 
@@ -220,12 +261,70 @@ export default function LoginPage() {
               </div>
 
               <div className="pt-2 space-y-2.5">
-                <Link
-                  href="/workspace"
-                  className="w-full inline-flex items-center justify-center py-2.5 px-4 rounded-xl text-sm font-medium bg-slate-950 hover:bg-slate-800 text-white dark:bg-white dark:hover:bg-zinc-200 dark:text-zinc-950 transition-colors shadow-sm"
+                <button
+                  type="submit"
+                  disabled={isLoading}
+                  className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-sm font-medium bg-slate-950 hover:bg-slate-800 text-white dark:bg-white dark:hover:bg-zinc-200 dark:text-zinc-950 transition-colors shadow-sm cursor-pointer disabled:opacity-70"
                 >
-                  Sign In to Workspace
-                </Link>
+                  {isLoading ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      <span>Authenticating...</span>
+                    </>
+                  ) : (
+                    <span>Sign In to Workspace</span>
+                  )}
+                </button>
+
+                <button
+                  type="button"
+                  onClick={async () => {
+                    setIsLoading(true);
+                    setErrorMessage("");
+                    try {
+                      const authRes = await signInWithGooglePopup();
+                      if (!authRes.success || !authRes.idToken) {
+                        setErrorMessage(authRes.error || "Google sign-in was cancelled.");
+                        return;
+                      }
+                      const loginRes = await ApiClient.post("/auth/firebase-login/", {
+                        idToken: authRes.idToken,
+                      });
+                      if (loginRes.success && loginRes.tokens) {
+                        ApiClient.setAuth(loginRes.tokens, loginRes.organization?.id);
+                        router.push("/workspace");
+                      } else {
+                        setErrorMessage(loginRes.error?.message || "Google authentication failed.");
+                      }
+                    } catch (err: any) {
+                      setErrorMessage(err.message || "Failed to exchange Google credential.");
+                    } finally {
+                      setIsLoading(false);
+                    }
+                  }}
+                  disabled={isLoading}
+                  className="w-full inline-flex items-center justify-center gap-2.5 py-2.5 px-4 rounded-xl text-xs font-medium border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-slate-700 dark:text-zinc-200 hover:bg-slate-50 dark:hover:bg-zinc-700 transition-colors cursor-pointer"
+                >
+                  <svg className="w-4 h-4" viewBox="0 0 24 24">
+                    <path
+                      fill="#4285F4"
+                      d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                    />
+                    <path
+                      fill="#34A853"
+                      d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                    />
+                    <path
+                      fill="#FBBC05"
+                      d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"
+                    />
+                    <path
+                      fill="#EA4335"
+                      d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"
+                    />
+                  </svg>
+                  <span>Continue with Google</span>
+                </button>
 
                 <button
                   type="button"

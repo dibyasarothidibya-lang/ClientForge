@@ -484,7 +484,7 @@ export default function PricingPage() {
 
                       <div className="my-6">
                         <div className="flex items-baseline gap-1">
-                          <span className="font-serif text-4xl sm:text-5xl text-slate-900 dark:text-white font-normal">
+                          <span className="font-sans text-4xl sm:text-5xl font-medium tracking-tight text-slate-950 dark:text-white tabular-nums">
                             ${getClientForgePrice(tier)}
                           </span>
                           <span className="text-xs text-slate-500 dark:text-neutral-400 font-sans">

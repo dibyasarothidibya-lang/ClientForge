@@ -29,15 +29,39 @@ export default function SecurityPage() {
   const [isPackModalOpen, setIsPackModalOpen] = useState(false);
   const [packRequested, setPackRequested] = useState(false);
   const [packEmail, setPackEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
-  const handleRequestPack = (e: React.FormEvent) => {
+  const handleRequestPack = async (e: React.FormEvent) => {
     e.preventDefault();
-    setPackRequested(true);
-    setTimeout(() => {
-      setIsPackModalOpen(false);
-      setPackRequested(false);
-      setPackEmail("");
-    }, 2000);
+    if (!packEmail) return;
+
+    setIsSubmitting(true);
+    setSubmitError("");
+
+    try {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000/api/v1";
+      const res = await fetch(`${apiUrl}/notifications/request-compliance-pack/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: packEmail }),
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setPackRequested(true);
+        setTimeout(() => {
+          setIsPackModalOpen(false);
+          setPackRequested(false);
+          setPackEmail("");
+        }, 3000);
+      } else {
+        setSubmitError(data.message || "Failed to dispatch email. Please try again.");
+      }
+    } catch (err: any) {
+      setSubmitError(err.message || "Network error. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const certifications = [
@@ -295,12 +319,19 @@ export default function SecurityPage() {
                     />
                   </div>
 
+                  {submitError && (
+                    <div className="p-2.5 rounded-lg bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900/60 text-rose-600 dark:text-rose-400 text-xs">
+                      {submitError}
+                    </div>
+                  )}
+
                   <div className="pt-2">
                     <button
                       type="submit"
-                      className="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs transition cursor-pointer shadow-md shadow-emerald-600/25"
+                      disabled={isSubmitting}
+                      className="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 disabled:opacity-60 text-white font-semibold text-xs transition cursor-pointer shadow-md shadow-emerald-600/25 flex items-center justify-center gap-2"
                     >
-                      Receive Compliance Pack
+                      {isSubmitting ? "Dispatching Compliance Pack..." : "Receive Compliance Pack"}
                     </button>
                   </div>
                 </form>

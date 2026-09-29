@@ -5,13 +5,16 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import AnimatedLoginCharacters from "@/components/AnimatedLoginCharacters";
 import ThemeToggle from "@/components/ThemeToggle";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles, Loader2, AlertCircle } from "lucide-react";
+import { ApiClient } from "@/lib/api";
 
 export default function SignupPage() {
   const router = useRouter();
   const [emailFocused, setEmailFocused] = useState(false);
   const [passwordFocused, setPasswordFocused] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -21,9 +24,34 @@ export default function SignupPage() {
     orgType: "Advisory & Principal Studio",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    router.push("/onboarding");
+    setIsLoading(true);
+    setErrorMessage("");
+
+    try {
+      const res = await ApiClient.post("/auth/register/", {
+        full_name: formData.fullName,
+        email: formData.email,
+        password: formData.password,
+        org_name: formData.orgName || `${formData.fullName}'s Organization`,
+        org_type: formData.orgType,
+      });
+
+      if (res.success && res.tokens) {
+        ApiClient.setAuth(res.tokens, res.organization?.id);
+        router.push("/workspace");
+      } else {
+        const errorMsg =
+          res.error?.message ||
+          (res.error?.details ? JSON.stringify(res.error.details) : "Registration failed.");
+        setErrorMessage(errorMsg);
+      }
+    } catch (err: any) {
+      setErrorMessage(err.message || "Failed to communicate with server.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -98,16 +126,24 @@ export default function SignupPage() {
         </header>
 
         {/* Center: Auth Form Container */}
-        <div className="w-full max-w-sm sm:max-w-md mx-auto my-auto py-6 sm:py-8">
-          <div className="mb-5">
+        <div className="w-full max-w-sm sm:max-w-md mx-auto my-auto py-8">
+          <div className="mb-6">
             <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-slate-950 dark:text-white">
               Create your workspace
             </h1>
-            <p className="text-sm text-slate-500 dark:text-zinc-400 mt-1">
-              Set up your client intelligence and pipeline engine.
+            <p className="text-sm text-slate-500 dark:text-zinc-400 mt-1.5">
+              Launch enterprise personnel operations and multi-tenant telemetry.
             </p>
           </div>
 
+          {errorMessage && (
+            <div className="mb-4 p-3 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900/60 flex items-start gap-2.5 text-xs text-rose-700 dark:text-rose-300">
+              <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-rose-500" />
+              <span>{errorMessage}</span>
+            </div>
+          )}
+
+          {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-3.5">
             <div>
               <label htmlFor="fullName" className="block text-xs font-medium text-slate-700 dark:text-zinc-300 mb-1">
@@ -116,7 +152,7 @@ export default function SignupPage() {
               <input
                 id="fullName"
                 type="text"
-                placeholder="Marcus Vance"
+                placeholder="Dr. Sarah Lin"
                 required
                 value={formData.fullName}
                 onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
@@ -126,12 +162,12 @@ export default function SignupPage() {
 
             <div>
               <label htmlFor="orgName" className="block text-xs font-medium text-slate-700 dark:text-zinc-300 mb-1">
-                Organization / Studio Name
+                Organization / Company Name
               </label>
               <input
                 id="orgName"
                 type="text"
-                placeholder="Vance Advisory Group"
+                placeholder="Hope Foundation"
                 required
                 value={formData.orgName}
                 onChange={(e) => setFormData({ ...formData, orgName: e.target.value })}
@@ -146,7 +182,7 @@ export default function SignupPage() {
               <input
                 id="email"
                 type="email"
-                placeholder="marcus@vancegroup.com"
+                placeholder="s.lin@hopefoundation.org"
                 required
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -173,8 +209,9 @@ export default function SignupPage() {
               <input
                 id="password"
                 type={passwordVisible ? "text" : "password"}
-                placeholder="Create a secure passphrase"
+                placeholder="Create a secure passphrase (min. 8 characters)"
                 required
+                minLength={8}
                 value={formData.password}
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                 onFocus={() => setPasswordFocused(true)}
@@ -186,10 +223,20 @@ export default function SignupPage() {
             <div className="pt-2">
               <button
                 type="submit"
-                className="w-full py-2.5 px-4 rounded-xl text-sm font-medium bg-slate-950 hover:bg-slate-800 text-white dark:bg-white dark:hover:bg-zinc-200 dark:text-zinc-950 transition-colors shadow-sm flex items-center justify-center gap-1.5"
+                disabled={isLoading}
+                className="w-full py-2.5 px-4 rounded-xl text-sm font-medium bg-slate-950 hover:bg-slate-800 text-white dark:bg-white dark:hover:bg-zinc-200 dark:text-zinc-950 transition-colors shadow-sm flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-70"
               >
-                <span>Continue to Onboarding</span>
-                <ArrowRight className="w-4 h-4" />
+                {isLoading ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span>Provisioning Organization...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Create Organization & Enter</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </>
+                )}
               </button>
             </div>
 

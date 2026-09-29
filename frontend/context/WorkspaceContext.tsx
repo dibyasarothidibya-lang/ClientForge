@@ -53,6 +53,7 @@ import {
   demoSupportTickets,
   demoNotifications,
 } from "@/lib/peopleCoreData";
+import { ApiClient } from "@/lib/api";
 
 interface WorkspaceContextType {
   activeOrg: Organization;
@@ -61,6 +62,7 @@ interface WorkspaceContextType {
   currentRole: UserRole;
   setCurrentRole: (role: UserRole) => void;
   currentUser: Member;
+  backendConnected: boolean;
   
   // Data State
   members: Member[];
@@ -88,7 +90,7 @@ interface WorkspaceContextType {
   supportTickets: SupportTicket[];
   notifications: NotificationItem[];
   
-  // State Mutators (Mock pure frontend actions)
+  // State Mutators
   addTask: (task: Omit<Task, "id" | "commentsCount">) => void;
   updateTaskStatus: (taskId: string, status: Task["status"]) => void;
   addFinding: (finding: Omit<AuditFinding, "id">) => void;
@@ -130,6 +132,7 @@ export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
   const [activeOrg, setActiveOrg] = useState<Organization>(primaryOrg);
   const allOrgs = [primaryOrg];
   const [currentRole, setCurrentRole] = useState<UserRole>("Owner");
+  const [backendConnected, setBackendConnected] = useState(false);
   
   const [members, setMembers] = useState<Member[]>(demoMembers);
   const [projects, setProjects] = useState<Project[]>(demoProjects);
@@ -160,6 +163,51 @@ export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
   const [unreadNotificationCount, setUnreadNotificationCount] = useState(3);
+
+  // Hydrate from real backend API on mount
+  useEffect(() => {
+    async function hydrateFromBackend() {
+      try {
+        const res = await ApiClient.get("/operations/bootstrap/");
+        if (res.success) {
+          setBackendConnected(true);
+          if (res.activeOrg) {
+            setActiveOrg({
+              id: res.activeOrg.id,
+              name: res.activeOrg.name,
+              slug: res.activeOrg.slug,
+              type: res.activeOrg.org_type || "Enterprise",
+              logo: res.activeOrg.logo_url || "/logo.jpg",
+              plan: res.activeOrg.plan || "Enterprise",
+              memberCount: res.activeOrg.member_count || res.members?.length || 248,
+              currency: res.activeOrg.currency || "USD ($)",
+              timezone: res.activeOrg.timezone || "UTC",
+            });
+          }
+          if (res.members?.length) setMembers(res.members);
+          if (res.attendanceRecords?.length) setAttendanceRecords(res.attendanceRecords);
+          if (res.leaveRequests?.length) setLeaveRequests(res.leaveRequests);
+          if (res.payrolls?.length) setPayrolls(res.payrolls);
+          if (res.expenses?.length) setExpenses(res.expenses);
+          if (res.hrDocuments?.length) setHrDocuments(res.hrDocuments);
+          if (res.workflows?.length) setWorkflows(res.workflows);
+          if (res.candidates?.length) setCandidates(res.candidates);
+          if (res.jobs?.length) setJobs(res.jobs);
+          if (res.goals?.length) setGoals(res.goals);
+          if (res.tasks?.length) setTasks(res.tasks);
+          if (res.findings?.length) setFindings(res.findings);
+          if (res.supportTickets?.length) setSupportTickets(res.supportTickets);
+          if (res.transactions?.length) setTransactions(res.transactions);
+          if (res.notifications?.length) setNotifications(res.notifications);
+          if (res.activities?.length) setActivities(res.activities);
+        }
+      } catch (err) {
+        console.info("ClientForge running with seeded dataset:", err);
+      }
+    }
+
+    hydrateFromBackend();
+  }, []);
 
   // Keyboard shortcut for Cmd/Ctrl + K
   useEffect(() => {
@@ -194,16 +242,27 @@ export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
         target: newTask.title,
         resourceType: "Project",
         timestamp: "Just now",
-        metadata: `Priority: ${newTask.priority} | Assignee: ${newTask.assignee.name}`,
+        metadata: `Priority: ${newTask.priority} | Assignee: ${newTask.assignee?.name || 'Unassigned'}`,
       },
       ...prev,
     ]);
+
+    ApiClient.post("/operations/tasks/", {
+      title: taskData.title,
+      description: taskData.description,
+      status: taskData.status,
+      priority: taskData.priority,
+      assigneeId: taskData.assignee?.id,
+      dueDate: taskData.dueDate,
+      labels: taskData.labels,
+    });
   };
 
   const updateTaskStatus = (taskId: string, status: Task["status"]) => {
     setTasks((prev) =>
       prev.map((t) => (t.id === taskId ? { ...t, status } : t))
     );
+    ApiClient.patch(`/operations/tasks/${taskId}/status/`, { status });
   };
 
   const addFinding = (findingData: Omit<AuditFinding, "id">) => {
@@ -212,12 +271,15 @@ export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
       id: `fnd_${Date.now()}`,
     };
     setFindings((prev) => [newFinding, ...prev]);
+
+    ApiClient.post("/operations/findings/", findingData);
   };
 
   const updateFindingStatus = (id: string, status: AuditFinding["status"]) => {
     setFindings((prev) =>
       prev.map((f) => (f.id === id ? { ...f, status } : f))
     );
+    ApiClient.patch(`/operations/findings/${id}/status/`, { status });
   };
 
   const approveRequest = (id: string, reason?: string) => {
@@ -265,6 +327,7 @@ export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
       date: "Just now",
     };
     setTransactions((prev) => [newTx, ...prev]);
+    ApiClient.post("/operations/transactions/", txData);
   };
 
   const addDocument = (docData: Omit<DocumentItem, "id" | "updatedAt">) => {
@@ -278,6 +341,7 @@ export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
 
   const markNotificationsRead = () => {
     setUnreadNotificationCount(0);
+    ApiClient.post("/notifications/mark-all-read/");
   };
 
   // PeopleCore Mutators
@@ -288,25 +352,14 @@ export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
       appliedDate: new Date().toISOString().split("T")[0],
     };
     setCandidates((prev) => [newCand, ...prev]);
-    setActivities((prev) => [
-      {
-        id: `act_${Date.now()}`,
-        actor: currentUser.name,
-        actorAvatar: currentUser.avatar,
-        action: "added candidate",
-        target: `${candData.name} (${candData.role})`,
-        resourceType: "Recruitment" as any,
-        timestamp: "Just now",
-        metadata: `Stage: ${candData.stage}`,
-      },
-      ...prev,
-    ]);
+    ApiClient.post("/operations/candidates/", candData);
   };
 
   const updateCandidateStage = (candidateId: string, stage: Candidate["stage"]) => {
     setCandidates((prev) =>
       prev.map((c) => (c.id === candidateId ? { ...c, stage } : c))
     );
+    ApiClient.patch(`/operations/candidates/${candidateId}/stage/`, { stage });
   };
 
   const addJob = (jobData: Omit<JobPosting, "id" | "postedDate" | "applicantsCount">) => {
@@ -317,6 +370,7 @@ export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
       applicantsCount: 0,
     };
     setJobs((prev) => [newJob, ...prev]);
+    ApiClient.post("/operations/jobs/", jobData);
   };
 
   const addLeaveRequest = (reqData: Omit<LeaveRequest, "id" | "appliedDate" | "status" | "workflowStage">) => {
@@ -328,6 +382,13 @@ export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
       workflowStage: "Manager",
     };
     setLeaveRequests((prev) => [newLeave, ...prev]);
+
+    ApiClient.post("/leave/", {
+      leave_type: reqData.leaveType,
+      start_date: reqData.startDate,
+      end_date: reqData.endDate,
+      reason: reqData.reason,
+    });
   };
 
   const approveLeaveRequest = (id: string) => {
@@ -347,12 +408,15 @@ export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
       },
       ...prev,
     ]);
+
+    ApiClient.post(`/leave/${id}/approve/`, { reason: "Approved via Workspace" });
   };
 
   const rejectLeaveRequest = (id: string) => {
     setLeaveRequests((prev) =>
       prev.map((l) => (l.id === id ? { ...l, status: "Rejected", workflowStage: "Completed" } : l))
     );
+    ApiClient.post(`/leave/${id}/reject/`, { reason: "Rejected via Workspace" });
   };
 
   const addExpense = (expData: Omit<ExpenseRecord, "id" | "date" | "status">) => {
@@ -363,18 +427,30 @@ export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
       status: "Pending",
     };
     setExpenses((prev) => [newExp, ...prev]);
+
+    ApiClient.post("/payroll/expenses/", {
+      category: expData.category,
+      amount: expData.amount,
+      currency: expData.currency,
+      date: new Date().toISOString().split("T")[0],
+      merchant: expData.merchant,
+      description: expData.description,
+      receipt_url: expData.receiptUrl,
+    });
   };
 
   const approveExpense = (id: string) => {
     setExpenses((prev) =>
       prev.map((e) => (e.id === id ? { ...e, status: "Approved" } : e))
     );
+    ApiClient.post(`/payroll/expenses/${id}/approve/`);
   };
 
   const rejectExpense = (id: string) => {
     setExpenses((prev) =>
       prev.map((e) => (e.id === id ? { ...e, status: "Rejected" } : e))
     );
+    ApiClient.post(`/payroll/expenses/${id}/reject/`);
   };
 
   const addGoal = (goalData: Omit<PerformanceGoal, "id">) => {
@@ -383,12 +459,14 @@ export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
       id: `goal_${Date.now()}`,
     };
     setGoals((prev) => [newGoal, ...prev]);
+    ApiClient.post("/operations/goals/", goalData);
   };
 
   const updateGoalProgress = (id: string, progress: number) => {
     setGoals((prev) =>
       prev.map((g) => (g.id === id ? { ...g, progress, status: progress >= 100 ? "Completed" : g.status } : g))
     );
+    ApiClient.patch(`/operations/goals/${id}/progress/`, { progress });
   };
 
   const addHRDocument = (docData: Omit<HRDocument, "id" | "uploadDate" | "downloadCount">) => {
@@ -399,12 +477,14 @@ export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
       downloadCount: 0,
     };
     setHrDocuments((prev) => [newDoc, ...prev]);
+    ApiClient.post("/documents/", docData);
   };
 
   const toggleWorkflowStatus = (id: string) => {
     setWorkflows((prev) =>
       prev.map((w) => (w.id === id ? { ...w, status: w.status === "Active" ? "Paused" : "Active" } : w))
     );
+    ApiClient.post(`/workflows/${id}/toggle/`);
   };
 
   const addSupportTicket = (ticketData: Omit<SupportTicket, "id" | "ticketNumber" | "createdDate" | "lastUpdated" | "status">) => {
@@ -417,12 +497,14 @@ export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
       status: "Open",
     };
     setSupportTickets((prev) => [newTicket, ...prev]);
+    ApiClient.post("/operations/tickets/", ticketData);
   };
 
   const markNotificationAsRead = (id: string) => {
     setNotifications((prev) =>
       prev.map((n) => (n.id === id ? { ...n, read: true } : n))
     );
+    ApiClient.post(`/notifications/${id}/read/`);
   };
 
   return (
@@ -434,6 +516,7 @@ export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
         currentRole,
         setCurrentRole,
         currentUser,
+        backendConnected,
         members,
         projects,
         tasks,
