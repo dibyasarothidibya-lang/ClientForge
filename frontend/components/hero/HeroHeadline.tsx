@@ -40,16 +40,7 @@ export default function HeroHeadline() {
       }}
       className="relative text-center max-w-4xl mx-auto flex flex-col items-center pt-2 sm:pt-6 will-change-transform"
     >
-      {/* Editorial Category Pill */}
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-slate-200/80 dark:border-white/10 bg-white/70 dark:bg-white/[0.03] text-slate-700 dark:text-neutral-300 text-xs tracking-wider uppercase mb-6 font-sans font-medium backdrop-blur-md shadow-xs"
-      >
-        <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
-        <span>Unified Enterprise Workforce & Pipeline OS</span>
-      </motion.div>
+
       
       {/* Enterprise Editorial Headline in Cormorant Garamond */}
       <motion.h1
