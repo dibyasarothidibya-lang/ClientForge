@@ -6,9 +6,7 @@ backend/venv/
 *.pyc
 
 # Local database, environment secrets, and media
-backend/db.sqlite3
-backend/.env
-backend/media/
+backend/
 frontend/.env.local
 *.env*
 *.json
