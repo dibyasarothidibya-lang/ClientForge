@@ -10,13 +10,230 @@
 [![React 19](https://img.shields.io/badge/React-19.2.8-blue?style=flat-square&logo=react)](https://react.dev/)
 [![Django 6](https://img.shields.io/badge/Django-6.1.1-092e20?style=flat-square&logo=django)](https://www.djangoproject.com/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-336791?style=flat-square&logo=postgresql)](https://www.postgresql.org/)
+[![Stripe](https://img.shields.io/badge/Stripe-v15.6-635bff?style=flat-square&logo=stripe)](https://stripe.com/)
+[![Firebase](https://img.shields.io/badge/Firebase-v12.19-ffca28?style=flat-square&logo=firebase)](https://firebase.google.com/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178c6?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
 [![TailwindCSS 4](https://img.shields.io/badge/TailwindCSS-4.0-38b2ac?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
 [![License: Proprietary](https://img.shields.io/badge/License-Proprietary-red?style=flat-square)](#-license)
 
-[Features](#-core-capabilities) • [Architecture](#-architecture--stack) • [Quick Start](#-quick-start) • [Environment Variables](#-configuration) • [API Overview](#-backend-api-architecture)
+[System Architecture](#-master-system-architecture--flowcharts) • [Module Flowcharts](#-end-to-end-operational-flowcharts) • [Core Capabilities](#-core-capabilities) • [Quick Start](#-quick-start) • [Environment Variables](#-configuration)
 
 </div>
+
+---
+
+## 🗺️ Master System Architecture & Flowcharts
+
+### 1. High-Level Enterprise System Topology
+
+The following diagram maps the entire distributed architecture across client applications, perimeter security, API gateways, core service domains, asynchronous background processing, database tiers, and third-party integrations:
+
+```mermaid
+flowchart TD
+    subgraph Clients["Presentation & Client Layer (Next.js 16 / React 19)"]
+        WebDesktop["Desktop Browser (App Router)"]
+        WebMobile["Mobile Responsive Client"]
+        LivingAuth["Living Characters Auth Stage"]
+        PricingUI["Pricing & Tier Checkout Modal"]
+        ComplianceUI["Security & Compliance Pack Modal"]
+    end
+
+    subgraph SecurityPerimeter["Perimeter Security & Routing"]
+        Cloudflare["Cloudflare Edge (DDoS / SSL Termination)"]
+        CORS["Django CORS Middleware"]
+        TenantContext["TenantContextMiddleware (Organization Scoping)"]
+        JWTAuth["JWT Bearer Authentication Handler"]
+        Throttling["API Rate Limiting (User / Anon / Auth)"]
+    end
+
+    subgraph APIGateway["Core REST API Engine (Django 6 / DRF 3.18)"]
+        AuthApp["apps.accounts (Users, Sessions, MFA)"]
+        OrgApp["apps.organizations (Tenants, Teams, RBAC)"]
+        EmpApp["apps.employees (Lifecycle, Profiles, Directory)"]
+        AttApp["apps.attendance (Shifts, GPS / IP Punch Clocks)"]
+        LeaveApp["apps.leave (Balances, Multi-Tier Approvals)"]
+        PayrollApp["apps.payroll (Comp Ledgers, Payslip Disbursal)"]
+        DocApp["apps.documents (AES-256 Vault, SHA-256 Seals)"]
+        AuditApp["apps.audit (HMAC Immutable Activity Log)"]
+        OpsApp["apps.operations (Pipeline, Bootstrap, Radar)"]
+        NotifApp["apps.notifications (Email Service & CID Branding)"]
+        IntegApp["apps.integrations (Firebase SSO, Stripe Sessions)"]
+    end
+
+    subgraph AsyncWorker["Asynchronous Event & Task Processing"]
+        RedisBroker["Redis 8 (Message Broker & Cache)"]
+        CeleryWorker["Celery 5.6 Worker Cluster"]
+        CeleryBeat["Celery Beat Periodic Scheduler"]
+    end
+
+    subgraph Persistence["Persistence & Storage Layer"]
+        PostgresPrimary[("PostgreSQL 16 Primary DB (ACID Multi-Tenant)")]
+        LocalMedia["Local Media Encrypted Volume"]
+        CloudStorage["Google Cloud Storage Bucket"]
+    end
+
+    subgraph ExternalEcosystem["Third-Party Cloud Ecosystem"]
+        GoogleIdentity["Firebase Auth / Google Identity Toolkit"]
+        StripeGateway["Stripe Checkout & Billing Engine"]
+        GoogleSMTP["Gmail SMTP Relay (smtp.gmail.com)"]
+        ResendSMTP["Resend Transactional Mail Engine"]
+    end
+
+    %% Client Interactions
+    Clients -->|HTTPS Requests| Cloudflare
+    Cloudflare --> CORS
+    CORS --> TenantContext
+    TenantContext --> JWTAuth
+    JWTAuth --> Throttling
+
+    %% Routing to Apps
+    Throttling --> AuthApp
+    Throttling --> OrgApp
+    Throttling --> EmpApp
+    Throttling --> AttApp
+    Throttling --> LeaveApp
+    Throttling --> PayrollApp
+    Throttling --> DocApp
+    Throttling --> AuditApp
+    Throttling --> OpsApp
+    Throttling --> NotifApp
+    Throttling --> IntegApp
+
+    %% Integrations & External
+    IntegApp -->|OAuth Token Verification| GoogleIdentity
+    IntegApp -->|Session Creation & Webhooks| StripeGateway
+    NotifApp -->|TLS 587 Relay| GoogleSMTP
+    NotifApp -->|REST / SMTP| ResendSMTP
+
+    %% Async Dispatch
+    NotifApp -.->|Queue Email Task| RedisBroker
+    PayrollApp -.->|Queue Bulk Payslip Generation| RedisBroker
+    RedisBroker --> CeleryWorker
+    CeleryBeat --> RedisBroker
+
+    %% Storage & DB
+    APIGateway -->|Read / Write Partitioned Rows| PostgresPrimary
+    DocApp -->|Save Encrypted Vault Objects| LocalMedia
+    DocApp -->|Archive Documents| CloudStorage
+```
+
+---
+
+## 🔄 End-to-End Operational Flowcharts
+
+### 2. Dual Authentication & Session Lifecycle (Native JWT vs. Firebase Google SSO)
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor User as User / Browser
+    participant Client as Frontend (Next.js 16)
+    participant Google as Google Identity / Firebase
+    participant API as Backend Auth API (/api/v1/auth/)
+    participant DB as PostgreSQL Database
+    participant Mail as Email Service (SMTP)
+
+    alt Native Email & Password Sign-In
+        User->>Client: Enters Work Email & Password
+        Note over Client: Living characters look away (Privacy Mode)
+        Client->>API: POST /api/v1/auth/login/ {email, password}
+        API->>DB: Query User & Verify Argon2/BCrypt Hash
+        alt Valid Credentials & MFA Required
+            API-->>Client: 200 OK {mfa_required: true}
+            API->>Mail: Dispatch 6-Digit Verification Code
+            Client->>User: Renders CodeSlots Modal
+            User->>Client: Submits 6-digit Code
+            Client->>API: POST /api/v1/auth/login/ {code, email}
+        end
+        API-->>Client: 200 OK {access_token, refresh_token, user, org}
+        Client->>User: Redirects to /workspace
+    else Google One-Tap / Popup SSO
+        User->>Client: Clicks "Continue with Google"
+        Client->>Google: signInWithPopup(auth, googleProvider)
+        Google-->>Client: Returns Firebase ID Token (JWT)
+        Client->>API: POST /api/v1/auth/firebase-login/ {idToken}
+        API->>Google: Verify ID Token Signature with Firebase Admin SDK
+        Google-->>API: Token Claims (UID, Email, Name)
+        API->>DB: Get or Provision User & Default Organization
+        API-->>Client: 200 OK {access_token, refresh_token, user, org}
+        Client->>User: Sets Local Storage & Enters /workspace
+    end
+```
+
+---
+
+### 3. Stripe Subscription Checkout & Webhook Provisioning Flow
+
+```mermaid
+flowchart TD
+    StartCheckout(["User on /pricing selects Plan"]) --> ClickCheckout["Click 'Deploy Plan' / 'Activate Trial'"]
+    ClickCheckout --> Modal["Open Subscription Modal"]
+    Modal --> SubmitStripe["POST /api/v1/integrations/stripe/create-checkout-session/"]
+
+    subgraph BackendSession["Backend Session Provisioner"]
+        SubmitStripe --> LookupPrice["Map Tier: Independent ($49) / Boutique ($149) / Growth ($349)"]
+        LookupPrice --> CallStripe["stripe.checkout.Session.create(...) with ClientForge Logo & URLs"]
+        CallStripe --> ReturnURL["Return {success: true, checkout_url, session_id}"]
+    end
+
+    ReturnURL --> RedirectStripe["Redirect Browser to official Stripe Hosted Checkout"]
+    RedirectStripe --> UserEntersCard["User completes Card Payment (or 4242 Test Sandbox)"]
+
+    subgraph StripeCloud["Stripe Cloud Engine"]
+        UserEntersCard --> StripeProcesses["Payment Authorized & Captured"]
+        StripeProcesses --> EmitWebhook["Emit Event: checkout.session.completed"]
+        StripeProcesses --> RedirectSuccess["Redirect User to /pricing?payment=success&session_id=..."]
+    end
+
+    EmitWebhook --> WebhookEndpoint["POST /api/v1/integrations/stripe/webhook/"]
+
+    subgraph Provisioning["Tenant Provisioning Engine"]
+        WebhookEndpoint --> VerifySig["Verify Stripe Signature Header"]
+        VerifySig --> MatchTenant["Extract customer_email & plan_name metadata"]
+        MatchTenant --> UpgradeDB["Update Organization.plan in PostgreSQL"]
+        UpgradeDB --> DispatchWelcome["EmailService.send_transactional_email (Welcome Receipt)"]
+    end
+
+    RedirectSuccess --> EnterWorkspace["User Clicks 'Enter Workspace' with upgraded entitlement"]
+```
+
+---
+
+### 4. Enterprise Attendance, Leave Governance & Itemized Payroll Cycle
+
+```mermaid
+flowchart LR
+    subgraph AttendanceCycle["1. Daily Attendance & Time Tracking"]
+        PunchIn["Employee Mobile/Desktop Clock In"] --> GPSCheck["Validate Geofence & IP Whitelist"]
+        GPSCheck --> CalcStatus{"Timestamp vs Shift Policy"}
+        CalcStatus -->|Before Shift Start| Present["Status: Present"]
+        CalcStatus -->|Grace Period Exceeded| Late["Status: Late (+ Minutes Late)"]
+        CalcStatus -->|Half-day Threshold| HalfDay["Status: Half Day"]
+        Present & Late & HalfDay --> LogRecord["Write AttendanceRecord with Time-Lock"]
+    end
+
+    subgraph LeaveGovernance["2. Tiered Leave Governance"]
+        ReqLeave["Submit Leave Request (Annual / Medical / Casual)"] --> CheckBal{"Check Entitlement Balance"}
+        CheckBal -->|Insufficient Days| RejectAuto["Instant Ineligible Error"]
+        CheckBal -->|Available Balance| NotifyLead["Notify Department Lead via Email"]
+        NotifyLead --> ReviewDecision{"Manager Review"}
+        ReviewDecision -->|Approved| DeductBal["Deduct Balance + Mark Calendar"]
+        ReviewDecision -->|Rejected| RevertBal["Retain Balance + Send Reason"]
+        DeductBal & RevertBal --> SendDecisionMail["EmailService: Leave Status Notification"]
+    end
+
+    subgraph PayrollCycle["3. Monthly Payroll Compilation"]
+        PeriodEnd["Period Closing Date (e.g. Month End)"] --> GatherData["Aggregate Attendance Days + Approved Leaves"]
+        GatherData --> CalcGross["Compute Base Salary + Overtime - Deductions"]
+        CalcGross --> ApprExpenses["Audit & Sum Approved Expense Reimbursements"]
+        ApprExpenses --> NetDisbursal["Compute Final Net Compensation Ledger"]
+        NetDisbursal --> GenerateSlip["Create PayrollRecord & Generate HTML Payslip"]
+        GenerateSlip --> SendPayslipMail["EmailService: Dispatch Itemized Payslip with Inline Logo"]
+    end
+
+    AttendanceCycle --> LeaveGovernance
+    LeaveGovernance --> PayrollCycle
+```
 
 ---
 
@@ -49,34 +266,21 @@
 
 ---
 
-## 🏗️ Architecture & Stack
+## 🏗️ Architecture & Technology Matrix
 
-```mermaid
-graph TD
-    Client["Client Browser / Next.js 16 (App Router)"]
-    API["Django 6 REST API (Port 8000)"]
-    DB[(PostgreSQL 16 DB)]
-    Cache[(Redis & Celery Tasks)]
-    Auth["Firebase Auth / Google SSO"]
-    Mail["SMTP Relay (Gmail / Resend)"]
-    Storage["Google Cloud Storage / Local Vault"]
-
-    Client -->|REST & JWT Auth| API
-    Client -->|Google OAuth Popup| Auth
-    API -->|ORM Queries| DB
-    API -->|Async Tasks & Cache| Cache
-    API -->|Transactional HTML Mails| Mail
-    API -->|Encrypted Attachments| Storage
-```
-
-### Technology Matrix
-| Layer | Technologies |
-| :--- | :--- |
-| **Frontend** | Next.js 16 (Turbopack), React 19, TypeScript, Tailwind CSS v4, Framer Motion, Lucide Icons, Three.js |
-| **Backend** | Python 3.13, Django 6.1, Django REST Framework 3.18, SimpleJWT |
-| **Database** | PostgreSQL 16 with optimized connection pooling |
-| **Caching & Queues**| Redis 8, Celery 5.6 |
-| **Cloud & Auth** | Firebase Admin SDK 7.7, Google Identity Toolkit, Resend / Gmail SMTP |
+| Layer | Technologies | Purpose |
+| :--- | :--- | :--- |
+| **Frontend Framework** | [Next.js 16 (Turbopack App Router)](https://nextjs.org/) | Server & Client Components, Dynamic Routes, Fast Refresh |
+| **UI Library** | [React 19](https://react.dev/) | Concurrent UI features, actions, hooks |
+| **Styling & Motion** | [Tailwind CSS v4](https://tailwindcss.com/), [Framer Motion](https://www.framer.com/motion) | Fluid luxury styling, 3D cards, character rigging |
+| **Interactive 3D** | [Three.js](https://threejs.org/) | Spatial mesh particle field & depth backgrounds |
+| **Backend Framework** | [Django 6.1](https://www.djangoproject.com/) / Python 3.13 | High-concurrency enterprise REST API |
+| **API Architecture** | [Django REST Framework 3.18](https://www.django-rest-framework.org/) | REST serializers, viewsets, and granular permission gates |
+| **Relational Database** | [PostgreSQL 16](https://www.postgresql.org/) | Multi-tenant relational schema, indexes, and transactions |
+| **Cache & Tasks** | [Redis 8](https://redis.io/) & [Celery 5.6](https://docs.celeryq.dev/) | Asynchronous email queues, periodic scheduler, caching |
+| **Payment Gateway** | [Stripe SDK 15.6](https://stripe.com/) | Hosted Checkout Sessions, Webhooks, Billing tiers |
+| **Identity & Storage** | [Firebase Admin 7.7](https://firebase.google.com/) | Google OAuth verification & Cloud Storage buckets |
+| **Email Relay** | Google SMTP Relay / Resend | High-deliverability transactional dispatch with inline CID |
 
 ---
 
@@ -188,6 +392,11 @@ DB_PORT=5432
 REDIS_URL=redis://127.0.0.1:6379/0
 CELERY_BROKER_URL=redis://127.0.0.1:6379/0
 
+# Stripe Payments (Sandbox)
+STRIPE_SECRET_KEY=sk_test_...
+STRIPE_PUBLISHABLE_KEY=pk_test_...
+STRIPE_WEBHOOK_SECRET=whsec_...
+
 # Authentication & Firebase
 FIREBASE_CREDENTIALS_PATH=firebase-service-account.json
 FIREBASE_STORAGE_BUCKET=your-app.firebasestorage.app
@@ -215,13 +424,14 @@ NEXT_PUBLIC_FIREBASE_PROJECT_ID=your-project-id
 NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your-app.firebasestorage.app
 NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your-sender-id
 NEXT_PUBLIC_FIREBASE_APP_ID=your-app-id
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
 ```
 
 ---
 
 ## 🧪 Testing & Diagnostics
 
-### Run Backend Test Suite (69 Unit & Integration Tests)
+### Run Full Test Suite (71 Unit & Integration Tests)
 ```bash
 python manage.py test
 ```
