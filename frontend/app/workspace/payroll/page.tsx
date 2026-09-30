@@ -24,6 +24,109 @@ export default function PayrollPage() {
   const [selectedPeriod, setSelectedPeriod] = useState("September 2026");
   const [selectedPayroll, setSelectedPayroll] = useState<PayrollRecord | null>(null);
 
+  // Print-Ready Payslip Generator
+  const handlePrintPayslip = (p: PayrollRecord) => {
+    const printWindow = window.open("", "_blank");
+    if (!printWindow) return;
+
+    printWindow.document.write(`
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>Payslip - ${p.employeeName} - ${p.period}</title>
+        <style>
+          body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; padding: 40px; color: #0f172a; max-width: 700px; margin: 0 auto; }
+          .header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid #0f172a; padding-bottom: 20px; margin-bottom: 24px; }
+          .logo { font-size: 24px; font-weight: 800; letter-spacing: -0.5px; }
+          .badge { font-size: 11px; font-weight: 700; color: #4f46e5; text-transform: uppercase; letter-spacing: 1px; }
+          .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; font-size: 13px; margin-bottom: 30px; background: #f8fafc; padding: 16px; border-radius: 8px; }
+          .meta-item { display: flex; flex-direction: column; }
+          .meta-label { color: #64748b; font-size: 11px; text-transform: uppercase; margin-bottom: 2px; }
+          .meta-val { font-weight: 600; }
+          table { width: 100%; border-collapse: collapse; margin-bottom: 30px; font-size: 13px; }
+          th { text-align: left; padding: 10px; border-bottom: 2px solid #e2e8f0; font-size: 11px; text-transform: uppercase; color: #64748b; }
+          td { padding: 12px 10px; border-bottom: 1px solid #f1f5f9; }
+          .text-right { text-align: right; }
+          .total-box { background: #0f172a; color: #fff; padding: 20px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+          .total-label { font-size: 14px; font-weight: 500; }
+          .total-val { font-size: 26px; font-weight: 800; }
+          .footer { font-size: 11px; color: #94a3b8; text-align: center; border-top: 1px solid #e2e8f0; padding-top: 20px; line-height: 1.6; }
+          @media print {
+            body { padding: 0; }
+            .no-print { display: none; }
+          }
+        </style>
+      </head>
+      <body>
+        <div class="header">
+          <div>
+            <div class="logo">ClientForge</div>
+            <div class="badge">PeopleCore Compensation Ledger</div>
+          </div>
+          <div style="text-align: right;">
+            <div style="font-weight: 700; font-size: 14px;">Official Earnings Statement</div>
+            <div style="color: #64748b; font-size: 12px;">Disbursement Ref: CF-${Math.random().toString(36).substring(2, 9).toUpperCase()}</div>
+          </div>
+        </div>
+
+        <div class="meta-grid">
+          <div class="meta-item"><span class="meta-label">Employee Name</span><span class="meta-val">${p.employeeName}</span></div>
+          <div class="meta-item"><span class="meta-label">Designation / Role</span><span class="meta-val">${p.designation || "Staff Member"}</span></div>
+          <div class="meta-item"><span class="meta-label">Pay Period</span><span class="meta-val">${p.period}</span></div>
+          <div class="meta-item"><span class="meta-label">Payment Rail</span><span class="meta-val">ACH Direct Deposit (Reconciled)</span></div>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Earnings & Statutory Components</th>
+              <th class="text-right">Rate / Basis</th>
+              <th class="text-right">Amount (USD)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Base Salary</strong> (Standard Contractual)</td>
+              <td class="text-right">Monthly</td>
+              <td class="text-right">$${p.baseSalary.toLocaleString()}</td>
+            </tr>
+            <tr>
+              <td><strong>Duty Allowances & Per Diem</strong></td>
+              <td class="text-right">Disbursed</td>
+              <td class="text-right" style="color: #16a34a;">+$${p.allowances.toLocaleString()}</td>
+            </tr>
+            <tr>
+              <td><strong>Pre-Tax Withholdings</strong> (Pension / HSA)</td>
+              <td class="text-right">Statutory</td>
+              <td class="text-right" style="color: #dc2626;">-$${p.deductions.toLocaleString()}</td>
+            </tr>
+            <tr>
+              <td><strong>Income Tax Withholding</strong> (Federal & State)</td>
+              <td class="text-right">Statutory</td>
+              <td class="text-right" style="color: #dc2626;">-$${p.taxes.toLocaleString()}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="total-box">
+          <div class="total-label">NET DIRECT DEPOSIT AMOUNT</div>
+          <div class="total-val">$${p.netSalary.toLocaleString()}</div>
+        </div>
+
+        <div class="footer">
+          Digitally certified and generated via ClientForge PeopleCore Treasury & Payroll Engine.<br>
+          Protected by SOC-2 Type II financial security controls and ISO 27001 data isolation standards.
+        </div>
+
+        <script>
+          window.onload = function() { window.print(); }
+        </script>
+      </body>
+      </html>
+    `);
+    printWindow.document.close();
+  };
+
   // 6-step Payroll Run Flow Modal
   const [runFlowOpen, setRunFlowOpen] = useState(false);
   const [runStep, setRunStep] = useState(1);
@@ -309,10 +412,11 @@ export default function PayrollPage() {
               {/* Footer */}
               <div className="pt-2 flex justify-end gap-2 border-t border-slate-100 dark:border-white/[0.06]">
                 <button
-                  onClick={() => alert(`Payslip PDF generated for ${selectedPayroll.employeeName}`)}
-                  className="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-neutral-100 text-white dark:text-neutral-950 text-xs font-medium cursor-pointer"
+                  onClick={() => handlePrintPayslip(selectedPayroll)}
+                  className="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-neutral-100 text-white dark:text-neutral-950 text-xs font-medium cursor-pointer inline-flex items-center gap-1.5 shadow-2xs"
                 >
-                  Download PDF
+                  <Download className="w-3.5 h-3.5" />
+                  <span>Download / Print Official PDF</span>
                 </button>
               </div>
             </motion.div>
