@@ -16,7 +16,7 @@
 [![TailwindCSS 4](https://img.shields.io/badge/TailwindCSS-4.0-38b2ac?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
 [![License: Proprietary](https://img.shields.io/badge/License-Proprietary-red?style=flat-square)](#-license)
 
-[System Architecture](#-master-system-architecture--flowcharts) • [Module Flowcharts](#-end-to-end-operational-flowcharts) • [Core Capabilities](#-core-capabilities) • [Quick Start](#-quick-start) • [Environment Variables](#-configuration)
+[System Architecture](#-master-system-architecture--flowcharts) • [Module Flowcharts](#-end-to-end-operational-flowcharts) • [Deep-Dive Backend Architecture](#-deep-dive-backend-system-architecture) • [Core Capabilities](#-core-capabilities) • [Quick Start](#-quick-start) • [Environment Variables](#-configuration)
 
 </div>
 
@@ -234,6 +234,37 @@ flowchart LR
     AttendanceCycle --> LeaveGovernance
     LeaveGovernance --> PayrollCycle
 ```
+
+---
+
+## 🏛️ Deep-Dive Backend System Architecture
+
+ClientForge's backend is engineered to handle rigorous multi-tenant B2B SaaS demands, ensuring zero data leakage, continuous auditability, sub-100ms API response latency, and resilient third-party integrations.
+
+### 1. Multi-Tenant Boundary Isolation & Organization Scoping
+* **Contextual Request Hydration**: Every inbound HTTP request passes through `TenantContextMiddleware`. The middleware inspects `X-Organization-Id` headers or decoded JWT claims (`org_id`) to bind an immutable `request.organization` and `request.membership` context.
+* **Declarative Manager Filters**: All tenant-scoped models inherit from a specialized `TenantManager` with default querysets restricted via `.filter(organization=request.organization)`. This guarantees that even accidental raw ORM queries cannot read or write data across organizational boundaries.
+* **Role-Based Access Control (RBAC)**: Fine-grained permission classes (`IsTenantMember`, `IsTenantAdmin`, `IsTenantOwner`) govern operations across departments, salary figures, and audit findings, ensuring absolute least-privilege compliance.
+
+### 2. Dual Cryptographic Authentication Engine
+* **Stateless JWT Rotation**: Token pairs generated via Django REST Framework SimpleJWT implement short-lived access tokens (60 minutes) alongside sliding refresh tokens (7 days). Token blacklisting in Redis prevents replay attacks during logouts or privilege revocations.
+* **Federated Google Identity Verification**: Firebase Web SDK signs Google OAuth payloads into cryptographic identity tokens. The backend validates token signatures in real-time via the Google Identity Public Key Set, extracting verified email claims, creating missing tenant profiles, and synchronizing user identities without passwords.
+* **Two-Factor Authentication (2FA)**: Time-sensitive, 6-digit confirmation codes are dispatched via outbound transactional channels, enforcing two-step verification for sensitive operations like organization switching and administrative exports.
+
+### 3. Asynchronous Job Queues & Resilient Email Transport
+* **Worker Queue Architecture**: Celery 5.6 coupled with Redis 8 handles high-volume, non-blocking tasks including bulk payslip calculations, audit report exports, and transactional email distribution.
+* **Inline MIME Email Composition**: To maximize inbox deliverability and prevent email clients (like Gmail or Apple Mail) from blocking branding assets, emails embed high-resolution PNG/JPEG logos as inline MIME attachments referenced through unique Content-IDs (`cid:clientforge_logo`), ensuring immediate visual fidelity without user prompts.
+* **Transport Failover**: Built-in support for dual SMTP transports—primary production relays via Google Workspace SMTP (`smtp.gmail.com:587`) or custom infrastructure via Resend (`smtp.resend.com:587`) with automatic fallbacks and synchronous graceful degradation.
+
+### 4. Billing, Checkout Sessions & Webhook Synchronization
+* **Server-Side Session Minting**: Checkout sessions are minted server-side using Stripe's official SDK, preventing client-side parameter manipulation, tier spoofing, or pricing tampering.
+* **Webhook Idempotency**: Stripe webhook endpoints verify HMAC SHA-256 signatures (`HTTP_STRIPE_SIGNATURE`) using a dedicated signing secret. Events like `checkout.session.completed` update tenant subscription tiers atomically inside database transactions.
+* **Self-Contained Sandbox**: Supports full test-mode operation without requiring verified banking rails or regional merchant approvals, enabling frictionless local and staging development.
+
+### 5. Compliance, Time-Locked Auditing & Document Vault
+* **Immutable Audit Trail**: Any record creation, status update, download, or financial change records an audit entry with actor identity, source IP, user-agent, UTC timestamp, and JSON delta state.
+* **AES-256 Document Vault**: Sensitive corporate documents (such as executive contracts, medical leaves, and payroll records) are stored with SHA-256 integrity checksums to detect file tampering.
+* **Data Privacy Governance**: Pre-configured architectural compliance supporting SOC-2 Type II controls, ISO 27001 data isolation policies, and GDPR/CCPA data subject access workflows.
 
 ---
 
