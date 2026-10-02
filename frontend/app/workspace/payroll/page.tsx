@@ -71,7 +71,7 @@ export default function PayrollPage() {
 
         <div class="meta-grid">
           <div class="meta-item"><span class="meta-label">Employee Name</span><span class="meta-val">${p.employeeName}</span></div>
-          <div class="meta-item"><span class="meta-label">Designation / Role</span><span class="meta-val">${p.designation || "Staff Member"}</span></div>
+          <div class="meta-item"><span class="meta-label">Designation / Role</span><span class="meta-val">${p.jobTitle || "Staff Member"}</span></div>
           <div class="meta-item"><span class="meta-label">Pay Period</span><span class="meta-val">${p.period}</span></div>
           <div class="meta-item"><span class="meta-label">Payment Rail</span><span class="meta-val">ACH Direct Deposit (Reconciled)</span></div>
         </div>

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import HeroHeadline from "./hero/HeroHeadline";
+import HeroHeadline from "./hero/CreatorHero";
 import { 
   TrendingUp, 
   Users, 

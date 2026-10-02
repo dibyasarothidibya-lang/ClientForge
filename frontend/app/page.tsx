@@ -11,19 +11,16 @@ import Testimonials from "@/components/Testimonials";
 import Faq from "@/components/Faq";
 import CtaBanner from "@/components/CtaBanner";
 import Footer from "@/components/Footer";
-import ThreeDBackground from "@/components/ui/ThreeDBackground";
 import ThreeDSection from "@/components/motion/ThreeDSection";
 
 export const metadata = {
-  title: "Client Forge — Opportunity Intelligence & Pipeline Engine",
-  description: "Precision client acquisition and opportunity intelligence for independent principals, boutique studios, and senior advisory practices.",
+  title: "Dibya Sarothi Simanta — The Architect Behind Client Forge",
+  description: "Meet Dibya Sarothi Simanta, full-stack systems architect, and explore Client Forge: a showcase of end-to-end SaaS design, engineering, and deployment.",
 };
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-transparent dark:bg-transparent text-slate-900 dark:text-[#f5f5f3] overflow-x-hidden selection:bg-indigo-500 selection:text-white transition-colors duration-200 relative">
-      {/* Immersive 3D Space Background (Constellation, 3D Mesh, Floating Polyhedra & Scroll Depth) */}
-      <ThreeDBackground />
 
       {/* Sticky Glass Navigation Bar */}
       <Navbar />

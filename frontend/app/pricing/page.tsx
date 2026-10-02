@@ -218,6 +218,10 @@ export default function PricingPage() {
 
   const handleSimulatePayment = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!selectedPlanForCheckout) {
+      setCheckoutError("Select a plan before starting checkout.");
+      return;
+    }
     setIsSubscribing(true);
     setCheckoutError("");
 
