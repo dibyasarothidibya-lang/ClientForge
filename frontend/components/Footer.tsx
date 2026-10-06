@@ -146,7 +146,7 @@ export default function Footer() {
 
                 {/* LinkedIn */}
                 <a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/in/dibya-sarothi-simanta-b1a82235a/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-white/10 bg-white dark:bg-white/[0.03] hover:border-slate-400 dark:hover:border-white/30 text-xs font-medium text-slate-800 dark:text-neutral-200 transition-all shadow-xs"
@@ -370,7 +370,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="py-8 border-t border-slate-200 dark:border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-sans">
           <p className="text-slate-500 dark:text-neutral-400 font-sans font-normal">
-            © {new Date().getFullYear()} Client Forge Systems, Inc. Architected & Maintained by <span className="font-semibold text-slate-800 dark:text-white">Dibya Sarothi Simanta</span>.
+            © {new Date().getFullYear()} Dibya Sarothi Simanta. Independent Engineering Case Study & Production SaaS Portfolio.
           </p>
 
           <div className="flex items-center gap-6 text-slate-500 dark:text-neutral-400 font-sans">

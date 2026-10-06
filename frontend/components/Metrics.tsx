@@ -6,27 +6,27 @@ import { Compass, Clock, Zap, Target } from "lucide-react";
 export default function Metrics() {
   const metrics = [
     {
-      value: "3.8x",
-      label: "Proposal Win Velocity",
-      description: "From 12% speculative pitch close rates to 46% dossier-backed conversion.",
+      value: "71 Tests",
+      label: "Automated Test Suite",
+      description: "Passing unit & integration test methods verifying models, serializers, and permission boundaries.",
       icon: Target,
     },
     {
-      value: "18.5h",
-      label: "Reclaimed Hours Per Deal",
-      description: "Eliminating manual executive searches, tech auditing, and blind prospect research.",
+      value: "13 Apps",
+      label: "Modular Django Services",
+      description: "Decoupled domain modules for accounts, orgs, payroll, attendance, audit logging, and workflows.",
       icon: Clock,
     },
     {
-      value: "$140k",
-      label: "Average Contract Expansion",
-      description: "Higher initial retainers driven by addressing verified high-stakes architectural friction.",
+      value: "6 Roles",
+      label: "Fine-Grained RBAC",
+      description: "Owner, Admin, Manager, Member, Finance, and Auditor role hierarchies with scoped permissions.",
       icon: Zap,
     },
     {
-      value: "Zero",
-      label: "Cold Speculative Outreach",
-      description: "100% contextual peer advisory conversations timed to structural organizational triggers.",
+      value: "Zero-Leak",
+      label: "Tenant Data Isolation",
+      description: "Organization-scoped querysets and foreign key checks enforce strict multi-tenant boundary integrity.",
       icon: Compass,
     }
   ];

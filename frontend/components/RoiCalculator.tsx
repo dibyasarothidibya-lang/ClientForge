@@ -702,18 +702,23 @@ export default function RoiCalculator() {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <span className="text-xs uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-3 block font-serif font-medium">
-            Value & Velocity Audit
-          </span>
+          <div className="flex items-center justify-center gap-2 mb-3">
+            <span className="text-xs uppercase tracking-widest text-indigo-600 dark:text-indigo-400 block font-serif font-medium">
+              Interactive Scenario Model
+            </span>
+            <span className="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full bg-slate-100 dark:bg-white/[0.05] text-slate-500 dark:text-neutral-400 border border-slate-200 dark:border-white/10">
+              Demo Simulation
+            </span>
+          </div>
           <h2 className="section-title text-slate-950 dark:text-[#f5f5f3] tracking-tight mb-3">
-            Calculate the Return <br className="hidden sm:inline" />
-            on Focused Client Acquisition.
+            Interactive Pipeline & <br className="hidden sm:inline" />
+            Capacity Simulation.
           </h2>
           <div className="editorial-italic text-2xl sm:text-3xl text-slate-600 dark:text-neutral-400 mb-6">
-            <span className="gradient-text font-serif italic">See What Clarity Is Worth.</span>
+            <span className="gradient-text font-serif italic">Simulate Workflow Leverage.</span>
           </div>
           <p className="text-base sm:text-lg text-slate-600 dark:text-neutral-400 max-w-2xl mx-auto leading-relaxed font-serif font-light">
-            Estimate the monthly hours reclaimed from manual prospect research and the additional contract revenue unlocked by moving on qualified signals faster.
+            Interactive mathematical simulation modeling hours reclaimed from fragmented administrative research versus structured opportunity signal workflows.
           </p>
         </div>
 

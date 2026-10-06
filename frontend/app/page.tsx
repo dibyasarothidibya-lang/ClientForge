@@ -8,6 +8,7 @@ import BentoGrid from "@/components/BentoGrid";
 import RoiCalculator from "@/components/RoiCalculator";
 import Metrics from "@/components/Metrics";
 import Testimonials from "@/components/Testimonials";
+import SelectedWork from "@/components/SelectedWork";
 import Faq from "@/components/Faq";
 import CtaBanner from "@/components/CtaBanner";
 import Footer from "@/components/Footer";
@@ -58,9 +59,14 @@ export default function Home() {
         <Metrics />
       </ThreeDSection>
 
-      {/* Operator Perspectives & Case Studies */}
+      {/* Engineering Principles & Architecture Decisions */}
       <ThreeDSection depthIntensity={0.7}>
         <Testimonials />
+      </ThreeDSection>
+
+      {/* Selected Engineering Projects: MediGuard AI & Flight Deal Finder */}
+      <ThreeDSection depthIntensity={0.65}>
+        <SelectedWork />
       </ThreeDSection>
 
       {/* Objection & Mechanics FAQ Accordion */}

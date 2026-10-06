@@ -24,28 +24,28 @@ export default function Hero() {
 
   const metrics = [
     {
-      label: "RETENTION RATE",
-      value: "+18.4%",
-      detail: "Increase in top-performer retention year-over-year.",
-      icon: TrendingUp,
+      label: "AUTOMATED SUITE",
+      value: "71 Tests",
+      detail: "End-to-end integration & unit coverage across 13 Django apps.",
+      icon: ShieldCheck,
     },
     {
-      label: "TIME TO PRODUCTIVITY",
-      value: "3 Days",
-      detail: "From contract signature to live autonomous delivery.",
-      icon: Clock,
-    },
-    {
-      label: "CULTURE INDEX",
-      value: "94 / 100",
-      detail: "Real-time sentiment score & team cohesion index.",
+      label: "MULTI-TENANCY",
+      value: "6 RBAC Roles",
+      detail: "Strict organization-scoped isolation & permission guards.",
       icon: Users,
     },
     {
-      label: "RECRUITMENT VELOCITY",
-      value: "10x Sourcing",
-      detail: "Skill-grounded candidate matching pipeline.",
-      icon: ShieldCheck,
+      label: "ARCHITECTURE",
+      value: "13 Services",
+      detail: "Payroll, attendance, audit logging, leave & doc workflows.",
+      icon: Activity,
+    },
+    {
+      label: "DEPLOYMENT",
+      value: "Docker + Nginx",
+      detail: "Production Linux VM with PostgreSQL, Redis & SSL reverse proxy.",
+      icon: Clock,
     },
   ];
 
@@ -80,25 +80,25 @@ export default function Hero() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {[
               {
-                title: "People Operations & Culture OS",
-                subtitle: "Automate talent workflows, monitor real-time pulse data, and scale your culture seamlessly.",
+                title: "Workforce Operations & RBAC Core",
+                subtitle: "Automate organizational hierarchy, role permissions, employee records, and audit workflows.",
                 src: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80",
                 href: "/people-operations",
-                tag: "Core HR & Directory",
+                tag: "Tenant Isolation & RBAC",
               },
               {
-                title: "Autonomous Sourcing Engine",
-                subtitle: "Continuously map candidate competencies, benchmark skill telemetry, and eliminate recruiter bias.",
+                title: "Talent & Pipeline Engine",
+                subtitle: "Structured candidate pipelines, resume indexing, stage transitions, and telemetry tracking.",
                 src: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80",
                 href: "/talent-intelligence",
-                tag: "Talent Intelligence",
+                tag: "Pipeline Domain Services",
               },
               {
-                title: "Global Mobility & Payroll",
-                subtitle: "Automate statutory filings, localized health benefits, and multi-currency clearing across 140+ countries.",
+                title: "Global Mobility & Payroll Demo",
+                subtitle: "Multi-currency compensation modeling, statutory tax calculations, and localized payout workflows.",
                 src: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80",
                 href: "/global-mobility",
-                tag: "Cross-Border EOR",
+                tag: "Distributed Payroll Engine",
               },
             ].map((pillar, idx) => (
               <Link

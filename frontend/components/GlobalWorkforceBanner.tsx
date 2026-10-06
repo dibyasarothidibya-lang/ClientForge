@@ -412,7 +412,10 @@ export function GlobalWorkforceBanner() {
         <div className="flex items-center gap-2 mb-4">
           <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider text-indigo-700 bg-indigo-50 border border-indigo-200/80 dark:text-indigo-400 dark:bg-indigo-950/60 dark:border-indigo-800/60 shadow-xs">
             <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse" />
-            Global Mobility & Compliance
+            Global Mobility & Distributed Architecture
+          </span>
+          <span className="text-[11px] font-mono uppercase tracking-wider px-2.5 py-1 rounded-full bg-slate-100 dark:bg-white/[0.05] text-slate-500 dark:text-neutral-400 border border-slate-200 dark:border-white/10">
+            Interactive Simulation Dataset
           </span>
         </div>
 
@@ -420,28 +423,28 @@ export function GlobalWorkforceBanner() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-8">
           <div className="lg:col-span-8">
             <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal tracking-tight text-slate-900 dark:text-white leading-[1.05]">
-              Hire, pay, and retain anywhere on Earth with zero friction.
+              Distributed workforce simulation across 24 global nodes.
             </h2>
           </div>
 
           <div className="lg:col-span-4 flex flex-col justify-end">
             <p className="text-base sm:text-lg text-slate-600 dark:text-neutral-400 leading-relaxed mb-6">
-              Eliminate cross-border compliance barriers. Automate multi-currency payroll, statutory benefits, and local labor law alignment across 140+ jurisdictions.
+              Interactive 3D WebGL visualization modeling multi-region workforce operations, localized currency handling, and simulated cross-border payroll workflows.
             </p>
 
             <div className="flex flex-wrap items-center gap-3">
               <Link
-                href="/global-mobility"
+                href="/workspace"
                 className="inline-flex items-center justify-center rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 px-6 py-3 text-sm font-semibold hover:opacity-90 transition-opacity active:scale-[0.98] shadow-sm cursor-pointer"
               >
-                <span>Scale Globally</span>
+                <span>Explore Live Workspace</span>
                 <ArrowRight className="w-4 h-4 ml-1.5" />
               </Link>
               <button
                 onClick={() => handleRegionSelect(REGIONS[0])}
                 className="inline-flex items-center justify-center rounded-xl bg-white text-slate-800 border border-slate-300 dark:bg-neutral-900 dark:text-neutral-200 dark:border-neutral-800 px-6 py-3 text-sm font-semibold hover:bg-slate-100 dark:hover:bg-neutral-800 transition-colors active:scale-[0.98] cursor-pointer"
               >
-                Explore Coverage Map
+                Focus Region Nodes
               </button>
             </div>
           </div>
@@ -452,52 +455,52 @@ export function GlobalWorkforceBanner() {
           <div className="p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200/80 dark:border-white/[0.06]">
             <div className="flex items-center gap-1.5 text-slate-500 dark:text-neutral-400 text-[11px] font-sans font-semibold uppercase tracking-wider mb-1">
               <Globe2 className="w-3.5 h-3.5" />
-              <span>MARKET REACH</span>
+              <span>SIMULATED NODES</span>
             </div>
             <div className="font-sans text-2xl sm:text-3xl font-normal sm:font-medium text-slate-950 dark:text-white tabular-nums">
-              140+
+              24 Hubs
             </div>
             <div className="text-xs text-slate-500 dark:text-neutral-400 mt-0.5 font-sans">
-              Direct EOR & statutory jurisdictions
+              Americas, EMEA & APAC demo data
             </div>
           </div>
 
           <div className="p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200/80 dark:border-white/[0.06]">
             <div className="flex items-center gap-1.5 text-slate-500 dark:text-neutral-400 text-[11px] font-sans font-semibold uppercase tracking-wider mb-1">
               <Zap className="w-3.5 h-3.5" />
-              <span>PAYOUT VELOCITY</span>
+              <span>PAYROLL SIMULATION</span>
             </div>
             <div className="font-sans text-2xl sm:text-3xl font-normal sm:font-medium text-slate-950 dark:text-white tabular-nums">
-              Same-Day
+              Multi-Currency
             </div>
             <div className="text-xs text-slate-500 dark:text-neutral-400 mt-0.5 font-sans">
-              Local currency banking clearing
+              USD, EUR, GBP, JPY, INR workflows
             </div>
           </div>
 
           <div className="p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200/80 dark:border-white/[0.06]">
             <div className="flex items-center gap-1.5 text-slate-500 dark:text-neutral-400 text-[11px] font-sans font-semibold uppercase tracking-wider mb-1">
               <ShieldCheck className="w-3.5 h-3.5" />
-              <span>LEGAL GUARANTEE</span>
+              <span>ACCESS CONTROL</span>
             </div>
             <div className="font-sans text-2xl sm:text-3xl font-normal sm:font-medium text-slate-950 dark:text-white tabular-nums">
-              100%
+              6 Roles
             </div>
             <div className="text-xs text-slate-500 dark:text-neutral-400 mt-0.5 font-sans">
-              Total statutory labor indemnity
+              Owner, Admin, Manager, Finance, Auditor
             </div>
           </div>
 
           <div className="p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200/80 dark:border-white/[0.06]">
             <div className="flex items-center gap-1.5 text-slate-500 dark:text-neutral-400 text-[11px] font-sans font-semibold uppercase tracking-wider mb-1">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>TIME TO HIRE</span>
+              <span>3D RENDERING</span>
             </div>
             <div className="font-sans text-2xl sm:text-3xl font-normal sm:font-medium text-slate-950 dark:text-white tabular-nums">
-              48 Hours
+              Three.js WebGL
             </div>
             <div className="text-xs text-slate-500 dark:text-neutral-400 mt-0.5 font-sans">
-              Contract to live compliant onboarding
+              Real-time interactive sphere physics
             </div>
           </div>
         </div>

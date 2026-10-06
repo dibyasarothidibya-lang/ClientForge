@@ -391,12 +391,12 @@ export default function Navbar() {
 
               {/* Primary Call to Action */}
               <Link
-                href="/signup"
+                href="/workspace"
                 className="inline-flex items-center justify-center px-4 py-1.5 text-[13px] font-semibold tracking-tight rounded-full transition-all cursor-pointer active:scale-[0.98] hover:scale-[1.02]
                   bg-slate-950 text-white hover:bg-slate-900 shadow-sm
                   dark:bg-white dark:text-neutral-950 dark:hover:bg-white/90"
               >
-                <span>Book Demo</span>
+                <span>Live Demo</span>
               </Link>
 
               {/* Mobile Menu Toggle Button */}
