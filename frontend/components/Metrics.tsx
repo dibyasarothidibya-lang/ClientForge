@@ -24,8 +24,8 @@ export default function Metrics() {
       icon: Zap,
     },
     {
-      value: "Zero-Leak",
-      label: "Tenant Data Isolation",
+      value: "Isolated",
+      label: "Tenant Boundary Defense",
       description: "Organization-scoped querysets and foreign key checks enforce strict multi-tenant boundary integrity.",
       icon: Compass,
     }

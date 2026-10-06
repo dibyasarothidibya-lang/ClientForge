@@ -9,18 +9,20 @@ const projects = [
   {
     title: "MediGuard AI",
     badge: "100 Active Users",
-    category: "Clinical Intelligence & Decision Support",
-    description: "AI-assisted clinical safety and differential diagnosis validation engine. Analyzes patient symptoms, medication conflicts, and lab indicators with rule-grounded medical guardrails.",
+    category: "Medicine Information & Verification Platform",
+    tagline: "Evidence First. AI Second.",
+    notice: "Research / Educational Software — Not a Medical Device",
+    description: "An independently built healthcare research and educational platform designed to help users explore medicine information, verify pharmaceutical records, and receive evidence-grounded explanations using structured regulatory data.",
     role: "Full-Stack Engineer & AI Integration",
     highlights: [
-      "100 real users milestone during university & clinical pilot deployment",
-      "FastAPI & Next.js full-stack architecture with streaming responses",
-      "Strict hallucination mitigation guardrails & drug interaction verification",
-      "Medical terminology indexing with low-latency vector retrieval"
+      "100-user milestone achieved across research and student testing",
+      "Evidence-first AI architecture with defensive LLM guardrails against hallucinations",
+      "Bangladesh-focused pharmaceutical catalogue cross-referenced with openFDA integration",
+      "Controlled citations and strict safety gating before returning responses"
     ],
-    tech: ["Python", "FastAPI", "Next.js", "TypeScript", "Tailwind CSS", "OpenAI / Claude API"],
-    link: "https://github.com/dibyasarothidibya-lang",
-    linkText: "Inspect Source / GitHub",
+    tech: ["Python", "FastAPI", "Next.js", "TypeScript", "Tailwind CSS", "openFDA API", "Claude / OpenAI"],
+    link: "https://github.com/dibyasarothidibya-lang/Mediguard-AI",
+    linkText: "View Mediguard-AI Repository",
     icon: Activity,
     accent: "text-emerald-500",
     borderGlow: "#10b981",
@@ -28,18 +30,20 @@ const projects = [
   {
     title: "Flight Deal Finder",
     badge: "Python Automation",
-    category: "Real-Time Fare Tracking & Scraper Pipeline",
-    description: "Automated flight price scraping, trend tracking, and multi-channel notification engine. Monitors airline route inventory and triggers instant Telegram/Email alerts on anomalous fare dips.",
-    role: "Backend Engineer & Automation Architect",
+    category: "Automated Flight Monitoring & WhatsApp Alert System",
+    tagline: "SerpApi + Sheety + Twilio Pipeline",
+    notice: "Real-Time Price Change Detection & Synchronous Alerts",
+    description: "A Python automation system that retrieves destination targets from Google Sheets through Sheety, queries live round-trip pricing through SerpApi's Google Flights engine, detects record-low fares, updates stored pricing data, and sends instant WhatsApp alerts through Twilio.",
+    role: "Automation Engineer & Pipeline Architect",
     highlights: [
-      "Headless scraping engine with proxy rotation and rate-limit backoff",
-      "Automated route price change detection and historical trend storage",
-      "Instant Telegram bot and webhook dispatch for high-priority fare anomalies",
-      "Scheduled background worker pipelines running 24/7 without manual intervention"
+      "Automated flight querying with cheapest-fare parsing via Google Flights SerpApi engine",
+      "Destination and threshold price synchronization via Sheety and Google Sheets",
+      "Intelligent price-change detection with response caching to prevent redundant queries",
+      "Real-time WhatsApp notification dispatch via Twilio API with environment-based secret isolation"
     ],
-    tech: ["Python", "Playwright / BeautifulSoup", "PostgreSQL", "Telegram Bot API", "Docker", "Linux Cron"],
-    link: "https://github.com/dibyasarothidibya-lang",
-    linkText: "Inspect Source / GitHub",
+    tech: ["Python", "SerpApi / Google Flights", "Sheety", "Twilio WhatsApp", "requests", "requests-cache", "python-dotenv"],
+    link: "https://github.com/dibyasarothidibya-lang/Flight-Deal-Finder",
+    linkText: "View Flight-Deal-Finder Repository",
     icon: Plane,
     accent: "text-sky-500",
     borderGlow: "#0ea5e9",
@@ -97,9 +101,21 @@ export default function SelectedWork() {
                     </div>
 
                     {/* Title & Description */}
-                    <h3 className="font-serif text-2xl sm:text-3xl font-normal text-slate-950 dark:text-white tracking-tight mb-3">
-                      {proj.title}
-                    </h3>
+                    <div className="flex flex-wrap items-baseline gap-2 mb-1.5">
+                      <h3 className="font-serif text-2xl sm:text-3xl font-normal text-slate-950 dark:text-white tracking-tight">
+                        {proj.title}
+                      </h3>
+                      {proj.tagline && (
+                        <span className="text-xs font-mono text-indigo-600 dark:text-indigo-400 font-medium">
+                          — {proj.tagline}
+                        </span>
+                      )}
+                    </div>
+                    {proj.notice && (
+                      <div className="text-[11px] font-mono text-amber-700 dark:text-amber-400/90 mb-3 bg-amber-500/10 px-2.5 py-1 rounded-md border border-amber-500/20 inline-block">
+                        {proj.notice}
+                      </div>
+                    )}
                     <p className="text-slate-600 dark:text-neutral-300 text-sm leading-relaxed mb-6 font-sans">
                       {proj.description}
                     </p>

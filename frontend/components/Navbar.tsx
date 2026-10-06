@@ -125,7 +125,7 @@ export default function Navbar() {
                   }`}
                 >
                   <Sparkles className="w-3.5 h-3.5 text-indigo-500" />
-                  <span>PeopleCore</span>
+                  <span>Workforce Module</span>
                   <ChevronDown className={`w-3 h-3 opacity-50 group-hover:opacity-100 transition-transform duration-200 ${
                     activeDropdown === "peoplecore" ? "rotate-180 text-indigo-500" : ""
                   }`} />
@@ -146,8 +146,8 @@ export default function Navbar() {
                           <Sparkles className="w-4 h-4" />
                         </div>
                         <div>
-                          <div className="text-xs font-semibold text-slate-900 dark:text-white">PeopleCore Overview</div>
-                          <div className="text-[11px] text-slate-500 dark:text-neutral-400 leading-tight mt-0.5">All-in-one workforce OS</div>
+                          <div className="text-xs font-semibold text-slate-900 dark:text-white">PeopleCore Module</div>
+                          <div className="text-[11px] text-slate-500 dark:text-neutral-400 leading-tight mt-0.5">Workforce operations by Client Forge</div>
                         </div>
                       </Link>
 

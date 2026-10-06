@@ -22,7 +22,10 @@ import {
   Cpu,
   ArrowRight,
   Sparkles,
-  X
+  X,
+  Code2,
+  Terminal,
+  Layers
 } from "lucide-react";
 
 export default function SecurityPage() {
@@ -55,7 +58,7 @@ export default function SecurityPage() {
           setPackEmail("");
         }, 3000);
       } else {
-        setSubmitError(data.message || "Failed to dispatch email. Please try again.");
+        setSubmitError(data.message || "Failed to dispatch specification memo. Please try again.");
       }
     } catch (err: any) {
       setSubmitError(err.message || "Network error. Please try again later.");
@@ -64,56 +67,56 @@ export default function SecurityPage() {
     }
   };
 
-  const certifications = [
+  const architecturalControls = [
     {
-      name: "SOC-2 Type II",
-      status: "Certified & Audited",
-      desc: "Annual rigorous audit covering Security, Confidentiality, and Processing Integrity by independent CPA auditors.",
-      badge: "Annual Report"
+      name: "SOC 2-Style Architecture",
+      status: "Control-Mapped Design",
+      desc: "System design informed by SOC 2 Trust Services Criteria covering access authorization, state auditability, and data confidentiality.",
+      badge: "Design Pattern"
     },
     {
-      name: "ISO/IEC 27001",
-      status: "Certified",
-      desc: "International gold standard for Information Security Management Systems (ISMS) across all infrastructure.",
-      badge: "Global Standard"
+      name: "ISO/IEC 27001 Principles",
+      status: "Informed by Standard",
+      desc: "Information security management principles applied across environment secret isolation, role separation, and database access boundaries.",
+      badge: "Security Standard"
     },
     {
-      name: "GDPR & CCPA Compliant",
-      status: "Fully Compliant",
-      desc: "Full support for Data Subject Access Requests (DSAR), right-to-be-forgotten workflows, and standard contractual clauses.",
-      badge: "Data Privacy"
+      name: "GDPR-Aware Data Handling",
+      status: "Data Privacy Architecture",
+      desc: "Tenant-scoped database modeling facilitating data isolation, exportability, and deterministic record deletion workflows.",
+      badge: "Privacy Model"
     },
     {
-      name: "HIPAA Ready",
-      status: "BAA Available",
-      desc: "Engineered to safeguard Protected Health Information (PHI) within medical leave and insurance document vaulting.",
-      badge: "Healthcare"
+      name: "Role-Based Access Control",
+      status: "Implemented & Tested",
+      desc: "6 distinct privilege roles (Owner, Admin, Manager, Finance, Auditor, Member) enforced across all Django REST Framework endpoints.",
+      badge: "Active in Code"
     }
   ];
 
   const securityPillars = [
     {
       icon: Lock,
-      title: "Cryptographic Protection",
-      desc: "All databases, backups, and document attachments are sealed with customer-isolated AES-256 keys. TLS 1.3 with HSTS enforced for all traffic.",
+      title: "Transport & Database Protection",
+      desc: "Production deployment enforces TLS termination with modern cipher suites via Nginx. Database connections use parameter binding and ORM abstraction against SQL injection.",
       glare: "#3b82f6"
     },
     {
       icon: KeyRound,
-      title: "Strict Identity & Access (RBAC)",
-      desc: "Enforce mandatory WebAuthn/TOTP two-factor authentication, SAML 2.0 Single Sign-On (Okta, Azure AD), and field-level permission masks.",
+      title: "Organization-Scoped RBAC",
+      desc: "Explicit permission boundary checks guard every sensitive action. Managers, auditors, and members cannot mutate or view records outside their authorized organization.",
       glare: "#10b981"
     },
     {
       icon: Eye,
-      title: "Immutable Audit Trails",
-      desc: "Every record creation, modification, export, or document download produces a cryptographically chained, immutable audit event with actor, timestamp, and IP.",
+      title: "Tamper-Evident Audit Logging",
+      desc: "State mutations across organizations, employees, and payroll generate immutable audit log records tracking the acting user, timestamp, and action payload.",
       glare: "#8b5cf6"
     },
     {
       icon: Server,
-      title: "Isolated Multi-Tenant Architecture",
-      desc: "Logical and physical separation of tenant data prevents cross-contamination. Dedicated single-tenant VPC options available for Enterprise tier.",
+      title: "Multi-Tenant Isolation Architecture",
+      desc: "Every database model query filters strictly by tenant foreign keys at the service and manager layers, preventing cross-tenant leakage before response serialization.",
       glare: "#f59e0b"
     }
   ];
@@ -125,16 +128,21 @@ export default function SecurityPage() {
 
       {/* Header */}
       <section className="pt-32 pb-16 sm:pt-40 sm:pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/10 dark:bg-emerald-500/15 border border-emerald-500/20 text-emerald-700 dark:text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-4">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/10 dark:bg-emerald-500/15 border border-emerald-500/20 text-emerald-700 dark:text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-4 font-mono">
           <ShieldCheck className="w-3.5 h-3.5" />
-          <span>Security & Trust Center</span>
+          <span>Security & Compliance Architecture</span>
         </div>
         <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-slate-950 dark:text-white max-w-4xl mx-auto">
-          Enterprise security engineered into <span className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 via-teal-500 to-indigo-500">every layer.</span>
+          Security architecture engineered into <span className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 via-teal-500 to-indigo-500">every layer.</span>
         </h1>
-        <p className="text-base sm:text-lg text-slate-600 dark:text-neutral-400 max-w-2xl mx-auto mt-4 leading-relaxed">
-          Employee personal information, compensation benchmarks, and bank details require uncompromising security. We treat your workforce data with zero trust.
+        <p className="text-base sm:text-lg text-slate-600 dark:text-neutral-400 max-w-3xl mx-auto mt-4 leading-relaxed font-sans">
+          Workforce data, payroll calculations, and organization records demand defensive engineering. Client Forge enforces least privilege, tenant-scoped database boundaries, and automated regression verification.
         </p>
+
+        {/* Independent Project Notice */}
+        <div className="mt-6 max-w-2xl mx-auto p-3.5 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-800 dark:text-amber-300 text-xs font-mono">
+          <strong>Notice:</strong> Client Forge is an independent engineering project and is not currently represented as SOC 2, ISO 27001, HIPAA, FedRAMP, or otherwise independently certified unless explicitly stated.
+        </div>
 
         <div className="flex flex-wrap items-center justify-center gap-3 pt-6">
           <button
@@ -142,28 +150,28 @@ export default function SecurityPage() {
             className="px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs shadow-md shadow-emerald-600/20 flex items-center gap-2 transition cursor-pointer"
           >
             <Download className="w-4 h-4" />
-            <span>Request Security & Compliance Pack</span>
+            <span>Request Architecture Security Memo</span>
           </button>
           <Link
-            href="/workspace/settings"
+            href="/workspace/audits"
             className="px-6 py-3 rounded-xl bg-white dark:bg-[#121216] hover:bg-slate-100 dark:hover:bg-neutral-800 text-slate-900 dark:text-white font-semibold text-xs border border-slate-200 dark:border-white/[0.08] shadow-xs transition cursor-pointer"
           >
-            <span>View Workspace Security Controls</span>
+            <span>Inspect Live Audit Trail Module</span>
           </Link>
         </div>
       </section>
 
-      {/* Certifications Grid */}
+      {/* Architectural Standards Alignment Grid */}
       <section className="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {certifications.map((cert, idx) => (
+          {architecturalControls.map((cert, idx) => (
             <div
               key={idx}
               className="p-6 rounded-2xl bg-white dark:bg-[#121216] border border-slate-200 dark:border-white/[0.08] shadow-xs flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-mono">
                     {cert.status}
                   </span>
                   <span className="text-[10px] font-mono text-slate-400">{cert.badge}</span>
@@ -171,9 +179,9 @@ export default function SecurityPage() {
                 <h3 className="text-lg font-bold text-slate-950 dark:text-white mb-2">{cert.name}</h3>
                 <p className="text-xs text-slate-600 dark:text-neutral-400 leading-relaxed">{cert.desc}</p>
               </div>
-              <div className="pt-4 mt-4 border-t border-slate-100 dark:border-white/[0.04] flex items-center gap-1.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+              <div className="pt-4 mt-4 border-t border-slate-100 dark:border-white/[0.04] flex items-center gap-1.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400 font-mono">
                 <CheckCircle2 className="w-3.5 h-3.5" />
-                <span>Audited 2026</span>
+                <span>Verified in Repository</span>
               </div>
             </div>
           ))}
@@ -183,14 +191,14 @@ export default function SecurityPage() {
       {/* 4 Deep Security Pillars */}
       <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
-          <span className="text-xs font-semibold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest">
-            Architecture Fundamentals
+          <span className="text-xs font-semibold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest font-mono">
+            Defensive Implementation
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-950 dark:text-white">
-            Built on a Zero-Trust Foundation.
+            Architecture Designed for Isolation.
           </h2>
-          <p className="text-slate-600 dark:text-neutral-400 text-sm">
-            Continuous verification, strict least privilege, and hardware-level isolation.
+          <p className="text-slate-600 dark:text-neutral-400 text-sm font-sans">
+            Continuous permission verification, organization-scoped queries, and automated testing across edge cases.
           </p>
         </div>
 
@@ -212,57 +220,57 @@ export default function SecurityPage() {
         </div>
       </section>
 
-      {/* Global Data Residency */}
+      {/* Verified Security Telemetry Section */}
       <section className="py-16 bg-slate-100/60 dark:bg-[#09090d] border-y border-slate-200 dark:border-white/[0.06]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div className="space-y-4">
-              <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest">
-                Data Sovereignty
+              <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest font-mono">
+                Technical Verification
               </span>
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-950 dark:text-white">
-                Store your employee records where you do business.
+                Defensive testing built into CI/CD.
               </h2>
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-neutral-400 leading-relaxed">
-                Meet statutory data residency mandates across North America, the European Union, the United Kingdom, and Asia-Pacific with isolated regional database pinning.
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-neutral-400 leading-relaxed font-sans">
+                Security in Client Forge is backed by concrete test cases asserting that unauthorized users are denied access to privileged domain endpoints, and queries never leak data across organization IDs.
               </p>
               <div className="grid grid-cols-2 gap-3 text-xs pt-2">
                 <div className="p-3 rounded-xl bg-white dark:bg-[#121216] border border-slate-200 dark:border-white/[0.06]">
-                  <div className="font-bold text-slate-900 dark:text-white">US Region (Virginia / Oregon)</div>
-                  <div className="text-[11px] text-slate-500">FedRAMP Ready Data Centers</div>
+                  <div className="font-bold text-slate-900 dark:text-white font-mono">71 Automated Tests</div>
+                  <div className="text-[11px] text-slate-500">Unit & Integration suites</div>
                 </div>
                 <div className="p-3 rounded-xl bg-white dark:bg-[#121216] border border-slate-200 dark:border-white/[0.06]">
-                  <div className="font-bold text-slate-900 dark:text-white">EU Region (Frankfurt / Dublin)</div>
-                  <div className="text-[11px] text-slate-500">Strict GDPR Sovereignty</div>
+                  <div className="font-bold text-slate-900 dark:text-white font-mono">RBAC Permission Classes</div>
+                  <div className="text-[11px] text-slate-500">Custom DRF guards</div>
                 </div>
                 <div className="p-3 rounded-xl bg-white dark:bg-[#121216] border border-slate-200 dark:border-white/[0.06]">
-                  <div className="font-bold text-slate-900 dark:text-white">UK Region (London)</div>
-                  <div className="text-[11px] text-slate-500">UK-GDPR & DPA Compliant</div>
+                  <div className="font-bold text-slate-900 dark:text-white font-mono">Audit Trails</div>
+                  <div className="text-[11px] text-slate-500">State mutation logs</div>
                 </div>
                 <div className="p-3 rounded-xl bg-white dark:bg-[#121216] border border-slate-200 dark:border-white/[0.06]">
-                  <div className="font-bold text-slate-900 dark:text-white">APAC Region (Singapore / Sydney)</div>
-                  <div className="text-[11px] text-slate-500">APEC Privacy Framework</div>
+                  <div className="font-bold text-slate-900 dark:text-white font-mono">TLS + Reverse Proxy</div>
+                  <div className="text-[11px] text-slate-500">Nginx container config</div>
                 </div>
               </div>
             </div>
 
             <div className="p-6 rounded-2xl bg-white dark:bg-[#121216] border border-slate-200 dark:border-white/[0.08] shadow-md space-y-4">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-semibold text-slate-900 dark:text-white">Live Security Posture Telemetry</span>
-                <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 text-emerald-600">
-                  100% Posture Score
+                <span className="text-xs font-semibold text-slate-900 dark:text-white font-mono">Repository Security Controls</span>
+                <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 text-emerald-600 font-mono">
+                  Verified in Code
                 </span>
               </div>
               <div className="space-y-2 text-xs">
                 {[
-                  { check: "Mandatory Two-Factor Authentication Enforced", ok: true },
-                  { check: "Zero Unpatched CVE Vulnerabilities", ok: true },
-                  { check: "Automated Daily Disaster Recovery Snapshots", ok: true },
-                  { check: "Annual External Third-Party Penetration Test", ok: true },
-                  { check: "99.99% Core API Uptime Over Last 12 Months", ok: true }
+                  { check: "Organization-scoped querysets in DRF ViewSets", ok: true },
+                  { check: "JWT authentication with secure token expiration", ok: true },
+                  { check: "Environment variable secret isolation (.env.production)", ok: true },
+                  { check: "71 automated regression test methods passing", ok: true },
+                  { check: "Nginx reverse proxy with HTTPS/TLS encryption", ok: true }
                 ].map((item, i) => (
                   <div key={i} className="flex items-center justify-between p-2.5 rounded-lg bg-slate-50 dark:bg-neutral-900/50">
-                    <span className="text-slate-700 dark:text-neutral-300">{item.check}</span>
+                    <span className="text-slate-700 dark:text-neutral-300 font-sans">{item.check}</span>
                     <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
                   </div>
                 ))}
@@ -272,7 +280,7 @@ export default function SecurityPage() {
         </div>
       </section>
 
-      {/* Security Pack Request Modal */}
+      {/* Security Architecture Memo Modal */}
       <AnimatePresence>
         {isPackModalOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
@@ -291,30 +299,30 @@ export default function SecurityPage() {
 
               <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400">
                 <FileCheck className="w-5 h-5" />
-                <h3 className="text-lg font-bold text-slate-950 dark:text-white">Security & Compliance Pack</h3>
+                <h3 className="text-lg font-bold text-slate-950 dark:text-white">Architecture Security Memo</h3>
               </div>
               <p className="text-xs text-slate-500 dark:text-neutral-400">
-                Includes SOC-2 Type II audit report, ISO 27001 certificate, penetration testing summary, and DPA template.
+                Receive the technical summary detailing Client Forge's multi-tenant ORM isolation patterns, RBAC permission matrix, and automated test suite coverage.
               </p>
 
               {packRequested ? (
                 <div className="p-6 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-center space-y-2">
                   <CheckCircle2 className="w-8 h-8 text-emerald-500 mx-auto" />
-                  <h4 className="text-sm font-bold text-emerald-700 dark:text-emerald-400">Security Pack Dispatched!</h4>
+                  <h4 className="text-sm font-bold text-emerald-700 dark:text-emerald-400">Memo Request Received!</h4>
                   <p className="text-xs text-slate-600 dark:text-neutral-300">
-                    A secure download link and NDA verification email has been sent to your inbox.
+                    A copy of the architectural specifications will be sent to your email.
                   </p>
                 </div>
               ) : (
                 <form onSubmit={handleRequestPack} className="space-y-3 text-xs">
                   <div>
-                    <label className="block font-semibold text-slate-700 dark:text-neutral-300 mb-1">Company Work Email *</label>
+                    <label className="block font-semibold text-slate-700 dark:text-neutral-300 mb-1">Work Email *</label>
                     <input
                       type="email"
                       required
                       value={packEmail}
                       onChange={(e) => setPackEmail(e.target.value)}
-                      placeholder="compliance@enterprise.com"
+                      placeholder="engineer@company.com"
                       className="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-neutral-900 border border-slate-200 dark:border-neutral-800 text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
                     />
                   </div>
@@ -331,7 +339,7 @@ export default function SecurityPage() {
                       disabled={isSubmitting}
                       className="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 disabled:opacity-60 text-white font-semibold text-xs transition cursor-pointer shadow-md shadow-emerald-600/25 flex items-center justify-center gap-2"
                     >
-                      {isSubmitting ? "Dispatching Compliance Pack..." : "Receive Compliance Pack"}
+                      {isSubmitting ? "Dispatching Architecture Memo..." : "Receive Architecture Memo"}
                     </button>
                   </div>
                 </form>
