@@ -80,21 +80,29 @@ export default function Testimonials() {
               {/* Author Info / Engineer Attribution */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pt-8 border-t border-slate-200 dark:border-white/[0.08] relative z-10">
                 <div className="flex items-center gap-4">
-                  <img 
-                    src="/creator-editorial-v2.png" 
-                    alt="Dibya Sarothi Simanta" 
-                    className="w-14 h-14 rounded-full object-cover border-2 border-slate-200 dark:border-white/10 shadow-lg bg-black"
-                  />
+                  <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden border-2 border-indigo-500/40 dark:border-white/20 shadow-xl shrink-0 bg-neutral-900">
+                    <img 
+                      src="/creator-avatar.png" 
+                      alt="Dibya Sarothi Simanta" 
+                      className="w-full h-full object-cover object-top scale-105"
+                    />
+                  </div>
                   <div>
-                    <h4 className="font-medium text-slate-950 dark:text-[#f5f5f3] text-lg">Dibya Sarothi Simanta</h4>
+                    <h4 className="font-medium text-slate-950 dark:text-[#f5f5f3] text-lg leading-snug">Dibya Sarothi Simanta</h4>
                     <p className="text-sm text-slate-600 dark:text-neutral-400 font-normal">Full-Stack Systems Architect & Engineer</p>
                     <span className="text-xs text-slate-500 dark:text-neutral-400 font-sans">Python / Django / Next.js / PostgreSQL / Redis</span>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08]">
-                  <span className="text-xs font-mono text-indigo-600 dark:text-indigo-400 font-semibold">Verified</span>
-                  <span className="text-xs text-slate-600 dark:text-neutral-400 font-sans">Repository Implementation</span>
+                <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-white/[0.04] border border-slate-200/90 dark:border-white/[0.1] shadow-xs">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-sans font-semibold tracking-wide uppercase text-indigo-600 dark:text-indigo-400">
+                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
+                    Verified
+                  </span>
+                  <span className="text-slate-300 dark:text-neutral-700">|</span>
+                  <span className="text-xs font-sans font-medium text-slate-700 dark:text-neutral-300">
+                    Repository Implementation
+                  </span>
                 </div>
               </div>
             </div>
