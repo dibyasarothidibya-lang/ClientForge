@@ -193,11 +193,11 @@ export default function Footer() {
                 <div className="flex items-center justify-between pb-4 mb-5 border-b border-slate-200/80 dark:border-white/[0.08]">
                   <div className="flex items-center gap-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-                    <span className="text-xs font-mono font-medium text-slate-700 dark:text-neutral-300">
+                    <span className="text-xs font-sans font-semibold tracking-wider text-slate-700 dark:text-neutral-300">
                       SYSTEM ARCHITECT
                     </span>
                   </div>
-                  <span className="text-[11px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold bg-indigo-500/10 px-2.5 py-0.5 rounded-md">
+                  <span className="text-[11px] font-sans text-indigo-600 dark:text-indigo-400 font-semibold bg-indigo-500/10 px-2.5 py-0.5 rounded-md tracking-wide">
                     AVAILABLE FOR HIRE
                   </span>
                 </div>

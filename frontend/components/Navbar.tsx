@@ -355,10 +355,10 @@ export default function Navbar() {
               {/* 5. Live App / HR Workspace Link */}
               <Link
                 href="/workspace"
-                className="ml-1 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[12px] font-semibold tracking-tight text-slate-800 dark:text-neutral-200 bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.06] dark:hover:bg-white/[0.12] border border-slate-200 dark:border-white/10 transition cursor-pointer"
+                className="ml-1 inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[12px] font-semibold tracking-tight whitespace-nowrap shrink-0 text-slate-800 dark:text-neutral-200 bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.06] dark:hover:bg-white/[0.12] border border-slate-200 dark:border-white/10 transition cursor-pointer"
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
-                <span>HR Workspace</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse shrink-0" />
+                <span className="whitespace-nowrap">HR Workspace</span>
               </Link>
             </nav>
 
