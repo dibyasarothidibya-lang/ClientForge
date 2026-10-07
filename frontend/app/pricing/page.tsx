@@ -226,23 +226,18 @@ export default function PricingPage() {
     setCheckoutError("");
 
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000/api/v1";
+      const { ApiClient } = await import("@/lib/api");
       const numericPrice = typeof selectedPlanForCheckout.price === "number" ? selectedPlanForCheckout.price : 149;
       
-      const res = await fetch(`${apiUrl}/integrations/stripe/create-checkout-session/`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          plan_name: selectedPlanForCheckout.name,
-          amount: numericPrice,
-          period: selectedPlanForCheckout.period,
-        }),
+      const res = await ApiClient.post("/integrations/stripe/create-checkout-session/", {
+        plan_name: selectedPlanForCheckout.name,
+        amount: numericPrice,
+        period: selectedPlanForCheckout.period,
       });
 
-      const data = await res.json();
-      if (res.ok && data.checkout_url) {
+      if (res && res.checkout_url) {
         // Redirect directly to official hosted Stripe Checkout
-        window.location.href = data.checkout_url;
+        window.location.href = res.checkout_url;
         return;
       } else {
         // Fallback simulation if offline

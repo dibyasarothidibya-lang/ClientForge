@@ -3,7 +3,15 @@
  * Manages JWT tokens, Organization headers, and typed REST communication with Django backend.
  */
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000/api/v1";
+const getBaseUrl = (): string => {
+  if (process.env.NEXT_PUBLIC_API_URL) {
+    return process.env.NEXT_PUBLIC_API_URL;
+  }
+  if (typeof window !== "undefined") {
+    return `${window.location.origin}/api/v1`;
+  }
+  return "http://127.0.0.1:8000/api/v1";
+};
 
 export interface ApiResponse<T = any> {
   success: boolean;
@@ -70,7 +78,8 @@ export class ApiClient {
     endpoint: string,
     options: RequestInit = {}
   ): Promise<ApiResponse<T>> {
-    const url = endpoint.startsWith("http") ? endpoint : `${API_BASE_URL}${endpoint.startsWith("/") ? "" : "/"}${endpoint}`;
+    const baseUrl = getBaseUrl();
+    const url = endpoint.startsWith("http") ? endpoint : `${baseUrl}${endpoint.startsWith("/") ? "" : "/"}${endpoint}`;
     const headers = this.getHeaders((options.headers as Record<string, string>) || {});
 
     try {

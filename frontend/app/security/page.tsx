@@ -43,14 +43,12 @@ export default function SecurityPage() {
     setSubmitError("");
 
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000/api/v1";
-      const res = await fetch(`${apiUrl}/notifications/request-compliance-pack/`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: packEmail }),
+      const { ApiClient } = await import("@/lib/api");
+      const res = await ApiClient.post("/notifications/request-compliance-pack/", {
+        email: packEmail,
       });
-      const data = await res.json();
-      if (res.ok && data.success) {
+
+      if (res.success) {
         setPackRequested(true);
         setTimeout(() => {
           setIsPackModalOpen(false);
@@ -58,7 +56,7 @@ export default function SecurityPage() {
           setPackEmail("");
         }, 3000);
       } else {
-        setSubmitError(data.message || "Failed to dispatch specification memo. Please try again.");
+        setSubmitError(res.error?.message || res.message || "Failed to dispatch specification memo. Please try again.");
       }
     } catch (err: any) {
       setSubmitError(err.message || "Network error. Please try again later.");
