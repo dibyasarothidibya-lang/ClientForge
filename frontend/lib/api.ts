@@ -4,11 +4,12 @@
  */
 
 const getBaseUrl = (): string => {
+  if (typeof window !== "undefined") {
+    // In browser, always use current origin so calls match whichever domain the user is visiting (e.g. dibyasarothi.is-a.dev)
+    return `${window.location.origin}/api/v1`;
+  }
   if (process.env.NEXT_PUBLIC_API_URL) {
     return process.env.NEXT_PUBLIC_API_URL;
-  }
-  if (typeof window !== "undefined") {
-    return `${window.location.origin}/api/v1`;
   }
   return "http://127.0.0.1:8000/api/v1";
 };

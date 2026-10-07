@@ -21,9 +21,35 @@ export const metadata: Metadata = {
   title: "Client Forge — Opportunity Intelligence & Pipeline Engine",
   description: "The intelligent operating system for client acquisition, prospect intelligence, opportunity pipelines, and relationship operations.",
   icons: {
-    icon: "/logo.jpg",
-    shortcut: "/logo.jpg",
-    apple: "/logo.jpg",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+      { url: "/logo.jpg", type: "image/jpeg" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
+  openGraph: {
+    title: "Client Forge — Opportunity Intelligence & Pipeline Engine",
+    description: "The intelligent operating system for client acquisition, prospect intelligence, opportunity pipelines, and relationship operations.",
+    url: "https://dibyasarothi.is-a.dev",
+    siteName: "Client Forge",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Client Forge OS",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Client Forge — Opportunity Intelligence & Pipeline Engine",
+    description: "The intelligent operating system for client acquisition, prospect intelligence, opportunity pipelines, and relationship operations.",
+    images: ["/og-image.jpg"],
   },
 };
 
@@ -39,7 +65,9 @@ export default function RootLayout({
       className={`${inter.variable} ${cormorant.variable} font-sans h-full antialiased scroll-smooth`}
     >
       <head>
-        <link rel="icon" href="/logo.jpg" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" type="image/png" sizes="512x512" href="/icon.png" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       </head>
       <body className="min-h-full flex flex-col font-sans bg-white dark:bg-[#09090b] text-slate-900 dark:text-zinc-100 transition-colors duration-200">
         <ThemeProvider
