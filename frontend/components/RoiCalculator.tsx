@@ -331,11 +331,11 @@ function GraphDetailsModal({
             Close Memo
           </button>
           <Link
-            href="/pricing"
+            href="/workspace"
             onClick={onClose}
             className="inline-flex items-center px-5 py-2.5 rounded-xl text-xs font-sans font-medium bg-white text-neutral-950 hover:bg-stone-100 transition-all shadow-md group cursor-pointer"
           >
-            <span>Start Forging With This Model</span>
+            <span>Explore Model in Workspace</span>
             <ArrowRight className="w-3.5 h-3.5 ml-1.5 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
@@ -639,10 +639,10 @@ function Interactive3DRoiCard({
             className="mt-7 font-sans"
           >
             <Link
-              href="/pricing"
+              href="/workspace"
               className="w-full inline-flex items-center justify-center px-4 py-3.5 text-sm font-medium text-neutral-950 bg-white hover:bg-stone-100 rounded-xl transition-all shadow-md group cursor-pointer font-sans hover:scale-[1.01] active:scale-[0.99]"
             >
-              <span>Start Forging Today</span>
+              <span>Explore Live Workspace</span>
               <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>

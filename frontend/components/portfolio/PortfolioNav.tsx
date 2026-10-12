@@ -8,6 +8,7 @@ import ThemeToggle from "@/components/ThemeToggle";
 const links = [
   ["Services", "/#services"],
   ["Case Study", "/case-studies/clientforge"],
+  ["Showcase", "/showcase"],
   ["About", "/#about"],
   ["Contact", "/#contact"],
 ];

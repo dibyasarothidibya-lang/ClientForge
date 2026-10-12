@@ -73,7 +73,7 @@ export default function Testimonials() {
 
                 {/* Big Architectural Statement */}
                 <blockquote className="font-serif text-2xl sm:text-3xl lg:text-4xl text-slate-950 dark:text-[#f5f5f3] leading-snug tracking-tight mb-8">
-                  “Production SaaS is defined by its resilience under edge cases—strict multi-tenant isolation, tamper-evident audit logging, robust domain service layers, and automated regression tests that verify every critical state change before deployment.”
+                  “Production SaaS is defined by its resilience under edge cases—organization-scoped controls, traceable event audit logging, robust domain service layers, and automated regression tests that verify every critical state change before deployment.”
                 </blockquote>
               </div>
 

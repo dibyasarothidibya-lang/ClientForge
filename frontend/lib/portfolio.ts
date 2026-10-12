@@ -2,7 +2,7 @@
 export const engineer = {
   name: "Dibya Sarothi Simanta",
   title: "Independent B2B Software & Backend Systems Engineer",
-  tagline: "Custom Internal Tools · Workflow Automation · Reliable Backend Systems",
+  tagline: "Custom Internal Applications · Workflow Automation · Backend & SaaS Engineering",
   positioning:
     "I build custom internal software and backend systems that replace disconnected spreadsheets, manual workflows, and unreliable business processes.",
   email: "dibyasarothidibya@gmail.com",
@@ -17,16 +17,16 @@ export const engineer = {
 export const commercialServices = [
   {
     number: "01",
-    title: "Custom Internal Tools",
+    title: "Custom Internal Applications",
     problem: "Critical business operations run on fragile spreadsheets, email threads, and disconnected SaaS apps that cannot talk to each other.",
     consequence: "Data gets lost between departments, team members duplicate manual work, and leadership lacks a single source of operational truth.",
     solution: "I build bespoke internal tools, operational dashboards, customer/staff management portals, and administrative backends tailored to your exact business logic.",
     evidence: "ClientForge provides a unified workforce directory, department hierarchies, contract tracking, and granular management interfaces.",
     module: "/workspace/people",
-    link: "Inspect internal directory demo",
-    whatsappPrefill: "Hi Dibya, I'm interested in discussing a custom internal tool for my business.",
-    subject: "Project inquiry: Custom Internal Tools",
-    ctaText: "Discuss an Internal Tool",
+    link: "Inspect Employee Records Demo",
+    whatsappPrefill: "Hi Dibya, I'd like to discuss a custom internal application for my business.",
+    subject: "Project inquiry: Custom Internal Applications",
+    ctaText: "Discuss an Internal Application",
   },
   {
     number: "02",
@@ -36,23 +36,23 @@ export const commercialServices = [
     solution: "I engineer deterministic workflow state machines, automated approval hierarchies, background job workers, webhook handlers, and third-party API sync pipelines.",
     evidence: "ClientForge automates multi-step leave and expense approval transitions with atomic validation, Celery background tasks, and event auditing.",
     module: "/workspace/approvals",
-    link: "Test live approval engine",
-    whatsappPrefill: "Hi Dibya, I'd like to automate our business approvals and system workflows.",
+    link: "Test Live Approval Engine",
+    whatsappPrefill: "Hi Dibya, I'd like to discuss workflow automation and integrations for my business.",
     subject: "Project inquiry: Workflow Automation & Integrations",
-    ctaText: "Automate a Workflow",
+    ctaText: "Discuss Workflow Automation",
   },
   {
     number: "03",
-    title: "Backend Development & SaaS Systems",
+    title: "Backend & SaaS Engineering",
     problem: "Application backends suffer from slow database queries, security vulnerabilities, loose data validation, and lack of transaction safety.",
     consequence: "Data corruption during concurrent operations, permission leaks between customer accounts, and fragile systems that break under load.",
-    solution: "I architect robust Django REST and Node.js backends with strict multi-tenant isolation, 6-tier RBAC security, Decimal-precision financial arithmetic, and automated test suites.",
-    evidence: "ClientForge implements 13 modular Django applications, organization-scoped database querysets, and 71 automated regression test methods.",
+    solution: "I architect robust Django REST and Node.js backends with organization-scoped querysets, 6-tier RBAC security, Decimal-precision financial arithmetic, and automated test coverage.",
+    evidence: "ClientForge implements 13 modular Django applications, organization-scoped database querysets, and 71 passing automated test methods.",
     module: "/case-studies/clientforge#engineering",
-    link: "Inspect backend architecture & 71 tests",
-    whatsappPrefill: "Hi Dibya, I need backend development or SaaS architecture for my project.",
-    subject: "Project inquiry: Backend Development & SaaS Systems",
-    ctaText: "Discuss Backend Development",
+    link: "Inspect Architecture & 71 Test Methods",
+    whatsappPrefill: "Hi Dibya, I need backend engineering or SaaS architecture for my project.",
+    subject: "Project inquiry: Backend & SaaS Engineering",
+    ctaText: "Discuss Backend & SaaS Engineering",
   },
 ];
 
@@ -62,7 +62,7 @@ export const businessProblems = [
     consequence: "Customer records, employee details, and project data are split across 5 different spreadsheets and SaaS tools with no central source of truth.",
     solution: "Centralized relational database schemas with typed data models, foreign-key integrity, and real-time operational views.",
     targetModule: "/workspace/people",
-    ctaText: "Inspect data structure demo",
+    ctaText: "Inspect unified data model",
   },
   {
     problem: "Manual Approval Bottlenecks",
@@ -81,7 +81,7 @@ export const businessProblems = [
   {
     problem: "Unreliable Application Backends",
     consequence: "Legacy backends experience race conditions, data corruption during concurrent edits, and lack permission enforcement.",
-    solution: "Atomic database transactions (select_for_update), Decimal arithmetic, organization-scoped querysets, and comprehensive automated test suites.",
+    solution: "Atomic database transactions (select_for_update), Decimal arithmetic, organization-scoped querysets, and 71 passing automated test methods.",
     targetModule: "/case-studies/clientforge#engineering",
     ctaText: "Inspect backend architecture",
   },
@@ -90,37 +90,37 @@ export const businessProblems = [
 export const guidedDemonstrationPaths = [
   {
     number: "01",
-    title: "Organize Business Records",
-    subtitle: "For teams replacing spreadsheet chaos with structured data",
+    title: "Employee Records & Directory",
+    subtitle: "Centralized workforce records replacing disconnected spreadsheets",
     description: "Inspect how ClientForge organizes employee directories, department hierarchies, and lifecycle events into an intuitive, relational interface.",
     path: "/workspace/people",
-    action: "Open People Directory",
-    badge: "Relational Data Modeling",
+    action: "Open Employee Records Demo",
+    badge: "Workforce & Relational Models",
   },
   {
     number: "02",
-    title: "Track an Approval Workflow",
-    subtitle: "For teams needing automated, verifiable sign-offs",
-    description: "Walk through a live state machine transition: submit a leave or expense request, review permissions, and observe real-time status transitions.",
+    title: "Approval Workflows",
+    subtitle: "Automated sign-offs replacing email and chat threads",
+    description: "Walk through a live state machine transition: submit a leave or expense request, review reviewer permissions, and observe real-time status transitions.",
     path: "/workspace/approvals",
-    action: "Test Approval Engine",
+    action: "Test Approval Workflows Demo",
     badge: "State Machine Transitions",
   },
   {
     number: "03",
-    title: "Control Access & Track Changes",
-    subtitle: "For organizations requiring strict security and auditability",
-    description: "Explore 6-tier RBAC role definitions (Owner to Auditor), tenant data boundaries, and immutable event audit logs.",
+    title: "Permission & Audit Controls",
+    subtitle: "Organization scoping, 6-tier RBAC, and event audit trails",
+    description: "Explore 6-tier RBAC role definitions (Owner to Auditor), organization-scoped controls, and traceable event audit records.",
     path: "/workspace/settings",
-    action: "Inspect RBAC & Audits",
-    badge: "Multi-Tenant Security",
+    action: "Inspect Permissions & Audits Demo",
+    badge: "RBAC & Governance",
   },
 ];
 
 export const demonstrationModules = [
   {
     name: "Organization & RBAC",
-    description: "6 permission roles and multi-tenant scoping",
+    description: "6 permission roles and organization-scoped controls",
     path: "/workspace/settings",
     badge: "Security & Tenancy",
   },
@@ -186,7 +186,7 @@ export const engagementPhases = [
 export const faqs = [
   {
     question: "What types of projects do you typically take on?",
-    answer: "I specialize in three core areas: (1) Custom internal business applications that replace spreadsheet chaos (employee directories, operational dashboards, customer portals), (2) Workflow automation and integrations (approval state machines, API connections, notification queues), and (3) Backend engineering & multi-tenant SaaS systems (Django REST / Node.js APIs, database optimization, 6-tier RBAC, and test suites).",
+    answer: "I specialize in three core areas: (1) Custom internal business applications that replace spreadsheet chaos (employee directories, operational dashboards, customer portals), (2) Workflow automation and integrations (approval state machines, API connections, notification queues), and (3) Backend engineering & SaaS systems (Django REST / Node.js APIs, database optimization, 6-tier RBAC, and automated test coverage).",
   },
   {
     question: "How does working with an independent engineer compare to hiring an agency or full-time employee?",
@@ -194,14 +194,14 @@ export const faqs = [
   },
   {
     question: "Is ClientForge an active commercial SaaS or an engineering case study?",
-    answer: "ClientForge is an independently built, production-grade SaaS demonstration platform. It features 13 modular Django applications, 6 permission tiers, multi-tenant database scoping, and 71 automated regression tests. The organizations and figures inside the demo are seeded sample datasets designed to demonstrate architectural depth.",
+    answer: "ClientForge is an independently built, production-grade engineering case study and platform demonstration. It features 13 modular Django applications, 6 permission tiers, organization-scoped database querysets, and 71 passing automated test methods. The organizations and figures inside the demo are seeded sample datasets designed to demonstrate architectural depth.",
   },
   {
     question: "What is your typical project timeline and engagement model?",
     answer: "Projects typically range from 2 to 8 weeks depending on scope. We begin with a diagnostic discussion and technical scoping phase before agreeing on a fixed-price proposal with milestone-based delivery. You always know what is being built, when it will be delivered, and what it will cost before development begins.",
   },
   {
-    question: "How do you ensure data security and multi-tenant isolation?",
+    question: "How do you ensure data security and organization-level scoping?",
     answer: "Security and isolation are engineered at the database and application levels. Every query is scoped to the authenticated tenant organization. We implement 6-tier Role-Based Access Control (RBAC), atomic transactions with row-level locks for sensitive state updates, parameterized SQL queries, and complete event audit trails.",
   },
   {

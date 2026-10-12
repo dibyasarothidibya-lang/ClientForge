@@ -44,10 +44,10 @@ export default function BentoGrid() {
             </p>
             <div className="flex flex-wrap items-center gap-4">
               <Link 
-                href="/pricing" 
+                href="/workspace" 
                 className="px-7 py-3.5 bg-slate-950 dark:bg-white text-white dark:text-neutral-950 hover:bg-slate-800 dark:hover:bg-neutral-200 font-semibold text-sm rounded-full transition-all shadow-md"
               >
-                Start Forging
+                Launch Workspace Demo
               </Link>
               <Link 
                 href="/workspace" 

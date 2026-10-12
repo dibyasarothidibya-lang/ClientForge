@@ -276,6 +276,21 @@ export default function PricingPage() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto">
+            {/* Explicit Product Demonstration Notice */}
+            <div className="mb-8 p-4 rounded-2xl border border-amber-500/30 bg-amber-500/10 text-xs text-amber-900 dark:text-amber-200 text-left max-w-2xl mx-auto flex items-start gap-3">
+              <span className="font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider text-[10px] shrink-0 mt-0.5 px-2 py-0.5 rounded bg-amber-500/20">Demo Model</span>
+              <p className="leading-relaxed">
+                <strong>Product Pricing Demonstration:</strong> This page models multi-tier SaaS packaging, per-seat calculators, and simulated checkout flows for demonstration purposes. It does not represent freelance engineering rates. To discuss custom internal tools, automation, or backend development, please visit the{" "}
+                <Link href="/#contact" className="underline font-semibold text-indigo-600 dark:text-indigo-400">
+                  Freelance Engineering Portfolio
+                </Link>
+                {" "}or{" "}
+                <a href="https://wa.me/8801704909232" target="_blank" rel="noopener noreferrer" className="underline font-semibold text-emerald-600 dark:text-emerald-400">
+                  Discuss a Project on WhatsApp
+                </a>.
+              </p>
+            </div>
+
             {/* High-level product toggle */}
             <div className="inline-flex items-center gap-1 p-1 rounded-2xl bg-slate-200/80 dark:bg-white/[0.06] border border-slate-300 dark:border-white/[0.08] mb-6 shadow-sm">
               <button

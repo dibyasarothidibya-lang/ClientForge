@@ -8,7 +8,7 @@ export default function ContactForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [company, setCompany] = useState("");
-  const [projectType, setProjectType] = useState("Custom Internal Tool");
+  const [projectType, setProjectType] = useState("Custom Internal Application");
   const [message, setMessage] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
@@ -96,9 +96,9 @@ export default function ContactForm() {
               onChange={(e) => setProjectType(e.target.value)}
               className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50/50 dark:bg-[#121216] text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500 transition-all"
             >
-              <option value="Custom Internal Tool">Custom Internal Tool (Portal / Dashboard / Admin)</option>
+              <option value="Custom Internal Application">Custom Internal Application (Portal / Dashboard / Admin)</option>
               <option value="Workflow Automation & Integrations">Workflow Automation & Integrations (Approvals / APIs)</option>
-              <option value="Backend Development & SaaS Systems">Backend Development & SaaS Systems (Django / Node)</option>
+              <option value="Backend & SaaS Engineering">Backend & SaaS Engineering (Django / Node)</option>
               <option value="Architecture Consultation & Audit">Architecture Consultation & Audit</option>
             </select>
           </div>

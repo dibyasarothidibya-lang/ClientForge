@@ -80,7 +80,7 @@ export function Services() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {service.ctaText} <ArrowUpRight size={15} />
+                  Discuss a Project <ArrowUpRight size={15} />
                 </a>
               </div>
             </div>
@@ -173,8 +173,8 @@ export function TechnicalProofStrip() {
       <div className={s.proofBanner} aria-label="Technical verification metrics">
         <div className={s.proofItem}>
           <strong>71</strong>
-          <span>Automated Tests</span>
-          <p>Passing unit & regression tests covering permissions, domain services, and API endpoints.</p>
+          <span>Passing Test Methods</span>
+          <p>Passing test methods across 13 domain files verifying permissions, domain services, and API endpoints.</p>
         </div>
         <div className={s.proofItem}>
           <strong>6 Tiers</strong>
@@ -182,9 +182,9 @@ export function TechnicalProofStrip() {
           <p>Granular organization roles from Owner and Admin down to Member and Auditor.</p>
         </div>
         <div className={s.proofItem}>
-          <strong>100%</strong>
-          <span>Tenant Isolation</span>
-          <p>Organization-scoped relational querysets preventing cross-tenant data leakage.</p>
+          <strong>Scoped</strong>
+          <span>Tenant Controls</span>
+          <p>Organization-scoped relational querysets and permission checks verified in automated test cases.</p>
         </div>
         <div className={s.proofItem}>
           <strong>Atomic</strong>
@@ -250,6 +250,23 @@ export function FlagshipStudy() {
           <LiveDemoNavigator />
         </div>
 
+        <div className="mt-8 p-4 rounded-xl border border-slate-200/80 dark:border-white/10 bg-slate-50/50 dark:bg-white/[0.02] flex items-center justify-between gap-4 flex-wrap">
+          <div>
+            <span className="text-xs font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 block mb-0.5">
+              Deep Technical Prototype & Modeling
+            </span>
+            <p className="text-xs text-slate-600 dark:text-neutral-400">
+              Looking for the secondary product marketing demonstrations, talent cards, and pipeline simulator?
+            </p>
+          </div>
+          <Link
+            href="/showcase"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-500"
+          >
+            Explore Secondary Product Showcase <ArrowUpRight size={14} />
+          </Link>
+        </div>
+
         <p className={s.notice}>
           The workspace includes seeded example organizations and simulated operational displays. Payroll arithmetic and workflow code are engineering demonstrations; they do not establish jurisdiction-specific tax compliance or actual money movement.
         </p>
@@ -303,7 +320,7 @@ export function AboutEngineer({ asPage = false }: { asPage?: boolean } = {}) {
             </p>
             <div className={s.links}>
               <a className={s.link} href={engineer.whatsapp} target="_blank" rel="noopener noreferrer">
-                WhatsApp <ArrowUpRight size={15} />
+                Discuss a Project on WhatsApp <ArrowUpRight size={15} />
               </a>
               <a className={s.link} href={engineer.linkedin} target="_blank" rel="noopener noreferrer">
                 LinkedIn <ArrowUpRight size={15} />
@@ -348,7 +365,7 @@ export function ContactSection({ asPage = false }: { asPage?: boolean } = {}) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Discuss on WhatsApp <ArrowUpRight size={17} />
+                Discuss a Project on WhatsApp <ArrowUpRight size={17} />
               </a>
               <a
                 className={s.link}
@@ -382,9 +399,10 @@ export function PortfolioFooter() {
           © {new Date().getFullYear()} Dibya Sarothi Simanta · Independent B2B software engineering
         </span>
         <div className={s.links}>
-          <Link href="/case-studies/clientforge">ClientForge case study</Link>
-          <Link href="/workspace">Product demo</Link>
-          <Link href="/security">Implemented controls</Link>
+          <Link href="/case-studies/clientforge">Case study</Link>
+          <Link href="/showcase">Product showcase</Link>
+          <Link href="/workspace">Live demo</Link>
+          <Link href="/security">Security controls</Link>
           <a href={engineer.whatsapp} target="_blank" rel="noopener noreferrer">
             WhatsApp
           </a>

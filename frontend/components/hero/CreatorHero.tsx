@@ -28,7 +28,7 @@ export default function CreatorHero({ introOnly = false }: { introOnly?: boolean
   return <div ref={ref} className={styles.hero} data-paused={still}>
     <svg width="0" height="0" aria-hidden="true" className={styles.filters}><defs><filter id="signature-ink" colorInterpolationFilters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -0.2126 -0.7152 -0.0722 0 1" /></filter></defs></svg>
     <div className={styles.atmosphere} aria-hidden="true"><div /><div /><div /></div>
-    <motion.div className={styles.topline} {...reveal}><span className={styles.eyebrow}>INDEPENDENT B2B SOFTWARE & BACKEND SYSTEMS ENGINEER</span><a href="https://wa.me/8801704909232" target="_blank" rel="noopener noreferrer" className={styles.availability}><span /> Discuss your operational problem <ArrowUpRight size={13} /></a></motion.div>
+    <motion.div className={styles.topline} {...reveal}><span className={styles.eyebrow}>INDEPENDENT B2B SOFTWARE & BACKEND SYSTEMS ENGINEER</span><a href="https://wa.me/8801704909232?text=Hi%20Dibya%2C%20I'd%20like%20to%20discuss%20a%20software%20engineering%20project." target="_blank" rel="noopener noreferrer" className={styles.availability}><span /> Discuss a Project <ArrowUpRight size={13} /></a></motion.div>
     <div className={styles.grid}>
       <motion.div className={styles.copy} {...reveal}>
         <p className={styles.intro}>Dibya Sarothi Simanta <span>Custom Internal Tools · Workflow Automation · Backend Systems</span></p>
@@ -36,7 +36,7 @@ export default function CreatorHero({ introOnly = false }: { introOnly?: boolean
         <p className={styles.description}>I build custom internal software and backend systems that replace disconnected spreadsheets, manual workflows, and unreliable business processes.</p>
         <p className={styles.specialisation}>Django / Python · Next.js / TypeScript · Multi-Tenant Architecture · Production-Tested</p>
         <div className={styles.signed}><div className={styles.signature}><Image src="/signature.jpeg" alt="Dibya’s handwritten signature" width={1448} height={1086} /></div><span>Thoughtfully designed.<br />Personally engineered.</span></div>
-        <div className={styles.actions}><a className={styles.primary} href="#contact">Tell Me About Your Project <ArrowUpRight size={18} /></a><Link className={styles.secondary} href="/case-studies/clientforge">See What I&apos;ve Built <ArrowUpRight size={17} /></Link></div>
+        <div className={styles.actions}><a className={styles.primary} href="#contact">Discuss a Project <ArrowUpRight size={18} /></a><Link className={styles.secondary} href="/case-studies/clientforge">See What I&apos;ve Built <ArrowUpRight size={17} /></Link></div>
         <div className="flex flex-wrap items-center gap-2.5 mt-6 font-sans">
           <a
             href="https://github.com/dibyasarothidibya-lang"

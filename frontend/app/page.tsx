@@ -14,7 +14,6 @@ import {
 } from "@/components/portfolio/PortfolioSections";
 import GlobalWorkforceBanner from "@/components/GlobalWorkforceBanner";
 import SelectedWork from "@/components/SelectedWork";
-import LegacyShowcase from "@/components/portfolio/LegacyShowcase";
 import Faq from "@/components/Faq";
 import ThreeDSection from "@/components/motion/ThreeDSection";
 import s from "@/components/portfolio/portfolio.module.css";
@@ -84,16 +83,6 @@ export default function Home() {
         </ThreeDSection>
 
         <TechnicalProofStrip />
-
-        <details className={s.demoDetails}>
-          <summary>
-            Secondary Technical Showcase — Opportunity & Pipeline Intelligence Modeling
-            <span>
-              Interactive module tabs, workforce rail, technical visualisations, scenario calculator, and architecture decisions. Sample data and projections are labelled inside the demonstrations.
-            </span>
-          </summary>
-          <LegacyShowcase />
-        </details>
 
         <ThreeDSection depthIntensity={0.65}>
           <SelectedWork />
