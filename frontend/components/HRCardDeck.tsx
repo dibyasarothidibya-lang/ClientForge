@@ -190,14 +190,18 @@ export function HRCardDeck() {
             <div className="absolute inset-0 bg-gradient-to-tr from-sky-400/0 via-white/5 to-sky-300/15 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20 mix-blend-overlay" />
 
             {/* Background Image with Gradient Overlay */}
-            <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-neutral-900 bg-gradient-to-b from-neutral-800 to-neutral-950">
               <Image
                 src={card.src}
                 alt={card.title}
                 fill
+                unoptimized
                 sizes="(max-width: 768px) 300px, 420px"
                 className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-80"
                 priority={idx < 3}
+                onError={(e) => {
+                  (e.currentTarget as HTMLElement).style.display = "none";
+                }}
               />
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent pointer-events-none" />

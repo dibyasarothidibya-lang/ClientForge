@@ -107,13 +107,17 @@ export default function Hero({ includeProfile = true }: { includeProfile?: boole
                 className="group relative rounded-3xl overflow-hidden border border-slate-200/90 dark:border-white/[0.08] bg-slate-900 h-[380px] sm:h-[420px] flex flex-col justify-end p-6 sm:p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 hover:border-slate-300 dark:hover:border-white/20 cursor-pointer"
               >
                 {/* Background Image with Controlled Dark Vignette */}
-                <div className="absolute inset-0">
+                <div className="absolute inset-0 bg-slate-900 bg-gradient-to-b from-slate-800 to-slate-950">
                   <Image
                     src={pillar.src}
                     alt={pillar.title}
                     fill
+                    unoptimized
                     sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover opacity-60 group-hover:scale-105 transition-transform duration-700 ease-out"
+                    onError={(e) => {
+                      (e.currentTarget as HTMLElement).style.display = "none";
+                    }}
                   />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/45 to-transparent pointer-events-none" />
