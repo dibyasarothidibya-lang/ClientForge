@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Cormorant_Garamond } from "next/font/google";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import "./globals.css";
+import DemoNotice from "@/components/portfolio/DemoNotice";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -18,8 +19,9 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "Client Forge — Opportunity Intelligence & Pipeline Engine",
-  description: "The intelligent operating system for client acquisition, prospect intelligence, opportunity pipelines, and relationship operations.",
+  metadataBase: new URL("https://dibyasarothi.is-a.dev"),
+  title: "Dibya Sarothi Simanta — B2B Software & Backend Systems Engineering",
+  description: "Independent software engineering for backend systems, integrations, operational automation, and custom B2B applications. ClientForge is the flagship engineering demonstration.",
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -30,16 +32,16 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "Client Forge — Opportunity Intelligence & Pipeline Engine",
-    description: "The intelligent operating system for client acquisition, prospect intelligence, opportunity pipelines, and relationship operations.",
+    title: "Dibya Sarothi Simanta — Independent Software Engineer",
+    description: "Custom B2B software, backend systems, integrations, and operational automation.",
     url: "https://dibyasarothi.is-a.dev",
-    siteName: "Client Forge",
+    siteName: "Dibya Sarothi Simanta — Engineering Portfolio",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Client Forge OS",
+        alt: "Dibya Sarothi Simanta — engineering portfolio",
       },
     ],
     locale: "en_US",
@@ -47,8 +49,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Client Forge — Opportunity Intelligence & Pipeline Engine",
-    description: "The intelligent operating system for client acquisition, prospect intelligence, opportunity pipelines, and relationship operations.",
+    title: "Dibya Sarothi Simanta — Independent Software Engineer",
+    description: "Custom B2B software, backend systems, integrations, and workflow automation.",
     images: ["/og-image.jpg"],
   },
 };
@@ -76,6 +78,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange={false}
         >
+          <DemoNotice/>
           {children}
         </ThemeProvider>
       </body>

@@ -8,30 +8,30 @@ export default function Faq() {
 
   const faqs = [
     {
-      question: "How does Client Forge identify opportunity signals before public RFPs or job boards appear?",
-      answer: "Client Forge monitors primary operational triggers across companies—including executive transitions, tech stack migrations, infrastructure expansions, and capital reallocations. By detecting these shifts as they occur, Client Forge surfaces high-conviction opportunities when organizations urgently need senior expertise, weeks or months before they publish generic RFPs."
+        "question": "What kinds of projects can we discuss?",
+        "answer": "Custom people operations software, administrative workflow automation, backend integrations, and B2B internal applications. Discovery establishes the actual process, users, constraints, and acceptance criteria."
     },
     {
-      question: "How is an Opportunity Pipeline fundamentally different from a traditional sales CRM?",
-      answer: "Traditional CRMs are administrative contact warehouses designed for junior SDRs blasting hundreds of generic emails a day. Client Forge is engineered for independent principals and boutique studios who win high-value engagements through authority and context. It structures your pipeline around opportunity momentum, research depth, and calibrated advisory angles rather than arbitrary task counts."
+        "question": "Is ClientForge a client delivery or an independent project?",
+        "answer": "ClientForge is an independent engineering project with implemented backend modules and interactive interface demonstrations. Sample organisations and modelled outcomes are not paid-client results."
     },
     {
-      question: "What distinguishes Client Forge's outreach preparation from generic cold email tools?",
-      answer: "Client Forge explicitly rejects spray-and-pray mass messaging. Our briefing synthesizer builds exhaustive, context-dense dossiers on each target prospect—mapping their current architectural friction, past technology investments, and leadership priorities. This equips you to initiate genuine, high-leverage peer conversations that respect the prospect's time and position you as a credible strategic advisor."
+        "question": "Which parts can I inspect before making an enquiry?",
+        "answer": "Explore the workspace, public repository, walkthrough video, and case study. The source contains tenant permission checks, domain services, and 71 test methods. Illustrative provider integrations and telemetry are labelled separately."
     },
     {
-      question: "Can we import existing client archives, lead spreadsheets, and pipeline history?",
-      answer: "Yes. You can import historical prospect records, active opportunities, and client ledgers via structured CSV or bi-directional sync with Notion, Airtable, and Google Sheets. Once imported, Client Forge continuously scans and enriches those entities with real-time signal intelligence."
+        "question": "Does the demo process actual payroll or establish legal compliance?",
+        "answer": "The backend calculates compensation using configured salary and tax-rate values. The UI models financial workflows. This does not establish banking settlement, statutory filings, jurisdiction coverage, or independent compliance certification."
     },
     {
-      question: "How does Client Forge safeguard confidential studio research and client intelligence?",
-      answer: "Your dossiers, proprietary notes, opportunity values, and outreach drafts are protected in isolated, single-tenant data partitions with TLS 1.3 in-transit and AES-256 at-rest encryption. Client Forge never cross-contaminates or trains shared models on your private deal telemetry."
+        "question": "How are project scope, price, and delivery agreed?",
+        "answer": "Discovery and technical scoping come before a proposal. Scope, milestones, validation requirements, and commercial terms are agreed for the actual project; demo subscription prices are not freelance service quotes."
     },
     {
-      question: "How quickly does a solo consultant or boutique studio see measurable pipeline results?",
-      answer: "Most operators identify their first high-conviction opportunity within 48 hours of configuring signal filters. Because outreach is triggered by real company catalysts rather than cold outreach cadences, studios routinely see proposal acceptance rates double within their first 60 days."
+        "question": "How do I start a conversation?",
+        "answer": "Email dibyasarothidibya@gmail.com or use the verified WhatsApp link. Describe the operational problem and existing tools. Direct contact requires no account or payment."
     }
-  ];
+];
 
   const toggleFaq = (idx: number) => {
     setOpenIndex(openIndex === idx ? null : idx);
@@ -52,7 +52,7 @@ export default function Faq() {
             Frequently Considered. <span className="editorial-italic gradient-text">Clear Answers.</span>
           </h2>
           <p className="body-lg text-slate-600 dark:text-neutral-400 max-w-2xl mx-auto mt-4 font-normal">
-            How Client Forge replaces speculative pitch guesswork with high-conviction opportunity intelligence.
+            Practical answers about project enquiries, engineering evidence, and demonstration limits.
           </p>
         </div>
 

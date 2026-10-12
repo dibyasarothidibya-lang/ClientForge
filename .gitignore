@@ -19,6 +19,7 @@ frontend/.env.local
 # Frontend dependencies and builds
 frontend/node_modules/
 frontend/.next/
+frontend/.next-*/
 frontend/out/
 frontend/build/
 

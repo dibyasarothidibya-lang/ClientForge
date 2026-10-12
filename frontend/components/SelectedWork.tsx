@@ -8,19 +8,22 @@ import ThreeDCard from "./motion/ThreeDCard";
 const projects = [
   {
     title: "MediGuard AI",
-    badge: "100 Active Users",
+    badge: "100-user milestone",
     category: "Medicine Information & Verification Platform",
     tagline: "Evidence First. AI Second.",
     notice: "Research / Educational Software — Not a Medical Device",
     description: "An independently built healthcare research and educational platform designed to help users explore medicine information, verify pharmaceutical records, and receive evidence-grounded explanations using structured regulatory data.",
     role: "Full-Stack Engineer & AI Integration",
     highlights: [
-      "100-user milestone achieved across research and student testing",
+      "Developer-reported 100-user milestone; no paid-customer count is claimed",
       "Evidence-first AI architecture with defensive LLM guardrails against hallucinations",
       "Bangladesh-focused pharmaceutical catalogue cross-referenced with openFDA integration",
       "Controlled citations and strict safety gating before returning responses"
     ],
-    tech: ["Python", "FastAPI", "Next.js", "TypeScript", "Tailwind CSS", "openFDA API", "Claude / OpenAI"],
+    tech: ["Python", "Django REST", "Next.js", "TypeScript", "openFDA API", "LLM Integration"],
+    live: "https://mediguard.dibyasarothi.is-a.dev/",
+    video: "https://youtu.be/QF3RmlIKFvE",
+    transfer: "Relevant to API integrations, evidence validation, document processing, and defensive AI workflows. The 100-user milestone concerns adoption of a research/educational project, not a claim of paying customers.",
     link: "https://github.com/dibyasarothidibya-lang/Mediguard-AI",
     linkText: "View Mediguard-AI Repository",
     icon: Activity,
@@ -32,7 +35,7 @@ const projects = [
     badge: "Python Automation",
     category: "Automated Flight Monitoring & WhatsApp Alert System",
     tagline: "SerpApi + Sheety + Twilio Pipeline",
-    notice: "Real-Time Price Change Detection & Synchronous Alerts",
+    notice: "Independent API orchestration project",
     description: "A Python automation system that retrieves destination targets from Google Sheets through Sheety, queries live round-trip pricing through SerpApi's Google Flights engine, detects record-low fares, updates stored pricing data, and sends instant WhatsApp alerts through Twilio.",
     role: "Automation Engineer & Pipeline Architect",
     highlights: [
@@ -42,6 +45,9 @@ const projects = [
       "Real-time WhatsApp notification dispatch via Twilio API with environment-based secret isolation"
     ],
     tech: ["Python", "SerpApi / Google Flights", "Sheety", "Twilio WhatsApp", "requests", "requests-cache", "python-dotenv"],
+    live: null,
+    video: null,
+    transfer: "Relevant to price monitoring, threshold notifications, caching, and cross-system synchronisation. The script can be scheduled by a deployment runner; an in-repository scheduler is not claimed.",
     link: "https://github.com/dibyasarothidibya-lang/Flight-Deal-Finder",
     linkText: "View Flight-Deal-Finder Repository",
     icon: Plane,
@@ -72,7 +78,7 @@ export default function SelectedWork() {
             Selected Systems & Projects
           </h2>
           <p className="text-slate-600 dark:text-neutral-400 text-base sm:text-lg mt-4 font-sans font-light leading-relaxed">
-            Beyond Client Forge, here are other production and automation systems engineered with modern backend frameworks, real-time data pipelines, and verified user adoption.
+            Additional evidence of external API orchestration, validated information flows, and automation. Each project connects an implementation decision to a problem a business may need solved.
           </p>
         </div>
 
@@ -120,6 +126,7 @@ export default function SelectedWork() {
                       {proj.description}
                     </p>
 
+                    <p className="text-sm leading-relaxed text-slate-600 dark:text-zinc-300 mb-6">{proj.transfer}</p>
                     {/* Engineering Highlights */}
                     <div className="space-y-2.5 mb-7 p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200/70 dark:border-white/[0.05]">
                       <div className="text-xs font-sans font-semibold uppercase tracking-wider text-slate-500 dark:text-neutral-400 mb-2">
@@ -156,6 +163,11 @@ export default function SelectedWork() {
                       <span>{proj.linkText}</span>
                       <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                     </a>
+                    <div className="flex flex-wrap gap-5 mt-4 text-xs font-medium">
+                      {proj.live && <a href={proj.live} target="_blank" rel="noopener noreferrer">Explore MediGuard AI ↗</a>}
+                      {proj.video && <a href={proj.video} target="_blank" rel="noopener noreferrer">Watch demonstration ↗</a>}
+                      <a href={`mailto:dibyasarothidibya@gmail.com?subject=${encodeURIComponent(`Project enquiry: engineering similar to ${proj.title}`)}`}>Discuss similar engineering ↗</a>
+                    </div>
                   </div>
 
                 </div>

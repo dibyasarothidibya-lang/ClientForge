@@ -28,27 +28,27 @@ export default function GlobalMobilityPage() {
 
   const pillars = [
     {
-      title: "140+ Country Statutory Compliance",
-      desc: "Instant automated generation of localized employment contracts, IP assignment deeds, and statutory benefits compliant with labor laws in 140+ jurisdictions.",
+      title: "Example Jurisdiction & Policy Model",
+      desc: "Sample country records illustrate contracts, tax-rate fields, and benefits. They are not current legal guidance or a validated international payroll service.",
       icon: Scale,
-      stat: "140+",
+      stat: "Example",
       statLabel: "Covered Jurisdictions",
       color: "#2dd4bf"
     },
     {
-      title: "Same-Day Multi-Currency Clearing",
-      desc: "Clear contractor and employee payroll in local currencies (USD, EUR, GBP, SGD, JPY) without intermediate banking fees or FX exposure.",
+      title: "Multi-Currency Payout Interface",
+      desc: "Inspect sample currency and payout fields; the interface does not demonstrate actual bank settlement or an FX fee guarantee.",
       icon: Coins,
-      stat: "0% FX Fee",
+      stat: "Sample FX Field",
       statLabel: "Mid-Market Exchange Clearing",
       color: "#38bdf8"
     },
     {
-      title: "Autonomous Entity & Tax Withholding",
-      desc: "Automate statutory filings, localized health benefits, social security contributions, and cross-border tax withholdings without setting up foreign entities.",
+      title: "Example Withholding & Benefit Fields",
+      desc: "Explore hypothetical benefit and withholding scenarios. No statutory filing, legal representation, or foreign entity service is established.",
       icon: Building,
-      stat: "100%",
-      statLabel: "Audit & Tax Protection Guarantee",
+      stat: "Example",
+      statLabel: "Illustrative Policy Scenario",
       color: "#818cf8"
     },
     {
@@ -68,8 +68,8 @@ export default function GlobalMobilityPage() {
       currency: "EUR (€)",
       statutoryTax: "Social Security: 19.8% • Pension: 9.3%",
       standardBenefit: "30 Days Statutory PTO • Statutory Health Insurance",
-      complianceTime: "48 Hours Onboarding SLA",
-      riskRating: "Zero Legal Friction"
+      complianceTime: "Example onboarding scenario",
+      riskRating: "Example Policy Record"
     },
     {
       country: "United Kingdom (Ltd / EOR)",
@@ -77,7 +77,7 @@ export default function GlobalMobilityPage() {
       currency: "GBP (£)",
       statutoryTax: "Employer NIC: 13.8% • Workplace Pension: 3.0%",
       standardBenefit: "28 Days Statutory Leave • NHS Supplementary Cover",
-      complianceTime: "24 Hours Onboarding SLA",
+      complianceTime: "Modelled onboarding duration: 24 hours",
       riskRating: "Fully Automated"
     },
     {
@@ -86,7 +86,7 @@ export default function GlobalMobilityPage() {
       currency: "SGD ($)",
       statutoryTax: "CPF Employer Contribution: 17% • Skills Dev Levy",
       standardBenefit: "14-21 Days Leave • Comprehensive Medical Mesh",
-      complianceTime: "24 Hours Onboarding SLA",
+      complianceTime: "Modelled onboarding duration: 24 hours",
       riskRating: "Instant Clearing"
     },
     {
@@ -95,8 +95,8 @@ export default function GlobalMobilityPage() {
       currency: "JPY (¥)",
       statutoryTax: "Health & Welfare Pension: 15.6% • Labor Insurance",
       standardBenefit: "Golden Week Observance • Shakai Hoken Health",
-      complianceTime: "72 Hours Onboarding SLA",
-      riskRating: "Zero Legal Friction"
+      complianceTime: "Modelled onboarding duration: 72 hours",
+      riskRating: "Example Policy Record"
     }
   ];
 
@@ -127,9 +127,9 @@ export default function GlobalMobilityPage() {
                 transition={{ duration: 0.7 }}
                 className="font-serif text-5xl sm:text-6xl md:text-7xl font-normal tracking-tight text-slate-950 dark:text-white leading-[1.04] mb-6"
               >
-                Unified Cross-Border{" "}
+                Cross-Border Workforce{" "}
                 <span className="font-serif italic bg-gradient-to-r from-teal-600 via-sky-600 to-indigo-600 dark:from-teal-400 dark:via-sky-300 dark:to-indigo-400 bg-clip-text text-transparent">
-                  Payroll & Compliance
+                  Scenario Demonstration
                 </span>
                 .
               </motion.h1>
@@ -140,7 +140,7 @@ export default function GlobalMobilityPage() {
                 transition={{ duration: 0.7, delay: 0.1 }}
                 className="text-base sm:text-lg text-slate-600 dark:text-neutral-400 max-w-xl leading-relaxed mb-8 font-normal"
               >
-                Automate statutory filings, localized benefits packages, and instant multi-currency clearing across 140+ countries without establishing expensive foreign corporate entities.
+                Explore how a workforce interface can represent countries, currencies, policy fields, and compensation scenarios. Values are illustrative and require independent legal validation.
               </motion.p>
 
               {/* Action Buttons */}
@@ -154,7 +154,7 @@ export default function GlobalMobilityPage() {
                   href="/signup"
                   className="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 text-sm font-semibold text-white bg-slate-950 hover:bg-slate-800 dark:text-slate-950 dark:bg-white dark:hover:bg-zinc-100 rounded-xl transition-all shadow-md group cursor-pointer"
                 >
-                  <span>Deploy Global Payroll</span>
+                  <span>Register a Demo Workspace</span>
                   <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Link>
 
@@ -169,16 +169,16 @@ export default function GlobalMobilityPage() {
               {/* Mini Highlights */}
               <div className="grid grid-cols-3 gap-4 mt-12 pt-8 border-t border-slate-200/80 dark:border-neutral-800/80">
                 <div>
-                  <div className="font-sans text-2xl sm:text-3xl font-normal sm:font-medium tracking-tight text-slate-950 dark:text-white tabular-nums">140+</div>
-                  <div className="text-[11px] text-slate-500 dark:text-neutral-400 font-sans font-medium mt-0.5">Countries Supported</div>
+                  <div className="font-sans text-2xl sm:text-3xl font-normal sm:font-medium tracking-tight text-slate-950 dark:text-white tabular-nums">Example</div>
+                  <div className="text-[11px] text-slate-500 dark:text-neutral-400 font-sans font-medium mt-0.5">Illustrative Coverage Target</div>
                 </div>
                 <div>
-                  <div className="font-sans text-2xl sm:text-3xl font-normal sm:font-medium tracking-tight text-slate-950 dark:text-white tabular-nums">0% FX</div>
+                  <div className="font-sans text-2xl sm:text-3xl font-normal sm:font-medium tracking-tight text-slate-950 dark:text-white tabular-nums">Sample FX</div>
                   <div className="text-[11px] text-slate-500 dark:text-neutral-400 font-sans font-medium mt-0.5">Mid-Market Multi-Currency</div>
                 </div>
                 <div>
-                  <div className="font-sans text-2xl sm:text-3xl font-normal sm:font-medium tracking-tight text-slate-950 dark:text-white tabular-nums">100%</div>
-                  <div className="text-[11px] text-slate-500 dark:text-neutral-400 font-sans font-medium mt-0.5">Statutory Audit Protection</div>
+                  <div className="font-sans text-2xl sm:text-3xl font-normal sm:font-medium tracking-tight text-slate-950 dark:text-white tabular-nums">Example</div>
+                  <div className="text-[11px] text-slate-500 dark:text-neutral-400 font-sans font-medium mt-0.5">Simulated Policy Scenario</div>
                 </div>
               </div>
             </div>
@@ -217,7 +217,7 @@ export default function GlobalMobilityPage() {
               Enterprise Global Mobility Infrastructure
             </h2>
             <p className="text-sm sm:text-base text-slate-600 dark:text-neutral-400 mt-3 max-w-xl mx-auto leading-relaxed font-normal">
-              Execute cross-border payroll, contract generation, and tax compliance with guaranteed legal integrity.
+              Explore interface concepts for cross-border records; legal integrity and statutory support are not guaranteed.
             </p>
           </div>
 
@@ -350,10 +350,10 @@ export default function GlobalMobilityPage() {
                   </div>
                   <div>
                     <div className="font-serif text-2xl text-slate-950 dark:text-white">
-                      Instant Clearing
+                      Example Currency Field
                     </div>
                     <p className="text-xs text-slate-500 dark:text-neutral-400 mt-1">
-                      Settles in {countryCalculations[selectedCountry].currency} with zero cross-border bank friction.
+                      Sample currency: {countryCalculations[selectedCountry].currency} — no real settlement is demonstrated.
                     </p>
                   </div>
                   <Link
@@ -374,10 +374,10 @@ export default function GlobalMobilityPage() {
       <section className="py-20 border-t border-slate-200/80 dark:border-neutral-900 bg-slate-100/50 dark:bg-[#070709] relative z-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-slate-950 dark:text-white font-normal mb-4">
-            Build a Borderless Team with Zero Legal Overhead
+            Inspect the Cross-Border Scenarios
           </h2>
           <p className="text-sm sm:text-base text-slate-600 dark:text-neutral-400 max-w-xl mx-auto mb-8 leading-relaxed font-normal">
-            Hire, onboard, and pay talent anywhere in the world in minutes. 100% compliant, 0% foreign entity headache.
+            Inspect the demonstrated workflows, then discuss what a real implementation would need for your organisation and jurisdiction.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link

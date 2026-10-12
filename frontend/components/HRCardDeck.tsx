@@ -20,15 +20,15 @@ const hrSolutionsData: HRCardData[] = [
     src: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1200&q=80",
     targetSection: "/talent-intelligence",
     ctaText: "Explore Sourcing Engine",
-    description: "Screen candidates against 40+ engineering and product competencies in seconds without recruiter bias."
+    description: "Inspect sample candidate skills and stage-based hiring workflows. Modelled scores are not validated hiring predictions."
   },
   {
     category: "Global Payroll & EOR",
-    title: "Multi-currency payroll across 140+ countries",
+    title: "Multi-currency compensation simulation",
     src: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80",
     targetSection: "/global-mobility",
     ctaText: "Check Country Coverage",
-    description: "Automate statutory filings, localized health benefits, and tax compliance with one monthly invoice."
+    description: "Explore sample currency, compensation, and benefit records. Jurisdiction-specific payroll compliance is not claimed."
   },
   {
     category: "Employee Engagement",
@@ -36,7 +36,7 @@ const hrSolutionsData: HRCardData[] = [
     src: "https://images.unsplash.com/photo-1531497865144-0464ef8fb9a9?auto=format&fit=crop&w=1200&q=80",
     targetSection: "/people-operations",
     ctaText: "View Sentiment Model",
-    description: "Detect burnout signals and team misalignment across active Slack and collaboration workspaces."
+    description: "Explore an illustrative team sentiment dashboard, not a connected employee surveillance or prediction service."
   },
   {
     category: "Automated Onboarding",
@@ -44,7 +44,7 @@ const hrSolutionsData: HRCardData[] = [
     src: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80",
     targetSection: "/onboarding/peoplecore",
     ctaText: "Preview Workflow Engine",
-    description: "Zero-touch provisioning: contracts signed, laptop shipped, and role-based permissions granted automatically."
+    description: "Explore onboarding forms, membership roles, and example provisioning steps. Physical equipment dispatch is not implemented."
   },
   {
     category: "Performance Calibration",
@@ -56,11 +56,11 @@ const hrSolutionsData: HRCardData[] = [
   },
   {
     category: "Security & Compliance",
-    title: "Global audit trails, GDPR & SOC-2 compliance",
+    title: "Organisation-scoped records and audit history",
     src: "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1200&q=80",
     targetSection: "/security",
-    ctaText: "Inspect SOC-2 Protocols",
-    description: "End-to-end encryption, localized data residency across EU/APAC, and real-time audit logging."
+    ctaText: "Inspect Implemented Controls",
+    description: "Inspect organisation permission checks and activity records. Dedicated regional hosting and encryption policies require deployment validation."
   }
 ];
 

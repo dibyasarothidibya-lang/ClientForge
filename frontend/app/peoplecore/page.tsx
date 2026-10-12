@@ -185,7 +185,7 @@ export default function PeopleCoreMarketingPage() {
         "Custom HRIS & ERP Integrations",
         "SAML SSO & SCIM Provisioning",
         "Dedicated Database / Data Residency",
-        "99.99% Uptime Guarantee SLA",
+        "Illustrative availability target (not an SLA)",
         "Custom Payroll Rules & Union Policies",
         "24/7 Named Technical Lead"
       ],
@@ -209,7 +209,7 @@ export default function PeopleCoreMarketingPage() {
     },
     {
       q: "Is employee and financial data cryptographically secure?",
-      a: "All sensitive records (social security numbers, bank routing info, compensation, passport scans) are encrypted using AES-256 at rest and TLS 1.3 in transit. We support SOC-2 Type II audit logging and role-based permissions."
+      a: "The repository implements organisation-scoped records, membership permissions, and audit events. At-rest encryption, medical data compliance, and external certification are not established by the demonstration."
     },
     {
       q: "How long does onboarding and migration take?",
@@ -718,7 +718,7 @@ export default function PeopleCoreMarketingPage() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl sm:text-6xl lg:text-7xl font-sans font-bold tracking-tight text-slate-950 dark:text-white leading-[1.08]"
           >
-            Everything your people team needs, <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-sky-500 to-indigo-400">in one place.</span>
+            Workforce operations, <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-sky-500 to-indigo-400">demonstrated together.</span>
           </motion.h1>
 
           <motion.p
@@ -765,19 +765,19 @@ export default function PeopleCoreMarketingPage() {
           <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 pt-6 text-xs text-slate-500 dark:text-neutral-400 font-medium">
             <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100/80 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/[0.06]">
               <Shield className="w-3.5 h-3.5 text-indigo-500" />
-              <span>SOC-2 Type II & ISO-27001 Certified</span>
+              <span>Organisation-scoped records & role permissions</span>
             </div>
             <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100/80 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/[0.06]">
               <Layers className="w-3.5 h-3.5 text-indigo-500" />
-              <span>Single-Tenant Cryptographic Partitioning</span>
+              <span>Organisation-scoped application records</span>
             </div>
             <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100/80 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/[0.06]">
               <Terminal className="w-3.5 h-3.5 text-indigo-500" />
-              <span>Sub-50ms Global Edge Telemetry</span>
+              <span>Illustrative dashboard telemetry</span>
             </div>
             <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100/80 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/[0.06]">
               <Lock className="w-3.5 h-3.5 text-indigo-500" />
-              <span>SAML 2.0 & Okta / Google SSO</span>
+              <span>JWT and Firebase authentication paths</span>
             </div>
           </div>
         </div>
@@ -931,7 +931,7 @@ export default function PeopleCoreMarketingPage() {
                     <div className="flex items-center gap-2 shrink-0">
                       <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.06] text-xs font-medium text-slate-600 dark:text-neutral-300">
                         <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                        <span>Live Synced ({consoleTimeRange.toUpperCase()})</span>
+                        <span>Integration Previewed ({consoleTimeRange.toUpperCase()})</span>
                       </div>
                     </div>
                   </div>
@@ -2072,20 +2072,20 @@ export default function PeopleCoreMarketingPage() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
-              <div className="text-3xl sm:text-4xl font-extrabold text-slate-950 dark:text-white tabular-nums">45,000+</div>
-              <div className="text-xs text-slate-500 dark:text-neutral-400 mt-1">Global Employees Managed</div>
+              <div className="text-3xl sm:text-4xl font-extrabold text-slate-950 dark:text-white tabular-nums">Sample</div>
+              <div className="text-xs text-slate-500 dark:text-neutral-400 mt-1">Illustrative Headcount Display</div>
             </div>
             <div>
-              <div className="text-3xl sm:text-4xl font-extrabold text-slate-950 dark:text-white tabular-nums">99.99%</div>
-              <div className="text-xs text-slate-500 dark:text-neutral-400 mt-1">Payroll Accuracy SLA</div>
+              <div className="text-3xl sm:text-4xl font-extrabold text-slate-950 dark:text-white tabular-nums">Modelled</div>
+              <div className="text-xs text-slate-500 dark:text-neutral-400 mt-1">Sample Payroll Indicator</div>
             </div>
             <div>
-              <div className="text-3xl sm:text-4xl font-extrabold text-indigo-600 dark:text-indigo-400 tabular-nums">85%</div>
+              <div className="text-3xl sm:text-4xl font-extrabold text-indigo-600 dark:text-indigo-400 tabular-nums">Scenario</div>
               <div className="text-xs text-slate-500 dark:text-neutral-400 mt-1">Faster New Hire Onboarding</div>
             </div>
             <div>
               <div className="text-3xl sm:text-4xl font-extrabold text-slate-950 dark:text-white tabular-nums">SOC-2</div>
-              <div className="text-xs text-slate-500 dark:text-neutral-400 mt-1">Type II Audited & Compliant</div>
+              <div className="text-xs text-slate-500 dark:text-neutral-400 mt-1">Role checks & audit records</div>
             </div>
           </div>
         </div>
@@ -2373,11 +2373,11 @@ export default function PeopleCoreMarketingPage() {
                   Tamper-Evident Cryptographic Document Vault
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-600 dark:text-neutral-400 leading-relaxed">
-                  Cryptographically sealed storage for contracts, diplomatic passports, WHO medical licenses, and IRS Form 990 audit filings. Encrypted with hardware-isolated AES-256-GCM and content-addressable SHA-256 hashes.
+                  Document vault interface concept using sample records and seal indicators. The implemented backend stores document metadata and organisation-linked upload paths; hardware encryption and cryptographic sealing are not established.
                 </p>
                 <div className="grid grid-cols-2 gap-3 text-xs pt-2">
                   <div className="p-3 rounded-xl bg-white dark:bg-neutral-900 border border-slate-200 dark:border-neutral-800">
-                    <div className="font-semibold text-slate-900 dark:text-white">Hardware AES-256-GCM</div>
+                    <div className="font-semibold text-slate-900 dark:text-white">Example Protection Indicator</div>
                     <div className="text-slate-500 text-[11px] mt-0.5">HSM FIPS 140-2 Level 3 root key</div>
                   </div>
                   <div className="p-3 rounded-xl bg-white dark:bg-neutral-900 border border-slate-200 dark:border-neutral-800">
@@ -2449,7 +2449,7 @@ export default function PeopleCoreMarketingPage() {
               <div className="p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-slate-200 dark:border-neutral-800 shadow-md space-y-3 text-xs">
                 <div className="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-neutral-800">
                   <span className="font-semibold text-slate-900 dark:text-white">Workflow Execution Performance</span>
-                  <span className="text-[10px] font-mono text-emerald-600 bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded">99.99% Reliability</span>
+                  <span className="text-[10px] font-mono text-emerald-600 bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded">Modelled Reliability</span>
                 </div>
                 <div className="space-y-2 text-xs">
                   <div className="p-2.5 rounded-lg bg-slate-50 dark:bg-neutral-950 flex items-center justify-between">
@@ -2843,7 +2843,7 @@ export default function PeopleCoreMarketingPage() {
             Connects seamlessly with your existing tools.
           </h2>
           <p className="text-slate-600 dark:text-neutral-400 text-sm max-w-2xl mx-auto mb-12">
-            No messy migrations or broken syncs. Direct two-way native integrations with leading enterprise software.
+            Explore the connection patterns and their configuration requirements. Integration interface previews alongside implemented provider adapters. External connections depend on configured providers.
           </p>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4">
@@ -3032,7 +3032,7 @@ export default function PeopleCoreMarketingPage() {
               Ready to give your people team the tools they deserve?
             </h2>
             <p className="text-slate-300 text-base leading-relaxed">
-              Join thousands of forward-thinking organizations using PeopleCore to streamline hiring, payroll, attendance, and team performance.
+              Explore this independent workforce engineering demonstration and its connected modules.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center gap-4 pt-4">

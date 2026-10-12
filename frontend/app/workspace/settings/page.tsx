@@ -193,7 +193,7 @@ export default function SettingsPage() {
               2FA + IP Allowlist
             </div>
             <div className="text-[11px] text-slate-400 dark:text-neutral-500 mt-0.5">
-              SOC-2 Type II controls enforced
+              Role permissions and audit records
             </div>
           </div>
 

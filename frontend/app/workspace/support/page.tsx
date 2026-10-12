@@ -42,7 +42,7 @@ export default function SupportCenterPage() {
     },
     {
       q: "How are confidential employee documents and tax forms safeguarded?",
-      a: "All uploaded files, contracts, and SSN records are encrypted using AES-256 at rest and TLS 1.3 in transit with isolated single-tenant partition boundaries, meeting SOC 2 Type II and HIPAA requirements."
+      a: "Document records and organisation permission checks are implemented. Encryption policy and medical-data handling require deployment-specific assessment; no external certification is claimed."
     },
     {
       q: "What is the procedure for offboarding an employee?",
@@ -142,13 +142,13 @@ export default function SupportCenterPage() {
 
           <div className="p-4">
             <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400 dark:text-neutral-500">
-              Compliance Clearances
+              Implementation Context
             </div>
             <div className="text-xl sm:text-2xl font-medium text-slate-950 dark:text-white tabular-nums mt-1">
-              SOC 2 Type II
+              Application access controls
             </div>
             <div className="text-[11px] text-slate-400 dark:text-neutral-500 mt-0.5">
-              ISO 27001 & HIPAA verified
+              No independent certification claimed
             </div>
           </div>
 

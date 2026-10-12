@@ -522,7 +522,7 @@ function Interactive3DRoiCard({
             <div className="text-xs text-stone-400 mt-2.5 font-sans font-normal leading-relaxed">
               {timeframe === "annual" 
                 ? "12-month compounded contract pipeline unlocked through systematic signal harvesting." 
-                : "Generated through higher reply rates and accelerated deal cycles."}
+                : "Calculated from scenario assumptions, not measured reply rates or customer revenue."}
             </div>
           </div>
 

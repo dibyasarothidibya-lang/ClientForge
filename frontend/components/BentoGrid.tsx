@@ -73,7 +73,7 @@ export default function BentoGrid() {
                   <div className="font-serif text-xl font-normal">Context Over Cold Pitching</div>
                 </div>
                 <span className="px-3 py-1 rounded-full text-xs font-semibold bg-indigo-600 text-white">
-                  Verified Insights
+                  Sample Insights
                 </span>
               </div>
             </div>
@@ -170,7 +170,7 @@ export default function BentoGrid() {
                 Ask any prospect or opportunity question. Get verified context.
               </h3>
               <p className="text-neutral-400 text-sm leading-relaxed font-sans">
-                Query company milestones, executive priorities, and competitive gaps in plain English—grounded in verified signals without hallucinated noise.
+                Query company milestones, executive priorities, and competitive gaps in plain English—grounded in verified signals with illustrative contextual responses.
               </p>
             </div>
 
@@ -197,7 +197,7 @@ export default function BentoGrid() {
                   <div className="bg-neutral-900/90 border border-white/[0.1] px-3.5 py-2.5 rounded-xl text-neutral-200 space-y-1.5 w-full">
                     <div className="text-indigo-400 font-semibold flex items-center gap-1.5">
                       <ShieldCheck className="w-3.5 h-3.5" />
-                      <span>High-Intent Opportunity Angle Identified</span>
+                      <span>Example Opportunity Angle</span>
                     </div>
                     <p className="text-neutral-300 text-[11px] leading-relaxed">
                       Series B expansion into US enterprise triggered 3 product acquisitions with fragmented design tokens. Marcus Vance (VP Design) is actively seeking external architectural systems guidance before Q4 launch.

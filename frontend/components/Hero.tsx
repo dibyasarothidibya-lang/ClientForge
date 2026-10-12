@@ -20,7 +20,7 @@ import {
   ChevronRight
 } from "lucide-react";
 
-export default function Hero() {
+export default function Hero({ includeProfile = true }: { includeProfile?: boolean }) {
 
   const metrics = [
     {
@@ -51,7 +51,7 @@ export default function Hero() {
 
   return (
     <section 
-      id="hero-section"
+      id={includeProfile ? "hero-section" : "platform-pillars"}
       className="relative z-10 pt-24 sm:pt-32 pb-20 sm:pb-28 overflow-hidden text-slate-900 dark:text-white transition-colors duration-200"
     >
       {/* Subtle Background Radial Atmosphere */}
@@ -63,7 +63,7 @@ export default function Hero() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* 1. Hero Content & Copy */}
-        <HeroHeadline />
+        {includeProfile && <HeroHeadline />}
 
         {/* Visual Divider / Spacer */}
         {/* 2. THREE CURATED ECOSYSTEM PILLARS (EDITORIAL COMPOSITION) */}

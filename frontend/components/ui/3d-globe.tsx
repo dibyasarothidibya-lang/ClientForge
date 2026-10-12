@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState, useMemo, useCallback } from "react";
 import * as THREE from "three";
+import { useReducedMotion } from "framer-motion";
 import { ZoomIn, ZoomOut, Play, Pause, RotateCcw } from "lucide-react";
 
 export type GlobeMarker = {
@@ -103,12 +104,15 @@ export function Globe3D({
   className = "",
 }: Globe3DProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const reducedMotion = useReducedMotion();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [hoveredMarker, setHoveredMarker] = useState<GlobeMarker | null>(null);
   const [markerScreenPositions, setMarkerScreenPositions] = useState<
     Array<{ x: number; y: number; visible: boolean; marker: GlobeMarker; opacity: number }>
   >([]);
   const [isRotating, setIsRotating] = useState(autoRotateEnabled);
+  const rotationEnabledRef = useRef(isRotating);
+  useEffect(() => { rotationEnabledRef.current = isRotating; }, [isRotating]);
 
   // References for external control callbacks
   const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
@@ -154,6 +158,9 @@ export function Globe3D({
 
     const container = containerRef.current;
     const canvas = canvasRef.current;
+    let sceneVisible = true;
+    const visibilityObserver = new IntersectionObserver(([entry]) => { sceneVisible = entry.isIntersecting; }, { rootMargin: "150px" });
+    visibilityObserver.observe(container);
     let width = container.clientWidth || 800;
     let height = container.clientHeight || 800;
 
@@ -445,17 +452,18 @@ export function Globe3D({
 
     const animate = () => {
       animId = requestAnimationFrame(animate);
+      if (!sceneVisible || document.hidden) return;
 
       // Smooth Programmatic Camera/Rotation Focus (when user clicks a region)
       if (targetRotationRef.current.active) {
         const tr = targetRotationRef.current;
-        globeGroup.rotation.x += (tr.x - globeGroup.rotation.x) * 0.08;
+        globeGroup.rotation.x += (tr.x - globeGroup.rotation.x) * (reducedMotion ? 1 : 0.08);
         
         // Normalize rotation angle wrapping
         let diffY = tr.y - globeGroup.rotation.y;
         while (diffY > Math.PI) diffY -= Math.PI * 2;
         while (diffY < -Math.PI) diffY += Math.PI * 2;
-        globeGroup.rotation.y += diffY * 0.08;
+        globeGroup.rotation.y += diffY * (reducedMotion ? 1 : 0.08);
 
         if (Math.abs(diffY) < 0.005 && Math.abs(tr.x - globeGroup.rotation.x) < 0.005) {
           targetRotationRef.current.active = false;
@@ -464,20 +472,20 @@ export function Globe3D({
         // Dragged manually
       } else {
         // Momentum Inertia
-        if (Math.abs(velocity.x) > 0.0001 || Math.abs(velocity.y) > 0.0001) {
+        if (!reducedMotion && (Math.abs(velocity.x) > 0.0001 || Math.abs(velocity.y) > 0.0001)) {
           globeGroup.rotation.y += velocity.x;
           globeGroup.rotation.x += velocity.y;
           globeGroup.rotation.x = Math.max(-1.1, Math.min(1.1, globeGroup.rotation.x));
           velocity.x *= damping;
           velocity.y *= damping;
-        } else if (isRotating) {
+        } else if (rotationEnabledRef.current && !reducedMotion) {
           // Gentle auto-rotation
           globeGroup.rotation.y += rotationSpeed;
         }
       }
 
       // Animate comets along arcs
-      cometProgress = (cometProgress + 0.008) % 1.0;
+      if (!reducedMotion && rotationEnabledRef.current) cometProgress = (cometProgress + 0.008) % 1.0;
       cometMeshes.forEach((mesh, idx) => {
         if (arcCurves[idx]) {
           const t = (cometProgress + idx / cometCount) % 1.0;
@@ -547,6 +555,7 @@ export function Globe3D({
       window.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("pointerup", onPointerUp);
       resizeObserver.disconnect();
+      visibilityObserver.disconnect();
       renderer.dispose();
       sphereGeo.dispose();
       sphereMat.dispose();
@@ -566,7 +575,7 @@ export function Globe3D({
     textureVariant,
     marker3DPositions,
     markers,
-    isRotating,
+    reducedMotion,
   ]);
 
   // Zoom In HUD Action
@@ -674,8 +683,11 @@ export function Globe3D({
           const isSelected = selectedMarker?.label === marker.label;
 
           return (
-            <div
+            <button
               key={marker.label}
+              type="button"
+              aria-label={`Inspect ${marker.country || marker.label} demonstration node`}
+              aria-pressed={isSelected}
               style={{
                 transform: `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`,
                 opacity,
@@ -732,7 +744,7 @@ export function Globe3D({
                   {marker.label}
                 </div>
               )}
-            </div>
+            </button>
           );
         })}
       </div>

@@ -1,86 +1,29 @@
-import React from "react";
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import CoreModulesTabs from "@/components/CoreModulesTabs";
+import type { Metadata } from "next";
+import PortfolioNav from "@/components/portfolio/PortfolioNav";
+import CreatorHero from "@/components/hero/CreatorHero";
+import { Services, FlagshipStudy, Engagement, AboutEngineer, ContactSection, PortfolioFooter } from "@/components/portfolio/PortfolioSections";
 import GlobalWorkforceBanner from "@/components/GlobalWorkforceBanner";
-import HRCardDeck from "@/components/HRCardDeck";
-import BentoGrid from "@/components/BentoGrid";
-import RoiCalculator from "@/components/RoiCalculator";
-import Metrics from "@/components/Metrics";
-import Testimonials from "@/components/Testimonials";
 import SelectedWork from "@/components/SelectedWork";
-import Faq from "@/components/Faq";
-import CtaBanner from "@/components/CtaBanner";
-import Footer from "@/components/Footer";
+import LegacyShowcase from "@/components/portfolio/LegacyShowcase";
 import ThreeDSection from "@/components/motion/ThreeDSection";
+import s from "@/components/portfolio/portfolio.module.css";
 
-export const metadata = {
-  title: "Dibya Sarothi Simanta — The Architect Behind Client Forge",
-  description: "Meet Dibya Sarothi Simanta, full-stack systems architect, and explore Client Forge: a showcase of end-to-end SaaS design, engineering, and deployment.",
+export const metadata: Metadata = {
+  title: "Dibya Sarothi Simanta — B2B Software & Backend Systems Engineer",
+  description: "Independent engineer for custom B2B software, backend systems, integrations, and workflow automation. Explore ClientForge and working engineering projects.",
+  alternates: { canonical: "/" },
+  openGraph: { title: "Dibya Sarothi Simanta — Independent B2B Software Engineer", description: "Reliable backend systems, integrations, and operational software. Engineering evidence through ClientForge, MediGuard AI, and automation projects.", url: "/", images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Dibya Sarothi Simanta — engineering portfolio" }] },
 };
+const person = { "@context": "https://schema.org", "@type": "Person", name: "Dibya Sarothi Simanta", jobTitle: "Independent B2B Software & Backend Systems Engineer", url: "https://dibyasarothi.is-a.dev/", email: "dibyasarothidibya@gmail.com", sameAs: ["https://github.com/dibyasarothidibya-lang", "https://www.linkedin.com/in/dibya-sarothi-simanta-b1a82235a/"] };
 
 export default function Home() {
-  return (
-    <main className="min-h-screen bg-transparent dark:bg-transparent text-slate-900 dark:text-[#f5f5f3] overflow-x-hidden selection:bg-indigo-500 selection:text-white transition-colors duration-200 relative">
-
-      {/* Sticky Glass Navigation Bar */}
-      <Navbar />
-
-      {/* Hero Section with Ambient Glow, Continuous Marquee, & Outcome Metrics */}
-      <Hero />
-
-      {/* Core Solutions Tabs Switcher */}
-      <ThreeDSection depthIntensity={0.65}>
-        <CoreModulesTabs />
-      </ThreeDSection>
-
-      {/* Side-Anchored 3D Global Workforce & Mobility Banner */}
-      <ThreeDSection depthIntensity={0.45}>
-        <GlobalWorkforceBanner />
-      </ThreeDSection>
-
-      {/* Auto-Roaming People Operations Card Rail */}
-      <ThreeDSection depthIntensity={0.6}>
-        <HRCardDeck />
-      </ThreeDSection>
-
-      {/* Bento Grid Feature Architecture */}
-      <ThreeDSection depthIntensity={0.7}>
-        <BentoGrid />
-      </ThreeDSection>
-
-      {/* Live Interactive Opportunity Value & Velocity Calculator */}
-      <ThreeDSection depthIntensity={0.6}>
-        <RoiCalculator />
-      </ThreeDSection>
-
-      {/* Impact & Velocity Stats Strip */}
-      <ThreeDSection depthIntensity={0.75}>
-        <Metrics />
-      </ThreeDSection>
-
-      {/* Engineering Principles & Architecture Decisions */}
-      <ThreeDSection depthIntensity={0.7}>
-        <Testimonials />
-      </ThreeDSection>
-
-      {/* Selected Engineering Projects: MediGuard AI & Flight Deal Finder */}
-      <ThreeDSection depthIntensity={0.65}>
-        <SelectedWork />
-      </ThreeDSection>
-
-      {/* Objection & Mechanics FAQ Accordion */}
-      <ThreeDSection depthIntensity={0.6}>
-        <Faq />
-      </ThreeDSection>
-
-      {/* High-Conversion Editorial CTA Banner */}
-      <ThreeDSection depthIntensity={0.7}>
-        <CtaBanner />
-      </ThreeDSection>
-
-      {/* Comprehensive Enterprise Footer */}
-      <Footer />
-    </main>
-  );
+  return <div className="min-h-screen text-slate-900 dark:text-zinc-100 overflow-x-clip"><PortfolioNav/><main id="main-content">
+    <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(person).replace(/</g,"\\u003c")}}/>
+    <section id="hero-section" aria-label="Independent engineering services" className="pt-28 sm:pt-32 pb-14"><div className={s.shell}><CreatorHero introOnly/></div></section>
+    <Services/><FlagshipStudy/>
+    <ThreeDSection depthIntensity={.45}><GlobalWorkforceBanner/></ThreeDSection>
+    <details className={s.demoDetails}><summary>Inspect the full ClientForge demonstration<span>Interactive module tabs, workforce rail, technical visualisations, scenario calculator, and architecture decisions. Sample data and projections are labelled inside the demonstrations.</span></summary><LegacyShowcase/></details>
+    <ThreeDSection depthIntensity={.65}><SelectedWork/></ThreeDSection>
+    <Engagement/><AboutEngineer/><ContactSection/>
+  </main><PortfolioFooter/></div>;
 }

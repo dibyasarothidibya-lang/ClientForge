@@ -141,12 +141,12 @@ export default function SystemHealthPage() {
         <div>
           <div className="flex items-center gap-2 mb-1">
             <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
-              <Activity className="w-3.5 h-3.5" /> Live Telemetry & Observability
+              <Activity className="w-3.5 h-3.5" /> Simulated Telemetry & Observability
             </span>
             <span className="text-xs text-slate-500 dark:text-neutral-400">SLO: 99.95% Availability Target</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-sans font-semibold tracking-tight text-slate-950 dark:text-neutral-100">
-            System Status & Microservices Health
+            System Health Demonstration
           </h1>
           <p className="text-sm text-slate-500 dark:text-neutral-400 mt-1 max-w-2xl">
             Real-time status indicators, latency telemetry, background queue depths, and uptime SLA adherence.
@@ -163,7 +163,7 @@ export default function SystemHealthPage() {
             className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-neutral-900 border border-slate-200 dark:border-neutral-800 text-xs font-medium text-slate-800 dark:text-neutral-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-200/70 dark:hover:bg-neutral-800 transition cursor-pointer shadow-xs"
           >
             <RefreshCw className={`w-3.5 h-3.5 ${isRefreshing ? "animate-spin" : ""}`} />
-            Check Heartbeat
+            Refresh Sample Status
           </motion.button>
         </div>
       </div>

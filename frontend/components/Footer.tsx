@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { 
@@ -23,21 +23,11 @@ import {
 } from "lucide-react";
 
 export default function Footer() {
-  const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
-
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email) {
-      setSubscribed(true);
-    }
-  };
-
   const stackPills = [
     { label: "Next.js 16 (App Router)", category: "Frontend" },
-    { label: "Django REST Framework 5", category: "Backend" },
+    { label: "Django REST Framework", category: "Backend" },
     { label: "PostgreSQL 16", category: "Database" },
-    { label: "Redis 7 Broker", category: "Cache / Queue" },
+    { label: "Redis broker configuration", category: "Cache / Queue" },
     { label: "Docker Multi-Stage", category: "DevOps" },
     { label: "Nginx SSL Reverse Proxy", category: "Infrastructure" },
     { label: "Firebase OAuth 2.0", category: "Auth" },
@@ -89,14 +79,14 @@ export default function Footer() {
               </h2>
 
               <p className="font-sans text-sm sm:text-base text-slate-600 dark:text-neutral-300 max-w-xl leading-relaxed mb-7 font-normal">
-                Architected from bare metal to cloud deployment. ClientForge is a fully working multi-tenant SaaS built to demonstrate enterprise-grade product design, relational database modeling, real-time background task processing, and robust Linux infrastructure.
+                ClientForge combines implemented backend modules with interactive product demonstrations. Inspect relational modelling, membership permissions, domain services, background email tasks, and deployment configuration in the case study and repository.
               </p>
 
               {/* Interactive Multi-Stack Spec Grid */}
               <div className="w-full max-w-2xl mb-8">
                 <div className="text-[11px] font-mono uppercase tracking-wider text-slate-400 dark:text-neutral-500 mb-3 flex items-center gap-2">
                   <Terminal className="w-3.5 h-3.5 text-indigo-400" />
-                  <span>Verified Production Stack</span>
+                  <span>Repository & Deployment Stack</span>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {stackPills.map((pill, idx) => (
@@ -272,47 +262,24 @@ export default function Footer() {
                   Client Forge
                 </span>
                 <span className="text-[10px] uppercase tracking-wider font-sans font-semibold text-slate-500 dark:text-neutral-400 -mt-0.5">
-                  Opportunity Intelligence Engine
+                  Independent Engineering & Product Demo
                 </span>
               </div>
             </Link>
             
             <p className="text-slate-600 dark:text-neutral-400 text-sm mb-8 max-w-sm leading-relaxed font-sans font-normal">
-              Precision market intelligence, structural signal tracking, and calibrated opportunity dossiers for independent principals and boutique studios.
+              Independent B2B software engineering, with ClientForge as a technical demonstration of connected operational workflows.
             </p>
 
             {/* Newsletter */}
             <div>
               <div className="text-xs font-sans font-semibold uppercase tracking-wider text-slate-800 dark:text-neutral-300 mb-2.5">
-                The Operator Dispatch
+                Direct Project Enquiries
               </div>
               <p className="text-xs text-slate-500 dark:text-neutral-500 mb-3 font-sans font-normal">
-                Monthly field notes on high-leverage client acquisition, pricing power, and studio economics.
+                Describe the process, integration, or data problem your team needs to solve.
               </p>
-              {subscribed ? (
-                <div className="flex items-center gap-2 text-xs font-medium text-slate-800 dark:text-neutral-200 bg-slate-100 dark:bg-white/[0.05] border border-slate-200 dark:border-white/10 p-3 rounded-xl font-sans">
-                  <CheckCircle2 className="w-4 h-4 text-indigo-400 shrink-0" />
-                  <span>Subscribed. Welcome to the dispatch.</span>
-                </div>
-              ) : (
-                <form onSubmit={handleSubscribe} className="flex gap-2">
-                  <input 
-                    type="email" 
-                    value={email} 
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter work email..." 
-                    required
-                    className="flex-1 px-4 py-2.5 bg-white dark:bg-white/[0.03] border border-slate-300 dark:border-white/[0.1] rounded-xl text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-neutral-500 text-xs focus:outline-none focus:border-indigo-500 dark:focus:border-white/30 transition-colors font-sans shadow-xs"
-                  />
-                  <button 
-                    type="submit" 
-                    className="px-4 py-2.5 bg-slate-900 hover:bg-slate-800 dark:bg-[#f5f5f3] dark:hover:bg-white text-white dark:text-neutral-950 transition-colors rounded-xl font-medium text-xs flex items-center justify-center shrink-0 cursor-pointer shadow-xs"
-                    aria-label="Subscribe"
-                  >
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                </form>
-              )}
+              <a href="mailto:dibyasarothidibya@gmail.com" className="inline-flex items-center gap-2 text-sm underline underline-offset-4">Discuss an operational software project <ArrowUpRight className="w-4 h-4" /></a>
             </div>
           </div>
 
@@ -333,8 +300,8 @@ export default function Footer() {
             <div>
               <h4 className="text-xs font-sans font-semibold uppercase tracking-wider text-slate-900 dark:text-neutral-200 mb-4">Practices</h4>
               <ul className="space-y-3 text-xs font-normal font-sans">
-                <li><Link href="/about" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Boutique Studios</Link></li>
-                <li><Link href="/features" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Specialized Advisory</Link></li>
+                <li><Link href="/about" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">About the Engineer</Link></li>
+                <li><Link href="/features" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Feature Demonstrations</Link></li>
                 <li><Link href="/talent-intelligence" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Fractional Partners</Link></li>
                 <li><Link href="/product" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Engineering Consultancies</Link></li>
                 <li><Link href="/people-operations" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Strategy Collectives</Link></li>
@@ -347,7 +314,7 @@ export default function Footer() {
               <ul className="space-y-3 text-xs font-normal font-sans">
                 <li><Link href="/features" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Signal Methodology</Link></li>
                 <li><Link href="/product" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Opportunity Metrics</Link></li>
-                <li><Link href="/about" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Operator Case Studies</Link></li>
+                <li><Link href="/about" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Engineering Background</Link></li>
                 <li><Link href="/features" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Dossier Architecture</Link></li>
                 <li><Link href="/workspace" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Pipeline Simulator</Link></li>
               </ul>
@@ -356,10 +323,10 @@ export default function Footer() {
             <div>
               <h4 className="text-xs font-sans font-semibold uppercase tracking-wider text-slate-900 dark:text-neutral-200 mb-4">Integrity</h4>
               <ul className="space-y-3 text-xs font-normal font-sans">
-                <li><Link href="/security" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Zero-Spam Policy</Link></li>
-                <li><Link href="/security" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Data Privacy & Encryption</Link></li>
-                <li><Link href="/security" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Single-Tenant Isolation</Link></li>
-                <li><Link href="/security" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Terms of Service</Link></li>
+                <li><Link href="/security" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Implemented Controls</Link></li>
+                <li><Link href="/security" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Data Handling Notes</Link></li>
+                <li><Link href="/security" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Tenant Boundary Notes</Link></li>
+                <li><Link href="/security" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Security Limitations</Link></li>
                 <li><Link href="/security" className="text-slate-600 dark:text-neutral-400 hover:text-slate-950 dark:hover:text-white transition-colors">Security Architecture</Link></li>
               </ul>
             </div>

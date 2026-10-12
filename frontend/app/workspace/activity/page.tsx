@@ -128,7 +128,7 @@ export default function ActivityLogPage() {
       color: "text-amber-600 dark:text-amber-400",
       bg: "bg-amber-500/10",
       glare: "#f59e0b",
-      badge: "SOC-2 Type II",
+      badge: "Application access controls",
     },
   ];
 

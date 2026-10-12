@@ -38,7 +38,7 @@ export default function ProductPage() {
       subtitle: "Zero redundant data entry across systems",
       icon: Users,
       desc: "Every contract signed, PTO requested, expense filed, or performance review completed updates the employee's singular, cryptographically audited canonical record.",
-      metrics: ["100% data consistency", "Zero duplicate CSV imports", "Instant audit history"],
+      metrics: ["Shared employee data model", "Zero duplicate CSV imports", "Instant audit history"],
       badge: "Architecture"
     },
     {
@@ -46,7 +46,7 @@ export default function ProductPage() {
       subtitle: "From offer acceptance to seamless offboarding",
       icon: Zap,
       desc: "Event-driven micro-workflows handle IT provisioning, tax form collection, mentor pairing, equipment stipend distribution, and access revocations without human delay.",
-      metrics: ["85% faster onboarding", "Zero lapsed NDAs", "SOC-2 compliant deprovisioning"],
+      metrics: ["Illustrative onboarding projection", "Zero lapsed NDAs", "Lifecycle deprovisioning concept"],
       badge: "Automation"
     },
     {
@@ -59,7 +59,7 @@ export default function ProductPage() {
     },
     {
       title: "Statutory Compliance Shield",
-      subtitle: "Proactive legal guards in 150+ jurisdictions",
+      subtitle: "Example policy and jurisdiction modelling",
       icon: ShieldCheck,
       desc: "Never miss a labor law amendment, required harassment training cycle, or statutory minimum wage adjustment with automated policy enforcement.",
       metrics: ["Built-in legal guards", "WORM compliant storage", "Automated EEO-1 reporting"],

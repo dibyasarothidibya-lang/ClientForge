@@ -1,4 +1,7 @@
 .hero{--ink:#1c2230;--muted:#646c7d;--line:#dce0e9;--paper:rgba(255,255,255,.88);--accent:#6253cb;--surface:#f4f5fa;position:relative;isolation:isolate;color:var(--ink);font-family:var(--font-inter),sans-serif}
+.hero .headline.commercialHeadline{font-size:clamp(40px,4.6vw,62px);letter-spacing:-.065em;line-height:1.08}
+@media(max-width:760px){.hero .headline.commercialHeadline{font-size:clamp(34px,8vw,52px)}}
+.specialisation{color:var(--muted);font-size:10px;line-height:1.9;margin-top:14px;letter-spacing:.025em}
 :global(.dark) .hero{--ink:#f0f1f7;--muted:#a1a8b8;--line:#ffffff18;--paper:rgba(19,22,32,.9);--accent:#b3a6f4;--surface:#131620}
 .atmosphere{position:absolute;inset:-160px -150px -60px;z-index:-1;pointer-events:none;overflow:hidden;opacity:.6;mask-image:linear-gradient(black 75%,transparent)}
 .atmosphere>div{position:absolute;width:65%;height:70%;border-radius:50%;filter:blur(85px);background:radial-gradient(ellipse,#b7a6f533,transparent 65%);animation:drift 18s ease-in-out infinite alternate;will-change:transform}

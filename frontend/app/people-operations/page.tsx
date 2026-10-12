@@ -96,7 +96,7 @@ export default function PeopleOperationsPage() {
                 transition={{ duration: 0.7 }}
                 className="font-serif text-5xl sm:text-6xl md:text-7xl font-normal tracking-tight text-slate-950 dark:text-white leading-[1.04] mb-6"
               >
-                The Modern Standard for{" "}
+                An Interactive View of{" "}
                 <span className="font-serif italic bg-gradient-to-r from-indigo-600 via-violet-600 to-sky-600 dark:from-indigo-400 dark:via-purple-300 dark:to-sky-400 bg-clip-text text-transparent">
                   People Teams
                 </span>
@@ -109,7 +109,7 @@ export default function PeopleOperationsPage() {
                 transition={{ duration: 0.7, delay: 0.1 }}
                 className="text-base sm:text-lg text-slate-600 dark:text-neutral-400 max-w-xl leading-relaxed mb-8 font-normal"
               >
-                Automate talent onboarding lifecycles, monitor real-time pulse data, and scale your culture seamlessly—orchestrated by intelligent, context-aware workforce agents.
+                Inspect onboarding and team-health interface concepts. Sentiment, retention, and productivity figures are illustrative scenarios, separate from the implemented directory and approval workflows.
               </motion.p>
 
               {/* Action Buttons */}

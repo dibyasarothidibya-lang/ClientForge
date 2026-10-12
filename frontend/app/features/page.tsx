@@ -79,7 +79,7 @@ export default function FeaturesPage() {
         "Statutory leave policy engines (Annual, Sick, FMLA, Parental)",
         "Automated year-end accrual and carryover calculations",
         "Departmental absence calendar and team availability alerts",
-        "Medical certificate attachment and HIPAA compliance",
+        "Medical certificate attachment workflow (demonstration)",
         "Partial-day, half-day, and multi-week leave configurations"
       ]
     },
@@ -127,7 +127,7 @@ export default function FeaturesPage() {
       name: "Document Vault",
       icon: FileText,
       features: [
-        "WORM-compliant cryptographically sealed storage",
+        "Document records and version metadata (demonstration)",
         "Offer letter, NDA, and statutory form e-signature workflows",
         "Category grouping (Contracts, Policies, Tax, Compliance)",
         "Granular access permissions (Employee-only, Manager, HR)",
@@ -173,7 +173,7 @@ export default function FeaturesPage() {
           Every tool your company needs to <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-sky-500 to-indigo-400">scale without chaos.</span>
         </h1>
         <p className="text-base sm:text-lg text-slate-600 dark:text-neutral-400 max-w-2xl mx-auto mt-4 leading-relaxed">
-          Explore the exhaustive catalog of features built natively into PeopleCore. No plugins or third-party add-on purchases required.
+          This catalogue combines implemented modules and interface concepts. The engineering case study distinguishes repository facts from simulated integration, legal, and financial capabilities.
         </p>
 
         {/* Search & Filter bar */}
@@ -270,10 +270,10 @@ export default function FeaturesPage() {
               Direct Comparison
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold text-slate-950 dark:text-white">
-              Why modern teams switch from legacy HR.
+              Illustrative feature comparison.
             </h2>
             <p className="text-slate-600 dark:text-neutral-400 text-sm">
-              See how PeopleCore outperforms traditional siloed platforms.
+              These example comparisons are not independent competitor benchmarks or customer results.
             </p>
           </div>
 

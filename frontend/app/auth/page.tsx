@@ -601,7 +601,7 @@ export default function AuthFlowsPage() {
 
       {/* Footer */}
       <footer className="text-center text-xs text-slate-400 py-4">
-        Protected by 256-bit TLS encryption, SOC 2 Type II controls, and ISO 27001 data residency.
+        ClientForge authentication demonstration. Formal compliance certification is not claimed.
       </footer>
     </main>
   );

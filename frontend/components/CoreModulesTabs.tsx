@@ -55,9 +55,9 @@ const modules: ModuleData[] = [
     heading: "Know Who You’re Talking To Before You Reach Out",
     description: "Eliminate shallow research. Client Forge gathers corporate milestones, leadership shifts, technology stack evolution, and strategic pressure points into one clear executive dossier.",
     stats: [
-      { label: "Research Velocity", value: "90s" },
-      { label: "Signal Accuracy", value: "98.4%" },
-      { label: "Pitch Relevance", value: "100%" },
+      { label: "Scenario Duration", value: "90s" },
+      { label: "Modelled Signal Score", value: "98.4%" },
+      { label: "Example Relevance", value: "100%" },
     ],
     features: [
       "Financial rounds, leadership promotions, and open requisition triggers",
@@ -66,8 +66,8 @@ const modules: ModuleData[] = [
       "Automated executive dossier export for call preparation"
     ],
     previewContent: {
-      badge: "VERIFIED PROSPECT DOSSIER",
-      mainTitle: "High-Intent Signal Stream",
+      badge: "SAMPLE PROSPECT DOSSIER",
+      mainTitle: "Illustrative Signal Stream",
       items: [
         { 
           country: "Apex Global HQ", 
@@ -76,7 +76,7 @@ const modules: ModuleData[] = [
           amount: "$65,000",
           source: "SEC 8-K Filing & Board Transition",
           dilemma: "Fragmented multi-squad token friction delaying Q3 enterprise launch.",
-          confidence: "98.4% Match"
+          confidence: "Example Match Score"
         },
         { 
           country: "NovaScale Labs", 
@@ -373,10 +373,10 @@ function Interactive3DPreviewCard({
             </h4>
           </div>
 
-          {/* Modern Cyan/Sky Live Index (No Green) */}
+          {/* Modern Cyan/Sky Sample Index (No Green) */}
           <div className="flex items-center gap-1.5">
             <span className="text-[11px] font-sans font-medium text-sky-500 dark:text-sky-400">
-              Live Index
+              Sample Index
             </span>
             <div className="relative flex items-center justify-center w-2.5 h-2.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75" />
@@ -467,7 +467,7 @@ function Interactive3DPreviewCard({
             <span>Autonomous signal indexing</span>
           </span>
           <span className="font-semibold text-slate-700 dark:text-neutral-300 font-sans text-[10.5px]">
-            100% Contextual Verification
+            Sample contextual signals
           </span>
         </div>
 

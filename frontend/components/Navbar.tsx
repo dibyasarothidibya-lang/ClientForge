@@ -186,7 +186,7 @@ export default function Navbar() {
                         </div>
                         <div>
                           <div className="text-xs font-semibold text-slate-900 dark:text-white">Security & Trust</div>
-                          <div className="text-[11px] text-slate-500 dark:text-neutral-400 leading-tight mt-0.5">SOC-2 Type II, AES-256</div>
+                          <div className="text-[11px] text-slate-500 dark:text-neutral-400 leading-tight mt-0.5">Roles, records & implementation notes</div>
                         </div>
                       </Link>
 

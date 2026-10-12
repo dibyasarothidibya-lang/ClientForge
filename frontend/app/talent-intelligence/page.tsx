@@ -113,7 +113,7 @@ export default function TalentIntelligencePage() {
                 transition={{ duration: 0.7 }}
                 className="font-serif text-5xl sm:text-6xl md:text-7xl font-normal tracking-tight text-slate-950 dark:text-white leading-[1.04] mb-6"
               >
-                Autonomous Pipeline &{" "}
+                Talent Signals &{" "}
                 <span className="font-serif italic bg-gradient-to-r from-sky-600 via-indigo-600 to-violet-600 dark:from-sky-400 dark:via-indigo-300 dark:to-purple-400 bg-clip-text text-transparent">
                   Sourcing Engine
                 </span>
@@ -126,7 +126,7 @@ export default function TalentIntelligencePage() {
                 transition={{ duration: 0.7, delay: 0.2 }}
                 className="text-base sm:text-lg text-slate-600 dark:text-neutral-400 max-w-xl leading-relaxed mb-8 font-normal"
               >
-                Continuously map candidate competencies, benchmark skill telemetry across 140M public data nodes, and eliminate recruiter bias with context-aware intelligence agents.
+                Explore example candidate profiles, illustrative competency signals, and stage-based workflows. These interface scenarios do not establish live public-data ingestion or validated hiring predictions.
               </motion.p>
 
               {/* Action Buttons */}

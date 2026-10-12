@@ -386,3 +386,10 @@ html:not(.dark) .workspace-shell textarea::placeholder {
   font-feature-settings: "liga", "dlig", "swsh";
   letter-spacing: 0.015em;
 }
+
+/* Keep motion preferences and keyboard visibility consistent across portfolio and demo. */
+:where(a,button,summary,input,select,textarea):focus-visible { outline: 2px solid #9687db !important; outline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}

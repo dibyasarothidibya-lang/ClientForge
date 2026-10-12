@@ -86,14 +86,14 @@ export default function GroundedAICenterPage() {
       badge: "Real-time sync",
     },
     {
-      title: "Hallucination Rate",
-      value: "0.00%",
+      title: "Response Generator",
+      value: "Templates",
       subtext: "Deterministic schema queries",
       icon: Shield,
       color: "text-emerald-600 dark:text-emerald-400",
       bg: "bg-emerald-500/10",
       glare: "#10b981",
-      badge: "SOC-2 Certified",
+      badge: "Demonstration display",
     },
     {
       title: "Inference Latency",
@@ -220,7 +220,7 @@ export default function GroundedAICenterPage() {
             <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20">
               <Sparkles className="w-3.5 h-3.5" /> Grounded Intelligence Engine
             </span>
-            <span className="text-xs text-slate-500 dark:text-neutral-400">SOC-2 Type II Zero-Retention</span>
+            <span className="text-xs text-slate-500 dark:text-neutral-400">Simulated assistant interface</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-sans font-semibold tracking-tight text-slate-950 dark:text-neutral-100">
             Operations AI Center
@@ -233,7 +233,7 @@ export default function GroundedAICenterPage() {
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-neutral-900 border border-slate-200 dark:border-neutral-800 text-xs font-sans font-medium text-slate-700 dark:text-neutral-300 shadow-xs">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            Forge-LLM v2.4 (Grounded)
+            Template-based Assistant Demo
           </div>
         </div>
       </div>
@@ -436,7 +436,7 @@ export default function GroundedAICenterPage() {
                 <Shield className="w-4 h-4 text-emerald-500" /> Grounded Architecture
               </div>
               <p>
-                Responses cite exact table rows and ledger balances. No hallucination risk. Your enterprise data is never used to train global public models.
+                Demonstration replies combine example records and predefined templates. Check the source and original records; no model accuracy or training guarantee is claimed.
               </p>
             </div>
           </div>

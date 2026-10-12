@@ -128,8 +128,8 @@ export default function PricingPage() {
         "Unlimited Global Headcount",
         "Custom Payroll Rules & Union Policies",
         "SAML SSO & SCIM Provisioning",
-        "Dedicated Single-Tenant VPC / Residency",
-        "99.99% Uptime Guarantee SLA",
+        "Example dedicated deployment option",
+        "Illustrative availability target (not an SLA)",
         "Custom ERP Two-Way Sync (Workday/SAP)",
         "24/7 Named Technical Lead"
       ],
@@ -322,8 +322,8 @@ export default function PricingPage() {
               className="text-sm sm:text-base text-slate-600 dark:text-neutral-400 max-w-2xl mx-auto leading-relaxed mb-8"
             >
               {productSuite === "peoplecore"
-                ? "Every PeopleCore tier includes access to our unified workforce database. Upgrade as your team expands."
-                : "Invest in autonomous opportunity intelligence and high-conviction pipeline architecture that pays for itself with a single closed engagement."}
+                ? "Explore how a workforce product could organise subscription tiers. Plan entitlements and prices here are demonstration configuration, not custom engineering quotes."
+                : "An example SaaS plan catalogue demonstrating tier configuration and a provider checkout path. This is separate from custom engineering, which is scoped and quoted for each project."}
             </motion.p>
 
             {/* Billing Frequency Switcher */}

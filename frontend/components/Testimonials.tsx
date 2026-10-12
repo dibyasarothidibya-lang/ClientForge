@@ -8,9 +8,9 @@ const principles = [
   {
     topic: "Strict Multi-Tenant Isolation",
     decision: "Organization-Scoped Data Boundary",
-    detail: "Every database query and model manager enforces tenant scoping at the ORM layer. Cross-tenant leakage is prevented structurally before reaching API serializers.",
+    detail: "Organisation-linked records, explicitly scoped queries, and DRF object permissions define tenant boundaries. Tests check selected cross-organisation access cases.",
     tag: "Security Architecture",
-    metric: "100% Isolated",
+    metric: "Tenant Scoped",
   },
   {
     topic: "Granular RBAC Authorization",
@@ -21,8 +21,8 @@ const principles = [
   },
   {
     topic: "Continuous Automated Verification",
-    decision: "71 Automated Test Suites",
-    detail: "Comprehensive test suite spanning accounts, attendance, payroll formulas, leave workflows, and organization lifecycle ensuring zero regression during upgrades.",
+    decision: "71 Automated Test Methods",
+    detail: "Comprehensive test suite spanning accounts, attendance, payroll formulas, leave workflows, and organization lifecycle covering selected regression cases during upgrades.",
     tag: "Quality Assurance",
     metric: "71 Tests Passing",
   }
@@ -133,7 +133,7 @@ export default function Testimonials() {
               <div className="text-xs font-sans font-semibold uppercase tracking-wider text-slate-500 dark:text-neutral-400 mb-2">Codebase Telemetry</div>
               <div className="font-sans text-4xl md:text-5xl font-normal md:font-medium tracking-tight tabular-nums text-slate-950 dark:text-white">71 Tests</div>
               <p className="text-slate-600 dark:text-neutral-300 text-sm font-normal mt-2 leading-relaxed">
-                Automated unit & integration test coverage across all 13 Django application domains with 100% pass rate.
+                71 test methods passed on 12 October 2026 with an isolated SQLite database and in-memory email. This is not a production infrastructure audit.
               </p>
               <div className="mt-4 pt-4 border-t border-slate-200 dark:border-white/[0.06] flex items-center justify-between text-xs text-slate-500 dark:text-neutral-400 font-sans">
                 <span>Django REST Framework</span>

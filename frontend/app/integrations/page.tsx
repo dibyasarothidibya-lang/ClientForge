@@ -115,7 +115,7 @@ export default function IntegrationsPage() {
       id: "bamboohr",
       name: "BambooHR Migrator",
       category: "HR & Migration",
-      desc: "One-click automated employee directory, compensation history, and leave balance migration tool from BambooHR.",
+      desc: "Migration interface concept for employee records, compensation history, and leave balances. A production BambooHR migration connector is not established by this preview.",
       tags: ["Migration", "One-click", "HRIS"],
       connected: false,
       glare: "#84cc16",
@@ -180,7 +180,7 @@ export default function IntegrationsPage() {
           Connect PeopleCore to your <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-sky-500 to-indigo-400">entire tech stack.</span>
         </h1>
         <p className="text-base sm:text-lg text-slate-600 dark:text-neutral-400 max-w-2xl mx-auto mt-4 leading-relaxed">
-          Bi-directional synchronizations with identity providers, communication suites, accounting ledgers, and developer pipelines.
+          Explore interface concepts for provider connections. Firebase and Stripe adapter code can be inspected; other connection previews do not prove live synchronisation.
         </p>
 
         {/* Search */}
@@ -237,7 +237,7 @@ export default function IntegrationsPage() {
                     </div>
                     {app.connected ? (
                       <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 text-emerald-600">
-                        Live Sync
+                        Integration Preview
                       </span>
                     ) : (
                       <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-100 dark:bg-neutral-800 text-slate-500">

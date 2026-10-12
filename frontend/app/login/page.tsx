@@ -376,7 +376,7 @@ export default function LoginPage() {
           )}
 
           <p className="text-center text-xs text-slate-500 dark:text-zinc-500 mt-6">
-            Protected by enterprise encryption & SOC-2 compliance.
+            ClientForge authentication demo · Independent engineering project.
           </p>
         </div>
 

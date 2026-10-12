@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring, useReducedMotion } from "framer-motion";
 
 interface ThreeDSectionProps {
   children: React.ReactNode;
@@ -15,6 +15,7 @@ export function ThreeDSection({
   depthIntensity = 1,
 }: ThreeDSectionProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const reducedMotion = useReducedMotion();
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -50,9 +51,9 @@ export function ThreeDSection({
     >
       <motion.div
         style={{
-          rotateX,
-          translateZ,
-          opacity: rawOpacity,
+          rotateX: reducedMotion ? 0 : rotateX,
+          translateZ: reducedMotion ? 0 : translateZ,
+          opacity: reducedMotion ? 1 : rawOpacity,
           transformStyle: "preserve-3d",
         }}
         className="relative w-full"

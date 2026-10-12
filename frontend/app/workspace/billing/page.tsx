@@ -196,7 +196,7 @@ export default function WorkspaceBillingPage() {
             </div>
             <div className="flex items-center gap-2 p-2.5 rounded-xl bg-slate-50 dark:bg-neutral-900/60 border border-slate-200 dark:border-white/[0.04]">
               <Check className="w-4 h-4 text-emerald-500 shrink-0" />
-              <span className="text-slate-800 dark:text-neutral-200">7-Year WORM Storage & SOC-2 Audit Logging</span>
+              <span className="text-slate-800 dark:text-neutral-200">Example retention policy & audit record UI</span>
             </div>
           </div>
 

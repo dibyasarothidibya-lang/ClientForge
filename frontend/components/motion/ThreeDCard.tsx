@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useState } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform, useReducedMotion } from "framer-motion";
 
 interface ThreeDCardProps {
   children: React.ReactNode;
@@ -23,6 +23,7 @@ export function ThreeDCard({
   elevationZ = 20,
 }: ThreeDCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
+  const reducedMotion = useReducedMotion();
   const [isHovered, setIsHovered] = useState(false);
 
   const mouseX = useMotionValue(0.5);
@@ -40,7 +41,7 @@ export function ThreeDCard({
   const [glarePos, setGlarePos] = useState({ x: 50, y: 50 });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
+    if (!cardRef.current || reducedMotion) return;
     const rect = cardRef.current.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width;
     const y = (e.clientY - rect.top) / rect.height;
@@ -51,7 +52,7 @@ export function ThreeDCard({
   };
 
   const handleMouseEnter = () => {
-    setIsHovered(true);
+    if (!reducedMotion) setIsHovered(true);
   };
 
   const handleMouseLeave = () => {
@@ -71,10 +72,10 @@ export function ThreeDCard({
     >
       <motion.div
         style={{
-          rotateX,
-          rotateY,
-          scale,
-          translateZ,
+          rotateX: reducedMotion ? 0 : rotateX,
+          rotateY: reducedMotion ? 0 : rotateY,
+          scale: reducedMotion ? 1 : scale,
+          translateZ: reducedMotion ? 0 : translateZ,
           transformStyle: "preserve-3d",
         }}
         className="w-full h-full relative"

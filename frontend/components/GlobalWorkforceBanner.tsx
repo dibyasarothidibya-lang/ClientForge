@@ -423,13 +423,13 @@ export function GlobalWorkforceBanner() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-8">
           <div className="lg:col-span-8">
             <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal tracking-tight text-slate-900 dark:text-white leading-[1.05]">
-              Distributed workforce simulation across 24 global nodes.
+              Explore a distributed workforce, node by node.
             </h2>
           </div>
 
           <div className="lg:col-span-4 flex flex-col justify-end">
             <p className="text-base sm:text-lg text-slate-600 dark:text-neutral-400 leading-relaxed mb-6">
-              Interactive 3D WebGL visualization modeling multi-region workforce operations, localized currency handling, and simulated cross-border payroll workflows.
+              A working 3D interaction model for exploring regions, selecting records, and inspecting linked operational details. Drag the globe, focus a region, or choose a node. Workforce counts, policy fields, and settlement times are sample data.
             </p>
 
             <div className="flex flex-wrap items-center gap-3">
@@ -458,7 +458,7 @@ export function GlobalWorkforceBanner() {
               <span>SIMULATED NODES</span>
             </div>
             <div className="font-sans text-2xl sm:text-3xl font-normal sm:font-medium text-slate-950 dark:text-white tabular-nums">
-              24 Hubs
+              {sampleMarkers.length} Hubs
             </div>
             <div className="text-xs text-slate-500 dark:text-neutral-400 mt-0.5 font-sans">
               Americas, EMEA & APAC demo data
@@ -576,7 +576,7 @@ export function GlobalWorkforceBanner() {
                   </h4>
                   <span className="text-[11px] font-sans font-medium text-slate-300 flex items-center gap-1.5 mt-0.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse" />
-                    Autonomous Node Live
+                    Selected Demonstration Node
                   </span>
                 </div>
               </div>
@@ -594,14 +594,14 @@ export function GlobalWorkforceBanner() {
             <div className="grid grid-cols-2 gap-2 text-xs py-2.5 border-y border-slate-800">
               <div>
                 <span className="text-slate-400 block text-[10px] uppercase font-sans font-medium">Headcount</span>
-                <span className="font-bold text-white text-sm">{activeMarket.hires || 12} Deployed</span>
+                <span className="font-bold text-white text-sm">{activeMarket.hires || 12} Sample Personnel</span>
               </div>
               <div>
                 <span className="text-slate-400 block text-[10px] uppercase font-sans font-medium">Local Currency</span>
                 <span className="font-bold text-white text-sm">{activeMarket.currency || "USD"}</span>
               </div>
               <div className="col-span-2 mt-1">
-                <span className="text-slate-400 block text-[10px] uppercase font-sans font-medium">Statutory Framework</span>
+                <span className="text-slate-400 block text-[10px] uppercase font-sans font-medium">Example Policy Reference</span>
                 <span className="text-slate-200 text-xs flex items-center gap-1.5 mt-0.5">
                   <ShieldCheck className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
                   <span className="truncate">{activeMarket.compliance || "Fully Compliant"}</span>
@@ -611,13 +611,13 @@ export function GlobalWorkforceBanner() {
 
             <div className="mt-3.5 flex items-center justify-between">
               <span className="text-[11px] text-slate-400">
-                Avg Settlement: <strong className="text-slate-200">{activeMarket.avgPayout || "Same-Day"}</strong>
+                Modelled Settlement: <strong className="text-slate-200">{activeMarket.avgPayout || "Same-Day"}</strong>
               </span>
               <Link
                 href="/workspace/recruitment"
                 className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl bg-white hover:bg-neutral-100 text-slate-950 text-xs font-semibold transition-colors shadow-xs"
               >
-                <span>Deploy Hires</span>
+                <span>Inspect Recruitment Demo</span>
                 <ArrowRight className="w-3 h-3" />
               </Link>
             </div>

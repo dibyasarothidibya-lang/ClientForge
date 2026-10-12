@@ -106,7 +106,7 @@ export default function HeroHeadline() {
       >
         <div className="flex items-center gap-1.5">
           <ShieldCheck className="w-3.5 h-3.5 text-slate-400 dark:text-neutral-500" />
-          <span>SOC-2 Type II Certified</span>
+          <span>Permission checks & audit records</span>
         </div>
         <span className="hidden sm:inline text-slate-300 dark:text-neutral-700">•</span>
         <div className="flex items-center gap-1.5">

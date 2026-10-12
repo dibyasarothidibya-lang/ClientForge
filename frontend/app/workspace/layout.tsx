@@ -15,6 +15,7 @@ function WorkspaceMain({ children }: { children: React.ReactNode }) {
       } p-4 sm:p-6 lg:p-7 min-h-[calc(100vh-3.5rem)]`}
     >
       <div className="max-w-[1440px] mx-auto space-y-6">
+        <aside aria-label="Workspace demonstration context" className="text-xs leading-relaxed p-3 border-l-2 border-indigo-400 bg-indigo-500/5 text-slate-600 dark:text-zinc-300"><strong>Engineering demonstration.</strong> This workspace includes seeded example records and simulated charts, financial outcomes, service metrics, and integration states. Backend-connected records may also be present. Demonstration labels do not establish real payments, regulatory compliance, or externally verified results.</aside>
         {children}
       </div>
     </main>
