@@ -31,12 +31,12 @@ export default function CreatorHero({ introOnly = false }: { introOnly?: boolean
     <motion.div className={styles.topline} {...reveal}><span className={styles.eyebrow}>INDEPENDENT B2B SOFTWARE & BACKEND SYSTEMS ENGINEER</span><a href="https://wa.me/8801704909232" target="_blank" rel="noopener noreferrer" className={styles.availability}><span /> Discuss your operational problem <ArrowUpRight size={13} /></a></motion.div>
     <div className={styles.grid}>
       <motion.div className={styles.copy} {...reveal}>
-        <p className={styles.intro}>Dibya Sarothi Simanta <span>Custom software · Backend systems · Integrations</span></p>
-        <h1 className={`${styles.headline} ${styles.commercialHeadline}`}>Reliable software.<br /><span>Complex operations.</span></h1>
-        <p className={styles.description}>I build reliable backend systems and custom B2B software for businesses dealing with complex workflows, disconnected applications, and operational inefficiencies.</p>
-        <p className={styles.specialisation}>People operations · Administrative workflows · B2B internal systems</p>
+        <p className={styles.intro}>Dibya Sarothi Simanta <span>Custom Internal Tools · Workflow Automation · Backend Systems</span></p>
+        <h1 className={`${styles.headline} ${styles.commercialHeadline}`}>Your business has a workflow problem.<br /><span>I build the software that solves it.</span></h1>
+        <p className={styles.description}>I build custom internal software and backend systems that replace disconnected spreadsheets, manual workflows, and unreliable business processes.</p>
+        <p className={styles.specialisation}>Django / Python · Next.js / TypeScript · Multi-Tenant Architecture · Production-Tested</p>
         <div className={styles.signed}><div className={styles.signature}><Image src="/signature.jpeg" alt="Dibya’s handwritten signature" width={1448} height={1086} /></div><span>Thoughtfully designed.<br />Personally engineered.</span></div>
-        <div className={styles.actions}><a className={styles.primary} href="https://wa.me/8801704909232" target="_blank" rel="noopener noreferrer">Discuss a Project <ArrowUpRight size={18} /></a><Link className={styles.secondary} href="/workspace">Explore Live Demo <ArrowUpRight size={17} /></Link></div>
+        <div className={styles.actions}><a className={styles.primary} href="#contact">Tell Me About Your Project <ArrowUpRight size={18} /></a><Link className={styles.secondary} href="/case-studies/clientforge">See What I&apos;ve Built <ArrowUpRight size={17} /></Link></div>
         <div className="flex flex-wrap items-center gap-2.5 mt-6 font-sans">
           <a
             href="https://github.com/dibyasarothidibya-lang"

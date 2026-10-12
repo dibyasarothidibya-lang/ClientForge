@@ -5,6 +5,7 @@ import {
   BusinessProblemsSection,
   Services,
   FlagshipStudy,
+  GuidedDemonstrationSection,
   TechnicalProofStrip,
   Engagement,
   AboutEngineer,
@@ -14,13 +15,14 @@ import {
 import GlobalWorkforceBanner from "@/components/GlobalWorkforceBanner";
 import SelectedWork from "@/components/SelectedWork";
 import LegacyShowcase from "@/components/portfolio/LegacyShowcase";
+import Faq from "@/components/Faq";
 import ThreeDSection from "@/components/motion/ThreeDSection";
 import s from "@/components/portfolio/portfolio.module.css";
 
 export const metadata: Metadata = {
   title: "Dibya Sarothi Simanta — B2B Software & Backend Systems Engineer",
   description:
-    "Independent engineer for custom B2B software, backend systems, integrations, and workflow automation. Explore ClientForge and working engineering projects.",
+    "Independent engineer for custom internal business applications, workflow automation, and reliable backend systems. Explore ClientForge and working engineering projects.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "Dibya Sarothi Simanta — Independent B2B Software Engineer",
@@ -75,6 +77,7 @@ export default function Home() {
         <BusinessProblemsSection />
         <Services />
         <FlagshipStudy />
+        <GuidedDemonstrationSection />
 
         <ThreeDSection depthIntensity={0.45}>
           <GlobalWorkforceBanner />
@@ -98,6 +101,7 @@ export default function Home() {
 
         <Engagement />
         <AboutEngineer />
+        <Faq />
         <ContactSection />
       </main>
       <PortfolioFooter />

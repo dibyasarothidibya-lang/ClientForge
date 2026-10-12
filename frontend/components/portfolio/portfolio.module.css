@@ -20,9 +20,10 @@
 .record{border-top:1px solid #81879326;padding:20px 0}.record h3{font:500 18px/1.4 var(--font-inter),sans-serif;margin-bottom:10px}
 .tag{display:inline-block;border:1px solid #81879340;padding:5px 10px;font-size:10px;letter-spacing:.09em;text-transform:uppercase;margin-bottom:22px}
 .proofGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px;margin-top:40px}.proofGrid h3{font:500 20px/1.3 var(--font-inter),sans-serif;margin:14px 0}
-.process{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:40px}.process li{border-top:1px solid #81879340;padding-top:20px}.process h3{font:500 17px/1.4 var(--font-inter),sans-serif;margin:12px 0}
+.process{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:32px;margin-top:40px}.process li{border-top:1px solid #81879340;padding-top:20px}.process h3{font:500 17px/1.4 var(--font-inter),sans-serif;margin:12px 0}
 .step{font-size:11px;color:#8390a6;letter-spacing:.12em}
-.contact{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center}.contactEmail{font-size:clamp(17px,2vw,25px);letter-spacing:-.04em;overflow-wrap:anywhere;display:block;margin-bottom:22px}
+.contact{display:grid;grid-template-columns:1fr 1.2fr;gap:50px;align-items:start}
+.contactEmail{font-size:clamp(17px,2vw,25px);letter-spacing:-.04em;overflow-wrap:anywhere;display:block;margin-bottom:22px}
 .footer{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;border-top:1px solid #81879326;padding:26px 0;font-size:11px;color:#7f8798}.footer a{color:inherit}
 .demoDetails{border:1px solid #81879335;margin:24px auto 70px;max-width:1280px;scroll-margin-top:90px}.demoDetails>summary{cursor:pointer;padding:26px 32px;display:list-item;font-size:15px}.demoDetails>summary span{display:block;font-size:12px;color:#7f8798;margin-top:10px;line-height:1.6}
 .notice{font:400 12px/1.7 var(--font-inter),sans-serif;padding:14px 20px;border-left:2px solid #9b8ad0;background:#8c80be0a;color:#596477;margin:24px 0}:global(.dark) .notice{color:#c0bfd0}
@@ -41,6 +42,21 @@
 .solutionBox p{font-size:13px;line-height:1.65;color:#495366;margin-bottom:14px}
 :global(.dark) .solutionBox p{color:#c5cbd8}
 
+.guidedGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;margin:32px 0 24px}
+.guidedCard{display:flex;flex-direction:column;justify-content:space-between;border:1px solid #81879326;border-radius:18px;padding:26px 28px;background:#ffffff70;transition:transform .2s,border-color .2s;text-decoration:none;color:inherit}
+:global(.dark) .guidedCard{background:#12121750}
+.guidedCard:hover{transform:translateY(-2px);border-color:#8577d380}
+.guidedBadge{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#8577d3;margin-bottom:8px;display:inline-block}
+.guidedCard h3{font:500 19px/1.3 var(--font-inter),sans-serif;margin-bottom:4px}
+.guidedSubtitle{font-size:12px;font-weight:500;color:#67748b;margin-bottom:12px}
+:global(.dark) .guidedSubtitle{color:#9fa8ba}
+.guidedCard p{font-size:13px;line-height:1.65;color:#596477;margin-bottom:18px}
+:global(.dark) .guidedCard p{color:#b1b6c4}
+.guidedAction{font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:6px;color:#8577d3;margin-top:auto}
+
+.videoCallout{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:20px 26px;border:1px solid #81879326;border-radius:16px;background:#ffffff60;margin-top:20px;flex-wrap:wrap}
+:global(.dark) .videoCallout{background:#12121740}
+
 .moduleGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:32px 0 24px}
 .moduleCard{display:flex;flex-direction:column;justify-content:space-between;border:1px solid #81879326;border-radius:14px;padding:20px 22px;background:#ffffff70;transition:transform .2s,border-color .2s;text-decoration:none;color:inherit}
 :global(.dark) .moduleCard{background:#13141a80}
@@ -58,6 +74,7 @@
 .proofItem p{font-size:12px;line-height:1.6;color:#67748b}
 :global(.dark) .proofItem p{color:#9fa8ba}
 
-@media(max-width:760px){.proofBanner{grid-template-columns:repeat(2,1fr);gap:24px}.problemGrid{grid-template-columns:1fr}}
+@media(max-width:960px){.contact{grid-template-columns:1fr;gap:40px}}
+@media(max-width:760px){.proofBanner{grid-template-columns:repeat(2,1fr);gap:24px}.problemGrid{grid-template-columns:1fr}.service{grid-template-columns:1fr;gap:18px}}
 @media(max-width:480px){.proofBanner{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.shell a{transition:none}.shell a:hover{transform:none}}

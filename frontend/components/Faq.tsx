@@ -2,44 +2,18 @@
 
 import React, { useState } from "react";
 import { ChevronDown, Sparkles } from "lucide-react";
+import { faqs } from "@/lib/portfolio";
 
 export default function Faq() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
-
-  const faqs = [
-    {
-        "question": "What kinds of projects can we discuss?",
-        "answer": "Custom people operations software, administrative workflow automation, backend integrations, and B2B internal applications. Discovery establishes the actual process, users, constraints, and acceptance criteria."
-    },
-    {
-        "question": "Is ClientForge a client delivery or an independent project?",
-        "answer": "ClientForge is an independent engineering project with implemented backend modules and interactive interface demonstrations. Sample organisations and modelled outcomes are not paid-client results."
-    },
-    {
-        "question": "Which parts can I inspect before making an enquiry?",
-        "answer": "Explore the workspace, public repository, walkthrough video, and case study. The source contains tenant permission checks, domain services, and 71 test methods. Illustrative provider integrations and telemetry are labelled separately."
-    },
-    {
-        "question": "Does the demo process actual payroll or establish legal compliance?",
-        "answer": "The backend calculates compensation using configured salary and tax-rate values. The UI models financial workflows. This does not establish banking settlement, statutory filings, jurisdiction coverage, or independent compliance certification."
-    },
-    {
-        "question": "How are project scope, price, and delivery agreed?",
-        "answer": "Discovery and technical scoping come before a proposal. Scope, milestones, validation requirements, and commercial terms are agreed for the actual project; demo subscription prices are not freelance service quotes."
-    },
-    {
-        "question": "How do I start a conversation?",
-        "answer": "Email dibyasarothidibya@gmail.com or use the verified WhatsApp link. Describe the operational problem and existing tools. Direct contact requires no account or payment."
-    }
-];
 
   const toggleFaq = (idx: number) => {
     setOpenIndex(openIndex === idx ? null : idx);
   };
 
   return (
-    <section id="security" className="py-24 sm:py-32 bg-slate-50/20 dark:bg-[#080808]/20 backdrop-blur-[1px] border-t border-slate-200/80 dark:border-white/[0.06] transition-colors duration-200 relative z-10 scroll-mt-20">
-      <div id="faq" className="scroll-mt-24" />
+    <section id="faq" className="py-24 sm:py-32 bg-slate-50/20 dark:bg-[#080808]/20 backdrop-blur-[1px] border-t border-slate-200/80 dark:border-white/[0.06] transition-colors duration-200 relative z-10 scroll-mt-20">
+      <div id="security" className="scroll-mt-24" />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -52,7 +26,7 @@ export default function Faq() {
             Frequently Considered. <span className="editorial-italic gradient-text">Clear Answers.</span>
           </h2>
           <p className="body-lg text-slate-600 dark:text-neutral-400 max-w-2xl mx-auto mt-4 font-normal">
-            Practical answers about project enquiries, engineering evidence, and demonstration limits.
+            Practical answers about project engagements, engineering evidence, technical guarantees, and delivery process.
           </p>
         </div>
 
