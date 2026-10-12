@@ -1,4 +1,5 @@
 .shell{max-width:1280px;margin:auto;padding:0 32px;font-family:var(--font-inter),sans-serif}
+.hero{padding:24px 0 64px}
 .section{padding:88px 0;border-top:1px solid #81879326;scroll-margin-top:90px}
 .eyebrow{font:500 11px/1.6 var(--font-inter),sans-serif;letter-spacing:.15em;text-transform:uppercase;color:#65718b;margin-bottom:20px}
 :global(.dark) .eyebrow{color:#adb4c8}
