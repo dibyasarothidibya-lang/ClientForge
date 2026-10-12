@@ -36,7 +36,7 @@ export default function CreatorHero({ introOnly = false }: { introOnly?: boolean
         <p className={styles.description}>I build reliable backend systems and custom B2B software for businesses dealing with complex workflows, disconnected applications, and operational inefficiencies.</p>
         <p className={styles.specialisation}>People operations · Administrative workflows · B2B internal systems</p>
         <div className={styles.signed}><div className={styles.signature}><Image src="/signature.jpeg" alt="Dibya’s handwritten signature" width={1448} height={1086} /></div><span>Thoughtfully designed.<br />Personally engineered.</span></div>
-        <div className={styles.actions}><a className={styles.primary} href="mailto:dibyasarothidibya@gmail.com">Discuss a Project <ArrowUpRight size={18} /></a><Link className={styles.secondary} href="/workspace">Explore Live Demo <ArrowUpRight size={17} /></Link></div>
+        <div className={styles.actions}><a className={styles.primary} href="https://wa.me/8801704909232" target="_blank" rel="noopener noreferrer">Discuss a Project <ArrowUpRight size={18} /></a><Link className={styles.secondary} href="/workspace">Explore Live Demo <ArrowUpRight size={17} /></Link></div>
         <div className="flex flex-wrap items-center gap-2.5 mt-6 font-sans">
           <a
             href="https://github.com/dibyasarothidibya-lang"

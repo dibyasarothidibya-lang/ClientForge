@@ -271,7 +271,7 @@ export function ContactSection({ asPage = false }: { asPage?: boolean } = {}) {
           <a className={s.contactEmail} href={`mailto:${engineer.email}`}>
             {engineer.email}
           </a>
-          <a className={s.button} href={`mailto:${engineer.email}?subject=Project%20enquiry`}>
+          <a className={s.button} href={engineer.whatsapp} target="_blank" rel="noopener noreferrer">
             Discuss a Project <ArrowUpRight size={17} />
           </a>
           <div className={s.links}>

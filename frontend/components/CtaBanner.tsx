@@ -51,7 +51,9 @@ export default function CtaBanner() {
               {/* Action Buttons */}
               <div className="flex flex-wrap items-center justify-center gap-4 max-w-md mx-auto">
                 <a
-                  href="mailto:dibyasarothidibya@gmail.com"
+                  href="https://wa.me/8801704909232"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 rounded-xl bg-white hover:bg-neutral-100 text-neutral-950 text-sm font-semibold tracking-tight transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] shadow-xl cursor-pointer"
                 >
                   Discuss a Project

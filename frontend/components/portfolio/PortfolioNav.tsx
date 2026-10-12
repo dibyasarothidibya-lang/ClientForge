@@ -70,7 +70,9 @@ export default function PortfolioNav() {
           <div className="flex items-center gap-3">
             <ThemeToggle compact />
             <a
-              href="mailto:dibyasarothidibya@gmail.com"
+              href="https://wa.me/8801704909232"
+              target="_blank"
+              rel="noopener noreferrer"
               className="hidden sm:inline-flex items-center gap-2 text-xs rounded-full py-2.5 px-4 bg-slate-900 text-white dark:bg-white dark:text-zinc-900 font-medium hover:opacity-90 transition-opacity"
             >
               Discuss a Project
@@ -112,7 +114,9 @@ export default function PortfolioNav() {
               </Link>
             ))}
             <a
-              href="mailto:dibyasarothidibya@gmail.com"
+              href="https://wa.me/8801704909232"
+              target="_blank"
+              rel="noopener noreferrer"
               className="font-medium text-indigo-500"
             >
               Discuss a Project ↗
